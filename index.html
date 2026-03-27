@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detector de Chollos Ciclistas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>Detector de Chollos Ciclistas</h1>
+      <p class="subtitle">Ofertas detectadas automáticamente por bajadas de precio</p>
+      <div class="stats" id="stats"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="filters card">
+      <div class="filter-row">
+        <label>
+          <span>Buscar</span>
+          <input type="text" id="searchInput" placeholder="Ej. Shimano, casco, MTB...">
+        </label>
+
+        <label>
+          <span>Categoría</span>
+          <select id="categoryFilter">
+            <option value="">Todas</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Tienda</span>
+          <select id="storeFilter">
+            <option value="">Todas</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Descuento mínimo</span>
+          <select id="discountFilter">
+            <option value="0">Cualquiera</option>
+            <option value="10">10%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section id="dealsInfo" class="info-line"></section>
+    <section id="dealsGrid" class="deals-grid"></section>
+  </main>
+
+  <template id="dealCardTemplate">
+    <article class="deal-card card">
+      <div class="deal-image-wrap">
+        <img class="deal-image" alt="">
+      </div>
+      <div class="deal-body">
+        <div class="deal-topline">
+          <span class="badge badge-store"></span>
+          <span class="badge badge-status"></span>
+        </div>
+        <h2 class="deal-title"></h2>
+        <p class="deal-meta"></p>
+        <div class="price-row">
+          <span class="price-current"></span>
+          <span class="price-old"></span>
+          <span class="price-discount"></span>
+        </div>
+        <p class="deal-reason"></p>
+        <div class="deal-actions">
+          <a class="btn" target="_blank" rel="noopener sponsored nofollow">Ver oferta</a>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
