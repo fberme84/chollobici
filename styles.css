@@ -256,3 +256,28 @@ input, select {
     height: 160px;
   }
 }
+
+
+.badge {
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#ffcc00;
+  padding:4px;
+  font-size:12px;
+  font-weight:bold;
+  border-radius:4px;
+}
+
+.badge.new{
+  background:#4caf50;
+  color:white;
+}
+
+.favorite{
+  position:absolute;
+  top:8px;
+  right:8px;
+  cursor:pointer;
+  font-size:18px;
+}

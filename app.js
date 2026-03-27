@@ -176,3 +176,81 @@ async function init() {
 });
 
 init();
+
+
+// === FASE 2.1 ===
+
+let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+function isRecent(dateStr) {
+  if (!dateStr) return false;
+  const diff = (Date.now() - new Date(dateStr)) / (1000*60*60*24);
+  return diff <= 7;
+}
+
+// enhance deals after load
+function enhanceDeals(deals){
+  return deals.map(d => ({
+    ...d,
+    discountPercent: d.old_price ? Math.round((1 - d.price / d.old_price) * 100) : 0,
+    isNew: isRecent(d.date)
+  }));
+}
+
+// override renderDeals safely
+const originalRenderDeals = renderDeals;
+
+renderDeals = function(){
+  const deals = getFilteredDeals().map(d => ({
+    ...d,
+    discountPercent: d.old_price ? Math.round((1 - d.price / d.old_price) * 100) : 0,
+    isNew: isRecent(d.date)
+  }));
+
+  const container = document.getElementById("dealsContainer");
+  container.innerHTML = "";
+
+  deals.forEach(d => {
+    const isFav = favorites.includes(d.id);
+
+    let badge = "";
+    if (d.discountPercent >= 25){
+      badge = `<div class="badge">TOP -${d.discountPercent}%</div>`;
+    } else if (d.isNew){
+      badge = `<div class="badge new">NUEVO</div>`;
+    }
+
+    const fav = `<div class="favorite" onclick="toggleFavorite('${d.id}')">${isFav ? "❤️" : "🤍"}</div>`;
+
+    container.innerHTML += `
+      <div class="card">
+        ${badge}
+        ${fav}
+        <img src="${d.image}" />
+        <h3>${d.title}</h3>
+        <p>${d.price}€</p>
+        <a href="${d.link}" target="_blank">Ver oferta</a>
+      </div>
+    `;
+  });
+};
+
+function toggleFavorite(id){
+  if (favorites.includes(id)){
+    favorites = favorites.filter(f => f !== id);
+  } else {
+    favorites.push(id);
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  renderDeals();
+}
+
+// last update
+document.addEventListener("DOMContentLoaded", ()=>{
+  const el = document.createElement("p");
+  el.id = "lastUpdate";
+  el.style.textAlign = "center";
+  el.style.marginTop = "10px";
+  el.innerText = "Última actualización: " + new Date().toLocaleString();
+  document.querySelector(".hero .wrap").appendChild(el);
+});
