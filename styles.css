@@ -848,23 +848,4 @@ body {
   }
 }
 
-.hero-white {background:#fff; padding:18px 0; box-shadow:0 10px 20px rgba(0,0,0,.08);}
-.hero-inner-white {text-align:center;}
-.brand-logo-white {max-width:420px; width:100%; border-radius:12px;}
-.last-update-dark {text-align:center; color:#555;}
-
-/* refined header */
-.brand-logo-white{
-  max-width:360px;
-  margin:auto;
-}
-
-.hero-white{
-  padding:14px 0 10px;
-}
-
-.last-update-dark{
-  margin-top:6px;
-  font-size:.9rem;
-  opacity:.8;
-}
+body{background:#f5f8ff;}
