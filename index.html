@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CholloBici</title>
+  <meta name="description" content="CholloBici detecta ofertas de ciclismo para ayudarte a ahorrar en componentes, accesorios, GPS, herramientas y más.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,24 +16,32 @@
       <div class="brand-lockup">
         <img src="assets/chollobici-logo.png" alt="CholloBici" class="brand-logo">
         <div class="brand-copy">
-          <span class="brand-kicker">Detector de ofertas ciclistas</span>
           <h1>CholloBici</h1>
-          <p class="subtitle">Chollos de bici detectados automáticamente para encontrar mejores precios más rápido.</p>
-          <div class="brand-microcopy">
-            <span class="micro-pill">⚡ Seguimiento de precio</span>
-            <span class="micro-pill">🛒 Enlace directo a tienda</span>
-            <span class="micro-pill">🏷️ Detección de bajadas</span>
-          </div>
+          <p class="subtitle">Nosotros detectamos ofertas, tú ahorras</p>
+          <p id="lastUpdate" class="last-update"></p>
         </div>
-      </div>
-      <div class="hero-panel">
-        <div class="stats" id="stats"></div>
-        <p id="lastUpdate" class="last-update"></p>
       </div>
     </div>
   </header>
 
   <main class="wrap">
+    <section class="intro-strip card">
+      <h2>Ofertas de bici seleccionadas para ahorrar de verdad</h2>
+      <p>Buscamos bajadas de precio y destacamos los chollos más interesantes en accesorios, gafas, electrónica, herramientas y más.</p>
+    </section>
+
+    <section class="toolbar-row">
+      <button type="button" id="favoritesToggle" class="toggle-btn" aria-pressed="false">♡ Solo favoritos</button>
+    </section>
+
+    <section class="top-picks card" id="topPicksSection">
+      <div class="section-head">
+        <h2>Top del día</h2>
+        <p>Las ofertas más potentes ahora mismo</p>
+      </div>
+      <div class="top-picks-grid" id="topPicksGrid"></div>
+    </section>
+
     <section class="filters card">
       <div class="filter-row">
         <label>
@@ -98,7 +110,7 @@
         </div>
         <p class="deal-reason"></p>
         <div class="deal-actions">
-          <a class="btn" target="_blank" rel="noopener sponsored nofollow">Ver oferta</a>
+          <a class="btn" target="_blank" rel="noopener sponsored nofollow">Ver chollo</a>
         </div>
       </div>
     </article>

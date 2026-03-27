@@ -1,13 +1,23 @@
+const BRAND = {
+  name: 'CholloBici',
+  color: '#0d63c9',
+  accent: '#f5b300',
+  tagline: 'Nosotros detectamos ofertas, tú ahorras'
+};
+
 const state = {
   deals: [],
   filtered: [],
-  favorites: JSON.parse(localStorage.getItem('favorites') || '[]')
+  favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
+  onlyFavorites: false
 };
 
 const els = {
   grid: document.getElementById('dealsGrid'),
   info: document.getElementById('dealsInfo'),
-  stats: document.getElementById('stats'),
+  topPicks: document.getElementById('topPicksGrid'),
+  topPicksSection: document.getElementById('topPicksSection'),
+  favoritesToggle: document.getElementById('favoritesToggle'),
   search: document.getElementById('searchInput'),
   category: document.getElementById('categoryFilter'),
   store: document.getElementById('storeFilter'),
@@ -102,30 +112,18 @@ function populateFilters(deals) {
 }
 
 function renderStats(deals) {
-  const total = deals.length;
-  const hot = deals.filter(d => d.status === 'hot').length;
-  const picks = deals.filter(d => d.editor_pick).length;
-  const avg = total ? Math.round(deals.reduce((sum, d) => sum + (d.discount_pct || 0), 0) / total) : 0;
   const latest = deals.length ? deals.map(d => d.last_checked).filter(Boolean).sort().reverse()[0] : null;
   const lastUpdateText = latest ? `Última actualización: ${formatCheckedDate(latest)}` : 'Última actualización: sin fecha';
-
   const lastUpdateEl = document.getElementById('lastUpdate');
   if (lastUpdateEl) lastUpdateEl.textContent = lastUpdateText;
-
-  els.stats.innerHTML = `
-    <span class="stat-chip">${total} ofertas</span>
-    <span class="stat-chip">${hot} destacadas</span>
-    <span class="stat-chip">${picks} recomendadas</span>
-    <span class="stat-chip">Descuento medio ${avg}%</span>
-    <span class="stat-chip">Actualizado ${latest ? formatCheckedDate(latest) : 'sin fecha'}</span>
-  `;
 }
 
 function sortDeals(deals) {
   const mode = els.sort.value;
-
   return [...deals].sort((a, b) => {
-    if (mode === 'discount') return (b.discount_pct || 0) - (a.discount_pct || 0);
+    const aDiscount = getPrimaryDiscount(a);
+    const bDiscount = getPrimaryDiscount(b);
+    if (mode === 'discount') return bDiscount - aDiscount;
     if (mode === 'price_asc') return (a.price || 0) - (b.price || 0);
     if (mode === 'price_desc') return (b.price || 0) - (a.price || 0);
     return (b.recomendacion || 0) - (a.recomendacion || 0);
@@ -140,14 +138,51 @@ function applyFilters() {
 
   const filtered = state.deals.filter(deal => {
     const text = [deal.title, deal.category, deal.store].join(' ').toLowerCase();
-    return (!search || text.includes(search))
+    const matchesBase = (!search || text.includes(search))
       && (!category || deal.category === category)
       && (!store || deal.store === store)
-      && ((Math.max(deal.discount_pct || 0, deal.drop_vs_previous_pct || 0)) >= minDiscount);
+      && (getPrimaryDiscount(deal) >= minDiscount);
+
+    return matchesBase && (!state.onlyFavorites || isFavorite(deal));
   });
 
   state.filtered = sortDeals(filtered);
   renderDeals();
+}
+
+function renderTopPicks() {
+  if (!els.topPicks || !els.topPicksSection) return;
+
+  const picks = [...state.deals]
+    .sort((a, b) => {
+      const scoreA = (a.recomendacion || 0) + getPrimaryDiscount(a);
+      const scoreB = (b.recomendacion || 0) + getPrimaryDiscount(b);
+      return scoreB - scoreA;
+    })
+    .slice(0, 3);
+
+  els.topPicks.innerHTML = '';
+  if (!picks.length) {
+    els.topPicksSection.style.display = 'none';
+    return;
+  }
+
+  els.topPicksSection.style.display = '';
+  picks.forEach((deal, idx) => {
+    const item = document.createElement('article');
+    item.className = 'top-pick-item';
+    item.innerHTML = `
+      <span class="top-pick-kicker">TOP ${idx + 1}</span>
+      <h3>${deal.title}</h3>
+      <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${deal.store || 'Tienda'}</p>
+      <div class="top-pick-price">
+        <strong>${formatPrice(deal.price)}</strong>
+        <span>-${getPrimaryDiscount(deal)}%</span>
+      </div>
+      <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">Ver chollo</a>
+    `;
+    els.topPicks.appendChild(item);
+  });
 }
 
 function renderDeals() {
@@ -211,7 +246,11 @@ function renderDeals() {
 
     const btn = node.querySelector('.btn');
     btn.href = deal.affiliate_url || deal.url || '#';
-    btn.textContent = `🔥 Ver oferta en ${deal.store || 'la tienda'}`;
+    btn.textContent = `🔥 Ver chollo en ${deal.store || 'la tienda'}`;
+    const note = document.createElement('span');
+    note.className = 'cta-note';
+    note.textContent = '✔ Precio verificado · ✔ Enlace directo a tienda';
+    node.querySelector('.deal-actions').appendChild(note);
 
     els.grid.appendChild(node);
   });
@@ -224,6 +263,7 @@ async function init() {
     state.deals = Array.isArray(deals) ? deals : [];
     populateFilters(state.deals);
     renderStats(state.deals);
+    renderTopPicks();
     applyFilters();
   } catch (error) {
     els.info.textContent = 'Error cargando las ofertas.';
@@ -237,3 +277,14 @@ async function init() {
 });
 
 init();
+
+
+if (els.favoritesToggle) {
+  els.favoritesToggle.addEventListener('click', () => {
+    state.onlyFavorites = !state.onlyFavorites;
+    els.favoritesToggle.classList.toggle('is-active', state.onlyFavorites);
+    els.favoritesToggle.setAttribute('aria-pressed', String(state.onlyFavorites));
+    els.favoritesToggle.textContent = state.onlyFavorites ? '❤ Solo favoritos' : '♡ Solo favoritos';
+    applyFilters();
+  });
+}
