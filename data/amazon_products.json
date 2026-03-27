@@ -1,0 +1,47 @@
+[
+  {
+    "id": "amazon-soporte-movil-bici-1",
+    "title": "Lamicall Soporte Móvil Bicicleta",
+    "category": "Accesorios",
+    "price": 19.99,
+    "old_price": 25.99,
+    "url": "https://www.amazon.es/dp/B09MT4N4HW",
+    "image": ""
+  },
+  {
+    "id": "amazon-portabidon-carbono-1",
+    "title": "ESEN-SP Portabidón Carbono Ultralight",
+    "category": "Accesorios",
+    "price": 14.99,
+    "old_price": 19.99,
+    "url": "https://www.amazon.es/dp/B07QVC1B7C",
+    "image": ""
+  },
+  {
+    "id": "amazon-gafas-fotocromaticas-1",
+    "title": "X-TIGER Gafas Ciclismo Fotocromáticas",
+    "category": "Gafas",
+    "price": 29.99,
+    "old_price": 39.99,
+    "url": "https://www.amazon.es/dp/B0C2VJ55FV",
+    "image": ""
+  },
+  {
+    "id": "amazon-inflador-electrico-1",
+    "title": "GPUTEK Inflador Eléctrico Bicicleta",
+    "category": "Herramientas",
+    "price": 39.99,
+    "old_price": 49.99,
+    "url": "https://www.amazon.es/dp/B0D8HPJGQX",
+    "image": ""
+  },
+  {
+    "id": "amazon-ciclocomputador-magene-1",
+    "title": "Magene C606 Pro Ciclocomputador GPS",
+    "category": "Electrónica",
+    "price": 69.99,
+    "old_price": 89.99,
+    "url": "https://www.amazon.es/dp/B0GHR2V8XV",
+    "image": ""
+  }
+]

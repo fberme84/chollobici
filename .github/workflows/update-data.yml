@@ -28,9 +28,7 @@ jobs:
 
       - name: Run updater
         env:
-          AMAZON_API_KEY: ${{ secrets.AMAZON_API_KEY }}
-          AMAZON_API_SECRET: ${{ secrets.AMAZON_API_SECRET }}
-          ALIEXPRESS_API_KEY: ${{ secrets.ALIEXPRESS_API_KEY }}
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
         run: |
           python scripts/update_deals.py
 

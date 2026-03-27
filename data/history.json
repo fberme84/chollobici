@@ -1,56 +1,72 @@
 {
-  "amazon-shimano-pedales-xt": [
+  "amazon-soporte-movil-bici-1": [
     {
-      "date": "2026-03-24",
+      "date": "2026-03-25",
+      "price": 25.99
+    },
+    {
+      "date": "2026-03-26",
+      "price": 22.99
+    },
+    {
+      "date": "2026-03-27",
+      "price": 19.99
+    }
+  ],
+  "amazon-portabidon-carbono-1": [
+    {
+      "date": "2026-03-25",
+      "price": 19.99
+    },
+    {
+      "date": "2026-03-26",
+      "price": 17.49
+    },
+    {
+      "date": "2026-03-27",
+      "price": 14.99
+    }
+  ],
+  "amazon-gafas-fotocromaticas-1": [
+    {
+      "date": "2026-03-25",
+      "price": 39.99
+    },
+    {
+      "date": "2026-03-26",
+      "price": 34.99
+    },
+    {
+      "date": "2026-03-27",
+      "price": 29.99
+    }
+  ],
+  "amazon-inflador-electrico-1": [
+    {
+      "date": "2026-03-25",
+      "price": 49.99
+    },
+    {
+      "date": "2026-03-26",
+      "price": 44.99
+    },
+    {
+      "date": "2026-03-27",
+      "price": 39.99
+    }
+  ],
+  "amazon-ciclocomputador-magene-1": [
+    {
+      "date": "2026-03-25",
+      "price": 89.99
+    },
+    {
+      "date": "2026-03-26",
       "price": 79.99
     },
     {
-      "date": "2026-03-25",
-      "price": 74.99
-    },
-    {
-      "date": "2026-03-26",
-      "price": 59.99
-    },
-    {
       "date": "2026-03-27",
-      "price": 59.99
-    }
-  ],
-  "aliexpress-gafas-fotocromaticas-mtb": [
-    {
-      "date": "2026-03-24",
-      "price": 27.99
-    },
-    {
-      "date": "2026-03-25",
-      "price": 23.99
-    },
-    {
-      "date": "2026-03-26",
-      "price": 18.49
-    },
-    {
-      "date": "2026-03-27",
-      "price": 18.49
-    }
-  ],
-  "bike-discount-casco-enduro": [
-    {
-      "date": "2026-03-24",
-      "price": 89.95
-    },
-    {
-      "date": "2026-03-25",
-      "price": 89.95
-    },
-    {
-      "date": "2026-03-26",
-      "price": 74.95
-    },
-    {
-      "date": "2026-03-27",
-      "price": 74.95
+      "price": 69.99
     }
   ]
 }
