@@ -1,16 +1,20 @@
 :root {
-  --bg: #f5f7fb;
+  --bg: #eef4ff;
   --surface: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --accent: #1d4ed8;
-  --accent-dark: #1e40af;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #d7e3f8;
+  --accent: #0d63c9;
+  --accent-dark: #084a98;
+  --accent-soft: #dbeafe;
+  --hero-dark: #071b35;
+  --hero-mid: #0a3c79;
   --hot: #dc2626;
-  --good: #059669;
-  --gold-bg: #fff7ed;
-  --gold-text: #c2410c;
-  --shadow: 0 12px 30px rgba(0,0,0,.08);
+  --good: #12804a;
+  --gold-bg: #fff3d3;
+  --gold-text: #b76a00;
+  --logo-yellow: #f5b300;
+  --shadow: 0 14px 32px rgba(8, 39, 84, .10);
   --radius: 18px;
 }
 
@@ -28,11 +32,43 @@ body {
   margin: 0 auto;
 }
 
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand-logo {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.28));
+}
+
+.brand-copy {
+  min-width: 0;
+}
+
+.brand-copy h1 {
+  margin: 0 0 8px;
+  font-size: 2.25rem;
+  letter-spacing: -.02em;
+}
+
 .hero {
-  background: linear-gradient(135deg, #0f172a, #1d4ed8);
+  background:
+    radial-gradient(circle at top center, rgba(76, 161, 255, .30), transparent 36%),
+    linear-gradient(135deg, var(--hero-dark), var(--hero-mid) 58%, var(--accent));
   color: white;
-  padding: 32px 0 28px;
+  padding: 22px 0 28px;
   margin-bottom: 22px;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.08);
 }
 
 .hero h1 {
@@ -42,7 +78,8 @@ body {
 
 .subtitle {
   margin: 0;
-  opacity: .92;
+  opacity: .96;
+  color: rgba(255,255,255,.92);
 }
 
 .stats {
@@ -63,8 +100,9 @@ body {
 }
 
 .stat-chip {
-  background: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.13);
   border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(4px);
 }
 
 .card {
@@ -97,6 +135,13 @@ input, select {
   border-radius: 12px;
   background: #fff;
   font: inherit;
+  color: var(--text);
+}
+
+input:focus, select:focus {
+  outline: 0;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(13, 99, 201, .12);
 }
 
 .info-line {
@@ -148,7 +193,7 @@ input, select {
 }
 
 .badge-store {
-  background: #111827;
+  background: var(--hero-dark);
   color: #ffffff;
 }
 
@@ -161,8 +206,8 @@ input, select {
 }
 
 .badge-status {
-  background: #fef2f2;
-  color: var(--hot);
+  background: #fff1cc;
+  color: #9a5d00;
 }
 
 .badge-pick {
@@ -205,7 +250,7 @@ input, select {
 }
 
 .price-discount {
-  color: var(--good);
+  color: var(--accent);
   font-weight: 800;
   font-size: 1rem;
 }
@@ -215,11 +260,12 @@ input, select {
   width: 100%;
   text-align: center;
   text-decoration: none;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   color: white;
   padding: 12px 14px;
   border-radius: 12px;
   font-weight: 700;
+  box-shadow: 0 10px 24px rgba(13, 99, 201, .24);
 }
 
 .btn:hover {
@@ -310,5 +356,53 @@ input, select {
 @media (max-width: 640px) {
   .last-update {
     font-size: .9rem;
+  }
+}
+
+
+.filters.card,
+.deal-card.card,
+.empty-state.card {
+  border: 1px solid rgba(13, 99, 201, .08);
+}
+
+.last-update {
+  margin-top: 14px;
+  font-size: .95rem;
+  opacity: .95;
+  color: rgba(255,255,255,.92);
+}
+
+.badge-top-overlay {
+  background: var(--logo-yellow);
+  color: #10233f;
+}
+
+.badge-new-overlay {
+  background: #1e9e55;
+  color: #ffffff;
+}
+
+.favorite-btn {
+  border: 1px solid rgba(13, 99, 201, .12);
+}
+
+.favorite-btn.is-favorite {
+  background: #fff0cf;
+}
+
+@media (max-width: 760px) {
+  .brand-lockup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 280px;
+  }
+
+  .brand-copy h1 {
+    font-size: 1.9rem;
   }
 }
