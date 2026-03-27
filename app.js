@@ -11,6 +11,7 @@ const els = {
   category: document.getElementById('categoryFilter'),
   store: document.getElementById('storeFilter'),
   discount: document.getElementById('discountFilter'),
+  sort: document.getElementById('sortFilter'),
   template: document.getElementById('dealCardTemplate')
 };
 
@@ -72,13 +73,26 @@ function renderStats(deals) {
   const hot = deals.filter(d => d.status === 'hot').length;
   const picks = deals.filter(d => d.editor_pick).length;
   const avg = total ? Math.round(deals.reduce((sum, d) => sum + (d.discount_pct || 0), 0) / total) : 0;
+  const latest = deals.length ? deals.map(d => d.last_checked).filter(Boolean).sort().reverse()[0] : null;
 
   els.stats.innerHTML = `
     <span class="stat-chip">${total} ofertas</span>
     <span class="stat-chip">${hot} destacadas</span>
     <span class="stat-chip">${picks} recomendadas</span>
     <span class="stat-chip">Descuento medio ${avg}%</span>
+    <span class="stat-chip">Actualizado ${latest ? formatCheckedDate(latest) : 'sin fecha'}</span>
   `;
+}
+
+function sortDeals(deals) {
+  const mode = els.sort.value;
+
+  return [...deals].sort((a, b) => {
+    if (mode === 'discount') return (b.discount_pct || 0) - (a.discount_pct || 0);
+    if (mode === 'price_asc') return (a.price || 0) - (b.price || 0);
+    if (mode === 'price_desc') return (b.price || 0) - (a.price || 0);
+    return (b.recomendacion || 0) - (a.recomendacion || 0);
+  });
 }
 
 function applyFilters() {
@@ -87,7 +101,7 @@ function applyFilters() {
   const store = els.store.value;
   const minDiscount = Number(els.discount.value || 0);
 
-  state.filtered = state.deals.filter(deal => {
+  const filtered = state.deals.filter(deal => {
     const text = [deal.title, deal.category, deal.store].join(' ').toLowerCase();
     return (!search || text.includes(search))
       && (!category || deal.category === category)
@@ -95,6 +109,7 @@ function applyFilters() {
       && ((Math.max(deal.discount_pct || 0, deal.drop_vs_previous_pct || 0)) >= minDiscount);
   });
 
+  state.filtered = sortDeals(filtered);
   renderDeals();
 }
 
@@ -135,7 +150,7 @@ function renderDeals() {
 
     const btn = node.querySelector('.btn');
     btn.href = deal.affiliate_url || deal.url || '#';
-    btn.textContent = '🔥 Ver oferta en Amazon';
+    btn.textContent = `🔥 Ver oferta en ${deal.store || 'la tienda'}`;
 
     els.grid.appendChild(node);
   });
@@ -155,7 +170,7 @@ async function init() {
   }
 }
 
-[els.search, els.category, els.store, els.discount].forEach(el => {
+[els.search, els.category, els.store, els.discount, els.sort].forEach(el => {
   el.addEventListener('input', applyFilters);
   el.addEventListener('change', applyFilters);
 });
