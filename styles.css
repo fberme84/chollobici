@@ -847,3 +847,29 @@ body {
     padding: 16px;
   }
 }
+
+
+.brand-lockup-full {
+  max-width: 620px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.brand-logo-full {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,.28));
+}
+
+.last-update-centered {
+  text-align: center;
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .brand-logo-full {
+    max-width: 360px;
+  }
+}

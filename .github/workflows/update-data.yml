@@ -26,7 +26,18 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run updater
+      - name: Refresh Amazon products
+        env:
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+          AMAZON_PAAPI_ACCESS_KEY: ${{ secrets.AMAZON_PAAPI_ACCESS_KEY }}
+          AMAZON_PAAPI_SECRET_KEY: ${{ secrets.AMAZON_PAAPI_SECRET_KEY }}
+          AMAZON_PAAPI_PARTNER_TAG: ${{ secrets.AMAZON_PAAPI_PARTNER_TAG }}
+          AMAZON_PAAPI_REGION: ${{ secrets.AMAZON_PAAPI_REGION }}
+          AMAZON_PAAPI_HOST: ${{ secrets.AMAZON_PAAPI_HOST }}
+        run: |
+          python scripts/refresh_amazon_products.py
+
+      - name: Run deals updater
         env:
           AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
         run: |
@@ -36,8 +47,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/history.json data/generated_deals.json
-          git diff --cached --quiet || git commit -m "Update generated deals data"
+          git add data/amazon_products.json data/history.json data/generated_deals.json
+          git diff --cached --quiet || git commit -m "Refresh products and generated deals data"
 
       - name: Push changes
         run: |

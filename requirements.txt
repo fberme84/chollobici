@@ -1,1 +1,2 @@
 # Añade aquí librerías cuando conectes APIs reales.
+requests>=2.31.0

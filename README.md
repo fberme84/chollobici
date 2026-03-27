@@ -44,3 +44,39 @@ Incluye en la web un aviso de afiliación, por ejemplo:
 
 ## Nota sobre generated_deals.json
 Este archivo se versiona en el repositorio y lo actualiza el workflow `Update deals data`. No lo edites manualmente.
+
+
+## Preparado para actualización diaria de precios
+
+La actualización diaria ya está preparada en dos pasos:
+
+1. `scripts/refresh_amazon_products.py`
+   - normaliza URLs de Amazon
+   - deja el catálogo listo para conectarlo a la API de Amazon
+   - actualiza `last_checked`
+
+2. `scripts/update_deals.py`
+   - compara precios con `history.json`
+   - regenera `generated_deals.json`
+   - aplica el tag de afiliado
+
+### Secrets previstos para cuando actives la API de Amazon
+
+Añade estos secrets en GitHub Actions cuando te aprueben / configures la API:
+
+- `AMAZON_PAAPI_ACCESS_KEY`
+- `AMAZON_PAAPI_SECRET_KEY`
+- `AMAZON_PAAPI_PARTNER_TAG`
+- `AMAZON_PAAPI_REGION`
+- `AMAZON_PAAPI_HOST`
+
+Ejemplo habitual para España:
+- `AMAZON_PAAPI_REGION` = `eu-west-1`
+- `AMAZON_PAAPI_HOST` = `webservices.amazon.es`
+
+### Estado actual de v6.7
+
+Esta versión deja todo preparado, pero el script de refresco aún va en modo plantilla:
+- no consulta Amazon todavía
+- no inventa precios
+- deja la estructura lista para que conectes la API en cuanto puedas
