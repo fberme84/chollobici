@@ -1,33 +1,33 @@
 [
   {
-    "id": "amazon-shimano-pedales-xt",
-    "title": "Pedales Shimano XT M8100",
-    "store": "Amazon",
-    "category": "Pedales",
-    "price": 59.99,
-    "old_price": 79.99,
-    "discount_pct": 25,
-    "url": "https://example.com/producto/shimano-xt",
-    "affiliate_url": "https://example.com/afiliado/shimano-xt",
-    "image": "https://placehold.co/640x400?text=Pedales+Shimano+XT",
-    "updated_at": "2026-03-26T06:15:00Z",
-    "status": "hot",
-    "reason": "Precio un 25% más bajo que la referencia anterior."
-  },
-  {
     "id": "aliexpress-gafas-fotocromaticas-mtb",
     "title": "Gafas fotocromáticas MTB",
     "store": "AliExpress",
     "category": "Accesorios",
     "price": 18.49,
-    "old_price": 27.99,
-    "discount_pct": 34,
     "url": "https://example.com/producto/gafas-mtb",
     "affiliate_url": "https://example.com/afiliado/gafas-mtb",
     "image": "https://placehold.co/640x400?text=Gafas+MTB",
-    "updated_at": "2026-03-26T06:15:00Z",
+    "old_price": 18.49,
+    "discount_pct": 21,
+    "updated_at": "2026-03-27T12:23:10Z",
     "status": "hot",
-    "reason": "Mínimo reciente detectado frente a los últimos días."
+    "reason": "Precio 21% por debajo de la media reciente."
+  },
+  {
+    "id": "amazon-shimano-pedales-xt",
+    "title": "Pedales Shimano XT M8100",
+    "store": "Amazon",
+    "category": "Pedales",
+    "price": 59.99,
+    "url": "https://example.com/producto/shimano-xt",
+    "affiliate_url": "https://example.com/afiliado/shimano-xt",
+    "image": "https://placehold.co/640x400?text=Pedales+Shimano+XT",
+    "old_price": 59.99,
+    "discount_pct": 16,
+    "updated_at": "2026-03-27T12:23:10Z",
+    "status": "normal",
+    "reason": "Precio 16% por debajo de la media reciente."
   },
   {
     "id": "bike-discount-casco-enduro",
@@ -35,13 +35,13 @@
     "store": "Bike-Discount",
     "category": "Cascos",
     "price": 74.95,
-    "old_price": 89.95,
-    "discount_pct": 17,
     "url": "https://example.com/producto/casco-enduro",
     "affiliate_url": "https://example.com/afiliado/casco-enduro",
     "image": "https://placehold.co/640x400?text=Casco+Enduro",
-    "updated_at": "2026-03-26T06:15:00Z",
+    "old_price": 74.95,
+    "discount_pct": 12,
+    "updated_at": "2026-03-27T12:23:10Z",
     "status": "normal",
-    "reason": "Bajada detectada frente al último precio guardado."
+    "reason": "Precio 12% por debajo de la media reciente."
   }
 ]
