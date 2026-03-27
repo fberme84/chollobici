@@ -912,3 +912,72 @@ body {
   max-width: 300px;
   display: block;
 }
+
+
+/* v6.9 final dark hero */
+.hero-dark {
+  background:
+    radial-gradient(circle at top center, rgba(70, 120, 255, .10), transparent 30%),
+    linear-gradient(135deg, #0b0f18 0%, #121826 100%);
+  padding: 28px 0 20px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.hero-dark-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-main {
+  width: min(100%, 340px);
+  height: auto;
+  display: block;
+}
+
+.last-update-dark-hero {
+  display: block !important;
+  margin-top: 12px;
+  color: rgba(255,255,255,.72);
+  font-size: .95rem;
+  text-align: center;
+}
+
+body {
+  background:
+    linear-gradient(180deg, #0f1522 0, #0f1522 180px, #f4f8ff 180px, #edf4ff 100%);
+}
+
+main.wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.intro-strip,
+.top-picks,
+.filters.card,
+.deal-card.card,
+.empty-state.card {
+  box-shadow: 0 12px 28px rgba(8, 39, 84, .08);
+}
+
+@media (max-width: 640px) {
+  .hero-dark {
+    padding: 22px 0 16px;
+  }
+
+  .logo-main {
+    width: min(100%, 285px);
+  }
+
+  .last-update-dark-hero {
+    font-size: .9rem;
+  }
+
+  body {
+    background:
+      linear-gradient(180deg, #0f1522 0, #0f1522 150px, #f4f8ff 150px, #edf4ff 100%);
+  }
+}
