@@ -13,6 +13,9 @@ HISTORY_FILE = DATA_DIR / "history.json"
 AMAZON_PRODUCTS_FILE = DATA_DIR / "amazon_products.json"
 
 AMAZON_TAG = os.getenv("AMAZON_PARTNER_TAG", "").strip()
+TODAY_UTC = datetime.now(timezone.utc)
+TODAY_DATE = TODAY_UTC.date().isoformat()
+NOW_ISO = TODAY_UTC.replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def load_json(path: Path, default):
@@ -51,7 +54,6 @@ def add_amazon_tag(url: str, tag: str) -> str:
 
 def load_amazon_products() -> list[dict]:
     raw_items = load_json(AMAZON_PRODUCTS_FILE, [])
-    now_iso = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     products: list[dict] = []
 
     for item in raw_items:
@@ -60,6 +62,9 @@ def load_amazon_products() -> list[dict]:
         category = item.get("category", "Amazon")
         url = item.get("url")
         image = item.get("image", "")
+        source = item.get("source", "manual")
+        last_checked = item.get("last_checked") or TODAY_DATE
+        editor_pick = bool(item.get("editor_pick", False))
 
         if not product_id or not title or not url:
             continue
@@ -73,6 +78,15 @@ def load_amazon_products() -> list[dict]:
             old_price = float(item["old_price"]) if item.get("old_price") not in (None, "") else None
         except (TypeError, ValueError):
             old_price = None
+
+        suspicious_price = False
+        suspicious_reason = None
+        if price <= 0:
+            suspicious_price = True
+            suspicious_reason = "Precio no válido"
+        elif old_price and old_price > 0 and price < old_price * 0.4:
+            suspicious_price = True
+            suspicious_reason = "Precio sospechosamente bajo frente al anterior"
 
         discount_pct = 0
         if old_price and old_price > price:
@@ -90,8 +104,13 @@ def load_amazon_products() -> list[dict]:
                 "url": url,
                 "affiliate_url": add_amazon_tag(url, AMAZON_TAG),
                 "image": image,
-                "updated_at": now_iso,
+                "updated_at": NOW_ISO,
+                "last_checked": last_checked,
+                "source": source,
+                "editor_pick": editor_pick,
                 "status": "hot" if discount_pct >= 20 else "normal",
+                "suspicious_price": suspicious_price,
+                "suspicious_reason": suspicious_reason,
             }
         )
 
@@ -99,16 +118,14 @@ def load_amazon_products() -> list[dict]:
 
 
 def update_history(history: dict[str, list[dict]], products: list[dict]) -> dict[str, list[dict]]:
-    today = datetime.now(timezone.utc).date().isoformat()
-
     for product in products:
         product_id = product["id"]
         history.setdefault(product_id, [])
 
-        if history[product_id] and history[product_id][-1]["date"] == today:
+        if history[product_id] and history[product_id][-1]["date"] == TODAY_DATE:
             history[product_id][-1]["price"] = product["price"]
         else:
-            history[product_id].append({"date": today, "price": product["price"]})
+            history[product_id].append({"date": TODAY_DATE, "price": product["price"]})
 
         history[product_id] = history[product_id][-30:]
 
@@ -117,8 +134,14 @@ def update_history(history: dict[str, list[dict]], products: list[dict]) -> dict
 
 def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[dict]:
     deals: list[dict] = []
+    suspicious_count = 0
 
     for product in products:
+        if product.get("suspicious_price"):
+            suspicious_count += 1
+            print(f"[WARN] {product['title']}: {product['suspicious_reason']}")
+            continue
+
         points = history.get(product["id"], [])
         previous_price = points[-2]["price"] if len(points) >= 2 else None
         drop_vs_previous_pct = 0
@@ -132,10 +155,12 @@ def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[di
         if not publish:
             continue
 
-        if drop_vs_previous_pct >= visible_discount:
+        if drop_vs_previous_pct >= visible_discount and drop_vs_previous_pct > 0:
             reason = f"Precio {drop_vs_previous_pct}% por debajo del último valor guardado."
         else:
             reason = f"Descuento visible del {visible_discount}% frente al precio anterior."
+
+        score = (visible_discount * 2) + (drop_vs_previous_pct * 3) + (12 if product.get("editor_pick") else 0)
 
         enriched = {
             **product,
@@ -143,13 +168,16 @@ def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[di
             "drop_vs_previous_pct": drop_vs_previous_pct,
             "status": "hot" if max(visible_discount, drop_vs_previous_pct) >= 20 else "normal",
             "reason": reason,
+            "score": score,
         }
         deals.append(enriched)
 
     deals.sort(
-        key=lambda x: (max(x.get("discount_pct", 0), x.get("drop_vs_previous_pct", 0)), x.get("price", 0)),
+        key=lambda x: (x.get("score", 0), x.get("price", 0)),
         reverse=True,
     )
+
+    print(f"Productos descartados por precio sospechoso: {suspicious_count}")
     return deals
 
 

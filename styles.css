@@ -5,8 +5,11 @@
   --muted: #6b7280;
   --line: #e5e7eb;
   --accent: #1d4ed8;
+  --accent-dark: #1e40af;
   --hot: #dc2626;
   --good: #059669;
+  --gold-bg: #fff7ed;
+  --gold-text: #c2410c;
   --shadow: 0 12px 30px rgba(0,0,0,.08);
   --radius: 18px;
 }
@@ -49,7 +52,8 @@ body {
 }
 
 .stat-chip,
-.badge {
+.badge,
+.deal-score {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
@@ -145,6 +149,11 @@ input, select {
   color: var(--hot);
 }
 
+.badge-pick {
+  background: var(--gold-bg);
+  color: var(--gold-text);
+}
+
 .deal-title {
   margin: 0 0 8px;
   font-size: 1.08rem;
@@ -163,7 +172,7 @@ input, select {
   align-items: baseline;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 12px 0;
+  margin: 12px 0 8px;
 }
 
 .price-current {
@@ -181,6 +190,15 @@ input, select {
   font-weight: 800;
 }
 
+.deal-secondary-row {
+  margin: 0 0 12px;
+}
+
+.deal-score {
+  background: #eef2ff;
+  color: var(--accent-dark);
+}
+
 .btn {
   display: inline-block;
   text-decoration: none;
@@ -189,6 +207,10 @@ input, select {
   padding: 10px 14px;
   border-radius: 12px;
   font-weight: 700;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
 }
 
 .empty-state {

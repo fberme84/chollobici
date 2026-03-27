@@ -21,6 +21,12 @@ function formatPrice(value) {
   }).format(value);
 }
 
+function formatCheckedDate(value) {
+  if (!value) return 'sin fecha';
+  const date = new Date(`${value}T00:00:00`);
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString('es-ES');
+}
+
 function createOption(value) {
   const opt = document.createElement('option');
   opt.value = value;
@@ -39,11 +45,13 @@ function populateFilters(deals) {
 function renderStats(deals) {
   const total = deals.length;
   const hot = deals.filter(d => d.status === 'hot').length;
+  const picks = deals.filter(d => d.editor_pick).length;
   const avg = total ? Math.round(deals.reduce((sum, d) => sum + (d.discount_pct || 0), 0) / total) : 0;
 
   els.stats.innerHTML = `
     <span class="stat-chip">${total} ofertas</span>
     <span class="stat-chip">${hot} destacadas</span>
+    <span class="stat-chip">${picks} recomendadas</span>
     <span class="stat-chip">Descuento medio ${avg}%</span>
   `;
 }
@@ -59,7 +67,7 @@ function applyFilters() {
     return (!search || text.includes(search))
       && (!category || deal.category === category)
       && (!store || deal.store === store)
-      && ((deal.discount_pct || 0) >= minDiscount);
+      && ((Math.max(deal.discount_pct || 0, deal.drop_vs_previous_pct || 0)) >= minDiscount);
   });
 
   renderDeals();
@@ -82,14 +90,29 @@ function renderDeals() {
     node.querySelector('.deal-image').src = deal.image || 'https://placehold.co/640x400?text=Oferta';
     node.querySelector('.deal-image').alt = deal.title;
     node.querySelector('.badge-store').textContent = deal.store || 'Tienda';
-    node.querySelector('.badge-status').textContent = deal.status === 'hot' ? '🔥 Destacada' : 'Oferta';
+    node.querySelector('.badge-status').textContent = deal.status === 'hot' ? '🔥 CHOLLO' : 'Oferta';
+
+    const pickBadge = node.querySelector('.badge-pick');
+    if (deal.editor_pick) {
+      pickBadge.textContent = '⭐ Recomendado';
+    } else {
+      pickBadge.remove();
+    }
+
     node.querySelector('.deal-title').textContent = deal.title;
-    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Actualizado ${new Date(deal.updated_at).toLocaleDateString('es-ES')}`;
+    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Precio revisado ${formatCheckedDate(deal.last_checked)} · Fuente ${deal.source || 'manual'}`;
     node.querySelector('.price-current').textContent = formatPrice(deal.price);
     node.querySelector('.price-old').textContent = deal.old_price ? formatPrice(deal.old_price) : '';
     node.querySelector('.price-discount').textContent = deal.discount_pct ? `-${deal.discount_pct}%` : '';
     node.querySelector('.deal-reason').textContent = deal.reason || 'Bajada detectada por comparación histórica.';
-    node.querySelector('.btn').href = deal.affiliate_url || deal.url || '#';
+
+    const scoreEl = node.querySelector('.deal-score');
+    scoreEl.textContent = `Score ${deal.score || 0}`;
+
+    const btn = node.querySelector('.btn');
+    btn.href = deal.affiliate_url || deal.url || '#';
+    btn.textContent = '🔥 Ver oferta en Amazon';
+
     els.grid.appendChild(node);
   });
 }
