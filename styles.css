@@ -994,3 +994,12 @@ main.wrap {
   font-weight:500;
 }
 
+
+/* v6.9c clean header */
+.hero-dark{
+  padding:16px 0 10px;
+}
+
+.logo-main{
+  margin-bottom:0;
+}
