@@ -897,3 +897,18 @@ body {
     font-size: .9rem;
   }
 }
+
+
+/* v6.8h logo card */
+.logo-box {
+  background: white;
+  padding: 18px 24px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(13, 99, 201, 0.12);
+  display: inline-block;
+}
+
+.logo-img {
+  max-width: 300px;
+  display: block;
+}
