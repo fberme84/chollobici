@@ -34,6 +34,31 @@ function createOption(value) {
   return opt;
 }
 
+function placeholderImage(title, store) {
+  const safeTitle = (title || 'Oferta').replace(/[&<>"]/g, '');
+  const safeStore = (store || 'Tienda').replace(/[&<>"]/g, '');
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#eff6ff" />
+          <stop offset="100%" stop-color="#dbeafe" />
+        </linearGradient>
+      </defs>
+      <rect width="640" height="400" fill="url(#bg)" />
+      <rect x="24" y="24" width="112" height="34" rx="17" fill="#111827" />
+      <text x="80" y="46" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#ffffff">${safeStore}</text>
+      <g opacity="0.18">
+        <circle cx="198" cy="248" r="70" fill="none" stroke="#1d4ed8" stroke-width="14" />
+        <circle cx="436" cy="248" r="70" fill="none" stroke="#1d4ed8" stroke-width="14" />
+        <path d="M198 248 L292 162 L380 162 L436 248" fill="none" stroke="#1d4ed8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <text x="320" y="178" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Imagen pendiente</text>
+      <text x="320" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#334155">${safeTitle}</text>
+    </svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 function populateFilters(deals) {
   const categories = [...new Set(deals.map(d => d.category).filter(Boolean))].sort();
   const stores = [...new Set(deals.map(d => d.store).filter(Boolean))].sort();
@@ -87,8 +112,10 @@ function renderDeals() {
 
   state.filtered.forEach(deal => {
     const node = els.template.content.firstElementChild.cloneNode(true);
-    node.querySelector('.deal-image').src = deal.image || 'https://placehold.co/640x400?text=Oferta';
-    node.querySelector('.deal-image').alt = deal.title;
+    const imageEl = node.querySelector('.deal-image');
+    imageEl.src = deal.image || placeholderImage(deal.title, deal.store);
+    imageEl.alt = deal.title;
+    imageEl.onerror = () => { imageEl.src = placeholderImage(deal.title, deal.store); };
     node.querySelector('.badge-store').textContent = deal.store || 'Tienda';
     node.querySelector('.badge-status').textContent = deal.status === 'hot' ? '🔥 CHOLLO' : 'Oferta';
 
@@ -106,9 +133,6 @@ function renderDeals() {
     node.querySelector('.price-discount').textContent = deal.discount_pct ? `-${deal.discount_pct}%` : '';
     node.querySelector('.deal-reason').textContent = deal.reason || 'Bajada detectada por comparación histórica.';
 
-    const scoreEl = node.querySelector('.deal-score');
-    scoreEl.textContent = `Score ${deal.score || 0}`;
-
     const btn = node.querySelector('.btn');
     btn.href = deal.affiliate_url || deal.url || '#';
     btn.textContent = '🔥 Ver oferta en Amazon';
@@ -119,7 +143,7 @@ function renderDeals() {
 
 async function init() {
   try {
-    const response = await fetch('data/deals.json', { cache: 'no-store' });
+    const response = await fetch('data/generated_deals.json', { cache: 'no-store' });
     const deals = await response.json();
     state.deals = Array.isArray(deals) ? deals : [];
     populateFilters(state.deals);

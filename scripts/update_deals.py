@@ -8,7 +8,7 @@ from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
-DEALS_FILE = DATA_DIR / "deals.json"
+DEALS_FILE = DATA_DIR / "generated_deals.json"
 HISTORY_FILE = DATA_DIR / "history.json"
 AMAZON_PRODUCTS_FILE = DATA_DIR / "amazon_products.json"
 
@@ -160,7 +160,8 @@ def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[di
         else:
             reason = f"Descuento visible del {visible_discount}% frente al precio anterior."
 
-        score = (visible_discount * 2) + (drop_vs_previous_pct * 3) + (12 if product.get("editor_pick") else 0)
+        recomendacion = (visible_discount * 2) + (drop_vs_previous_pct * 4) + (10 if product.get("editor_pick") else 0)
+        recomendacion = max(0, min(recomendacion, 100))
 
         enriched = {
             **product,
@@ -168,12 +169,12 @@ def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[di
             "drop_vs_previous_pct": drop_vs_previous_pct,
             "status": "hot" if max(visible_discount, drop_vs_previous_pct) >= 20 else "normal",
             "reason": reason,
-            "score": score,
+            "recomendacion": recomendacion,
         }
         deals.append(enriched)
 
     deals.sort(
-        key=lambda x: (x.get("score", 0), x.get("price", 0)),
+        key=lambda x: (x.get("recomendacion", 0), x.get("price", 0)),
         reverse=True,
     )
 

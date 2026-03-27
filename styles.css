@@ -52,8 +52,7 @@ body {
 }
 
 .stat-chip,
-.badge,
-.deal-score {
+.badge {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
@@ -119,6 +118,8 @@ input, select {
 .deal-image-wrap {
   aspect-ratio: 16 / 10;
   background: #eef2ff;
+  position: relative;
+  overflow: hidden;
 }
 
 .deal-image {
@@ -140,8 +141,16 @@ input, select {
 }
 
 .badge-store {
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: #111827;
+  color: #ffffff;
+}
+
+.badge-store-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
 }
 
 .badge-status {
@@ -188,15 +197,6 @@ input, select {
 .price-discount {
   color: var(--good);
   font-weight: 800;
-}
-
-.deal-secondary-row {
-  margin: 0 0 12px;
-}
-
-.deal-score {
-  background: #eef2ff;
-  color: var(--accent-dark);
 }
 
 .btn {
