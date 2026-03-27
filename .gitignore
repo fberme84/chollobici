@@ -3,5 +3,4 @@ __pycache__/
 *.pyo
 .DS_Store
 
-data/generated_deals.json
 data/deals.json

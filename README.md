@@ -40,3 +40,7 @@ Así evitas conflictos en tus commits manuales y la web sigue mostrando ofertas 
 Incluye en la web un aviso de afiliación, por ejemplo:
 
 > Como afiliado de Amazon, obtengo ingresos por las compras adscritas.
+
+
+## Nota sobre generated_deals.json
+Este archivo se versiona en el repositorio y lo actualiza el workflow `Update deals data`. No lo edites manualmente.
