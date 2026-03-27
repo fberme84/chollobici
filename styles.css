@@ -1003,3 +1003,59 @@ main.wrap {
 .logo-main{
   margin-bottom:0;
 }
+
+/* v6.9d tighter header */
+.hero-dark{
+  padding:10px 0 6px;
+}
+
+.logo-main{
+  margin:0;
+  max-width:300px;
+}
+
+.wrap.hero-dark-inner{
+  gap:0;
+}
+
+/* v6.9e ultra-tight header spacing */
+.hero-dark{
+  padding:8px 0 2px; /* reduce bottom a casi nada */
+}
+
+.logo-main{
+  margin:0 auto 2px auto;
+}
+
+.hero-dark-inner{
+  gap:0;
+}
+
+header.hero-dark + * {
+  margin-top: 6px !important; /* reduce espacio siguiente bloque */
+}
+
+/* ajustar transición fondo para no crear hueco visual */
+body{
+  background:
+    linear-gradient(180deg, #0f1522 0, #0f1522 120px, #f4f8ff 120px, #edf4ff 100%);
+}
+
+/* v6.9f ultra tight + content up */
+.hero-dark{
+  padding:6px 0 0px;
+}
+
+.logo-main{
+  margin:0 auto 0 auto;
+  transform: translateY(-6px); /* sube ligeramente logo */
+}
+
+header.hero-dark + * {
+  margin-top: 2px !important;
+}
+
+body{
+  background:
+    linear-gradient(180deg, #0f1522 0, #0f1522 95px, #f4f8ff 95px, #edf4ff 100%);
+}
