@@ -61,7 +61,6 @@ def is_relevant_product(product: Dict[str, Any], expected_category: str = "") ->
     if any(term in text for term in BLOCKED_TERMS):
         return False
 
-    # Filtro muy suave: si no está bloqueado, entra.
     return True
 
 
@@ -135,6 +134,11 @@ def normalize_product(product: Dict[str, Any], affiliate_map: Dict[str, str], fa
     }
 
 
+def chunked(seq: List[str], size: int):
+    for i in range(0, len(seq), size):
+        yield seq[i:i + size]
+
+
 def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -187,7 +191,6 @@ def main() -> None:
             if pid and expected_category and pid not in category_by_product_id:
                 category_by_product_id[pid] = expected_category
 
-        # Quédate con máximo 5 por keyword para no llenar de ruido
         filtered.sort(key=product_score, reverse=True)
         all_products.extend(filtered[:5])
 
@@ -200,12 +203,18 @@ def main() -> None:
         for p in all_products
         if p.get("product_detail_url")
     ]
+    detail_urls = list(dict.fromkeys(detail_urls))[:40]
 
     affiliate_map: Dict[str, str] = {}
     if detail_urls and TRACKING_ID:
         try:
-            affiliate_map = generate_affiliate_links(detail_urls, tracking_id=TRACKING_ID)
-            print(f"Links afiliados generados: {len(affiliate_map)}")
+            total_batches = 0
+            for batch in chunked(detail_urls, 5):
+                batch_map = generate_affiliate_links(batch, tracking_id=TRACKING_ID)
+                affiliate_map.update(batch_map)
+                total_batches += 1
+
+            print(f"Links afiliados generados: {len(affiliate_map)} en {total_batches} lotes")
         except AliExpressApiError as exc:
             print(f"ERROR generando affiliate links: {exc}")
         except Exception as exc:
