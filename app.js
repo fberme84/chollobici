@@ -1,10 +1,3 @@
-const BRAND = {
-  name: 'CholloBici',
-  color: '#0d63c9',
-  accent: '#f5b300',
-  tagline: 'Nosotros detectamos ofertas, tú ahorras'
-};
-
 const state = {
   deals: [],
   filtered: [],
@@ -20,10 +13,12 @@ const els = {
   favoritesToggle: document.getElementById('favoritesToggle'),
   search: document.getElementById('searchInput'),
   category: document.getElementById('categoryFilter'),
+  categoryChips: document.getElementById('categoryChips'),
   store: document.getElementById('storeFilter'),
   discount: document.getElementById('discountFilter'),
   sort: document.getElementById('sortFilter'),
-  template: document.getElementById('dealCardTemplate')
+  template: document.getElementById('dealCardTemplate'),
+  lastUpdate: document.getElementById('lastUpdate')
 };
 
 function hasValidPrice(value) {
@@ -42,7 +37,6 @@ function formatCheckedDate(value) {
   const date = new Date(`${value}T00:00:00`);
   return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString('es-ES');
 }
-
 
 function isRecentDate(value, days = 7) {
   if (!value) return false;
@@ -75,10 +69,10 @@ function getPrimaryDiscount(deal) {
   return Math.max(deal.discount_pct || 0, deal.drop_vs_previous_pct || 0);
 }
 
-function createOption(value) {
+function createOption(value, label = value) {
   const opt = document.createElement('option');
   opt.value = value;
-  opt.textContent = value;
+  opt.textContent = label;
   return opt;
 }
 
@@ -86,43 +80,73 @@ function placeholderImage(title, store) {
   const safeTitle = (title || 'Oferta').replace(/[&<>"]/g, '');
   const safeStore = (store || 'Tienda').replace(/[&<>"]/g, '');
   const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+    <svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420">
       <defs>
         <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#eff6ff" />
+          <stop offset="0%" stop-color="#f8fbff" />
           <stop offset="100%" stop-color="#dbeafe" />
         </linearGradient>
       </defs>
-      <rect width="640" height="400" fill="url(#bg)" />
-      <rect x="24" y="24" width="112" height="34" rx="17" fill="#111827" />
-      <text x="80" y="46" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#ffffff">${safeStore}</text>
-      <g opacity="0.18">
-        <circle cx="198" cy="248" r="70" fill="none" stroke="#1d4ed8" stroke-width="14" />
-        <circle cx="436" cy="248" r="70" fill="none" stroke="#1d4ed8" stroke-width="14" />
-        <path d="M198 248 L292 162 L380 162 L436 248" fill="none" stroke="#1d4ed8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+      <rect width="640" height="420" fill="url(#bg)" />
+      <rect x="26" y="24" width="130" height="36" rx="18" fill="#0f172a" />
+      <text x="91" y="47" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#ffffff">${safeStore}</text>
+      <g opacity="0.16">
+        <circle cx="198" cy="268" r="70" fill="none" stroke="#1d4ed8" stroke-width="14" />
+        <circle cx="436" cy="268" r="70" fill="none" stroke="#1d4ed8" stroke-width="14" />
+        <path d="M198 268 L292 182 L380 182 L436 268" fill="none" stroke="#1d4ed8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
       </g>
-      <text x="320" y="178" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Imagen pendiente</text>
-      <text x="320" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#334155">${safeTitle}</text>
+      <text x="320" y="182" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Imagen pendiente</text>
+      <text x="320" y="220" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#334155">${safeTitle}</text>
     </svg>`;
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
+function getStoreLabel(deal) {
+  return deal.store || (deal.source === 'aliexpress' ? 'AliExpress' : 'Tienda');
+}
+
+function getStoreButtonText(deal) {
+  const store = getStoreLabel(deal);
+  return `Ver en ${store}`;
+}
+
+function buildCategoryChips(categories) {
+  if (!els.categoryChips) return;
+  els.categoryChips.innerHTML = '';
+
+  const allChip = document.createElement('button');
+  allChip.type = 'button';
+  allChip.className = `filter-chip${!els.category.value ? ' is-active' : ''}`;
+  allChip.dataset.value = '';
+  allChip.textContent = 'Todas';
+  els.categoryChips.appendChild(allChip);
+
+  categories.forEach(category => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = `filter-chip${els.category.value === category ? ' is-active' : ''}`;
+    chip.dataset.value = category;
+    chip.textContent = category;
+    els.categoryChips.appendChild(chip);
+  });
+}
+
 function populateFilters(deals) {
   const categories = [...new Set(deals.map(d => d.category).filter(Boolean))].sort();
-  const stores = [...new Set(deals.map(d => d.store).filter(Boolean))].sort();
+  const stores = [...new Set(deals.map(d => getStoreLabel(d)).filter(Boolean))].sort();
 
   els.category.innerHTML = '<option value="">Todas</option>';
   els.store.innerHTML = '<option value="">Todas</option>';
 
   categories.forEach(c => els.category.appendChild(createOption(c)));
   stores.forEach(s => els.store.appendChild(createOption(s)));
+  buildCategoryChips(categories);
 }
 
 function renderStats(deals) {
   const latest = deals.length ? deals.map(d => d.last_checked).filter(Boolean).sort().reverse()[0] : null;
   const lastUpdateText = latest ? `Última actualización: ${formatCheckedDate(latest)}` : 'Última actualización: sin fecha';
-  const lastUpdateEl = document.getElementById('lastUpdate');
-  if (lastUpdateEl) lastUpdateEl.textContent = lastUpdateText;
+  if (els.lastUpdate) els.lastUpdate.textContent = lastUpdateText;
 }
 
 function sortDeals(deals) {
@@ -145,10 +169,11 @@ function applyFilters() {
   const minDiscount = Number(els.discount.value || 0);
 
   const filtered = state.deals.filter(deal => {
-    const text = [deal.title, deal.category, deal.store].join(' ').toLowerCase();
+    const storeLabel = getStoreLabel(deal);
+    const text = [deal.title, deal.category, storeLabel].join(' ').toLowerCase();
     const matchesBase = (!search || text.includes(search))
       && (!category || deal.category === category)
-      && (!store || deal.store === store)
+      && (!store || storeLabel === store)
       && (getPrimaryDiscount(deal) >= minDiscount);
 
     return matchesBase && (!state.onlyFavorites || isFavorite(deal));
@@ -178,16 +203,19 @@ function renderTopPicks() {
   els.topPicksSection.style.display = '';
   picks.forEach((deal, idx) => {
     const item = document.createElement('article');
-    item.className = 'top-pick-item';
+    item.className = 'top-pick-card';
+    const discount = getPrimaryDiscount(deal);
+    const salesText = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : 'Selección destacada';
     item.innerHTML = `
-      <span class="top-pick-kicker">TOP ${idx + 1}</span>
+      <span class="top-pick-rank">🔥 TOP ${idx + 1}</span>
       <h3>${deal.title}</h3>
-      <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${deal.store || 'Tienda'}</p>
+      <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${getStoreLabel(deal)}</p>
       <div class="top-pick-price">
-        <strong>${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en Amazon'}</strong>
-        <span>${getPrimaryDiscount(deal) ? `-${getPrimaryDiscount(deal)}%` : 'Nuevo enlace'}</span>
+        <strong>${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en tienda'}</strong>
+        <span>${discount ? `-${discount}%` : 'Nuevo'}</span>
       </div>
-      <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">Ver chollo</a>
+      <p class="top-pick-submeta">${salesText}</p>
+      <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
     `;
     els.topPicks.appendChild(item);
   });
@@ -208,70 +236,70 @@ function renderDeals() {
   state.filtered.forEach(deal => {
     const node = els.template.content.firstElementChild.cloneNode(true);
     const imageEl = node.querySelector('.deal-image');
-    imageEl.src = deal.image || placeholderImage(deal.title, deal.store);
-    imageEl.alt = deal.title;
-    imageEl.onerror = () => { imageEl.src = placeholderImage(deal.title, deal.store); };
-
-    node.querySelector('.badge-store').textContent = deal.store || 'Tienda';
-    node.querySelector('.badge-status').textContent = deal.status === 'hot' ? '🔥 CHOLLO' : 'Oferta';
-
-    const pickBadge = node.querySelector('.badge-pick');
-    if (deal.editor_pick) {
-      pickBadge.textContent = '⭐ Recomendado';
-    } else {
-      pickBadge.remove();
-    }
-
     const imageWrap = node.querySelector('.deal-image-wrap');
+    const imageBadges = node.querySelector('.image-badges');
+    const favoriteBtn = node.querySelector('.favorite-btn');
+
+    imageEl.src = deal.image || placeholderImage(deal.title, getStoreLabel(deal));
+    imageEl.alt = deal.title;
+    imageEl.onerror = () => { imageEl.src = placeholderImage(deal.title, getStoreLabel(deal)); };
+
+    node.querySelector('.store-pill').textContent = getStoreLabel(deal);
+    node.querySelector('.deal-category').textContent = deal.category || 'Otros';
+    node.querySelector('.deal-title').textContent = deal.title;
+
     const primaryDiscount = getPrimaryDiscount(deal);
-    if (primaryDiscount >= 25) {
-      const topBadge = document.createElement('span');
-      topBadge.className = 'badge badge-top-overlay';
-      topBadge.textContent = `TOP -${primaryDiscount}%`;
-      imageWrap.appendChild(topBadge);
+    if (primaryDiscount) {
+      const discountBadge = document.createElement('span');
+      discountBadge.className = 'overlay-badge discount';
+      discountBadge.textContent = `-${primaryDiscount}%`;
+      imageBadges.appendChild(discountBadge);
+    }
+    if (deal.editor_pick) {
+      const pickBadge = document.createElement('span');
+      pickBadge.className = 'overlay-badge pick';
+      pickBadge.textContent = '⭐ Recomendado';
+      imageBadges.appendChild(pickBadge);
     } else if (isRecentDate(deal.last_checked)) {
       const newBadge = document.createElement('span');
-      newBadge.className = 'badge badge-new-overlay';
+      newBadge.className = 'overlay-badge new';
       newBadge.textContent = 'NUEVO';
-      imageWrap.appendChild(newBadge);
+      imageBadges.appendChild(newBadge);
     }
 
-    const favBtn = document.createElement('button');
-    favBtn.type = 'button';
-    favBtn.className = `favorite-btn${isFavorite(deal) ? ' is-favorite' : ''}`;
-    favBtn.setAttribute('aria-label', isFavorite(deal) ? 'Quitar de favoritos' : 'Añadir a favoritos');
-    favBtn.title = isFavorite(deal) ? 'Quitar de favoritos' : 'Añadir a favoritos';
-    favBtn.textContent = isFavorite(deal) ? '❤' : '♡';
-    favBtn.addEventListener('click', () => toggleFavorite(deal));
-    imageWrap.appendChild(favBtn);
+    favoriteBtn.classList.toggle('is-favorite', isFavorite(deal));
+    favoriteBtn.setAttribute('aria-label', isFavorite(deal) ? 'Quitar de favoritos' : 'Añadir a favoritos');
+    favoriteBtn.setAttribute('title', isFavorite(deal) ? 'Quitar de favoritos' : 'Añadir a favoritos');
+    favoriteBtn.textContent = isFavorite(deal) ? '❤' : '♡';
+    favoriteBtn.addEventListener('click', () => toggleFavorite(deal));
 
-    node.querySelector('.deal-title').textContent = deal.title;
-    const salesText = deal.sales ? ` · ${Number(deal.sales).toLocaleString('es-ES')} ventas` : '';
-    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Revisado ${formatCheckedDate(deal.last_checked)}${salesText} · Fuente ${deal.source || 'manual'}`;
-    const priceRow = node.querySelector('.price-row');
     const currentEl = node.querySelector('.price-current');
     const oldEl = node.querySelector('.price-old');
-    const discountEl = node.querySelector('.price-discount');
     if (hasValidPrice(deal.price)) {
       currentEl.textContent = formatPrice(deal.price);
       oldEl.textContent = deal.old_price ? formatPrice(deal.old_price) : '';
-      discountEl.textContent = primaryDiscount ? `-${primaryDiscount}%` : '';
     } else {
-      currentEl.textContent = 'Precio en Amazon';
+      currentEl.textContent = 'Ver precio en tienda';
       oldEl.textContent = '';
-      discountEl.textContent = '';
-      priceRow.classList.add('price-row-no-price');
     }
+
+    node.querySelector('.metric-discount').textContent = primaryDiscount ? `Descuento ${primaryDiscount}%` : 'Oferta activa';
+    node.querySelector('.metric-sales').textContent = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : getStoreLabel(deal);
+
+    const sourceLabel = deal.source || 'manual';
+    node.querySelector('.deal-meta').textContent = `Fuente ${sourceLabel} · Revisado ${formatCheckedDate(deal.last_checked)}`;
     node.querySelector('.deal-reason').textContent = deal.reason || 'Bajada detectada por comparación histórica.';
 
     const btn = node.querySelector('.btn');
     btn.href = deal.affiliate_url || deal.url || '#';
-    btn.textContent = `🔥 Ver chollo en ${deal.store || 'la tienda'}`;
-    const note = document.createElement('span');
-    note.className = 'cta-note';
-    note.textContent = hasValidPrice(deal.price) ? '✔ Precio verificado · ✔ Enlace directo a tienda' : '✔ Enlace afiliado listo · ✔ Precio a consultar en Amazon';
-    node.querySelector('.deal-actions').appendChild(note);
+    btn.textContent = getStoreButtonText(deal);
 
+    const note = node.querySelector('.cta-note');
+    note.textContent = hasValidPrice(deal.price)
+      ? 'Precio visible y enlace directo a la tienda.'
+      : 'Enlace listo para consultar el precio actual.';
+
+    imageWrap.dataset.category = deal.category || 'Otros';
     els.grid.appendChild(node);
   });
 }
@@ -296,8 +324,16 @@ async function init() {
   el.addEventListener('change', applyFilters);
 });
 
-init();
-
+if (els.categoryChips) {
+  els.categoryChips.addEventListener('click', event => {
+    const chip = event.target.closest('.filter-chip');
+    if (!chip) return;
+    els.category.value = chip.dataset.value || '';
+    [...els.categoryChips.querySelectorAll('.filter-chip')].forEach(node => node.classList.remove('is-active'));
+    chip.classList.add('is-active');
+    applyFilters();
+  });
+}
 
 if (els.favoritesToggle) {
   els.favoritesToggle.addEventListener('click', () => {
@@ -308,3 +344,5 @@ if (els.favoritesToggle) {
     applyFilters();
   });
 }
+
+init();
