@@ -15,17 +15,9 @@ TRACKING_ID = (os.getenv("ALIEXPRESS_TRACKING_ID") or "").strip()
 
 
 BLOCKED_TERMS = [
-    "plantilla", "plantillas", "peluca", "pelucas", "peluquin",
-    "maquillaje", "uñas", "coche", "moto", "motocicleta"
-]
-
-BOOST_TERMS = [
-    "bicicleta", "ciclismo", "mtb", "bike", "bici", "carretera",
-    "casco", "culotte", "maillot", "pedales", "portabidon", "bidon",
-    "manillar", "sillin", "cubierta", "camara", "parches", "bomba",
-    "luz", "guantes", "chaleco", "chaqueta", "cinta", "calas",
-    "herramienta", "multiherramienta", "soporte movil", "gafas",
-    "guardabarros", "manguitos", "calcetines", "bolsa"
+    "peluca", "pelucas", "peluquin",
+    "maquillaje", "uñas",
+    "coche", "moto", "motocicleta"
 ]
 
 
@@ -69,14 +61,8 @@ def is_relevant_product(product: Dict[str, Any], expected_category: str = "") ->
     if any(term in text for term in BLOCKED_TERMS):
         return False
 
-    score = sum(1 for term in BOOST_TERMS if term in text)
-
-    if expected_category:
-        cat_text = expected_category.lower()
-        if cat_text in text:
-            score += 2
-
-    return score >= 1
+    # Filtro muy suave: si no está bloqueado, entra.
+    return True
 
 
 def dedupe_products(products: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -84,12 +70,13 @@ def dedupe_products(products: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     out = []
 
     for p in products:
-        key = (
-            str(p.get("product_id") or ""),
-            (p.get("product_title") or "").strip().lower(),
-        )
+        key = str(p.get("product_id") or "")
+        if not key:
+            key = (p.get("product_title") or "").strip().lower()
+
         if key in seen:
             continue
+
         seen.add(key)
         out.append(p)
 
@@ -158,6 +145,8 @@ def main() -> None:
     all_products: List[Dict[str, Any]] = []
     category_by_product_id: Dict[str, str] = {}
 
+    print(f"Tracking ID configurado: {'sí' if TRACKING_ID else 'no'}")
+
     for item in keyword_items:
         keyword = item["keyword"]
         expected_category = item.get("category", "")
@@ -184,6 +173,11 @@ def main() -> None:
             print("  Sin resultados")
             continue
 
+        sample = products[0]
+        print(f"  Ejemplo título: {(sample.get('product_title') or '')[:120]}")
+        print(f"  Ejemplo categoría 1: {sample.get('first_level_category_name')}")
+        print(f"  Ejemplo categoría 2: {sample.get('second_level_category_name')}")
+
         filtered = [p for p in products if is_relevant_product(p, expected_category)]
 
         print(f"  Productos recibidos: {len(products)} | filtrados: {len(filtered)}")
@@ -193,11 +187,13 @@ def main() -> None:
             if pid and expected_category and pid not in category_by_product_id:
                 category_by_product_id[pid] = expected_category
 
-        all_products.extend(filtered)
+        # Quédate con máximo 5 por keyword para no llenar de ruido
+        filtered.sort(key=product_score, reverse=True)
+        all_products.extend(filtered[:5])
 
     all_products = dedupe_products(all_products)
     all_products.sort(key=product_score, reverse=True)
-    all_products = all_products[:30]
+    all_products = all_products[:40]
 
     detail_urls = [
         p.get("product_detail_url")
