@@ -110,6 +110,12 @@ function getStoreButtonText(deal) {
   return `Ver en ${store}`;
 }
 
+function truncateText(text, maxLength = 74) {
+  if (!text) return '';
+  const clean = String(text).trim();
+  return clean.length > maxLength ? `${clean.slice(0, maxLength).trim()}...` : clean;
+}
+
 function buildCategoryChips(categories) {
   if (!els.categoryChips) return;
   els.categoryChips.innerHTML = '';
@@ -206,17 +212,35 @@ function renderTopPicks() {
     item.className = 'top-pick-card';
     const discount = getPrimaryDiscount(deal);
     const salesText = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : 'Selección destacada';
+    const imageSrc = deal.image || placeholderImage(deal.title, getStoreLabel(deal));
+    const titleText = truncateText(deal.title, 76);
+    const currentPrice = hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en tienda';
+    const oldPrice = hasValidPrice(deal.old_price) ? `<span class="top-pick-old-price">${formatPrice(deal.old_price)}</span>` : '';
+    const badgeText = discount ? `-${discount}%` : 'Nuevo';
+
     item.innerHTML = `
-      <span class="top-pick-rank">🔥 TOP ${idx + 1}</span>
-      <h3>${deal.title}</h3>
-      <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${getStoreLabel(deal)}</p>
-      <div class="top-pick-price">
-        <strong>${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en tienda'}</strong>
-        <span>${discount ? `-${discount}%` : 'Nuevo'}</span>
+      <div class="top-pick-media">
+        <span class="top-pick-rank">🔥 TOP ${idx + 1}</span>
+        <span class="top-pick-discount">${badgeText}</span>
+        <img src="${imageSrc}" alt="${titleText}" class="top-pick-image" loading="lazy">
       </div>
-      <p class="top-pick-submeta">${salesText}</p>
-      <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
+      <div class="top-pick-content">
+        <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${getStoreLabel(deal)}</p>
+        <h3 title="${deal.title.replace(/"/g, '&quot;')}">${titleText}</h3>
+        <div class="top-pick-price-row">
+          <strong>${currentPrice}</strong>
+          ${oldPrice}
+        </div>
+        <p class="top-pick-submeta">${salesText}</p>
+        <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
+      </div>
     `;
+
+    const img = item.querySelector('.top-pick-image');
+    if (img) {
+      img.onerror = () => { img.src = placeholderImage(deal.title, getStoreLabel(deal)); };
+    }
+
     els.topPicks.appendChild(item);
   });
 }
