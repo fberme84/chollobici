@@ -571,6 +571,41 @@ input:focus, select:focus {
 }
 
 
+.deal-actions {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 12px 22px rgba(13, 99, 201, .22);
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(13, 99, 201, .26);
+  opacity: .96;
+  text-decoration: none;
+}
+
+.btn:visited,
+.btn:active,
+.btn:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
 
 .empty-state {
   grid-column: 1 / -1;
