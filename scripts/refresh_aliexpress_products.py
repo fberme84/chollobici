@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -99,9 +100,26 @@ def product_score(product: Dict[str, Any]) -> float:
     return discount * 2 + min(volume / 1000, 20) + commission
 
 
+def canonical_aliexpress_url(url: str) -> str:
+    if not url:
+        return ""
+
+    m = re.search(r"(https://[a-z]{2}\.aliexpress\.com/item/\d+\.html)", url)
+    if m:
+        return m.group(1)
+
+    m = re.search(r"(https://www\.aliexpress\.com/item/\d+\.html)", url)
+    if m:
+        return m.group(1)
+
+    return url.split("?", 1)[0].strip()
+
+
 def normalize_product(product: Dict[str, Any], affiliate_map: Dict[str, str], fallback_category: str = "") -> Dict[str, Any]:
-    detail_url = product.get("product_detail_url") or ""
-    affiliate_url = affiliate_map.get(detail_url, product.get("promotion_link") or detail_url)
+    raw_detail_url = product.get("product_detail_url") or ""
+    detail_url = canonical_aliexpress_url(raw_detail_url)
+
+    affiliate_url = affiliate_map.get(detail_url) or product.get("promotion_link") or detail_url
 
     image = (
         product.get("product_main_image_url")
@@ -198,27 +216,29 @@ def main() -> None:
     all_products.sort(key=product_score, reverse=True)
     all_products = all_products[:40]
 
-    detail_urls = [
-        p.get("product_detail_url")
-        for p in all_products
-        if p.get("product_detail_url")
-    ]
+    detail_urls = []
+    for p in all_products:
+        url = canonical_aliexpress_url(p.get("product_detail_url") or "")
+        if url:
+            detail_urls.append(url)
+
     detail_urls = list(dict.fromkeys(detail_urls))[:40]
 
     affiliate_map: Dict[str, str] = {}
     if detail_urls and TRACKING_ID:
-        try:
-            total_batches = 0
-            for batch in chunked(detail_urls, 5):
+        total_batches = 0
+        failed_batches = 0
+
+        for batch in chunked(detail_urls, 1):
+            try:
                 batch_map = generate_affiliate_links(batch, tracking_id=TRACKING_ID)
                 affiliate_map.update(batch_map)
                 total_batches += 1
+            except Exception as exc:
+                failed_batches += 1
+                print(f"ERROR generando affiliate links para lote {batch}: {exc}")
 
-            print(f"Links afiliados generados: {len(affiliate_map)} en {total_batches} lotes")
-        except AliExpressApiError as exc:
-            print(f"ERROR generando affiliate links: {exc}")
-        except Exception as exc:
-            print(f"ERROR inesperado generando affiliate links: {exc}")
+        print(f"Links afiliados generados: {len(affiliate_map)} en {total_batches} lotes; fallidos: {failed_batches}")
     else:
         print("Sin TRACKING_ID o sin URLs; se usarán promotion_link/product_detail_url")
 
