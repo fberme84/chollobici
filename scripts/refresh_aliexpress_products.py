@@ -15,10 +15,8 @@ TRACKING_ID = (os.getenv("ALIEXPRESS_TRACKING_ID") or "").strip()
 
 
 BLOCKED_TERMS = [
-    "zapato", "zapatos", "plantilla", "plantillas", "sandalia", "sandalias",
-    "running", "baloncesto", "futbol", "tenis", "yoga", "gym", "fitness mujer",
-    "peluca", "pelucas", "peluquin", "maquillaje", "uñas", "smartwatch",
-    "telefono", "movil", "tablet", "coche", "moto", "motocicleta"
+    "plantilla", "plantillas", "peluca", "pelucas", "peluquin",
+    "maquillaje", "uñas", "coche", "moto", "motocicleta"
 ]
 
 BOOST_TERMS = [
@@ -26,37 +24,43 @@ BOOST_TERMS = [
     "casco", "culotte", "maillot", "pedales", "portabidon", "bidon",
     "manillar", "sillin", "cubierta", "camara", "parches", "bomba",
     "luz", "guantes", "chaleco", "chaqueta", "cinta", "calas",
-    "herramienta", "multiherramienta", "soporte movil"
-]
-
-ALLOWED_CATEGORY_TERMS = [
-    "deportes", "sport", "sports", "ciclismo", "bike", "bicycle", "bicicleta"
+    "herramienta", "multiherramienta", "soporte movil", "gafas",
+    "guardabarros", "manguitos", "calcetines", "bolsa"
 ]
 
 
-def load_keywords() -> List[str]:
+def load_keywords() -> List[Dict[str, str]]:
     if not KEYWORDS_FILE.exists():
         return [
-            "casco ciclismo mtb",
-            "gafas ciclismo polarizadas",
-            "maillot ciclismo hombre",
-            "culotte ciclismo hombre",
-            "bolsa manillar bicicleta",
-            "multiherramienta bicicleta",
-            "bomba bicicleta",
-            "luz bicicleta usb",
+            {"keyword": "casco ciclismo mtb", "category": "Cascos"},
+            {"keyword": "gafas ciclismo polarizadas", "category": "Gafas"},
+            {"keyword": "maillot ciclismo hombre", "category": "Ropa"},
+            {"keyword": "culotte ciclismo hombre", "category": "Ropa"},
+            {"keyword": "bolsa manillar bicicleta", "category": "Bolsas"},
+            {"keyword": "multiherramienta bicicleta", "category": "Herramientas"},
+            {"keyword": "bomba bicicleta", "category": "Herramientas"},
+            {"keyword": "luz bicicleta usb", "category": "Luces"},
         ]
 
     with KEYWORDS_FILE.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
+    result: List[Dict[str, str]] = []
+
     if isinstance(data, list):
-        return [str(x).strip() for x in data if str(x).strip()]
+        for item in data:
+            if isinstance(item, str) and item.strip():
+                result.append({"keyword": item.strip(), "category": ""})
+            elif isinstance(item, dict):
+                kw = str(item.get("keyword") or "").strip()
+                cat = str(item.get("category") or "").strip()
+                if kw:
+                    result.append({"keyword": kw, "category": cat})
 
-    return []
+    return result
 
 
-def is_relevant_product(product: Dict[str, Any]) -> bool:
+def is_relevant_product(product: Dict[str, Any], expected_category: str = "") -> bool:
     title = (product.get("product_title") or "").lower()
     category = (product.get("second_level_category_name") or "").lower()
     first_cat = (product.get("first_level_category_name") or "").lower()
@@ -66,18 +70,13 @@ def is_relevant_product(product: Dict[str, Any]) -> bool:
         return False
 
     score = sum(1 for term in BOOST_TERMS if term in text)
+
+    if expected_category:
+        cat_text = expected_category.lower()
+        if cat_text in text:
+            score += 2
+
     return score >= 1
-
-
-def category_ok(product: Dict[str, Any]) -> bool:
-    first_cat = (product.get("first_level_category_name") or "").lower()
-    second_cat = (product.get("second_level_category_name") or "").lower()
-    text = f"{first_cat} {second_cat}"
-
-    if not text.strip():
-        return True
-
-    return any(term in text for term in ALLOWED_CATEGORY_TERMS)
 
 
 def dedupe_products(products: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -114,7 +113,7 @@ def product_score(product: Dict[str, Any]) -> float:
     return discount * 2 + min(volume / 1000, 20) + commission
 
 
-def normalize_product(product: Dict[str, Any], affiliate_map: Dict[str, str]) -> Dict[str, Any]:
+def normalize_product(product: Dict[str, Any], affiliate_map: Dict[str, str], fallback_category: str = "") -> Dict[str, Any]:
     detail_url = product.get("product_detail_url") or ""
     affiliate_url = affiliate_map.get(detail_url, product.get("promotion_link") or detail_url)
 
@@ -141,7 +140,7 @@ def normalize_product(product: Dict[str, Any], affiliate_map: Dict[str, str]) ->
         "discount": product.get("discount") or "",
         "source": "aliexpress",
         "source_label": "AliExpress",
-        "category": product.get("second_level_category_name") or product.get("first_level_category_name") or "",
+        "category": fallback_category or product.get("second_level_category_name") or product.get("first_level_category_name") or "",
         "shop_name": product.get("shop_name") or "",
         "rating": product.get("evaluate_rate") or "",
         "sales": product.get("lastest_volume") or 0,
@@ -152,14 +151,19 @@ def normalize_product(product: Dict[str, Any], affiliate_map: Dict[str, str]) ->
 def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    keywords = load_keywords()
-    if not keywords:
-        raise SystemExit("No hay keywords en data/aliexpress_keywords.json")
+    keyword_items = load_keywords()
+    if not keyword_items:
+        raise SystemExit("No hay keywords válidas en data/aliexpress_keywords.json")
 
     all_products: List[Dict[str, Any]] = []
+    category_by_product_id: Dict[str, str] = {}
 
-    for keyword in keywords:
-        print(f"Buscando en AliExpress: {keyword}")
+    for item in keyword_items:
+        keyword = item["keyword"]
+        expected_category = item.get("category", "")
+
+        print(f"Buscando en AliExpress: {item}")
+
         try:
             products = product_query(
                 keywords=keyword,
@@ -180,12 +184,15 @@ def main() -> None:
             print("  Sin resultados")
             continue
 
-        filtered = [
-            p for p in products
-            if is_relevant_product(p) and category_ok(p)
-        ]
+        filtered = [p for p in products if is_relevant_product(p, expected_category)]
 
         print(f"  Productos recibidos: {len(products)} | filtrados: {len(filtered)}")
+
+        for p in filtered:
+            pid = str(p.get("product_id") or "")
+            if pid and expected_category and pid not in category_by_product_id:
+                category_by_product_id[pid] = expected_category
+
         all_products.extend(filtered)
 
     all_products = dedupe_products(all_products)
@@ -210,7 +217,11 @@ def main() -> None:
     else:
         print("Sin TRACKING_ID o sin URLs; se usarán promotion_link/product_detail_url")
 
-    normalized = [normalize_product(p, affiliate_map) for p in all_products]
+    normalized = []
+    for p in all_products:
+        pid = str(p.get("product_id") or "")
+        fallback_category = category_by_product_id.get(pid, "")
+        normalized.append(normalize_product(p, affiliate_map, fallback_category=fallback_category))
 
     with OUTPUT_FILE.open("w", encoding="utf-8") as f:
         json.dump(normalized, f, ensure_ascii=False, indent=2)
