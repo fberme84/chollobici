@@ -1,19 +1,26 @@
 name: Update deals data
 
 on:
-  schedule:
-    - cron: "15 6 * * *"
   workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * *"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
 
+    env:
+      ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+      ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+      ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
+
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -26,43 +33,22 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Refresh Amazon products
-        env:
-          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
-          AMAZON_PAAPI_ACCESS_KEY: ${{ secrets.AMAZON_PAAPI_ACCESS_KEY }}
-          AMAZON_PAAPI_SECRET_KEY: ${{ secrets.AMAZON_PAAPI_SECRET_KEY }}
-          AMAZON_PAAPI_PARTNER_TAG: ${{ secrets.AMAZON_PAAPI_PARTNER_TAG }}
-          AMAZON_PAAPI_REGION: ${{ secrets.AMAZON_PAAPI_REGION }}
-          AMAZON_PAAPI_HOST: ${{ secrets.AMAZON_PAAPI_HOST }}
-        run: |
-          python scripts/refresh_amazon_products.py
+      - name: Test AliExpress API
+        run: python scripts/test_aliexpress_api.py
+        continue-on-error: true
 
       - name: Refresh AliExpress products
-        env:
-          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
-          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
-          ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
-          ALIEXPRESS_API_URL: ${{ secrets.ALIEXPRESS_API_URL }}
-          ALIEXPRESS_TARGET_CURRENCY: EUR
-          ALIEXPRESS_TARGET_LANGUAGE: ES
-          ALIEXPRESS_SHIP_TO_COUNTRY: ES
-          ALIEXPRESS_PAGE_SIZE: 12
-        run: |
-          python scripts/refresh_aliexpress_products.py
+        run: python scripts/refresh_aliexpress_products.py
 
-      - name: Run deals updater
-        env:
-          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
-        run: |
-          python scripts/update_deals.py
+      - name: Update merged deals
+        run: python scripts/update_deals.py
 
-      - name: Commit generated data if changed
+      - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/amazon_products.json data/aliexpress_products.json data/history.json data/generated_deals.json
-          git diff --cached --quiet || git commit -m "Refresh products and generated deals data"
+          git add data/*.json
+          git diff --cached --quiet || git commit -m "Update deals data"
 
       - name: Push changes
-        run: |
-          git push
+        run: git push

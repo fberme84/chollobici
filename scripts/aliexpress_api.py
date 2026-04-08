@@ -1,117 +1,162 @@
-from __future__ import annotations
-
-import hashlib
-import json
 import os
-from datetime import datetime, timedelta, timezone
-from typing import Any
+import time
+import json
+import hashlib
+from datetime import datetime
+from typing import Any, Dict, List, Optional
 
 import requests
 
-DEFAULT_ENDPOINT = os.getenv("ALIEXPRESS_API_URL", "https://api-sg.aliexpress.com/sync").strip()
 
-
-class AliExpressApiError(RuntimeError):
+class AliExpressApiError(Exception):
     pass
 
 
-def _gmt8_timestamp() -> str:
-    gmt8 = timezone(timedelta(hours=8))
-    return datetime.now(gmt8).strftime("%Y-%m-%d %H:%M:%S")
-
-
-def _json_dumps(value: Any) -> str:
-    return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+DEFAULT_ENDPOINT = (os.getenv("ALIEXPRESS_API_URL") or "https://api-sg.aliexpress.com/sync").strip()
 
 
 def _stringify(value: Any) -> str:
     if isinstance(value, bool):
         return "true" if value else "false"
     if isinstance(value, (dict, list)):
-        return _json_dumps(value)
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    if value is None:
+        return ""
     return str(value)
 
 
-def sign_params(params: dict[str, Any], app_secret: str) -> str:
-    items = sorted((key, _stringify(value)) for key, value in params.items() if value is not None and key != "sign")
-    raw = app_secret + "".join(f"{key}{value}" for key, value in items) + app_secret
-    return hashlib.md5(raw.encode("utf-8")).hexdigest().upper()
+def _timestamp() -> str:
+    return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
 
-def call_api(method: str, payload: dict[str, Any] | None = None, *, timeout: int = 45) -> dict[str, Any]:
-    app_key = os.getenv("ALIEXPRESS_APP_KEY", "").strip()
-    app_secret = os.getenv("ALIEXPRESS_APP_SECRET", "").strip()
-    endpoint = os.getenv("ALIEXPRESS_API_URL", DEFAULT_ENDPOINT).strip() or DEFAULT_ENDPOINT
+def _sign(params: Dict[str, Any], app_secret: str) -> str:
+    items = sorted((k, _stringify(v)) for k, v in params.items() if k != "sign" and v is not None)
+    sign_str = app_secret + "".join(f"{k}{v}" for k, v in items) + app_secret
+    return hashlib.md5(sign_str.encode("utf-8")).hexdigest().upper()
+
+
+def call_api(method: str, payload: Optional[Dict[str, Any]] = None, timeout: int = 30) -> Dict[str, Any]:
+    payload = payload or {}
+
+    app_key = (os.getenv("ALIEXPRESS_APP_KEY") or "").strip()
+    app_secret = (os.getenv("ALIEXPRESS_APP_SECRET") or "").strip()
+    endpoint = (os.getenv("ALIEXPRESS_API_URL") or "https://api-sg.aliexpress.com/sync").strip()
+
+    if not endpoint:
+        endpoint = "https://api-sg.aliexpress.com/sync"
 
     if not app_key or not app_secret:
         raise AliExpressApiError("Faltan ALIEXPRESS_APP_KEY o ALIEXPRESS_APP_SECRET")
 
-    params: dict[str, Any] = {
-        "method": method,
+    params: Dict[str, Any] = {
         "app_key": app_key,
-        "timestamp": _gmt8_timestamp(),
+        "method": method,
         "format": "json",
-        "v": "2.0",
         "sign_method": "md5",
-        "simplify": "true",
+        "timestamp": _timestamp(),
+        "v": "2.0",
+        **payload,
     }
-    if payload:
-        params.update(payload)
 
-    params["sign"] = sign_params(params, app_secret)
+    params["sign"] = _sign(params, app_secret)
 
-    response = requests.get(endpoint, params={k: _stringify(v) for k, v in params.items()}, timeout=timeout)
+    response = requests.get(
+        endpoint,
+        params={k: _stringify(v) for k, v in params.items()},
+        timeout=timeout,
+    )
     response.raise_for_status()
-    data = response.json()
 
-    error = data.get("error_response") if isinstance(data, dict) else None
-    if error:
-        message = error.get("msg") or error.get("sub_msg") or "Error desconocido"
-        code = error.get("code") or error.get("sub_code") or "unknown"
-        raise AliExpressApiError(f"{code}: {message}")
+    try:
+        data = response.json()
+    except Exception as exc:
+        raise AliExpressApiError(f"Respuesta no JSON de AliExpress: {response.text[:500]}") from exc
+
+    error_keys = [
+        "error_response",
+        "aliexpress_affiliate_product_query_response_error",
+        "errorMessage",
+        "error_message",
+        "msg",
+        "sub_msg",
+    ]
+    for key in error_keys:
+        if key in data:
+            raise AliExpressApiError(f"ERROR API: {data[key]}")
 
     return data
 
 
-def _find_first_list(node: Any, candidate_keys: tuple[str, ...]) -> list[dict[str, Any]]:
-    if isinstance(node, dict):
-        for key in candidate_keys:
-            value = node.get(key)
-            if isinstance(value, list) and value and isinstance(value[0], dict):
-                return value
-        for value in node.values():
-            found = _find_first_list(value, candidate_keys)
-            if found:
-                return found
-    elif isinstance(node, list):
-        if node and isinstance(node[0], dict):
-            return node
-        for value in node:
-            found = _find_first_list(value, candidate_keys)
-            if found:
-                return found
-    return []
+def _extract_product_list(data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    candidate_paths = [
+        ["aliexpress_affiliate_product_query_response", "resp_result", "result", "products", "product"],
+        ["aliexpress_affiliate_product_query_response", "resp_result", "result", "products"],
+        ["aliexpress_affiliate_product_query_response", "result", "products", "product"],
+        ["aliexpress_affiliate_product_query_response", "result", "products"],
+        ["result", "products", "product"],
+        ["result", "products"],
+        ["products", "product"],
+        ["products"],
+    ]
+
+    for path in candidate_paths:
+        cur: Any = data
+        ok = True
+        for part in path:
+            if isinstance(cur, dict) and part in cur:
+                cur = cur[part]
+            else:
+                ok = False
+                break
+        if ok and isinstance(cur, list):
+            return cur
+
+    def _walk(obj: Any) -> Optional[List[Dict[str, Any]]]:
+        if isinstance(obj, list) and obj and isinstance(obj[0], dict) and (
+            "product_id" in obj[0] or "product_title" in obj[0]
+        ):
+            return obj
+        if isinstance(obj, dict):
+            for v in obj.values():
+                found = _walk(v)
+                if found is not None:
+                    return found
+        elif isinstance(obj, list):
+            for v in obj:
+                found = _walk(v)
+                if found is not None:
+                    return found
+        return None
+
+    return _walk(data) or []
 
 
-def _find_first_dict(node: Any, candidate_keys: tuple[str, ...]) -> dict[str, Any]:
-    if isinstance(node, dict):
-        for key in candidate_keys:
-            value = node.get(key)
-            if isinstance(value, dict):
-                return value
-        for value in node.values():
-            found = _find_first_dict(value, candidate_keys)
-            if found:
-                return found
-    elif isinstance(node, list):
-        for value in node:
-            found = _find_first_dict(value, candidate_keys)
-            if found:
-                return found
-    return {}
+def _extract_promotion_links(data: Dict[str, Any]) -> Dict[str, str]:
+    out: Dict[str, str] = {}
+
+    def _walk(obj: Any) -> None:
+        if isinstance(obj, dict):
+            if "promotion_link" in obj and "source_value" in obj:
+                out[str(obj["source_value"])] = str(obj["promotion_link"])
+            for v in obj.values():
+                _walk(v)
+        elif isinstance(obj, list):
+            for v in obj:
+                _walk(v)
+
+    _walk(data)
+    return out
 
 
-def product_query(*, keywords: str, page_no: int = 1, page_size: int = 20, tracking_id: str = "", target_currency: str = "EUR", target_language: str = "ES", ship_to_country: str = "ES", sort: str = "LAST_VOLUME_DESC") -> list[dict[str, Any]]:
+def product_query(
+    keywords: str,
+    page_no: int = 1,
+    page_size: int = 20,
+    target_currency: str = "EUR",
+    target_language: str = "ES",
+    ship_to_country: str = "ES",
+    sort: str = "LAST_VOLUME_DESC",
+) -> List[Dict[str, Any]]:
     payload = {
         "keywords": keywords,
         "page_no": page_no,
@@ -121,42 +166,20 @@ def product_query(*, keywords: str, page_no: int = 1, page_size: int = 20, track
         "ship_to_country": ship_to_country,
         "sort": sort,
     }
-    if tracking_id:
-        payload["tracking_id"] = tracking_id
-
     data = call_api("aliexpress.affiliate.product.query", payload)
-    return _find_first_list(data, ("products", "resp_result", "promotion_product", "promotion_products", "products_list", "records"))
+    return _extract_product_list(data)
 
 
-def product_details(source_values: list[str], *, tracking_id: str = "", target_currency: str = "EUR", target_language: str = "ES", ship_to_country: str = "ES") -> list[dict[str, Any]]:
-    payload = {
-        "source_values": ",".join(source_values),
-        "target_currency": target_currency,
-        "target_language": target_language,
-        "ship_to_country": ship_to_country,
-    }
-    if tracking_id:
-        payload["tracking_id"] = tracking_id
-
-    data = call_api("aliexpress.affiliate.productdetail.get", payload)
-    return _find_first_list(data, ("products", "resp_result", "promotion_product", "promotion_products", "products_list", "records"))
-
-
-def generate_affiliate_links(urls: list[str], *, tracking_id: str, promotion_link_type: int = 0) -> dict[str, str]:
+def generate_affiliate_links(urls: List[str], tracking_id: Optional[str] = None) -> Dict[str, str]:
+    tracking_id = (tracking_id or os.getenv("ALIEXPRESS_TRACKING_ID") or "").strip()
     if not tracking_id:
-        raise AliExpressApiError("Falta ALIEXPRESS_TRACKING_ID")
+        return {}
 
     payload = {
+        "promotion_link_type": 0,
         "source_values": ",".join(urls),
         "tracking_id": tracking_id,
-        "promotion_link_type": promotion_link_type,
     }
+
     data = call_api("aliexpress.affiliate.link.generate", payload)
-    items = _find_first_list(data, ("promotion_links", "resp_result", "promotion_link", "links", "records"))
-    mapping: dict[str, str] = {}
-    for item in items:
-        original = item.get("source_value") or item.get("url") or item.get("sourceUrl") or item.get("promotion_link")
-        affiliate = item.get("promotion_link") or item.get("promotionUrl") or item.get("short_link") or item.get("shortUrl")
-        if original and affiliate:
-            mapping[str(original)] = str(affiliate)
-    return mapping
+    return _extract_promotion_links(data)
