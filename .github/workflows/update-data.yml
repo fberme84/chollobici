@@ -37,6 +37,19 @@ jobs:
         run: |
           python scripts/refresh_amazon_products.py
 
+      - name: Refresh AliExpress products
+        env:
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
+          ALIEXPRESS_API_URL: ${{ secrets.ALIEXPRESS_API_URL }}
+          ALIEXPRESS_TARGET_CURRENCY: EUR
+          ALIEXPRESS_TARGET_LANGUAGE: ES
+          ALIEXPRESS_SHIP_TO_COUNTRY: ES
+          ALIEXPRESS_PAGE_SIZE: 12
+        run: |
+          python scripts/refresh_aliexpress_products.py
+
       - name: Run deals updater
         env:
           AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
@@ -47,7 +60,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/amazon_products.json data/history.json data/generated_deals.json
+          git add data/amazon_products.json data/aliexpress_products.json data/history.json data/generated_deals.json
           git diff --cached --quiet || git commit -m "Refresh products and generated deals data"
 
       - name: Push changes

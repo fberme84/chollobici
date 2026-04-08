@@ -26,6 +26,10 @@ const els = {
   template: document.getElementById('dealCardTemplate')
 };
 
+function hasValidPrice(value) {
+  return typeof value === 'number' && Number.isFinite(value) && value > 0;
+}
+
 function formatPrice(value) {
   return new Intl.NumberFormat('es-ES', {
     style: 'currency',
@@ -176,8 +180,8 @@ function renderTopPicks() {
       <h3>${deal.title}</h3>
       <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${deal.store || 'Tienda'}</p>
       <div class="top-pick-price">
-        <strong>${formatPrice(deal.price)}</strong>
-        <span>-${getPrimaryDiscount(deal)}%</span>
+        <strong>${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en Amazon'}</strong>
+        <span>${getPrimaryDiscount(deal) ? `-${getPrimaryDiscount(deal)}%` : 'Nuevo enlace'}</span>
       </div>
       <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">Ver chollo</a>
     `;
@@ -238,10 +242,21 @@ function renderDeals() {
     imageWrap.appendChild(favBtn);
 
     node.querySelector('.deal-title').textContent = deal.title;
-    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Precio revisado ${formatCheckedDate(deal.last_checked)} · Fuente ${deal.source || 'manual'}`;
-    node.querySelector('.price-current').textContent = formatPrice(deal.price);
-    node.querySelector('.price-old').textContent = deal.old_price ? formatPrice(deal.old_price) : '';
-    node.querySelector('.price-discount').textContent = primaryDiscount ? `-${primaryDiscount}%` : '';
+    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Revisado ${formatCheckedDate(deal.last_checked)} · Fuente ${deal.source || 'manual'}`;
+    const priceRow = node.querySelector('.price-row');
+    const currentEl = node.querySelector('.price-current');
+    const oldEl = node.querySelector('.price-old');
+    const discountEl = node.querySelector('.price-discount');
+    if (hasValidPrice(deal.price)) {
+      currentEl.textContent = formatPrice(deal.price);
+      oldEl.textContent = deal.old_price ? formatPrice(deal.old_price) : '';
+      discountEl.textContent = primaryDiscount ? `-${primaryDiscount}%` : '';
+    } else {
+      currentEl.textContent = 'Precio en Amazon';
+      oldEl.textContent = '';
+      discountEl.textContent = '';
+      priceRow.classList.add('price-row-no-price');
+    }
     node.querySelector('.deal-reason').textContent = deal.reason || 'Bajada detectada por comparación histórica.';
 
     const btn = node.querySelector('.btn');
@@ -249,7 +264,7 @@ function renderDeals() {
     btn.textContent = `🔥 Ver chollo en ${deal.store || 'la tienda'}`;
     const note = document.createElement('span');
     note.className = 'cta-note';
-    note.textContent = '✔ Precio verificado · ✔ Enlace directo a tienda';
+    note.textContent = hasValidPrice(deal.price) ? '✔ Precio verificado · ✔ Enlace directo a tienda' : '✔ Enlace afiliado listo · ✔ Precio a consultar en Amazon';
     node.querySelector('.deal-actions').appendChild(note);
 
     els.grid.appendChild(node);

@@ -1059,3 +1059,12 @@ body{
   background:
     linear-gradient(180deg, #0f1522 0, #0f1522 95px, #f4f8ff 95px, #edf4ff 100%);
 }
+
+
+.price-row-no-price .price-current {
+  font-size: 1rem;
+}
+
+.price-row-no-price {
+  min-height: 1.75rem;
+}
