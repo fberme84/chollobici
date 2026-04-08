@@ -111,6 +111,9 @@ function populateFilters(deals) {
   const categories = [...new Set(deals.map(d => d.category).filter(Boolean))].sort();
   const stores = [...new Set(deals.map(d => d.store).filter(Boolean))].sort();
 
+  els.category.innerHTML = '<option value="">Todas</option>';
+  els.store.innerHTML = '<option value="">Todas</option>';
+
   categories.forEach(c => els.category.appendChild(createOption(c)));
   stores.forEach(s => els.store.appendChild(createOption(s)));
 }
@@ -128,7 +131,8 @@ function sortDeals(deals) {
     const aDiscount = getPrimaryDiscount(a);
     const bDiscount = getPrimaryDiscount(b);
     if (mode === 'discount') return bDiscount - aDiscount;
-    if (mode === 'price_asc') return (a.price || 0) - (b.price || 0);
+    if (mode === 'sales') return (b.sales || 0) - (a.sales || 0);
+    if (mode === 'price_asc') return (a.price || Number.MAX_SAFE_INTEGER) - (b.price || Number.MAX_SAFE_INTEGER);
     if (mode === 'price_desc') return (b.price || 0) - (a.price || 0);
     return (b.recomendacion || 0) - (a.recomendacion || 0);
   });
@@ -242,7 +246,8 @@ function renderDeals() {
     imageWrap.appendChild(favBtn);
 
     node.querySelector('.deal-title').textContent = deal.title;
-    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Revisado ${formatCheckedDate(deal.last_checked)} · Fuente ${deal.source || 'manual'}`;
+    const salesText = deal.sales ? ` · ${Number(deal.sales).toLocaleString('es-ES')} ventas` : '';
+    node.querySelector('.deal-meta').textContent = `${deal.category || 'Sin categoría'} · Revisado ${formatCheckedDate(deal.last_checked)}${salesText} · Fuente ${deal.source || 'manual'}`;
     const priceRow = node.querySelector('.price-row');
     const currentEl = node.querySelector('.price-current');
     const oldEl = node.querySelector('.price-old');
