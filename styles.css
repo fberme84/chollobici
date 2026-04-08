@@ -64,7 +64,7 @@ img { max-width: 100%; }
 
 .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(290px, .65fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   align-items: stretch;
 }
@@ -135,39 +135,7 @@ img { max-width: 100%; }
   font-weight: 600;
 }
 
-.hero-panel {
-  padding: 18px;
-}
 
-.hero-panel-title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  margin-bottom: 14px;
-}
-
-.hero-panel-list {
-  display: grid;
-  gap: 12px;
-}
-
-.hero-panel-item {
-  display: grid;
-  gap: 4px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.1);
-}
-
-.hero-panel-item strong {
-  font-size: .96rem;
-}
-
-.hero-panel-item span {
-  color: rgba(255,255,255,.84);
-  font-size: .9rem;
-  line-height: 1.45;
-}
 
 .page-main {
   padding: 18px 0 38px;
@@ -602,47 +570,7 @@ input:focus, select:focus {
   color: var(--accent-dark);
 }
 
-.deal-meta,
-.deal-reason,
-.cta-note {
-  color: var(--muted);
-  font-size: .92rem;
-  line-height: 1.45;
-}
 
-.deal-meta {
-  margin: 0 0 8px;
-  min-height: 2.8em;
-}
-
-.deal-reason {
-  margin: 0 0 14px;
-}
-
-.deal-actions {
-  margin-top: auto;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 48px;
-  border-radius: 14px;
-  text-decoration: none;
-  font-weight: 800;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  box-shadow: 0 10px 22px rgba(13, 99, 201, .24);
-}
-
-.cta-note {
-  display: block;
-  margin-top: 8px;
-  text-align: center;
-  font-size: .84rem;
-}
 
 .empty-state {
   grid-column: 1 / -1;

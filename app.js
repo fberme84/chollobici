@@ -310,18 +310,9 @@ function renderDeals() {
     node.querySelector('.metric-discount').textContent = primaryDiscount ? `Descuento ${primaryDiscount}%` : 'Oferta activa';
     node.querySelector('.metric-sales').textContent = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : getStoreLabel(deal);
 
-    const sourceLabel = deal.source || 'manual';
-    node.querySelector('.deal-meta').textContent = `Fuente ${sourceLabel} · Revisado ${formatCheckedDate(deal.last_checked)}`;
-    node.querySelector('.deal-reason').textContent = deal.reason || 'Bajada detectada por comparación histórica.';
-
     const btn = node.querySelector('.btn');
     btn.href = deal.affiliate_url || deal.url || '#';
     btn.textContent = getStoreButtonText(deal);
-
-    const note = node.querySelector('.cta-note');
-    note.textContent = hasValidPrice(deal.price)
-      ? 'Precio visible y enlace directo a la tienda.'
-      : 'Enlace listo para consultar el precio actual.';
 
     imageWrap.dataset.category = deal.category || 'Otros';
     els.grid.appendChild(node);
