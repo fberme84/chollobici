@@ -1,5 +1,5 @@
 
-const BASE_PATH = window.location.pathname.startsWith('/chollobici/') ? '/chollobici' : '';
+const BASE_PATH = '';
 const state = {
   deals: [],
   enrichedDeals: [],
@@ -890,7 +890,7 @@ function navigateTo(url) {
 
 async function init() {
   try {
-    const response = await fetch(buildPath('/data/generated_deals.json'), { cache: 'no-store' });
+    const response = await fetch('/data/generated_deals.json', { cache: 'no-store' });
     const deals = await response.json();
     state.deals = Array.isArray(deals) ? deals : [];
     state.enrichedDeals = enrichDeals(state.deals);
