@@ -1,8 +1,12 @@
+
+const BASE_PATH = window.location.pathname.startsWith('/chollobici/') ? '/chollobici' : '';
 const state = {
   deals: [],
+  enrichedDeals: [],
   filtered: [],
   favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
-  onlyFavorites: false
+  onlyFavorites: false,
+  route: { type: 'home' }
 };
 
 const els = {
@@ -18,8 +22,43 @@ const els = {
   discount: document.getElementById('discountFilter'),
   sort: document.getElementById('sortFilter'),
   template: document.getElementById('dealCardTemplate'),
-  lastUpdate: document.getElementById('lastUpdate')
+  lastUpdate: document.getElementById('lastUpdate'),
+  breadcrumbs: document.getElementById('breadcrumbs'),
+  pageIntro: document.getElementById('pageIntro'),
+  pageIntroKicker: document.getElementById('pageIntroKicker'),
+  pageIntroTitle: document.getElementById('pageIntroTitle'),
+  pageIntroText: document.getElementById('pageIntroText'),
+  productView: document.getElementById('productView'),
+  toolbarRow: document.getElementById('toolbarRow'),
+  filters: document.getElementById('filtersSection'),
+  listHead: document.getElementById('listSectionHead')
 };
+
+const KNOWN_BRANDS = [
+  'x-tiger', 'lamicall', 'esen-sp', 'magene', 'gputek', 'rockbros', 'shimano', 'xoss', 'santic',
+  'west biking', 'cofit', 'toopre', 'thinkrider', 'cyclami', 'elite', 'garmin', 'bryton'
+];
+
+function slugify(text) {
+  return String(text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' y ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function stripBasePath(pathname) {
+  if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
+    return pathname.slice(BASE_PATH.length) || '/';
+  }
+  return pathname || '/';
+}
+
+function buildPath(path) {
+  return `${BASE_PATH}${path}`;
+}
 
 function hasValidPrice(value) {
   return typeof value === 'number' && Number.isFinite(value) && value > 0;
@@ -34,46 +73,48 @@ function formatPrice(value) {
 
 function formatCheckedDate(value) {
   if (!value) return 'sin fecha';
-  const date = new Date(`${value}T00:00:00`);
+  const raw = value.includes('T') ? value : `${value}T00:00:00`;
+  const date = new Date(raw);
   return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString('es-ES');
 }
 
 function isRecentDate(value, days = 7) {
   if (!value) return false;
-  const date = new Date(`${value}T00:00:00`);
+  const raw = value.includes('T') ? value : `${value}T00:00:00`;
+  const date = new Date(raw);
   if (Number.isNaN(date.getTime())) return false;
   const diffDays = (Date.now() - date.getTime()) / (1000 * 60 * 60 * 24);
   return diffDays <= days;
 }
 
+function truncateText(text, maxLength = 74) {
+  if (!text) return '';
+  const clean = String(text).trim();
+  return clean.length > maxLength ? `${clean.slice(0, maxLength).trim()}...` : clean;
+}
+
 function getDealId(deal) {
-  return deal.id || deal.asin || deal.url || deal.title || String(Math.random());
+  return deal.id || deal.asin || deal.url || deal.title;
 }
 
-function isFavorite(deal) {
-  return state.favorites.includes(getDealId(deal));
+function getStoreLabel(deal) {
+  return deal.store || (deal.source === 'aliexpress' ? 'AliExpress' : 'Tienda');
 }
 
-function toggleFavorite(deal) {
-  const id = getDealId(deal);
-  if (state.favorites.includes(id)) {
-    state.favorites = state.favorites.filter(x => x !== id);
-  } else {
-    state.favorites = [...state.favorites, id];
-  }
-  localStorage.setItem('favorites', JSON.stringify(state.favorites));
-  renderDeals();
+function getStoreButtonText(deal) {
+  return `Ver en ${getStoreLabel(deal)}`;
 }
 
 function getPrimaryDiscount(deal) {
   return Math.max(deal.discount_pct || 0, deal.drop_vs_previous_pct || 0);
 }
 
-function createOption(value, label = value) {
-  const opt = document.createElement('option');
-  opt.value = value;
-  opt.textContent = label;
-  return opt;
+function detectBrand(title = '') {
+  const value = title.toLowerCase();
+  const known = KNOWN_BRANDS.find(brand => value.includes(brand));
+  if (known) return known.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
+  const firstToken = String(title).trim().split(/\s+/)[0] || 'Ciclismo';
+  return firstToken.replace(/[^\w-]/g, '');
 }
 
 function placeholderImage(title, store) {
@@ -101,19 +142,36 @@ function placeholderImage(title, store) {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-function getStoreLabel(deal) {
-  return deal.store || (deal.source === 'aliexpress' ? 'AliExpress' : 'Tienda');
+function enrichDeals(deals) {
+  return deals.map((deal, index) => {
+    const category = deal.category || 'Otros';
+    const brand = deal.brand || detectBrand(deal.title);
+    const productSlug = slugify(`${deal.title}-${getDealId(deal) || index}`);
+    return {
+      ...deal,
+      category,
+      brand,
+      categorySlug: slugify(category),
+      brandSlug: slugify(brand),
+      productSlug,
+      path: `/producto/${productSlug}`,
+      categoryPath: `/ofertas/${slugify(category)}`,
+      brandPath: `/marca/${slugify(brand)}`
+    };
+  });
 }
 
-function getStoreButtonText(deal) {
-  const store = getStoreLabel(deal);
-  return `Ver en ${store}`;
-}
+function parseRoute() {
+  const path = stripBasePath(window.location.pathname);
+  const cleanPath = path.replace(/\/+$/, '') || '/';
+  const parts = cleanPath.split('/').filter(Boolean);
 
-function truncateText(text, maxLength = 74) {
-  if (!text) return '';
-  const clean = String(text).trim();
-  return clean.length > maxLength ? `${clean.slice(0, maxLength).trim()}...` : clean;
+  if (!parts.length) return { type: 'home', path: '/' };
+  if (parts[0] === 'ofertas' && parts.length === 1) return { type: 'offers', path: '/ofertas' };
+  if (parts[0] === 'ofertas' && parts[1]) return { type: 'category', slug: parts[1], path: cleanPath };
+  if (parts[0] === 'marca' && parts[1]) return { type: 'brand', slug: parts[1], path: cleanPath };
+  if (parts[0] === 'producto' && parts[1]) return { type: 'product', slug: parts[1], path: cleanPath };
+  return { type: 'not-found', path: cleanPath };
 }
 
 function buildCategoryChips(categories) {
@@ -137,6 +195,13 @@ function buildCategoryChips(categories) {
   });
 }
 
+function createOption(value, label = value) {
+  const opt = document.createElement('option');
+  opt.value = value;
+  opt.textContent = label;
+  return opt;
+}
+
 function populateFilters(deals) {
   const categories = [...new Set(deals.map(d => d.category).filter(Boolean))].sort();
   const stores = [...new Set(deals.map(d => getStoreLabel(d)).filter(Boolean))].sort();
@@ -150,9 +215,24 @@ function populateFilters(deals) {
 }
 
 function renderStats(deals) {
-  const latest = deals.length ? deals.map(d => d.last_checked).filter(Boolean).sort().reverse()[0] : null;
+  const latest = deals.length ? deals.map(d => d.last_checked || d.updated_at).filter(Boolean).sort().reverse()[0] : null;
   const lastUpdateText = latest ? `Última actualización: ${formatCheckedDate(latest)}` : 'Última actualización: sin fecha';
   if (els.lastUpdate) els.lastUpdate.textContent = lastUpdateText;
+}
+
+function isFavorite(deal) {
+  return state.favorites.includes(getDealId(deal));
+}
+
+function toggleFavorite(deal) {
+  const id = getDealId(deal);
+  if (state.favorites.includes(id)) {
+    state.favorites = state.favorites.filter(x => x !== id);
+  } else {
+    state.favorites = [...state.favorites, id];
+  }
+  localStorage.setItem('favorites', JSON.stringify(state.favorites));
+  renderCurrentRoute();
 }
 
 function sortDeals(deals) {
@@ -168,15 +248,15 @@ function sortDeals(deals) {
   });
 }
 
-function applyFilters() {
+function applyFilters(baseDeals = state.enrichedDeals) {
   const search = els.search.value.trim().toLowerCase();
   const category = els.category.value;
   const store = els.store.value;
   const minDiscount = Number(els.discount.value || 0);
 
-  const filtered = state.deals.filter(deal => {
+  const filtered = baseDeals.filter(deal => {
     const storeLabel = getStoreLabel(deal);
-    const text = [deal.title, deal.category, storeLabel].join(' ').toLowerCase();
+    const text = [deal.title, deal.category, deal.brand, storeLabel].join(' ').toLowerCase();
     const matchesBase = (!search || text.includes(search))
       && (!category || deal.category === category)
       && (!store || storeLabel === store)
@@ -186,13 +266,81 @@ function applyFilters() {
   });
 
   state.filtered = sortDeals(filtered);
-  renderDeals();
+  return state.filtered;
 }
 
-function renderTopPicks() {
+function linkTo(path, text, className = '', title = '') {
+  const safeText = text || '';
+  const safeTitle = title ? ` title="${title.replace(/"/g, '&quot;')}"` : '';
+  return `<a href="${buildPath(path)}" data-link="internal"${className ? ` class="${className}"` : ''}${safeTitle}>${safeText}</a>`;
+}
+
+function buildBreadcrumbs(items) {
+  if (!els.breadcrumbs) return;
+  els.breadcrumbs.innerHTML = '';
+  if (!items || items.length <= 1) {
+    els.breadcrumbs.hidden = true;
+    return;
+  }
+
+  els.breadcrumbs.hidden = false;
+  items.forEach((item, index) => {
+    if (index > 0) {
+      const sep = document.createElement('span');
+      sep.className = 'breadcrumb-sep';
+      sep.textContent = '›';
+      els.breadcrumbs.appendChild(sep);
+    }
+    if (item.path && index < items.length - 1) {
+      const a = document.createElement('a');
+      a.href = buildPath(item.path);
+      a.dataset.link = 'internal';
+      a.textContent = item.label;
+      els.breadcrumbs.appendChild(a);
+    } else {
+      const span = document.createElement('span');
+      span.className = 'breadcrumb-current';
+      span.textContent = item.label;
+      els.breadcrumbs.appendChild(span);
+    }
+  });
+}
+
+function updatePageIntro({ kicker = '', title = '', text = '' } = {}) {
+  if (!els.pageIntro) return;
+  if (!title) {
+    els.pageIntro.hidden = true;
+    return;
+  }
+  els.pageIntro.hidden = false;
+  els.pageIntroKicker.textContent = kicker;
+  els.pageIntroTitle.textContent = title;
+  els.pageIntroText.textContent = text;
+}
+
+function setLayoutMode(mode) {
+  const isProduct = mode === 'product';
+  els.productView.hidden = !isProduct;
+
+  els.toolbarRow.hidden = isProduct;
+  els.filters.hidden = isProduct;
+  els.topPicksSection.hidden = isProduct;
+  els.listHead.hidden = isProduct;
+  els.grid.hidden = isProduct;
+
+  if (!isProduct) {
+    els.productView.innerHTML = '';
+  }
+}
+
+function clearGrid() {
+  els.grid.innerHTML = '';
+}
+
+function renderTopPicks(deals = state.enrichedDeals) {
   if (!els.topPicks || !els.topPicksSection) return;
 
-  const picks = [...state.deals]
+  const picks = [...deals]
     .sort((a, b) => {
       const scoreA = (a.recomendacion || 0) + getPrimaryDiscount(a);
       const scoreB = (b.recomendacion || 0) + getPrimaryDiscount(b);
@@ -202,16 +350,19 @@ function renderTopPicks() {
 
   els.topPicks.innerHTML = '';
   if (!picks.length) {
-    els.topPicksSection.style.display = 'none';
+    els.topPicksSection.hidden = true;
     return;
   }
 
-  els.topPicksSection.style.display = '';
+  if (!els.toolbarRow.hidden) {
+    els.topPicksSection.hidden = false;
+  }
+
   picks.forEach((deal, idx) => {
     const item = document.createElement('article');
-    item.className = 'top-pick-card';
+    item.className = 'top-pick-card card';
     const discount = getPrimaryDiscount(deal);
-    const salesText = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : 'Selección destacada';
+    const salesText = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : `${deal.brand} · ${getStoreLabel(deal)}`;
     const imageSrc = deal.image || placeholderImage(deal.title, getStoreLabel(deal));
     const titleText = truncateText(deal.title, 76);
     const currentPrice = hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en tienda';
@@ -225,31 +376,31 @@ function renderTopPicks() {
         <img src="${imageSrc}" alt="${titleText}" class="top-pick-image" loading="lazy">
       </div>
       <div class="top-pick-content">
-        <p class="top-pick-meta">${deal.category || 'Sin categoría'} · ${getStoreLabel(deal)}</p>
-        <h3 title="${deal.title.replace(/"/g, '&quot;')}">${titleText}</h3>
+        <p class="top-pick-meta">${linkTo(deal.categoryPath, deal.category, 'inline-link')} · ${linkTo(deal.brandPath, deal.brand, 'inline-link')}</p>
+        <h3>${linkTo(deal.path, titleText, 'top-pick-title-link', deal.title)}</h3>
         <div class="top-pick-price-row">
           <strong>${currentPrice}</strong>
           ${oldPrice}
         </div>
         <p class="top-pick-submeta">${salesText}</p>
-        <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
+        <div class="top-pick-actions">
+          <a class="btn btn-light" href="${buildPath(deal.path)}" data-link="internal">Ver ficha</a>
+          <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
+        </div>
       </div>
     `;
 
     const img = item.querySelector('.top-pick-image');
-    if (img) {
-      img.onerror = () => { img.src = placeholderImage(deal.title, getStoreLabel(deal)); };
-    }
-
+    if (img) img.onerror = () => { img.src = placeholderImage(deal.title, getStoreLabel(deal)); };
     els.topPicks.appendChild(item);
   });
 }
 
-function renderDeals() {
-  els.grid.innerHTML = '';
-  els.info.textContent = `${state.filtered.length} resultado(s) mostrado(s)`;
+function renderDealCards(deals) {
+  clearGrid();
+  els.info.textContent = `${deals.length} resultado(s) mostrado(s)`;
 
-  if (!state.filtered.length) {
+  if (!deals.length) {
     const empty = document.createElement('div');
     empty.className = 'empty-state card';
     empty.textContent = 'No hay ofertas que cumplan los filtros actuales.';
@@ -257,20 +408,22 @@ function renderDeals() {
     return;
   }
 
-  state.filtered.forEach(deal => {
+  deals.forEach(deal => {
     const node = els.template.content.firstElementChild.cloneNode(true);
     const imageEl = node.querySelector('.deal-image');
     const imageWrap = node.querySelector('.deal-image-wrap');
     const imageBadges = node.querySelector('.image-badges');
     const favoriteBtn = node.querySelector('.favorite-btn');
+    const titleEl = node.querySelector('.deal-title');
+    const categoryEl = node.querySelector('.deal-category');
 
     imageEl.src = deal.image || placeholderImage(deal.title, getStoreLabel(deal));
     imageEl.alt = deal.title;
     imageEl.onerror = () => { imageEl.src = placeholderImage(deal.title, getStoreLabel(deal)); };
 
     node.querySelector('.store-pill').textContent = getStoreLabel(deal);
-    node.querySelector('.deal-category').textContent = deal.category || 'Otros';
-    node.querySelector('.deal-title').textContent = deal.title;
+    categoryEl.innerHTML = `${linkTo(deal.categoryPath, deal.category, 'inline-link')} · ${linkTo(deal.brandPath, deal.brand, 'inline-link')}`;
+    titleEl.innerHTML = linkTo(deal.path, deal.title, 'deal-title-link', deal.title);
 
     const primaryDiscount = getPrimaryDiscount(deal);
     if (primaryDiscount) {
@@ -284,7 +437,7 @@ function renderDeals() {
       pickBadge.className = 'overlay-badge pick';
       pickBadge.textContent = '⭐ Recomendado';
       imageBadges.appendChild(pickBadge);
-    } else if (isRecentDate(deal.last_checked)) {
+    } else if (isRecentDate(deal.last_checked || deal.updated_at)) {
       const newBadge = document.createElement('span');
       newBadge.className = 'overlay-badge new';
       newBadge.textContent = 'NUEVO';
@@ -301,52 +454,498 @@ function renderDeals() {
     const oldEl = node.querySelector('.price-old');
     if (hasValidPrice(deal.price)) {
       currentEl.textContent = formatPrice(deal.price);
-      oldEl.textContent = deal.old_price ? formatPrice(deal.old_price) : '';
+      oldEl.textContent = hasValidPrice(deal.old_price) ? formatPrice(deal.old_price) : '';
     } else {
       currentEl.textContent = 'Ver precio en tienda';
       oldEl.textContent = '';
     }
 
     node.querySelector('.metric-discount').textContent = primaryDiscount ? `Descuento ${primaryDiscount}%` : 'Oferta activa';
-    node.querySelector('.metric-sales').textContent = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : getStoreLabel(deal);
+    node.querySelector('.metric-sales').textContent = deal.sales ? `${Number(deal.sales).toLocaleString('es-ES')} ventas` : `${deal.brand} · ${getStoreLabel(deal)}`;
 
     const btn = node.querySelector('.btn');
     btn.href = deal.affiliate_url || deal.url || '#';
     btn.textContent = getStoreButtonText(deal);
+
+    const more = document.createElement('a');
+    more.className = 'btn btn-light';
+    more.href = buildPath(deal.path);
+    more.dataset.link = 'internal';
+    more.textContent = 'Ver ficha';
+    node.querySelector('.deal-actions').prepend(more);
 
     imageWrap.dataset.category = deal.category || 'Otros';
     els.grid.appendChild(node);
   });
 }
 
+function updateSEO({ title, description, path, schema }) {
+  document.title = title;
+
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (!metaDesc) {
+    metaDesc = document.createElement('meta');
+    metaDesc.name = 'description';
+    document.head.appendChild(metaDesc);
+  }
+  metaDesc.content = description;
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = `${window.location.origin}${buildPath(path)}`;
+
+  const og = [
+    ['og:title', title],
+    ['og:description', description],
+    ['og:type', 'website'],
+    ['og:url', `${window.location.origin}${buildPath(path)}`]
+  ];
+  og.forEach(([property, content]) => {
+    let tag = document.querySelector(`meta[property="${property}"]`);
+    if (!tag) {
+      tag = document.createElement('meta');
+      tag.setAttribute('property', property);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute('content', content);
+  });
+
+  let twitter = document.querySelector('meta[name="twitter:card"]');
+  if (!twitter) {
+    twitter = document.createElement('meta');
+    twitter.name = 'twitter:card';
+    document.head.appendChild(twitter);
+  }
+  twitter.content = 'summary_large_image';
+
+  let schemaTag = document.getElementById('schema-jsonld');
+  if (!schemaTag) {
+    schemaTag = document.createElement('script');
+    schemaTag.type = 'application/ld+json';
+    schemaTag.id = 'schema-jsonld';
+    document.head.appendChild(schemaTag);
+  }
+  schemaTag.textContent = JSON.stringify(schema);
+}
+
+function buildBreadcrumbSchema(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      item: `${window.location.origin}${buildPath(item.path || state.route.path)}`
+    }))
+  };
+}
+
+function buildCollectionSchema(title, description, deals, path) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description,
+    url: `${window.location.origin}${buildPath(path)}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: deals.slice(0, 10).map((deal, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${window.location.origin}${buildPath(deal.path)}`,
+        name: deal.title
+      }))
+    }
+  };
+}
+
+function buildProductSchema(deal) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: deal.title,
+    brand: {
+      '@type': 'Brand',
+      name: deal.brand
+    },
+    category: deal.category,
+    image: deal.image ? [deal.image] : undefined,
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'EUR',
+      price: hasValidPrice(deal.price) ? deal.price : undefined,
+      availability: 'https://schema.org/InStock',
+      url: deal.affiliate_url || deal.url || `${window.location.origin}${buildPath(deal.path)}`
+    }
+  };
+}
+
+function renderProductView(deal) {
+  const related = sortDeals(state.enrichedDeals.filter(item => item.productSlug !== deal.productSlug && item.categorySlug === deal.categorySlug)).slice(0, 6);
+  const discount = getPrimaryDiscount(deal);
+  const imageSrc = deal.image || placeholderImage(deal.title, getStoreLabel(deal));
+  const oldPrice = hasValidPrice(deal.old_price) ? `<span class="product-old-price">${formatPrice(deal.old_price)}</span>` : '';
+  const reasonText = deal.reason ? `<p class="product-reason">${deal.reason}</p>` : '';
+  const checkedText = deal.last_checked ? `<span>Revisado: ${formatCheckedDate(deal.last_checked)}</span>` : '';
+  const recommendation = deal.recomendacion ? `<span>Recomendación: ${deal.recomendacion}/100</span>` : '';
+
+  els.productView.innerHTML = `
+    <article class="product-shell card">
+      <div class="product-media">
+        <img src="${imageSrc}" alt="${deal.title}" class="product-image" loading="eager">
+      </div>
+      <div class="product-content">
+        <div class="product-meta">
+          ${linkTo(deal.categoryPath, deal.category, 'inline-link')}
+          <span>·</span>
+          ${linkTo(deal.brandPath, deal.brand, 'inline-link')}
+          <span>·</span>
+          <span>${getStoreLabel(deal)}</span>
+        </div>
+        <h2 class="product-title">${deal.title}</h2>
+        <div class="product-price-row">
+          <strong>${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'Ver en tienda'}</strong>
+          ${oldPrice}
+        </div>
+        <div class="product-badges">
+          ${discount ? `<span class="metric metric-discount">Descuento ${discount}%</span>` : '<span class="metric">Oferta activa</span>'}
+          ${recommendation}
+          ${checkedText}
+        </div>
+        ${reasonText}
+        <div class="product-actions">
+          <a class="btn" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
+          <button type="button" class="toggle-btn product-favorite-btn ${isFavorite(deal) ? 'is-active' : ''}" id="productFavoriteBtn">${isFavorite(deal) ? '❤ En favoritos' : '♡ Guardar oferta'}</button>
+        </div>
+      </div>
+    </article>
+
+    <section class="related-section">
+      <div class="section-head section-head-list">
+        <div>
+          <span class="section-kicker">Más ofertas relacionadas</span>
+          <h2>Más chollos de ${deal.category}</h2>
+        </div>
+      </div>
+      <div id="relatedGrid" class="deals-grid"></div>
+    </section>
+  `;
+
+  const img = els.productView.querySelector('.product-image');
+  if (img) img.onerror = () => { img.src = placeholderImage(deal.title, getStoreLabel(deal)); };
+
+  const favoriteBtn = document.getElementById('productFavoriteBtn');
+  if (favoriteBtn) favoriteBtn.addEventListener('click', () => toggleFavorite(deal));
+
+  const relatedGrid = document.getElementById('relatedGrid');
+  if (!related.length) {
+    relatedGrid.innerHTML = '<div class="empty-state card">Aún no hay más ofertas relacionadas disponibles.</div>';
+  } else {
+    related.forEach(item => {
+      const node = els.template.content.firstElementChild.cloneNode(true);
+      const imageEl = node.querySelector('.deal-image');
+      const imageBadges = node.querySelector('.image-badges');
+      const favoriteBtnItem = node.querySelector('.favorite-btn');
+
+      imageEl.src = item.image || placeholderImage(item.title, getStoreLabel(item));
+      imageEl.alt = item.title;
+      imageEl.onerror = () => { imageEl.src = placeholderImage(item.title, getStoreLabel(item)); };
+
+      node.querySelector('.store-pill').textContent = getStoreLabel(item);
+      node.querySelector('.deal-category').innerHTML = `${linkTo(item.categoryPath, item.category, 'inline-link')} · ${linkTo(item.brandPath, item.brand, 'inline-link')}`;
+      node.querySelector('.deal-title').innerHTML = linkTo(item.path, item.title, 'deal-title-link', item.title);
+      node.querySelector('.price-current').textContent = hasValidPrice(item.price) ? formatPrice(item.price) : 'Ver en tienda';
+      node.querySelector('.price-old').textContent = hasValidPrice(item.old_price) ? formatPrice(item.old_price) : '';
+      node.querySelector('.metric-discount').textContent = getPrimaryDiscount(item) ? `Descuento ${getPrimaryDiscount(item)}%` : 'Oferta activa';
+      node.querySelector('.metric-sales').textContent = item.sales ? `${Number(item.sales).toLocaleString('es-ES')} ventas` : `${item.brand} · ${getStoreLabel(item)}`;
+      node.querySelector('.btn').href = item.affiliate_url || item.url || '#';
+      node.querySelector('.btn').textContent = getStoreButtonText(item);
+
+      const more = document.createElement('a');
+      more.className = 'btn btn-light';
+      more.href = buildPath(item.path);
+      more.dataset.link = 'internal';
+      more.textContent = 'Ver ficha';
+      node.querySelector('.deal-actions').prepend(more);
+
+      if (getPrimaryDiscount(item)) {
+        const discountBadge = document.createElement('span');
+        discountBadge.className = 'overlay-badge discount';
+        discountBadge.textContent = `-${getPrimaryDiscount(item)}%`;
+        imageBadges.appendChild(discountBadge);
+      }
+      favoriteBtnItem.classList.toggle('is-favorite', isFavorite(item));
+      favoriteBtnItem.textContent = isFavorite(item) ? '❤' : '♡';
+      favoriteBtnItem.addEventListener('click', () => toggleFavorite(item));
+      relatedGrid.appendChild(node);
+    });
+  }
+}
+
+function renderHomePage() {
+  setLayoutMode('list');
+  updatePageIntro({});
+  buildBreadcrumbs([{ label: 'Inicio', path: '/' }]);
+  renderTopPicks(state.enrichedDeals);
+  const filtered = applyFilters(state.enrichedDeals);
+  renderDealCards(filtered);
+
+  updateSEO({
+    title: 'Ofertas de ciclismo y accesorios baratos | CholloBici',
+    description: 'Encuentra chollos de ciclismo en accesorios, herramientas, ropa y electrónica. Filtra por categoría y descubre ofertas reales actualizadas.',
+    path: '/',
+    schema: buildCollectionSchema('Ofertas de ciclismo y accesorios baratos', 'Listado principal de ofertas de ciclismo', filtered, '/')
+  });
+}
+
+function renderOffersPage() {
+  setLayoutMode('list');
+  updatePageIntro({
+    kicker: 'Todas las categorías',
+    title: 'Todas las ofertas de ciclismo',
+    text: 'Explora el listado completo de chollos detectados por CholloBici y filtra por categoría, tienda, precio o descuento.'
+  });
+  buildBreadcrumbs([{ label: 'Inicio', path: '/' }, { label: 'Ofertas', path: '/ofertas' }]);
+  renderTopPicks(state.enrichedDeals);
+  const filtered = applyFilters(state.enrichedDeals);
+  renderDealCards(filtered);
+
+  updateSEO({
+    title: 'Todas las ofertas de ciclismo | CholloBici',
+    description: 'Listado completo de ofertas de ciclismo para ahorrar en accesorios, ropa, herramientas y electrónica.',
+    path: '/ofertas',
+    schema: buildCollectionSchema('Todas las ofertas de ciclismo', 'Listado completo de ofertas de ciclismo', filtered, '/ofertas')
+  });
+}
+
+function renderCategoryPage(slug) {
+  setLayoutMode('list');
+  const categoryDeals = state.enrichedDeals.filter(deal => deal.categorySlug === slug);
+  const categoryName = categoryDeals[0]?.category || slug.replace(/-/g, ' ');
+  els.category.value = categoryName;
+  buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category))].sort());
+  updatePageIntro({
+    kicker: 'Categoría',
+    title: `Ofertas de ${categoryName}`,
+    text: `Selección de chollos de ${categoryName.toLowerCase()} con enlaces directos a tienda, descuentos visibles y fichas individuales indexables.`
+  });
+  buildBreadcrumbs([
+    { label: 'Inicio', path: '/' },
+    { label: 'Ofertas', path: '/ofertas' },
+    { label: categoryName, path: `/ofertas/${slug}` }
+  ]);
+  renderTopPicks(categoryDeals.length ? categoryDeals : state.enrichedDeals);
+  const filtered = applyFilters(categoryDeals);
+  renderDealCards(filtered);
+
+  updateSEO({
+    title: `Ofertas de ${categoryName} baratas | CholloBici`,
+    description: `Encuentra ofertas de ${categoryName.toLowerCase()} y compara productos recomendados con sus descuentos actuales.`,
+    path: `/ofertas/${slug}`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        buildBreadcrumbSchema([
+          { label: 'Inicio', path: '/' },
+          { label: 'Ofertas', path: '/ofertas' },
+          { label: categoryName, path: `/ofertas/${slug}` }
+        ]),
+        buildCollectionSchema(`Ofertas de ${categoryName}`, `Selección de ofertas de ${categoryName}`, filtered, `/ofertas/${slug}`)
+      ]
+    }
+  });
+}
+
+function renderBrandPage(slug) {
+  setLayoutMode('list');
+  const brandDeals = state.enrichedDeals.filter(deal => deal.brandSlug === slug);
+  const brandName = brandDeals[0]?.brand || slug.replace(/-/g, ' ');
+  els.category.value = '';
+  buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category))].sort());
+  updatePageIntro({
+    kicker: 'Marca',
+    title: `Ofertas de ${brandName}`,
+    text: `Productos de ${brandName} con precio actual, descuento visible y acceso rápido a su ficha individual.`
+  });
+  buildBreadcrumbs([
+    { label: 'Inicio', path: '/' },
+    { label: 'Marca', path: `/marca/${slug}` },
+    { label: brandName, path: `/marca/${slug}` }
+  ]);
+  renderTopPicks(brandDeals.length ? brandDeals : state.enrichedDeals);
+  const filtered = applyFilters(brandDeals);
+  renderDealCards(filtered);
+
+  updateSEO({
+    title: `Ofertas ${brandName} | CholloBici`,
+    description: `Descubre ofertas de ${brandName} en ciclismo con fichas optimizadas y enlaces directos a tienda.`,
+    path: `/marca/${slug}`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        buildBreadcrumbSchema([
+          { label: 'Inicio', path: '/' },
+          { label: 'Marca', path: `/marca/${slug}` },
+          { label: brandName, path: `/marca/${slug}` }
+        ]),
+        buildCollectionSchema(`Ofertas ${brandName}`, `Selección de ofertas de ${brandName}`, filtered, `/marca/${slug}`)
+      ]
+    }
+  });
+}
+
+function renderProductPage(slug) {
+  const deal = state.enrichedDeals.find(item => item.productSlug === slug);
+  if (!deal) {
+    renderNotFoundPage();
+    return;
+  }
+
+  setLayoutMode('product');
+  buildBreadcrumbs([
+    { label: 'Inicio', path: '/' },
+    { label: 'Ofertas', path: '/ofertas' },
+    { label: deal.category, path: deal.categoryPath },
+    { label: deal.title, path: deal.path }
+  ]);
+  updatePageIntro({
+    kicker: 'Ficha de producto',
+    title: deal.title,
+    text: `Oferta de ${deal.brand} dentro de la categoría ${deal.category}. Consulta precio, descuento y acceso directo a la tienda.`
+  });
+  renderProductView(deal);
+
+  updateSEO({
+    title: `${deal.title} al mejor precio | CholloBici`,
+    description: `${deal.title}. Precio actual ${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'consultar en tienda'}${getPrimaryDiscount(deal) ? ` con descuento del ${getPrimaryDiscount(deal)}%` : ''}.`,
+    path: deal.path,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        buildBreadcrumbSchema([
+          { label: 'Inicio', path: '/' },
+          { label: 'Ofertas', path: '/ofertas' },
+          { label: deal.category, path: deal.categoryPath },
+          { label: deal.title, path: deal.path }
+        ]),
+        buildProductSchema(deal)
+      ]
+    }
+  });
+}
+
+function renderNotFoundPage() {
+  setLayoutMode('list');
+  updatePageIntro({
+    kicker: 'Error 404',
+    title: 'Página no encontrada',
+    text: 'La ruta que buscas no existe o ya no está disponible. Te mostramos las mejores ofertas activas para que sigas navegando.'
+  });
+  buildBreadcrumbs([{ label: 'Inicio', path: '/' }, { label: '404', path: state.route.path }]);
+  renderTopPicks(state.enrichedDeals);
+  const filtered = applyFilters(state.enrichedDeals);
+  renderDealCards(filtered);
+  updateSEO({
+    title: 'Página no encontrada | CholloBici',
+    description: 'La página solicitada no existe. Descubre otras ofertas de ciclismo activas en CholloBici.',
+    path: state.route.path,
+    schema: buildCollectionSchema('Página no encontrada', 'Ofertas activas en CholloBici', filtered, '/')
+  });
+}
+
+function resetUIControls() {
+  if (!state.route || state.route.type === 'home' || state.route.type === 'offers') return;
+  if (state.route.type !== 'category') {
+    els.category.value = '';
+  }
+}
+
+function renderCurrentRoute() {
+  state.route = parseRoute();
+  resetUIControls();
+
+  if (state.route.type === 'home') return renderHomePage();
+  if (state.route.type === 'offers') return renderOffersPage();
+  if (state.route.type === 'category') return renderCategoryPage(state.route.slug);
+  if (state.route.type === 'brand') return renderBrandPage(state.route.slug);
+  if (state.route.type === 'product') return renderProductPage(state.route.slug);
+  return renderNotFoundPage();
+}
+
+function navigateTo(url) {
+  const current = new URL(window.location.href);
+  const target = new URL(url, window.location.origin);
+  if (target.origin !== current.origin) {
+    window.location.href = target.href;
+    return;
+  }
+  window.history.pushState({}, '', target.href);
+  renderCurrentRoute();
+}
+
 async function init() {
   try {
-    const response = await fetch('data/generated_deals.json', { cache: 'no-store' });
+    const response = await fetch(buildPath('/data/generated_deals.json'), { cache: 'no-store' });
     const deals = await response.json();
     state.deals = Array.isArray(deals) ? deals : [];
-    populateFilters(state.deals);
-    renderStats(state.deals);
-    renderTopPicks();
-    applyFilters();
+    state.enrichedDeals = enrichDeals(state.deals);
+
+    populateFilters(state.enrichedDeals);
+    renderStats(state.enrichedDeals);
+    renderCurrentRoute();
   } catch (error) {
     els.info.textContent = 'Error cargando las ofertas.';
     console.error(error);
   }
 }
 
+document.addEventListener('click', event => {
+  const internalLink = event.target.closest('[data-link="internal"]');
+  if (!internalLink) return;
+  event.preventDefault();
+  navigateTo(internalLink.getAttribute('href'));
+});
+
+window.addEventListener('popstate', renderCurrentRoute);
+
 [els.search, els.category, els.store, els.discount, els.sort].forEach(el => {
-  el.addEventListener('input', applyFilters);
-  el.addEventListener('change', applyFilters);
+  el.addEventListener('input', () => {
+    if (state.route.type === 'product') return;
+    if (state.route.type === 'category' && els.category.value && slugify(els.category.value) !== state.route.slug) {
+      navigateTo(buildPath(`/ofertas/${slugify(els.category.value)}`));
+      return;
+    }
+    renderCurrentRoute();
+  });
+  el.addEventListener('change', () => {
+    if (state.route.type === 'product') return;
+    if (state.route.type === 'category' && els.category.value && slugify(els.category.value) !== state.route.slug) {
+      navigateTo(buildPath(`/ofertas/${slugify(els.category.value)}`));
+      return;
+    }
+    renderCurrentRoute();
+  });
 });
 
 if (els.categoryChips) {
   els.categoryChips.addEventListener('click', event => {
     const chip = event.target.closest('.filter-chip');
     if (!chip) return;
-    els.category.value = chip.dataset.value || '';
-    [...els.categoryChips.querySelectorAll('.filter-chip')].forEach(node => node.classList.remove('is-active'));
-    chip.classList.add('is-active');
-    applyFilters();
+
+    const value = chip.dataset.value || '';
+    if (!value) {
+      els.category.value = '';
+      navigateTo(buildPath('/ofertas'));
+      return;
+    }
+
+    els.category.value = value;
+    navigateTo(buildPath(`/ofertas/${slugify(value)}`));
   });
 }
 
@@ -356,7 +955,7 @@ if (els.favoritesToggle) {
     els.favoritesToggle.classList.toggle('is-active', state.onlyFavorites);
     els.favoritesToggle.setAttribute('aria-pressed', String(state.onlyFavorites));
     els.favoritesToggle.textContent = state.onlyFavorites ? '❤ Solo favoritos' : '♡ Solo favoritos';
-    applyFilters();
+    renderCurrentRoute();
   });
 }
 
