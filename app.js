@@ -98,7 +98,7 @@ function getDealId(deal) {
 }
 
 function getStoreLabel(deal) {
-  return deal.store || (deal.source === 'aliexpress' ? 'AliExpress' : 'Tienda');
+  return deal.source_label || deal.store || (deal.source === 'aliexpress' ? 'AliExpress' : 'Tienda');
 }
 
 function getStoreButtonText(deal) {
@@ -479,8 +479,16 @@ function renderDealCards(deals) {
   });
 }
 
-function updateSEO({ title, description, path, schema }) {
+function updateSEO({ title, description, path, schema, robots = 'index,follow,max-image-preview:large' }) {
   document.title = title;
+
+  let robotsTag = document.querySelector('meta[name="robots"]');
+  if (!robotsTag) {
+    robotsTag = document.createElement('meta');
+    robotsTag.name = 'robots';
+    document.head.appendChild(robotsTag);
+  }
+  robotsTag.content = robots;
 
   let metaDesc = document.querySelector('meta[name="description"]');
   if (!metaDesc) {
@@ -560,6 +568,20 @@ function buildCollectionSchema(title, description, deals, path) {
         url: `${window.location.origin}${buildPath(deal.path)}`,
         name: deal.title
       }))
+    }
+  };
+}
+
+function buildWebsiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'CholloBici',
+    url: `${window.location.origin}${buildPath('/')}`,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${window.location.origin}${buildPath('/ofertas')}?q={search_term_string}`,
+      'query-input': 'required name=search_term_string'
     }
   };
 }
@@ -699,7 +721,13 @@ function renderHomePage() {
     title: 'Ofertas de ciclismo y accesorios baratos | CholloBici',
     description: 'Encuentra chollos de ciclismo en accesorios, herramientas, ropa y electrónica. Filtra por categoría y descubre ofertas reales actualizadas.',
     path: '/',
-    schema: buildCollectionSchema('Ofertas de ciclismo y accesorios baratos', 'Listado principal de ofertas de ciclismo', filtered, '/')
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        buildWebsiteSchema(),
+        buildCollectionSchema('Ofertas de ciclismo y accesorios baratos', 'Listado principal de ofertas de ciclismo', filtered, '/')
+      ]
+    }
   });
 }
 
@@ -726,6 +754,10 @@ function renderOffersPage() {
 function renderCategoryPage(slug) {
   setLayoutMode('list');
   const categoryDeals = state.enrichedDeals.filter(deal => deal.categorySlug === slug);
+  if (!categoryDeals.length) {
+    renderNotFoundPage();
+    return;
+  }
   const categoryName = categoryDeals[0]?.category || slug.replace(/-/g, ' ');
   els.category.value = categoryName;
   buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category))].sort());
@@ -764,6 +796,10 @@ function renderCategoryPage(slug) {
 function renderBrandPage(slug) {
   setLayoutMode('list');
   const brandDeals = state.enrichedDeals.filter(deal => deal.brandSlug === slug);
+  if (!brandDeals.length) {
+    renderNotFoundPage();
+    return;
+  }
   const brandName = brandDeals[0]?.brand || slug.replace(/-/g, ' ');
   els.category.value = '';
   buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category))].sort());
@@ -854,6 +890,7 @@ function renderNotFoundPage() {
     title: 'Página no encontrada | CholloBici',
     description: 'La página solicitada no existe. Descubre otras ofertas de ciclismo activas en CholloBici.',
     path: state.route.path,
+    robots: 'noindex,follow',
     schema: buildCollectionSchema('Página no encontrada', 'Ofertas activas en CholloBici', filtered, '/')
   });
 }
@@ -890,6 +927,10 @@ function navigateTo(url) {
 
 async function init() {
   try {
+    const queryValue = new URLSearchParams(window.location.search).get('q');
+    if (queryValue) {
+      els.search.value = queryValue;
+    }
     const response = await fetch('/data/generated_deals.json', { cache: 'no-store' });
     const deals = await response.json();
     state.deals = Array.isArray(deals) ? deals : [];

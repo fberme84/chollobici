@@ -1,0 +1,6 @@
+CholloBici SEO v3.3
+
+- Se ha rellenado data/aliexpress_products.json con los productos proporcionados.
+- Se han fusionado los productos de AliExpress dentro de data/generated_deals.json.
+- La app sigue leyendo un único fichero final (generated_deals.json), que ahora incluye Amazon/AliExpress.
+- Se ha ajustado la etiqueta de tienda para priorizar source_label/store.

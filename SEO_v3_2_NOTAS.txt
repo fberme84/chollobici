@@ -1,0 +1,18 @@
+CholloBici SEO v3.2
+
+Qué se ha mejorado:
+- categorías y marcas solo cargan si existen realmente en el JSON
+- páginas inexistentes pasan a noindex,follow
+- home añade schema WebSite
+- /ofertas?q=texto queda preparado para búsqueda interna indexable
+- sitemap.xml afinado con prioridades y frecuencias
+
+Siguientes pasos recomendados:
+1. Dar de alta la propiedad https://www.chollobici.com en Google Search Console
+2. Enviar el sitemap: https://www.chollobici.com/sitemap.xml
+3. Pedir indexación de:
+   - /
+   - /ofertas
+   - 3 categorías potentes
+   - 3 productos potentes
+4. Crear la v4 de contenidos SEO (guías y tops)
