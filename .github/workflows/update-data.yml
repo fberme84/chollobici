@@ -45,6 +45,9 @@ jobs:
       - name: Update merged deals
         run: python scripts/update_deals.py
 
+      - name: Generate sitemap
+        run: python scripts/generate_sitemap.py
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"

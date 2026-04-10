@@ -80,3 +80,7 @@ Esta versión deja todo preparado, pero el script de refresco aún va en modo pl
 - no consulta Amazon todavía
 - no inventa precios
 - deja la estructura lista para que conectes la API en cuanto puedas
+
+## Sitemap automático
+
+El archivo `sitemap.xml` se regenera automáticamente en los workflows con `python scripts/generate_sitemap.py` a partir de `data/generated_deals.json` y `data/seo_pages.json`.
