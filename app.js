@@ -1010,13 +1010,12 @@ function renderGuidePage(slug) {
   const linksHtml = renderGuideArticleLinks(relatedDeals);
   const faqHtml = renderGuideFaq(page.faq || []);
   const relatedGuidesHtml = renderRelatedGuides(page.slug);
-  const paragraphsHtml = renderGuideParagraphs(page.articleParagraphs || []);
+  const paragraphs = (page.articleParagraphs || []).slice(1);
+  const paragraphsHtml = renderGuideParagraphs(paragraphs);
 
   els.productView.innerHTML = `
     <article class="guide-article card">
       <div class="guide-article-block">
-        <span class="section-kicker">${page.kicker || 'Guía de compra'}</span>
-        <h1 class="guide-main-title">${page.introTitle}</h1>
         ${paragraphsHtml}
       </div>
 
