@@ -35,7 +35,14 @@ const els = {
   listHead: document.getElementById('listSectionHead'),
   seoGuidesSection: document.getElementById('seoGuidesSection'),
   seoGuidesGrid: document.getElementById('seoGuidesGrid'),
-  seoClosing: document.getElementById('seoClosingSection')
+  seoClosing: document.getElementById('seoClosingSection'),
+  cookieBanner: document.getElementById('cookieBanner'),
+  acceptCookiesBtn: document.getElementById('acceptCookiesBtn'),
+  cookieMoreInfo: document.getElementById('cookieMoreInfo'),
+  openCookiesPolicy: document.getElementById('openCookiesPolicy'),
+  cookiesModal: document.getElementById('cookiesModal'),
+  closeCookiesModal: document.getElementById('closeCookiesModal'),
+  currentYear: document.getElementById('currentYear')
 };
 
 const KNOWN_BRANDS = [
@@ -211,52 +218,116 @@ function setSeoClosing(title = '', text = '') {
   `;
 }
 
-function getGuideDealAnchorText(deal) {
-  const title = String(deal?.title || '').replace(/\s+/g, ' ').trim();
-  if (!title) return 'este producto';
+function renderGuideArticleLinks(deals) {
+  const items = deals.map(deal => {
+    const productHref = buildPath(deal.path);
+    const shopHref = deal.affiliate_url || deal.url || '#';
+    return `
+      <li class="guide-link-item">
+        <a href="${productHref}" data-link="internal" class="guide-link-main">${deal.title}</a>
+        <div class="guide-link-meta">
+          <span>${deal.category || 'Categoría'}</span>
+          <span>·</span>
+          <span>${getStoreLabel(deal)}</span>
+          ${deal.price ? `<span>·</span><span>${formatPrice(deal.price)}</span>` : ''}
+        </div>
+        <div class="guide-link-actions">
+          <a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>
+          <a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>
+        </div>
+      </li>
+    `;
+  }).join('');
 
-  const firstChunk = title
-    .split(/[,.:(]| - /)[0]
-    .replace(/^(gafas|maillot|culotte|casco|luz|luces|herramienta|kit|pack|juego|set)\s+de\s+/i, '$1 ')
-    .trim();
-
-  return (firstChunk || title).slice(0, 58).trim();
+  return `<ul class="guide-links-list">${items}</ul>`;
 }
 
-function buildGuideInlineLinksSentence(deals = []) {
-  if (!deals.length) return '';
 
-  const links = deals.slice(0, 3).map(deal => {
-    const label = getGuideDealAnchorText(deal);
-    return `<a href="${buildPath(deal.path)}" data-link="internal" class="guide-text-link">${label}</a>`;
-  });
-
-  if (links.length === 1) {
-    return ` Entre las opciones más interesantes de esta guía destaca ${links[0]}.`;
-  }
-
-  if (links.length === 2) {
-    return ` Entre las opciones más interesantes de esta guía destacan ${links[0]} y ${links[1]}.`;
-  }
-
-  return ` Entre las opciones más interesantes de esta guía destacan ${links.slice(0, -1).join(', ')} y ${links[links.length - 1]}.`;
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-function renderGuideParagraphs(paragraphs = [], deals = []) {
-  const safeParagraphs = Array.isArray(paragraphs) ? paragraphs.filter(Boolean) : [];
-  if (!safeParagraphs.length) return '';
+function escapeRegex(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
-  const chunks = safeParagraphs.map(() => []);
-  deals.forEach((deal, index) => {
-    const paragraphIndex = index % safeParagraphs.length;
-    if (chunks[paragraphIndex].length < 3) {
-      chunks[paragraphIndex].push(deal);
-    }
-  });
+function normalizeWord(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '');
+}
 
-  return safeParagraphs.map((text, index) => {
-    const linksSentence = buildGuideInlineLinksSentence(chunks[index]);
-    return `<p>${text}${linksSentence}</p>`;
+function getSingularVariants(value = '') {
+  const raw = String(value || '').trim();
+  if (!raw) return [];
+  const variants = new Set([raw]);
+  const lower = raw.toLowerCase();
+  if (lower.endsWith('es') && raw.length > 4) variants.add(raw.slice(0, -2));
+  if (lower.endsWith('s') && raw.length > 3) variants.add(raw.slice(0, -1));
+  return [...variants].filter(Boolean);
+}
+
+function extractAnchorCandidates(deal) {
+  const stopwords = new Set(['para', 'con', 'sin', 'por', 'del', 'las', 'los', 'una', 'unas', 'unos', 'que', 'the', 'and', 'kit', 'set', 'pack', 'bicicleta', 'ciclismo', 'mtb', 'road', 'bike', 'bici', 'de', 'en', 'el', 'la', 'un', 'a']);
+  const candidates = new Set();
+  getSingularVariants(deal.category || '').forEach(item => candidates.add(item));
+  getSingularVariants(deal.brand || '').forEach(item => candidates.add(item));
+
+  String(deal.title || '').split(/[^\p{L}\p{N}]+/u)
+    .map(token => token.trim())
+    .filter(token => token.length >= 4)
+    .forEach(token => {
+      if (!stopwords.has(normalizeWord(token))) {
+        candidates.add(token);
+      }
+    });
+
+  return [...candidates]
+    .map(item => item.trim())
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
+}
+
+function findBestAnchorText(paragraph, deal) {
+  const plain = String(paragraph || '');
+  const plainNormalized = normalizeWord(plain);
+  const candidates = extractAnchorCandidates(deal);
+
+  for (const candidate of candidates) {
+    const candidateNormalized = normalizeWord(candidate);
+    if (!candidateNormalized || !plainNormalized.includes(candidateNormalized)) continue;
+    const regex = new RegExp(`(^|[^\p{L}\p{N}])(${escapeRegex(candidate)})(?=[^\p{L}\p{N}]|$)`, 'iu');
+    const match = plain.match(regex);
+    if (match && match[2]) return match[2];
+  }
+
+  return '';
+}
+
+function injectLinkIntoParagraph(paragraph, deal) {
+  const linkText = findBestAnchorText(paragraph, deal);
+  const safeParagraph = escapeHtml(paragraph);
+  if (!linkText) return safeParagraph;
+
+  const safeLinkText = escapeHtml(linkText);
+  const linkHtml = `<a href="${buildPath(deal.path)}" data-link="internal" class="guide-inline-link guide-inline-link-embedded" title="${escapeHtml(deal.title)}">${safeLinkText}</a>`;
+  const regex = new RegExp(`(^|[^\p{L}\p{N}])(${escapeRegex(safeLinkText)})(?=[^\p{L}\p{N}]|$)`, 'iu');
+  if (!regex.test(safeParagraph)) return safeParagraph;
+  return safeParagraph.replace(regex, (full, prefix) => `${prefix}${linkHtml}`);
+}
+
+function renderGuideParagraphs(paragraphs = [], relatedDeals = []) {
+  const deals = [...relatedDeals];
+  return paragraphs.map((text, index) => {
+    const preferredDeal = deals[index] || deals.find(item => findBestAnchorText(text, item));
+    const html = preferredDeal ? injectLinkIntoParagraph(text, preferredDeal) : escapeHtml(text);
+    return `<p>${html}</p>`;
   }).join('');
 }
 
@@ -1030,13 +1101,14 @@ function renderGuidePage(slug) {
   const faqHtml = renderGuideFaq(page.faq || []);
   const relatedGuidesHtml = renderRelatedGuides(page.slug);
   const paragraphs = (page.articleParagraphs || []).slice(1);
-  const paragraphsHtml = renderGuideParagraphs(paragraphs, relatedDeals.slice(0, 9));
+  const paragraphsHtml = renderGuideParagraphs(paragraphs, relatedDeals);
 
   els.productView.innerHTML = `
     <article class="guide-article card">
       <div class="guide-article-block">
         ${paragraphsHtml}
       </div>
+
 
       <div class="guide-article-block">
         <h2>${page.closingTitle}</h2>
@@ -1103,6 +1175,31 @@ function renderNotFoundPage() {
   });
 }
 
+function showCookieBannerIfNeeded() {
+  if (!els.cookieBanner) return;
+  const accepted = localStorage.getItem('cookie_notice_ack') === 'yes';
+  els.cookieBanner.hidden = accepted;
+}
+
+function openCookiesModal() {
+  if (!els.cookiesModal) return;
+  els.cookiesModal.hidden = false;
+  els.cookiesModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('has-modal-open');
+}
+
+function closeCookiesModal() {
+  if (!els.cookiesModal) return;
+  els.cookiesModal.hidden = true;
+  els.cookiesModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('has-modal-open');
+}
+
+function acceptCookieNotice() {
+  localStorage.setItem('cookie_notice_ack', 'yes');
+  if (els.cookieBanner) els.cookieBanner.hidden = true;
+}
+
 function resetUIControls() {
   if (!state.route || state.route.type === 'home' || state.route.type === 'offers') return;
   if (state.route.type !== 'category') {
@@ -1153,6 +1250,8 @@ async function init() {
     populateFilters(state.enrichedDeals);
     renderStats(state.enrichedDeals);
     renderSeoGuides();
+    if (els.currentYear) els.currentYear.textContent = new Date().getFullYear();
+    showCookieBannerIfNeeded();
     renderCurrentRoute();
   } catch (error) {
     els.info.textContent = 'Error cargando las ofertas.';
@@ -1214,5 +1313,35 @@ if (els.favoritesToggle) {
     renderCurrentRoute();
   });
 }
+
+if (els.acceptCookiesBtn) {
+  els.acceptCookiesBtn.addEventListener('click', acceptCookieNotice);
+}
+
+if (els.cookieMoreInfo) {
+  els.cookieMoreInfo.addEventListener('click', openCookiesModal);
+}
+
+if (els.openCookiesPolicy) {
+  els.openCookiesPolicy.addEventListener('click', openCookiesModal);
+}
+
+if (els.closeCookiesModal) {
+  els.closeCookiesModal.addEventListener('click', closeCookiesModal);
+}
+
+if (els.cookiesModal) {
+  els.cookiesModal.addEventListener('click', event => {
+    if (event.target.matches('[data-close-cookies="true"]')) {
+      closeCookiesModal();
+    }
+  });
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && els.cookiesModal && !els.cookiesModal.hidden) {
+    closeCookiesModal();
+  }
+});
 
 init();

@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/favicon-chollobici.png">
+  <link rel="apple-touch-icon" href="/assets/favicon-chollobici.png">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -149,6 +151,42 @@
       </div>
     </article>
   </template>
+
+
+
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <p>© <span id="currentYear"></span> CholloBici · Enlaces de afiliación y almacenamiento local para favoritos.</p>
+      <button type="button" class="footer-link-btn" id="openCookiesPolicy">Cookies y privacidad</button>
+    </div>
+  </footer>
+
+  <div id="cookieBanner" class="cookie-banner" hidden>
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-copy">
+        <strong>Uso de cookies y almacenamiento local</strong>
+        <p>CholloBici usa almacenamiento local para guardar favoritos y mejorar la experiencia. En este momento no se cargan cookies publicitarias propias desde la app. Puedes consultar el detalle en la política de cookies.</p>
+      </div>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-light" id="cookieMoreInfo">Más información</button>
+        <button type="button" class="btn" id="acceptCookiesBtn">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cookiesModal" class="cookies-modal" hidden aria-hidden="true">
+    <div class="cookies-modal-backdrop" data-close-cookies="true"></div>
+    <div class="cookies-modal-dialog card" role="dialog" aria-modal="true" aria-labelledby="cookiesModalTitle">
+      <button type="button" class="cookies-modal-close" id="closeCookiesModal" aria-label="Cerrar">×</button>
+      <span class="section-kicker">Información legal</span>
+      <h2 id="cookiesModalTitle">Política de cookies y privacidad básica</h2>
+      <div class="cookies-legal-copy">
+        <p>CholloBici no utiliza actualmente un panel de seguimiento publicitario propio dentro de la aplicación. Sí puede usar almacenamiento local del navegador para recordar favoritos y la aceptación de este aviso.</p>
+        <p>Los enlaces a tiendas externas pueden llevarte a sitios que aplican sus propias cookies, políticas de privacidad y tecnologías de medición. Al salir de CholloBici, el tratamiento pasa a depender de cada tienda.</p>
+        <p>Si en el futuro se añaden herramientas de analítica, personalización o publicidad que requieran consentimiento, este aviso deberá ampliarse con opciones específicas de aceptación o rechazo.</p>
+      </div>
+    </div>
+  </div>
 
   <script src="/app.js"></script>
 </body>
