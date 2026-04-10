@@ -196,8 +196,18 @@ function renderSeoGuides() {
   els.seoGuidesGrid.innerHTML = '';
   state.seoPages.forEach(page => {
     const card = document.createElement('article');
-    card.className = 'seo-guide-chip';
-    card.innerHTML = `<a href="${buildPath('/' + page.slug)}" data-link="internal">${page.shortLabel || page.introTitle}</a>`;
+    card.className = 'seo-guide-home-card';
+    const description = truncateText(page.description || page.closingText || '', 150);
+    const badge = escapeHtml(page.category || 'Guía');
+    const title = escapeHtml(page.introTitle || page.shortLabel || 'Guía de compra');
+    card.innerHTML = `
+      <div class="seo-guide-home-top">
+        <span class="seo-guide-badge">${badge}</span>
+      </div>
+      <h3><a href="${buildPath('/' + page.slug)}" data-link="internal">${title}</a></h3>
+      <p>${escapeHtml(description)}</p>
+      <a href="${buildPath('/' + page.slug)}" data-link="internal" class="seo-guide-cta">Leer guía</a>
+    `;
     els.seoGuidesGrid.appendChild(card);
   });
   els.seoGuidesSection.hidden = !state.seoPages.length;
