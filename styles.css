@@ -1035,3 +1035,9 @@ input:focus, select:focus {
 .seo-guide-chip a:hover {
   background: #dceaff;
 }
+
+
+.seo-guides-subtitle {
+  color: var(--muted);
+  font-size: .85rem;
+}

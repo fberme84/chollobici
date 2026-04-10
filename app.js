@@ -190,8 +190,7 @@ function renderSeoGuides() {
   state.seoPages.forEach(page => {
     const card = document.createElement('article');
     card.className = 'seo-guide-chip';
-    const short = page.introTitle.split(' ').slice(0,3).join(' ');
-    card.innerHTML = `<a href="${buildPath('/' + page.slug)}" data-link="internal">${short}</a>`;
+    card.innerHTML = `<a href="${buildPath('/' + page.slug)}" data-link="internal">${page.shortLabel || page.introTitle}</a>`;
     els.seoGuidesGrid.appendChild(card);
   });
   els.seoGuidesSection.hidden = !state.seoPages.length;
@@ -923,22 +922,12 @@ function renderProductPage(slug) {
 }
 
 
-function renderGuidePage(page, deals) {
-  const container = document.getElementById('app');
-  const filtered = deals.filter(d => (d.category || '').toLowerCase().includes((page.category || '').toLowerCase()));
-  const productsHtml = renderDealsGrid(filtered, true);
-
-  container.innerHTML = `
-    <h1>${page.introTitle || ''}</h1>
-    <p>${page.description || ''}</p>
-
-    <h2>Top productos recomendados</h2>
-    ${productsHtml}
-
-    <h2>Consejos antes de comprar</h2>
-    <p>${page.closing || ''}</p>
-  `;
-}
+function renderGuidePage(slug) {
+  const page = getSeoPage(slug);
+  if (!page) {
+    renderNotFoundPage();
+    return;
+  }
 
   setLayoutMode('list');
   const relatedDeals = state.enrichedDeals.filter(deal => (deal.category || '').toLowerCase() === (page.category || '').toLowerCase());
@@ -946,7 +935,7 @@ function renderGuidePage(page, deals) {
   buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category).filter(Boolean))].sort());
 
   updatePageIntro({
-    kicker: page.kicker || 'Guía',
+    kicker: page.kicker || 'Guía de compra',
     title: page.introTitle,
     text: page.introText
   });
@@ -957,8 +946,10 @@ function renderGuidePage(page, deals) {
   ]);
 
   if (els.listHead) {
-    els.listHead.querySelector('.section-kicker').textContent = 'Selección para esta guía';
-    els.listHead.querySelector('h2').textContent = `Productos de ${page.category}`;
+    const kicker = els.listHead.querySelector('.section-kicker');
+    const title = els.listHead.querySelector('h2');
+    if (kicker) kicker.textContent = 'Selección para esta guía';
+    if (title) title.textContent = `Productos de ${page.category}`;
   }
 
   renderTopPicks(relatedDeals.length ? relatedDeals : state.enrichedDeals);
