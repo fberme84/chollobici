@@ -197,7 +197,7 @@ function renderSeoGuides() {
   state.seoPages.forEach(page => {
     const card = document.createElement('article');
     card.className = 'seo-guide-home-card';
-    const description = truncateText(page.description || page.closingText || '', 150);
+    const description = truncateText(page.description || page.closingText || '', 68);
     const badge = escapeHtml(page.category || 'Guía');
     const title = escapeHtml(page.introTitle || page.shortLabel || 'Guía de compra');
     card.innerHTML = `
