@@ -678,6 +678,26 @@ function renderDealCards(deals) {
     node.querySelector('.deal-actions').prepend(more);
 
     imageWrap.dataset.category = deal.category || 'Otros';
+
+    const productHref = buildPath(deal.path);
+    node.dataset.href = productHref;
+    node.setAttribute('role', 'link');
+    node.setAttribute('tabindex', '0');
+    node.setAttribute('aria-label', `Abrir ficha de ${deal.title}`);
+
+    node.addEventListener('click', (event) => {
+      if (event.target.closest('a, button')) return;
+      window.location.href = productHref;
+    });
+
+    node.addEventListener('keydown', (event) => {
+      if (event.target.closest('a, button')) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        window.location.href = productHref;
+      }
+    });
+
     els.grid.appendChild(node);
   });
 }

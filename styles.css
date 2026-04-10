@@ -1524,3 +1524,21 @@ input:focus, select:focus {
   border-radius: 6px;
   font-weight: 800;
 }
+
+
+/* Tarjeta más clicable */
+.deal-card {
+  cursor: pointer;
+}
+
+.deal-card:focus-visible {
+  outline: 3px solid rgba(13, 99, 201, .28);
+  outline-offset: 3px;
+}
+
+.deal-card .deal-image-wrap,
+.deal-card .deal-title,
+.deal-card .deal-pricing,
+.deal-card .deal-metrics {
+  cursor: pointer;
+}
