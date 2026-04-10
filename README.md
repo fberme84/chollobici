@@ -84,3 +84,18 @@ Esta versión deja todo preparado, pero el script de refresco aún va en modo pl
 ## Sitemap automático
 
 El archivo `sitemap.xml` se regenera automáticamente en los workflows con `python scripts/generate_sitemap.py` a partir de `data/generated_deals.json` y `data/seo_pages.json`.
+
+## Páginas HTML estáticas de producto
+
+Las fichas de producto se generan automáticamente en `/producto/<slug>/index.html` con `python scripts/generate_static_product_pages.py`. Esto mejora el rastreo y la indexación en Google porque cada producto tiene HTML real servido directamente por GitHub Pages.
+
+
+## Fichas HTML estáticas de producto
+
+Las rutas de producto se generan como HTML real en `producto/<slug>/index.html` ejecutando:
+
+```bash
+python scripts/generate_static_product_pages.py
+```
+
+Esto mejora la indexación en Google al no depender del renderizado JavaScript para las fichas de producto.

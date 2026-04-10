@@ -40,6 +40,7 @@ jobs:
           AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
         run: |
           python scripts/update_deals.py
+          python scripts/generate_static_product_pages.py
           python scripts/generate_sitemap.py
 
       - name: Setup Pages

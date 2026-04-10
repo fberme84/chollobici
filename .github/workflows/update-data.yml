@@ -45,6 +45,9 @@ jobs:
       - name: Update merged deals
         run: python scripts/update_deals.py
 
+      - name: Generate static product pages
+        run: python scripts/generate_static_product_pages.py
+
       - name: Generate sitemap
         run: python scripts/generate_sitemap.py
 
@@ -53,7 +56,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/*.json
+          git add data/*.json producto sitemap.xml scripts/generate_sitemap.py scripts/generate_static_product_pages.py assets/static-product.css
 
           if git diff --cached --quiet; then
             echo "No changes to commit"

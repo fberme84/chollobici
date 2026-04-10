@@ -24,6 +24,12 @@ def slugify(text: str) -> str:
     return value.strip("-")
 
 
+def short_product_slug(title: str, pid: str, max_prefix: int = 42) -> str:
+    prefix = slugify(title)[:max_prefix].rstrip("-")
+    pid = slugify(str(pid))
+    return f"{prefix}-{pid}" if prefix else pid
+
+
 def get_deal_id(deal: dict, index: int) -> str:
     return str(
         deal.get("id")
@@ -35,7 +41,7 @@ def get_deal_id(deal: dict, index: int) -> str:
 
 
 def build_product_slug(deal: dict, index: int) -> str:
-    return slugify(f"{deal.get('title', '')}-{get_deal_id(deal, index)}")
+    return short_product_slug(deal.get('title', ''), get_deal_id(deal, index))
 
 
 def add_url(urls: "OrderedDict[str, dict]", path: str, changefreq: str, priority: str, lastmod: str = "") -> None:
@@ -72,7 +78,7 @@ def main() -> None:
         if not product_slug:
             continue
         lastmod = str(deal.get("updated_at") or deal.get("last_checked") or "").strip()
-        add_url(urls, f"/producto/{product_slug}", "daily", "0.7", lastmod)
+        add_url(urls, f"/producto/{product_slug}/", "daily", "0.7", lastmod)
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for item in urls.values():

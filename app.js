@@ -157,7 +157,7 @@ function enrichDeals(deals) {
   return deals.map((deal, index) => {
     const category = deal.category || 'Otros';
     const brand = deal.brand || detectBrand(deal.title);
-    const productSlug = slugify(`${deal.title}-${getDealId(deal) || index}`);
+    const productSlug = `${slugify(deal.title).slice(0, 42).replace(/-+$/,'')}-${slugify(String(getDealId(deal) || index))}`;
     return {
       ...deal,
       category,
@@ -165,7 +165,7 @@ function enrichDeals(deals) {
       categorySlug: slugify(category),
       brandSlug: slugify(brand),
       productSlug,
-      path: `/producto/${productSlug}`,
+      path: `/producto/${productSlug}/`,
       categoryPath: `/ofertas/${slugify(category)}`,
       brandPath: `/marca/${slugify(brand)}`
     };
@@ -1289,8 +1289,10 @@ async function init() {
 document.addEventListener('click', event => {
   const internalLink = event.target.closest('[data-link="internal"]');
   if (!internalLink) return;
+  const href = internalLink.getAttribute('href') || '';
+  if (href.includes('/producto/')) return;
   event.preventDefault();
-  navigateTo(internalLink.getAttribute('href'));
+  navigateTo(href);
 });
 
 window.addEventListener('popstate', renderCurrentRoute);

@@ -1,0 +1,5 @@
+v4.6 - slugs cortos pro
+- slugs de producto con formato titulo-corto + id
+- prefijo máximo de 42 caracteres + id final
+- actualizados app.js, sitemap.xml y generadores
+- renombradas carpetas de /producto/ para evitar rutas largas en local
