@@ -4,6 +4,7 @@ const state = {
   deals: [],
   enrichedDeals: [],
   filtered: [],
+  seoPages: [],
   favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
   onlyFavorites: false,
   route: { type: 'home' }
@@ -31,7 +32,10 @@ const els = {
   productView: document.getElementById('productView'),
   toolbarRow: document.getElementById('toolbarRow'),
   filters: document.getElementById('filtersSection'),
-  listHead: document.getElementById('listSectionHead')
+  listHead: document.getElementById('listSectionHead'),
+  seoGuidesSection: document.getElementById('seoGuidesSection'),
+  seoGuidesGrid: document.getElementById('seoGuidesGrid'),
+  seoClosing: document.getElementById('seoClosingSection')
 };
 
 const KNOWN_BRANDS = [
@@ -171,7 +175,49 @@ function parseRoute() {
   if (parts[0] === 'ofertas' && parts[1]) return { type: 'category', slug: parts[1], path: cleanPath };
   if (parts[0] === 'marca' && parts[1]) return { type: 'brand', slug: parts[1], path: cleanPath };
   if (parts[0] === 'producto' && parts[1]) return { type: 'product', slug: parts[1], path: cleanPath };
+  if (parts.length === 1 && getSeoPage(parts[0])) return { type: 'guide', slug: parts[0], path: cleanPath };
   return { type: 'not-found', path: cleanPath };
+}
+
+
+function getSeoPage(slug) {
+  return state.seoPages.find(page => page.slug === slug);
+}
+
+function renderSeoGuides() {
+  if (!els.seoGuidesGrid || !els.seoGuidesSection) return;
+  els.seoGuidesGrid.innerHTML = '';
+  state.seoPages.forEach(page => {
+    const card = document.createElement('article');
+    card.className = 'seo-guide-card';
+    const tags = (page.keywords || []).slice(0, 3).map(tag => `<span>${tag}</span>`).join('');
+    card.innerHTML = `
+      <div class="seo-guide-copy">
+        <span class="section-kicker">${page.kicker || 'Guía'}</span>
+        <h3><a href="${buildPath('/' + page.slug)}" data-link="internal">${page.introTitle}</a></h3>
+        <p>${page.description}</p>
+      </div>
+      <div class="seo-guide-tags">${tags}</div>
+      <a class="btn btn-light" href="${buildPath('/' + page.slug)}" data-link="internal">Ver guía</a>
+    `;
+    els.seoGuidesGrid.appendChild(card);
+  });
+  els.seoGuidesSection.hidden = !state.seoPages.length;
+}
+
+function setSeoClosing(title = '', text = '') {
+  if (!els.seoClosing) return;
+  if (!title || !text) {
+    els.seoClosing.hidden = true;
+    els.seoClosing.innerHTML = '';
+    return;
+  }
+  els.seoClosing.hidden = false;
+  els.seoClosing.innerHTML = `
+    <span class="section-kicker">Consejos de compra</span>
+    <h2>${title}</h2>
+    <p>${text}</p>
+  `;
 }
 
 function buildCategoryChips(categories) {
@@ -327,6 +373,10 @@ function setLayoutMode(mode) {
   els.topPicksSection.hidden = isProduct;
   els.listHead.hidden = isProduct;
   els.grid.hidden = isProduct;
+
+  if (els.seoGuidesSection) {
+    els.seoGuidesSection.hidden = false;
+  }
 
   if (!isProduct) {
     els.productView.innerHTML = '';
@@ -710,6 +760,7 @@ function renderProductView(deal) {
 }
 
 function renderHomePage() {
+  setSeoClosing();
   setLayoutMode('list');
   updatePageIntro({});
   buildBreadcrumbs([{ label: 'Inicio', path: '/' }]);
@@ -732,6 +783,7 @@ function renderHomePage() {
 }
 
 function renderOffersPage() {
+  setSeoClosing();
   setLayoutMode('list');
   updatePageIntro({
     kicker: 'Todas las categorías',
@@ -752,6 +804,7 @@ function renderOffersPage() {
 }
 
 function renderCategoryPage(slug) {
+  setSeoClosing();
   setLayoutMode('list');
   const categoryDeals = state.enrichedDeals.filter(deal => deal.categorySlug === slug);
   if (!categoryDeals.length) {
@@ -794,6 +847,7 @@ function renderCategoryPage(slug) {
 }
 
 function renderBrandPage(slug) {
+  setSeoClosing();
   setLayoutMode('list');
   const brandDeals = state.enrichedDeals.filter(deal => deal.brandSlug === slug);
   if (!brandDeals.length) {
@@ -836,6 +890,7 @@ function renderBrandPage(slug) {
 }
 
 function renderProductPage(slug) {
+  setSeoClosing();
   const deal = state.enrichedDeals.find(item => item.productSlug === slug);
   if (!deal) {
     renderNotFoundPage();
@@ -875,7 +930,66 @@ function renderProductPage(slug) {
   });
 }
 
+
+function renderGuidePage(slug) {
+  const page = getSeoPage(slug);
+  if (!page) {
+    renderNotFoundPage();
+    return;
+  }
+
+  setLayoutMode('list');
+  const relatedDeals = state.enrichedDeals.filter(deal => (deal.category || '').toLowerCase() === (page.category || '').toLowerCase());
+  els.category.value = page.category || '';
+  buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category).filter(Boolean))].sort());
+
+  updatePageIntro({
+    kicker: page.kicker || 'Guía',
+    title: page.introTitle,
+    text: page.introText
+  });
+
+  buildBreadcrumbs([
+    { label: 'Inicio', path: '/' },
+    { label: page.introTitle, path: '/' + page.slug }
+  ]);
+
+  if (els.listHead) {
+    els.listHead.querySelector('.section-kicker').textContent = 'Selección para esta guía';
+    els.listHead.querySelector('h2').textContent = `Productos de ${page.category}`;
+  }
+
+  renderTopPicks(relatedDeals.length ? relatedDeals : state.enrichedDeals);
+  const filtered = applyFilters(relatedDeals.length ? relatedDeals : state.enrichedDeals);
+  renderDealCards(filtered);
+  setSeoClosing(page.closingTitle, page.closingText);
+
+  updateSEO({
+    title: page.metaTitle || page.introTitle,
+    description: page.description,
+    path: '/' + page.slug,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        buildBreadcrumbSchema([
+          { label: 'Inicio', path: '/' },
+          { label: page.introTitle, path: '/' + page.slug }
+        ]),
+        {
+          '@type': 'Article',
+          headline: page.introTitle,
+          description: page.description,
+          url: `${window.location.origin}${buildPath('/' + page.slug)}`
+        },
+        buildCollectionSchema(page.introTitle, page.description, filtered, '/' + page.slug)
+      ]
+    }
+  });
+}
+
+
 function renderNotFoundPage() {
+  setSeoClosing();
   setLayoutMode('list');
   updatePageIntro({
     kicker: 'Error 404',
@@ -911,6 +1025,7 @@ function renderCurrentRoute() {
   if (state.route.type === 'category') return renderCategoryPage(state.route.slug);
   if (state.route.type === 'brand') return renderBrandPage(state.route.slug);
   if (state.route.type === 'product') return renderProductPage(state.route.slug);
+  if (state.route.type === 'guide') return renderGuidePage(state.route.slug);
   return renderNotFoundPage();
 }
 
@@ -931,13 +1046,19 @@ async function init() {
     if (queryValue) {
       els.search.value = queryValue;
     }
-    const response = await fetch('/data/generated_deals.json', { cache: 'no-store' });
+    const [response, seoResponse] = await Promise.all([
+      fetch('/data/generated_deals.json', { cache: 'no-store' }),
+      fetch('/data/seo_pages.json', { cache: 'no-store' })
+    ]);
     const deals = await response.json();
+    const seoPages = await seoResponse.json();
     state.deals = Array.isArray(deals) ? deals : [];
+    state.seoPages = Array.isArray(seoPages) ? seoPages : [];
     state.enrichedDeals = enrichDeals(state.deals);
 
     populateFilters(state.enrichedDeals);
     renderStats(state.enrichedDeals);
+    renderSeoGuides();
     renderCurrentRoute();
   } catch (error) {
     els.info.textContent = 'Error cargando las ofertas.';

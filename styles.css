@@ -897,3 +897,97 @@ input:focus, select:focus {
   display: inline-flex;
   margin-bottom: 6px;
 }
+
+
+
+.seo-guides-section {
+  margin-bottom: 18px;
+  padding: 18px 20px;
+}
+
+.seo-guides-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.seo-guides-head h2 {
+  margin: 6px 0 0;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+}
+
+.seo-guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.seo-guide-card {
+  border: 1px solid #dbe7f7;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, .06);
+}
+
+.seo-guide-card h3 {
+  margin: 6px 0 4px;
+  font-size: 1.06rem;
+  line-height: 1.28;
+}
+
+.seo-guide-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.seo-guide-card a {
+  text-decoration: none;
+}
+
+.seo-guide-card h3 a {
+  color: var(--text);
+}
+
+.seo-guide-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.seo-guide-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.seo-guide-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #dbe7f7;
+  background: #f5f9ff;
+  color: var(--accent-dark);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.seo-closing {
+  margin-top: 18px;
+}
+
+.seo-closing h2 {
+  margin: 8px 0 8px;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+}
+
+.seo-closing p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
