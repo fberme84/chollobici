@@ -189,17 +189,9 @@ function renderSeoGuides() {
   els.seoGuidesGrid.innerHTML = '';
   state.seoPages.forEach(page => {
     const card = document.createElement('article');
-    card.className = 'seo-guide-card';
-    const tags = (page.keywords || []).slice(0, 3).map(tag => `<span>${tag}</span>`).join('');
-    card.innerHTML = `
-      <div class="seo-guide-copy">
-        <span class="section-kicker">${page.kicker || 'Guía'}</span>
-        <h3><a href="${buildPath('/' + page.slug)}" data-link="internal">${page.introTitle}</a></h3>
-        <p>${page.description}</p>
-      </div>
-      <div class="seo-guide-tags">${tags}</div>
-      <a class="btn btn-light" href="${buildPath('/' + page.slug)}" data-link="internal">Ver guía</a>
-    `;
+    card.className = 'seo-guide-chip';
+    const short = page.introTitle.split(' ').slice(0,3).join(' ');
+    card.innerHTML = `<a href="${buildPath('/' + page.slug)}" data-link="internal">${short}</a>`;
     els.seoGuidesGrid.appendChild(card);
   });
   els.seoGuidesSection.hidden = !state.seoPages.length;
