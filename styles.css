@@ -1041,3 +1041,71 @@ input:focus, select:focus {
   color: var(--muted);
   font-size: .85rem;
 }
+
+
+
+.guide-article {
+  padding: 20px;
+  display: grid;
+  gap: 18px;
+}
+
+.guide-article-block h2,
+.guide-article-block h3 {
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.guide-article-block p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.guide-helper-text {
+  font-size: .95rem;
+}
+
+.guide-links-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.guide-link-item {
+  color: var(--text);
+}
+
+.guide-link-main {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.guide-link-main:hover,
+.guide-inline-link:hover {
+  text-decoration: underline;
+}
+
+.guide-link-meta {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.guide-link-actions {
+  margin-top: 4px;
+  display: flex;
+  gap: 12px;
+}
+
+.guide-inline-link {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: .92rem;
+}

@@ -211,6 +211,30 @@ function setSeoClosing(title = '', text = '') {
   `;
 }
 
+function renderGuideArticleLinks(deals) {
+  const items = deals.map(deal => {
+    const productHref = buildPath(deal.path);
+    const shopHref = deal.affiliate_url || deal.url || '#';
+    return `
+      <li class="guide-link-item">
+        <a href="${productHref}" data-link="internal" class="guide-link-main">${deal.title}</a>
+        <div class="guide-link-meta">
+          <span>${deal.category || 'Categoría'}</span>
+          <span>·</span>
+          <span>${getStoreLabel(deal)}</span>
+          ${deal.price ? `<span>·</span><span>${formatPrice(deal.price)}</span>` : ''}
+        </div>
+        <div class="guide-link-actions">
+          <a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>
+          <a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>
+        </div>
+      </li>
+    `;
+  }).join('');
+
+  return `<ul class="guide-links-list">${items}</ul>`;
+}
+
 function buildCategoryChips(categories) {
   if (!els.categoryChips) return;
   els.categoryChips.innerHTML = '';
@@ -356,20 +380,21 @@ function updatePageIntro({ kicker = '', title = '', text = '' } = {}) {
 }
 
 function setLayoutMode(mode) {
-  const isProduct = mode === 'product';
-  els.productView.hidden = !isProduct;
+  const isDetail = mode === 'product' || mode === 'guide';
+  const isGuide = mode === 'guide';
+  els.productView.hidden = !isDetail;
 
-  els.toolbarRow.hidden = isProduct;
-  els.filters.hidden = isProduct;
-  els.topPicksSection.hidden = isProduct;
-  els.listHead.hidden = isProduct;
-  els.grid.hidden = isProduct;
+  els.toolbarRow.hidden = isDetail;
+  els.filters.hidden = isDetail;
+  els.topPicksSection.hidden = isDetail;
+  els.listHead.hidden = isDetail;
+  els.grid.hidden = isDetail;
 
   if (els.seoGuidesSection) {
-    els.seoGuidesSection.hidden = false;
+    els.seoGuidesSection.hidden = isGuide;
   }
 
-  if (!isProduct) {
+  if (!isDetail) {
     els.productView.innerHTML = '';
   }
 }
@@ -929,10 +954,17 @@ function renderGuidePage(slug) {
     return;
   }
 
-  setLayoutMode('list');
-  const relatedDeals = state.enrichedDeals.filter(deal => (deal.category || '').toLowerCase() === (page.category || '').toLowerCase());
-  els.category.value = page.category || '';
-  buildCategoryChips([...new Set(state.enrichedDeals.map(d => d.category).filter(Boolean))].sort());
+  setSeoClosing();
+  setLayoutMode('guide');
+
+  const relatedDeals = state.enrichedDeals
+    .filter(deal => (deal.category || '').toLowerCase() === (page.category || '').toLowerCase())
+    .sort((a, b) => {
+      const scoreA = (a.recomendacion || 0) + (a.discount_pct || 0);
+      const scoreB = (b.recomendacion || 0) + (b.discount_pct || 0);
+      return scoreB - scoreA;
+    })
+    .slice(0, 12);
 
   updatePageIntro({
     kicker: page.kicker || 'Guía de compra',
@@ -945,17 +977,28 @@ function renderGuidePage(slug) {
     { label: page.introTitle, path: '/' + page.slug }
   ]);
 
-  if (els.listHead) {
-    const kicker = els.listHead.querySelector('.section-kicker');
-    const title = els.listHead.querySelector('h2');
-    if (kicker) kicker.textContent = 'Selección para esta guía';
-    if (title) title.textContent = `Productos de ${page.category}`;
-  }
+  const linksHtml = renderGuideArticleLinks(relatedDeals);
+  els.productView.innerHTML = `
+    <article class="guide-article card">
+      <div class="guide-article-block">
+        <span class="section-kicker">${page.kicker || 'Guía de compra'}</span>
+        <h2>${page.introTitle}</h2>
+        <p>${page.introText}</p>
+        <p>${page.articleLead || ''}</p>
+      </div>
 
-  renderTopPicks(relatedDeals.length ? relatedDeals : state.enrichedDeals);
-  const filtered = applyFilters(relatedDeals.length ? relatedDeals : state.enrichedDeals);
-  renderDealCards(filtered);
-  setSeoClosing(page.closingTitle, page.closingText);
+      <div class="guide-article-block">
+        <h3>${page.linksTitle || 'Artículos recomendados'}</h3>
+        <p class="guide-helper-text">Aquí tienes los artículos enlazados para que luego puedas reescribir el texto a tu gusto e integrarlos dentro del contenido editorial.</p>
+        ${linksHtml}
+      </div>
+
+      <div class="guide-article-block">
+        <h3>${page.closingTitle}</h3>
+        <p>${page.closingText}</p>
+      </div>
+    </article>
+  `;
 
   updateSEO({
     title: page.metaTitle || page.introTitle,
@@ -973,8 +1016,7 @@ function renderGuidePage(slug) {
           headline: page.introTitle,
           description: page.description,
           url: `${window.location.origin}${buildPath('/' + page.slug)}`
-        },
-        buildCollectionSchema(page.introTitle, page.description, filtered, '/' + page.slug)
+        }
       ]
     }
   });
