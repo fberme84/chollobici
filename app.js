@@ -840,7 +840,7 @@ function renderOffersPage() {
   updatePageIntro({
     kicker: 'Todas las categorías',
     title: 'Todas las ofertas de ciclismo',
-    text: 'Explora el  de chollos detectados por CholloBici y filtra por categoría, tienda, precio o descuento.'
+    text: 'Explora el listado completo de chollos detectados por CholloBici y filtra por categoría, tienda, precio o descuento.'
   });
   buildBreadcrumbs([{ label: 'Inicio', path: '/' }, { label: 'Ofertas', path: '/ofertas' }]);
   renderTopPicks(state.enrichedDeals);
@@ -849,9 +849,9 @@ function renderOffersPage() {
 
   updateSEO({
     title: 'Todas las ofertas de ciclismo | CholloBici',
-    description: ' de ofertas de ciclismo para ahorrar en accesorios, ropa, herramientas y electrónica.',
+    description: 'Listado completo de ofertas de ciclismo para ahorrar en accesorios, ropa, herramientas y electrónica.',
     path: '/ofertas',
-    schema: buildCollectionSchema('Todas las ofertas de ciclismo', ' de ofertas de ciclismo', filtered, '/ofertas')
+    schema: buildCollectionSchema('Todas las ofertas de ciclismo', 'Listado completo de ofertas de ciclismo', filtered, '/ofertas')
   });
 }
 
@@ -1198,7 +1198,7 @@ if (els.favoritesToggle) {
     state.onlyFavorites = !state.onlyFavorites;
     els.favoritesToggle.classList.toggle('is-active', state.onlyFavorites);
     els.favoritesToggle.setAttribute('aria-pressed', String(state.onlyFavorites));
-    els.favoritesToggle.textContent = state.onlyFavorites ? '❤ s' : '♡ s';
+    els.favoritesToggle.textContent = state.onlyFavorites ? '❤ Solo favoritos' : '♡ Solo favoritos';
     renderCurrentRoute();
   });
 }
