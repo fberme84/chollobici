@@ -235,6 +235,39 @@ function renderGuideArticleLinks(deals) {
   return `<ul class="guide-links-list">${items}</ul>`;
 }
 
+
+function renderGuideParagraphs(paragraphs = []) {
+  return paragraphs.map(text => `<p>${text}</p>`).join('');
+}
+
+function renderGuideFaq(faq = []) {
+  if (!faq.length) return '';
+  const items = faq.map(([q, a]) => `
+    <details class="guide-faq-item">
+      <summary>${q}</summary>
+      <p>${a}</p>
+    </details>
+  `).join('');
+  return `
+    <div class="guide-faq-block">
+      <h3>Preguntas frecuentes</h3>
+      ${items}
+    </div>
+  `;
+}
+
+function renderRelatedGuides(currentSlug) {
+  const guides = state.seoPages.filter(page => page.slug !== currentSlug).slice(0, 4);
+  if (!guides.length) return '';
+  const items = guides.map(page => `<li><a href="${buildPath('/' + page.slug)}" data-link="internal">${page.introTitle}</a></li>`).join('');
+  return `
+    <div class="guide-related-block">
+      <h3>Otras guías que te pueden interesar</h3>
+      <ul>${items}</ul>
+    </div>
+  `;
+}
+
 function buildCategoryChips(categories) {
   if (!els.categoryChips) return;
   els.categoryChips.innerHTML = '';
@@ -392,6 +425,9 @@ function setLayoutMode(mode) {
 
   if (els.seoGuidesSection) {
     els.seoGuidesSection.hidden = isGuide;
+  }
+  if (els.pageIntro) {
+    els.pageIntro.hidden = isGuide;
   }
 
   if (!isDetail) {
@@ -966,37 +1002,37 @@ function renderGuidePage(slug) {
     })
     .slice(0, 12);
 
-  updatePageIntro({
-    kicker: page.kicker || 'Guía de compra',
-    title: page.introTitle,
-    text: page.introText
-  });
-
   buildBreadcrumbs([
     { label: 'Inicio', path: '/' },
     { label: page.introTitle, path: '/' + page.slug }
   ]);
 
   const linksHtml = renderGuideArticleLinks(relatedDeals);
+  const faqHtml = renderGuideFaq(page.faq || []);
+  const relatedGuidesHtml = renderRelatedGuides(page.slug);
+  const paragraphsHtml = renderGuideParagraphs(page.articleParagraphs || []);
+
   els.productView.innerHTML = `
     <article class="guide-article card">
       <div class="guide-article-block">
         <span class="section-kicker">${page.kicker || 'Guía de compra'}</span>
-        <h2>${page.introTitle}</h2>
-        <p>${page.introText}</p>
-        <p>${page.articleLead || ''}</p>
+        <h1 class="guide-main-title">${page.introTitle}</h1>
+        ${paragraphsHtml}
       </div>
 
       <div class="guide-article-block">
-        <h3>${page.linksTitle || 'Artículos recomendados'}</h3>
-        <p class="guide-helper-text">Aquí tienes los artículos enlazados para que luego puedas reescribir el texto a tu gusto e integrarlos dentro del contenido editorial.</p>
+        <h2>${page.linksTitle || 'Artículos recomendados'}</h2>
+        <p class="guide-helper-text">${page.linksIntro || ''}</p>
         ${linksHtml}
       </div>
 
       <div class="guide-article-block">
-        <h3>${page.closingTitle}</h3>
+        <h2>${page.closingTitle}</h2>
         <p>${page.closingText}</p>
       </div>
+
+      ${faqHtml}
+      ${relatedGuidesHtml}
     </article>
   `;
 
@@ -1016,6 +1052,17 @@ function renderGuidePage(slug) {
           headline: page.introTitle,
           description: page.description,
           url: `${window.location.origin}${buildPath('/' + page.slug)}`
+        },
+        {
+          '@type': 'FAQPage',
+          'mainEntity': (page.faq || []).map(item => ({
+            '@type': 'Question',
+            'name': item[0],
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': item[1]
+            }
+          }))
         }
       ]
     }

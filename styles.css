@@ -1109,3 +1109,56 @@ input:focus, select:focus {
   text-decoration: none;
   font-size: .92rem;
 }
+
+
+
+.guide-main-title {
+  margin: 6px 0 12px;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.guide-faq-block,
+.guide-related-block {
+  border-top: 1px solid #e4ecf8;
+  padding-top: 8px;
+}
+
+.guide-faq-item {
+  border: 1px solid #dbe7f7;
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: #f9fbff;
+  margin-bottom: 10px;
+}
+
+.guide-faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.guide-faq-item p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.guide-related-block ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.guide-related-block li {
+  margin-bottom: 8px;
+}
+
+.guide-related-block a {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.guide-related-block a:hover {
+  text-decoration: underline;
+}
