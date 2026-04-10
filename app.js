@@ -211,33 +211,53 @@ function setSeoClosing(title = '', text = '') {
   `;
 }
 
-function renderGuideArticleLinks(deals) {
-  const items = deals.map(deal => {
-    const productHref = buildPath(deal.path);
-    const shopHref = deal.affiliate_url || deal.url || '#';
-    return `
-      <li class="guide-link-item">
-        <a href="${productHref}" data-link="internal" class="guide-link-main">${deal.title}</a>
-        <div class="guide-link-meta">
-          <span>${deal.category || 'Categoría'}</span>
-          <span>·</span>
-          <span>${getStoreLabel(deal)}</span>
-          ${deal.price ? `<span>·</span><span>${formatPrice(deal.price)}</span>` : ''}
-        </div>
-        <div class="guide-link-actions">
-          <a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>
-          <a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>
-        </div>
-      </li>
-    `;
-  }).join('');
+function getGuideDealAnchorText(deal) {
+  const title = String(deal?.title || '').replace(/\s+/g, ' ').trim();
+  if (!title) return 'este producto';
 
-  return `<ul class="guide-links-list">${items}</ul>`;
+  const firstChunk = title
+    .split(/[,.:(]| - /)[0]
+    .replace(/^(gafas|maillot|culotte|casco|luz|luces|herramienta|kit|pack|juego|set)\s+de\s+/i, '$1 ')
+    .trim();
+
+  return (firstChunk || title).slice(0, 58).trim();
 }
 
+function buildGuideInlineLinksSentence(deals = []) {
+  if (!deals.length) return '';
 
-function renderGuideParagraphs(paragraphs = []) {
-  return paragraphs.map(text => `<p>${text}</p>`).join('');
+  const links = deals.slice(0, 3).map(deal => {
+    const label = getGuideDealAnchorText(deal);
+    return `<a href="${buildPath(deal.path)}" data-link="internal" class="guide-text-link">${label}</a>`;
+  });
+
+  if (links.length === 1) {
+    return ` Entre las opciones más interesantes de esta guía destaca ${links[0]}.`;
+  }
+
+  if (links.length === 2) {
+    return ` Entre las opciones más interesantes de esta guía destacan ${links[0]} y ${links[1]}.`;
+  }
+
+  return ` Entre las opciones más interesantes de esta guía destacan ${links.slice(0, -1).join(', ')} y ${links[links.length - 1]}.`;
+}
+
+function renderGuideParagraphs(paragraphs = [], deals = []) {
+  const safeParagraphs = Array.isArray(paragraphs) ? paragraphs.filter(Boolean) : [];
+  if (!safeParagraphs.length) return '';
+
+  const chunks = safeParagraphs.map(() => []);
+  deals.forEach((deal, index) => {
+    const paragraphIndex = index % safeParagraphs.length;
+    if (chunks[paragraphIndex].length < 3) {
+      chunks[paragraphIndex].push(deal);
+    }
+  });
+
+  return safeParagraphs.map((text, index) => {
+    const linksSentence = buildGuideInlineLinksSentence(chunks[index]);
+    return `<p>${text}${linksSentence}</p>`;
+  }).join('');
 }
 
 function renderGuideFaq(faq = []) {
@@ -1007,22 +1027,15 @@ function renderGuidePage(slug) {
     { label: page.introTitle, path: '/' + page.slug }
   ]);
 
-  const linksHtml = renderGuideArticleLinks(relatedDeals);
   const faqHtml = renderGuideFaq(page.faq || []);
   const relatedGuidesHtml = renderRelatedGuides(page.slug);
   const paragraphs = (page.articleParagraphs || []).slice(1);
-  const paragraphsHtml = renderGuideParagraphs(paragraphs);
+  const paragraphsHtml = renderGuideParagraphs(paragraphs, relatedDeals.slice(0, 9));
 
   els.productView.innerHTML = `
     <article class="guide-article card">
       <div class="guide-article-block">
         ${paragraphsHtml}
-      </div>
-
-      <div class="guide-article-block">
-        <h2>${page.linksTitle || 'Artículos recomendados'}</h2>
-        <p class="guide-helper-text">${page.linksIntro || ''}</p>
-        ${linksHtml}
       </div>
 
       <div class="guide-article-block">

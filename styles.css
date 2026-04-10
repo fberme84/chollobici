@@ -1066,6 +1066,16 @@ input:focus, select:focus {
   font-size: .95rem;
 }
 
+.guide-text-link {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.guide-text-link:hover {
+  text-decoration: underline;
+}
+
 .guide-links-list {
   margin: 0;
   padding-left: 18px;
