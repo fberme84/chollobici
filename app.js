@@ -923,12 +923,22 @@ function renderProductPage(slug) {
 }
 
 
-function renderGuidePage(slug) {
-  const page = getSeoPage(slug);
-  if (!page) {
-    renderNotFoundPage();
-    return;
-  }
+function renderGuidePage(page, deals) {
+  const container = document.getElementById('app');
+  const filtered = deals.filter(d => (d.category || '').toLowerCase().includes((page.category || '').toLowerCase()));
+  const productsHtml = renderDealsGrid(filtered, true);
+
+  container.innerHTML = `
+    <h1>${page.introTitle || ''}</h1>
+    <p>${page.description || ''}</p>
+
+    <h2>Top productos recomendados</h2>
+    ${productsHtml}
+
+    <h2>Consejos antes de comprar</h2>
+    <p>${page.closing || ''}</p>
+  `;
+}
 
   setLayoutMode('list');
   const relatedDeals = state.enrichedDeals.filter(deal => (deal.category || '').toLowerCase() === (page.category || '').toLowerCase());
