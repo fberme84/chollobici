@@ -629,8 +629,11 @@ input:focus, select:focus {
   .top-picks-grid,
   .deals-grid,
   .seo-guides-home-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
 
   .hero-brand {
     grid-template-columns: 240px minmax(0, 1fr);
@@ -698,8 +701,7 @@ input:focus, select:focus {
   .hero-inner,
   .top-picks-grid,
   .deals-grid,
-  .filter-row-main,
-  .seo-guides-home-grid {
+  .filter-row-main {
     grid-template-columns: 1fr;
   }
 
@@ -1454,5 +1456,12 @@ input:focus, select:focus {
   .cookie-banner-actions .btn-light {
     width: 100%;
     justify-content: center;
+  }
+}
+
+
+@media (max-width: 560px) {
+  .seo-guides-home-grid {
+    grid-template-columns: 1fr;
   }
 }
