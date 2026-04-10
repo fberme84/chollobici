@@ -514,8 +514,9 @@ function updatePageIntro({ kicker = '', title = '', text = '' } = {}) {
 }
 
 function setLayoutMode(mode) {
-  const isDetail = mode === 'product' || mode === 'guide';
+  const isProduct = mode === 'product';
   const isGuide = mode === 'guide';
+  const isDetail = isProduct || isGuide;
   els.productView.hidden = !isDetail;
 
   els.toolbarRow.hidden = isDetail;
@@ -525,10 +526,10 @@ function setLayoutMode(mode) {
   els.grid.hidden = isDetail;
 
   if (els.seoGuidesSection) {
-    els.seoGuidesSection.hidden = isGuide;
+    els.seoGuidesSection.hidden = isDetail;
   }
   if (els.pageIntro) {
-    els.pageIntro.hidden = isGuide;
+    els.pageIntro.hidden = isDetail;
   }
 
   if (!isDetail) {
@@ -1077,11 +1078,7 @@ function renderProductPage(slug) {
     { label: deal.category, path: deal.categoryPath },
     { label: deal.title, path: deal.path }
   ]);
-  updatePageIntro({
-    kicker: 'Ficha de producto',
-    title: deal.title,
-    text: `Oferta de ${deal.brand} dentro de la categoría ${deal.category}. Consulta precio, descuento y acceso directo a la tienda.`
-  });
+  updatePageIntro({});
   renderProductView(deal);
 
   updateSEO({
