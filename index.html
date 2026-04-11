@@ -45,16 +45,21 @@
 
 
     
-<section id="seoGuidesSection" class="seo-guides-home card">
+<section id="seoGuidesSection" class="seo-guides-home card collapsible-section" data-collapsible="guides">
   <div class="seo-guides-home-head">
     <div>
       <span class="section-kicker">Contenido útil</span>
       <h2>Guías de compra</h2>
       <p>Ideas rápidas para comprar mejor sin perder de vista los chollos de abajo.</p>
     </div>
-    <a href="#listSectionHead" class="seo-guides-anchor">Ver ofertas activas</a>
+    <div class="collapsible-actions">
+      <a href="#listSectionHead" class="seo-guides-anchor">Ver ofertas activas</a>
+      <button type="button" id="toggleGuidesBtn" class="collapse-toggle" aria-expanded="true" aria-controls="seoGuidesBody">Ocultar</button>
+    </div>
   </div>
-  <div id="seoGuidesGrid" class="seo-guides-home-grid"></div>
+  <div id="seoGuidesBody" class="collapsible-body">
+    <div id="seoGuidesGrid" class="seo-guides-home-grid"></div>
+  </div>
 </section>
 
 
@@ -63,7 +68,15 @@
       <div class="toolbar-note">Tip: usa los chips de categoría para limpiar rápido el listado.</div>
     </section>
 
-    <section id="filtersSection" class="filters card">
+    <section id="filtersSection" class="filters card collapsible-section" data-collapsible="filters">
+      <div class="filters-head">
+        <div>
+          <span class="section-kicker">Búsqueda y filtros</span>
+          <h2 class="filters-title">Afina los chollos</h2>
+        </div>
+        <button type="button" id="toggleFiltersBtn" class="collapse-toggle" aria-expanded="true" aria-controls="filtersBody">Ocultar</button>
+      </div>
+      <div id="filtersBody" class="collapsible-body">
       <div class="filter-row filter-row-main">
         <label class="filter-block filter-search">
           <span>Buscar</span>
@@ -106,6 +119,7 @@
       <select id="categoryFilter" hidden>
         <option value="">Todas</option>
       </select>
+      </div>
     </section>
 
     <section id="topPicksSection" class="top-picks-section">
