@@ -1290,6 +1290,12 @@ function renderGuidePage(slug) {
         <p>${page.closingText}</p>
       </div>
 
+      
+      <div class="guide-article-block">
+        <h2>Ofertas relacionadas</h2>
+        ${renderGuideArticleLinks(relatedDeals)}
+      </div>
+
       ${faqHtml}
       ${relatedGuidesHtml}
     </article>
