@@ -552,7 +552,7 @@ function setCollapseState(kind, expanded, persist = true) {
   section.classList.toggle('is-collapsed', !expanded);
   body.hidden = !expanded;
   btn.setAttribute('aria-expanded', String(expanded));
-  btn.textContent = expanded ? 'Ocultar' : 'Mostrar';
+  btn.textContent = expanded ? '− Ocultar' : '+ Mostrar';
 
   if (persist) {
     try {
@@ -1007,6 +1007,17 @@ function renderProductView(deal) {
   }
 }
 
+
+function findDealByProductSlugOrId(slug) {
+  const exact = state.enrichedDeals.find(item => item.productSlug === slug);
+  if (exact) return exact;
+  const slugText = String(slug || '').trim().toLowerCase();
+  const idMatch = slugText.match(/([a-z0-9]+)$/);
+  const candidateId = idMatch ? idMatch[1] : '';
+  if (!candidateId) return null;
+  return state.enrichedDeals.find(item => String(getDealId(item)).toLowerCase() === candidateId) || null;
+}
+
 function renderHomePage() {
   setSeoClosing();
   setLayoutMode('list');
@@ -1139,9 +1150,14 @@ function renderBrandPage(slug) {
 
 function renderProductPage(slug) {
   setSeoClosing();
-  const deal = state.enrichedDeals.find(item => item.productSlug === slug);
+  const deal = findDealByProductSlugOrId(slug);
   if (!deal) {
     renderNotFoundPage();
+    return;
+  }
+
+  if (deal.productSlug !== slug) {
+    window.location.replace(buildPath(deal.path));
     return;
   }
 
@@ -1174,7 +1190,6 @@ function renderProductPage(slug) {
   });
 }
 
-
 function renderGuidePage(slug) {
   const page = getSeoPage(slug);
   if (!page) {
@@ -1201,15 +1216,22 @@ function renderGuidePage(slug) {
 
   const faqHtml = renderGuideFaq(page.faq || []);
   const relatedGuidesHtml = renderRelatedGuides(page.slug);
-  const paragraphs = (page.articleParagraphs || []).slice(1);
+  const paragraphs = (page.articleParagraphs && page.articleParagraphs.length ? page.articleParagraphs : [page.introText || page.description || '']).filter(Boolean);
   const paragraphsHtml = renderGuideParagraphs(paragraphs, relatedDeals);
 
   els.productView.innerHTML = `
     <article class="guide-article card">
+      <header class="guide-hero-block">
+        <span class="section-kicker">${page.kicker || 'Guía de compra'}</span>
+        <h1>${page.introTitle || page.shortLabel || 'Guía de compra'}</h1>
+        <p class="guide-hero-text">${page.introText || page.description || ''}</p>
+      </header>
+
+      ${page.articleLead ? `<div class="guide-article-block guide-lead-block"><p>${page.articleLead}</p></div>` : ''}
+
       <div class="guide-article-block">
         ${paragraphsHtml}
       </div>
-
 
       <div class="guide-article-block">
         <h2>${page.closingTitle}</h2>
@@ -1253,7 +1275,6 @@ function renderGuidePage(slug) {
     }
   });
 }
-
 
 function renderNotFoundPage() {
   setSeoClosing();

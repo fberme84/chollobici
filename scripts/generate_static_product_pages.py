@@ -54,11 +54,20 @@ def build_description(deal: dict) -> str:
     store = to_text(deal.get("source_label") or deal.get("store"), "tienda")
     price = format_price(deal.get("price")) if deal.get("price") not in (None, "") else "precio disponible en tienda"
     discount = int(round(float(deal.get("discount_pct") or 0)))
+    sales = deal.get("sales")
+    rating = deal.get("rating")
     parts = [f"{title}.", f"Oferta dentro de la categoría {category.lower()} en {store}."]
     if deal.get("price") not in (None, ""):
         parts.append(f"Precio actual: {price}.")
     if discount:
         parts.append(f"Descuento visible del {discount}% frente al precio anterior.")
+    if sales:
+        try:
+            parts.append(f"Más de {int(sales):,}".replace(",", ".") + " ventas registradas.")
+        except Exception:
+            pass
+    if rating:
+        parts.append(f"Valoración visible de {rating}.")
     return " ".join(parts)
 
 
@@ -122,7 +131,7 @@ def main() -> None:
         if len(same_category) < 3:
             extras = [(j, d) for j, d in enumerate(deals) if j != idx and (j, d) not in same_category]
             same_category.extend(extras)
-        related = same_category[:3]
+        related = same_category[:4]
 
         related_html = []
         for j, rel in related:

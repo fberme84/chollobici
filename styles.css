@@ -1608,3 +1608,26 @@ input:focus, select:focus {
     justify-content: space-between;
   }
 }
+
+
+/* v4.9 guide page clarity */
+.guide-hero-block {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.guide-hero-block h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.6vw, 2.35rem);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+}
+.guide-hero-text {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.guide-lead-block p {
+  font-size: 1.02rem;
+  color: var(--text);
+}
