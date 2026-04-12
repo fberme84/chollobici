@@ -884,23 +884,75 @@ function buildWebsiteSchema() {
   };
 }
 
+function getSchemaSafeName(text, maxLength = 150) {
+  const clean = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!clean) return 'Producto ciclista';
+  return clean.length > maxLength
+    ? `${clean.slice(0, maxLength - 1).trim()}…`
+    : clean;
+}
+
 function buildProductSchema(deal) {
+  const ratingValue = Number(deal.rating || 0);
+  const salesValue = Number(deal.sales || 0);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: deal.title,
+    name: getSchemaSafeName(deal.title),
     brand: {
       '@type': 'Brand',
-      name: deal.brand
+      name: deal.brand || 'CholloBici'
     },
     category: deal.category,
     image: deal.image ? [deal.image] : undefined,
+    review: ratingValue ? [{
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: ratingValue,
+        bestRating: 100,
+        worstRating: 0
+      },
+      author: {
+        '@type': 'Organization',
+        name: getStoreLabel(deal)
+      },
+      reviewBody: `Valoración visible del producto en ${getStoreLabel(deal)}.`
+    }] : undefined,
+    aggregateRating: ratingValue ? {
+      '@type': 'AggregateRating',
+      ratingValue: ratingValue,
+      reviewCount: salesValue || 1,
+      ratingCount: salesValue || 1,
+      bestRating: 100,
+      worstRating: 0
+    } : undefined,
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
       price: hasValidPrice(deal.price) ? deal.price : undefined,
       availability: 'https://schema.org/InStock',
-      url: deal.affiliate_url || deal.url || `${window.location.origin}${buildPath(deal.path)}`
+      url: deal.affiliate_url || deal.url || `${window.location.origin}${buildPath(deal.path)}`,
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: 0,
+          currency: 'EUR'
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'ES'
+        }
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'ES',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnFees: 'https://schema.org/FreeReturn'
+      }
     }
   };
 }

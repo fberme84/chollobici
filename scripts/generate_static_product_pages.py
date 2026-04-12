@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import json
 import re
 import unicodedata
@@ -11,7 +10,6 @@ BASE_URL = "https://www.chollobici.com"
 DEALS_PATH = ROOT / "data" / "generated_deals.json"
 OUTPUT_DIR = ROOT / "producto"
 
-
 def slugify(text: str) -> str:
     value = str(text or "").strip().lower()
     value = unicodedata.normalize("NFD", value)
@@ -20,20 +18,16 @@ def slugify(text: str) -> str:
     value = re.sub(r"[^a-z0-9]+", "-", value)
     return value.strip("-")
 
-
 def short_product_slug(title: str, pid: str, max_prefix: int = 42) -> str:
     prefix = slugify(title)[:max_prefix].rstrip("-")
     pid = slugify(str(pid))
     return f"{prefix}-{pid}" if prefix else pid
 
-
 def get_deal_id(deal: dict, index: int) -> str:
     return str(deal.get("id") or deal.get("asin") or deal.get("url") or deal.get("title") or index)
 
-
 def build_product_slug(deal: dict, index: int) -> str:
-    return short_product_slug(deal.get('title', ''), get_deal_id(deal, index))
-
+    return short_product_slug(deal.get("title", ""), get_deal_id(deal, index))
 
 def format_price(value) -> str:
     try:
@@ -42,11 +36,15 @@ def format_price(value) -> str:
     except Exception:
         return "Ver en tienda"
 
-
 def to_text(value, fallback: str) -> str:
     text = str(value or "").strip()
     return text if text else fallback
 
+def schema_safe_name(text: str, max_length: int = 150) -> str:
+    clean = " ".join(str(text or "").split()).strip()
+    if not clean:
+        return "Producto ciclista"
+    return clean[: max_length - 1].rstrip() + "…" if len(clean) > max_length else clean
 
 def build_description(deal: dict) -> str:
     title = to_text(deal.get("title"), "Producto ciclista")
@@ -69,7 +67,6 @@ def build_description(deal: dict) -> str:
     if rating:
         parts.append(f"Valoración visible de {rating}.")
     return " ".join(parts)
-
 
 def build_reason_paragraphs(deal: dict) -> list[str]:
     category = to_text(deal.get("category"), "ciclismo").lower()
@@ -96,10 +93,66 @@ def build_reason_paragraphs(deal: dict) -> list[str]:
         paragraphs.append("Para decidir mejor, te recomendamos comparar también con otras ofertas relacionadas de la misma categoría que aparecen más abajo en esta página.")
     return paragraphs
 
+def build_product_jsonld(safe_name, description, image, brand, store, price_value, affiliate, canonical, category, cat_slug, rating_value, sales_value):
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Inicio", "item": f"{BASE_URL}/"},
+                    {"@type": "ListItem", "position": 2, "name": "Ofertas", "item": f"{BASE_URL}/ofertas"},
+                    {"@type": "ListItem", "position": 3, "name": category, "item": f"{BASE_URL}/ofertas/{cat_slug}"},
+                    {"@type": "ListItem", "position": 4, "name": safe_name, "item": canonical}
+                ]
+            },
+            {
+                "@type": "Product",
+                "name": safe_name,
+                "image": [image],
+                "description": description,
+                "brand": {"@type": "Brand", "name": brand},
+                "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "EUR",
+                    "price": str(price_value or ""),
+                    "availability": "https://schema.org/InStock",
+                    "url": affiliate,
+                    "shippingDetails": {
+                        "@type": "OfferShippingDetails",
+                        "shippingRate": {"@type": "MonetaryAmount", "value": 0, "currency": "EUR"},
+                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"}
+                    },
+                    "hasMerchantReturnPolicy": {
+                        "@type": "MerchantReturnPolicy",
+                        "applicableCountry": "ES",
+                        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                        "merchantReturnDays": 14,
+                        "returnFees": "https://schema.org/FreeReturn"
+                    }
+                }
+            }
+        ]
+    }
+    if rating_value:
+        data["@graph"][1]["aggregateRating"] = {
+            "@type": "AggregateRating",
+            "ratingValue": rating_value,
+            "reviewCount": sales_value or 1,
+            "ratingCount": sales_value or 1,
+            "bestRating": 100,
+            "worstRating": 0
+        }
+        data["@graph"][1]["review"] = [{
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": rating_value, "bestRating": 100, "worstRating": 0},
+            "author": {"@type": "Organization", "name": store},
+            "reviewBody": f"Valoración visible del producto en {store}."
+        }]
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
 
-def main() -> None:
+def main():
     deals = json.loads(DEALS_PATH.read_text(encoding="utf-8"))
-
     if OUTPUT_DIR.exists():
         for path in sorted(OUTPUT_DIR.rglob("*"), reverse=True):
             if path.is_file():
@@ -114,6 +167,7 @@ def main() -> None:
         page_dir.mkdir(parents=True, exist_ok=True)
 
         title = to_text(deal.get("title"), "Oferta ciclista")
+        safe_name = schema_safe_name(title)
         category = to_text(deal.get("category"), "Ciclismo")
         cat_slug = slugify(category)
         brand = to_text(deal.get("brand"), "Selección destacada")
@@ -126,9 +180,11 @@ def main() -> None:
         old_price = format_price(deal.get("old_price")) if deal.get("old_price") not in (None, "") else ""
         discount = int(round(float(deal.get("discount_pct") or 0)))
         checked = to_text(deal.get("last_checked") or deal.get("updated_at"), "sin fecha")
+        rating_value = deal.get("rating")
+        sales_value = int(deal.get("sales") or 0) if str(deal.get("sales") or "").strip() else 0
 
         same_category = [(j, d) for j, d in enumerate(deals) if j != idx and str(d.get("category") or "").strip().lower() == str(deal.get("category") or "").strip().lower()]
-        if len(same_category) < 3:
+        if len(same_category) < 4:
             extras = [(j, d) for j, d in enumerate(deals) if j != idx and (j, d) not in same_category]
             same_category.extend(extras)
         related = same_category[:4]
@@ -150,34 +206,7 @@ def main() -> None:
             ''')
 
         reason_html = "".join(f"<p>{escape(par)}</p>" for par in build_reason_paragraphs(deal))
-        schema = f'''{{
-  "@context":"https://schema.org",
-  "@graph":[
-    {{
-      "@type":"BreadcrumbList",
-      "itemListElement":[
-        {{"@type":"ListItem","position":1,"name":"Inicio","item":"{BASE_URL}/"}},
-        {{"@type":"ListItem","position":2,"name":"Ofertas","item":"{BASE_URL}/ofertas"}},
-        {{"@type":"ListItem","position":3,"name":"{escape(category)}","item":"{BASE_URL}/ofertas/{cat_slug}"}},
-        {{"@type":"ListItem","position":4,"name":"{escape(title)}","item":"{canonical}"}}
-      ]
-    }},
-    {{
-      "@type":"Product",
-      "name":"{escape(title)}",
-      "image":["{escape(image)}"],
-      "description":"{escape(description)}",
-      "brand":{{"@type":"Brand","name":"{escape(brand)}"}},
-      "offers":{{
-        "@type":"Offer",
-        "priceCurrency":"EUR",
-        "price":"{escape(str(deal.get("price") or ""))}",
-        "availability":"https://schema.org/InStock",
-        "url":"{escape(affiliate)}"
-      }}
-    }}
-  ]
-}}'''
+        schema = build_product_jsonld(safe_name, description, image, brand, store, deal.get("price"), affiliate, canonical, category, cat_slug, rating_value, sales_value)
 
         html_content = f'''<!doctype html>
 <html lang="es">
@@ -273,7 +302,6 @@ def main() -> None:
         (page_dir / "index.html").write_text(html_content, encoding="utf-8")
 
     print(f"Páginas HTML de producto generadas: {len(deals)}")
-
 
 if __name__ == "__main__":
     main()
