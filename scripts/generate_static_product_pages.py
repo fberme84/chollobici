@@ -121,14 +121,20 @@ def build_product_jsonld(safe_name, description, image, brand, store, price_valu
                     "shippingDetails": {
                         "@type": "OfferShippingDetails",
                         "shippingRate": {"@type": "MonetaryAmount", "value": 0, "currency": "EUR"},
-                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"}
+                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"},
+                        "deliveryTime": {
+                            "@type": "ShippingDeliveryTime",
+                            "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"},
+                            "transitTime": {"@type": "QuantitativeValue", "minValue": 2, "maxValue": 5, "unitCode": "DAY"}
+                        }
                     },
                     "hasMerchantReturnPolicy": {
                         "@type": "MerchantReturnPolicy",
                         "applicableCountry": "ES",
                         "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
                         "merchantReturnDays": 14,
-                        "returnFees": "https://schema.org/FreeReturn"
+                        "returnFees": "https://schema.org/FreeReturn",
+                        "returnMethod": "https://schema.org/ReturnByMail"
                     }
                 }
             }

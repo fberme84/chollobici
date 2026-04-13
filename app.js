@@ -256,6 +256,40 @@ function renderGuideArticleLinks(deals) {
   return `<ul class="guide-links-list">${items}</ul>`;
 }
 
+function renderGuideFeaturedDeals(deals = []) {
+  if (!deals.length) return '';
+  const items = deals.slice(0, 2).map(deal => {
+    const productHref = buildPath(deal.path);
+    const shopHref = deal.affiliate_url || deal.url || '#';
+    const imageSrc = deal.image || placeholderImage(deal.title, getStoreLabel(deal));
+    const shortTitle = escapeHtml((deal.title || '').replace(/^([^,\-–:]+[\-–:])\s*/, '').trim() || deal.title || 'Producto recomendado');
+    const priceHtml = hasValidPrice(deal.price) ? `<div class="guide-featured-price">${formatPrice(deal.price)}</div>` : '';
+    const reasonHtml = deal.reason ? `<p class="guide-featured-reason">${escapeHtml(deal.reason)}</p>` : '';
+    return `
+      <article class="guide-featured-card">
+        <a href="${productHref}" data-link="internal" class="guide-featured-media">
+          <img src="${imageSrc}" alt="${escapeHtml(deal.title)}" loading="lazy">
+        </a>
+        <div class="guide-featured-content">
+          <div class="guide-featured-top">
+            <span class="guide-featured-store">${getStoreLabel(deal)}</span>
+            ${priceHtml}
+          </div>
+          <h3><a href="${productHref}" data-link="internal">${shortTitle}</a></h3>
+          <p class="guide-featured-meta">${escapeHtml(deal.category || 'Producto recomendado')}</p>
+          ${reasonHtml}
+          <div class="guide-featured-actions">
+            <a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>
+            <a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  return `<div class="guide-featured-grid">${items}</div>`;
+}
+
 
 function escapeHtml(value) {
   return String(value || '')
@@ -944,6 +978,21 @@ function buildProductSchema(deal) {
         shippingDestination: {
           '@type': 'DefinedRegion',
           addressCountry: 'ES'
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 0,
+            maxValue: 1,
+            unitCode: 'DAY'
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 2,
+            maxValue: 5,
+            unitCode: 'DAY'
+          }
         }
       },
       hasMerchantReturnPolicy: {
@@ -951,7 +1000,8 @@ function buildProductSchema(deal) {
         applicableCountry: 'ES',
         returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
         merchantReturnDays: 14,
-        returnFees: 'https://schema.org/FreeReturn'
+        returnFees: 'https://schema.org/FreeReturn',
+        returnMethod: 'https://schema.org/ReturnByMail'
       }
     }
   };
@@ -1270,6 +1320,14 @@ function renderGuidePage(slug) {
   const relatedGuidesHtml = renderRelatedGuides(page.slug);
   const paragraphs = (page.articleParagraphs && page.articleParagraphs.length ? page.articleParagraphs : [page.introText || page.description || '']).filter(Boolean);
   const paragraphsHtml = renderGuideParagraphs(paragraphs, relatedDeals);
+  const featuredDealsHtml = renderGuideFeaturedDeals(relatedDeals.slice(0, 2));
+  const relatedDealsHtml = relatedDeals.length ? `
+    <div class="guide-article-block guide-related-offers-block">
+      <h2>${page.linksTitle || 'Ofertas relacionadas'}</h2>
+      <p class="guide-helper-text">${page.linksIntro || 'Hemos reunido aquí las ofertas más relevantes de esta temática para que puedas compararlas rápidamente.'}</p>
+      ${renderGuideArticleLinks(relatedDeals)}
+    </div>
+  ` : '';
 
   els.productView.innerHTML = `
     <article class="guide-article card">
@@ -1285,17 +1343,19 @@ function renderGuidePage(slug) {
         ${paragraphsHtml}
       </div>
 
+      ${featuredDealsHtml ? `
+      <div class="guide-article-block guide-featured-block">
+        <h2>Productos destacados de esta guía</h2>
+        <p class="guide-helper-text">Una selección rápida con dos opciones especialmente interesantes para empezar a comparar.</p>
+        ${featuredDealsHtml}
+      </div>` : ''}
+
       <div class="guide-article-block">
         <h2>${page.closingTitle}</h2>
         <p>${page.closingText}</p>
       </div>
 
-      
-      <div class="guide-article-block">
-        <h2>Ofertas relacionadas</h2>
-        ${renderGuideArticleLinks(relatedDeals)}
-      </div>
-
+      ${relatedDealsHtml}
       ${faqHtml}
       ${relatedGuidesHtml}
     </article>
