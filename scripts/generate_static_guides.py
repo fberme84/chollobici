@@ -59,7 +59,10 @@ def pick_related_deals(page: dict, deals: list[dict]) -> list[tuple[int, dict]]:
         for idx, deal in enumerate(deals)
         if not category or str(deal.get('category') or '').strip().lower() == category
     ]
-    selected.sort(key=lambda item: ((item[1].get('recomendacion') or 0) + (item[1].get('discount_pct') or 0)), reverse=True)
+    selected.sort(
+        key=lambda item: ((item[1].get('recomendacion') or 0) + (item[1].get('discount_pct') or 0)),
+        reverse=True,
+    )
     return selected[:12]
 
 
@@ -103,17 +106,21 @@ def render_featured_deals(related_deals: list[tuple[int, dict]]) -> str:
         image = escape(deal.get('image') or '/assets/chollobici-logo.png', quote=True)
         price = format_price(deal.get('price'))
         reason = escape(deal.get('reason') or '')
+
+        price_html = f'<div class="guide-featured-price">{price}</div>' if price else ''
+        reason_html = f'<p class="guide-featured-reason">{reason}</p>' if reason else ''
+
         cards.append(
             '<article class="guide-featured-card">'
             f'<a href="{product_href}" class="guide-featured-media"><img src="{image}" alt="{title}" loading="lazy"></a>'
             '<div class="guide-featured-content">'
             '<div class="guide-featured-top">'
             f'<span class="guide-featured-store">{escape(get_store_label(deal))}</span>'
-            f'{f"<div class=\"guide-featured-price\">{price}</div>" if price else ""}'
+            f'{price_html}'
             '</div>'
             f'<h3><a href="{product_href}">{title}</a></h3>'
             f'<p class="guide-featured-meta">{category}</p>'
-            f'{f"<p class=\"guide-featured-reason\">{reason}</p>" if reason else ""}'
+            f'{reason_html}'
             '<div class="guide-featured-actions">'
             f'<a href="{product_href}" class="guide-inline-link">Ver ficha</a>'
             f'<a href="{shop_href}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>'
@@ -162,7 +169,7 @@ def build_schema(page: dict, slug: str) -> str:
             faq_entities.append({
                 '@type': 'Question',
                 'name': item[0],
-                'acceptedAnswer': {'@type': 'Answer', 'text': item[1]}
+                'acceptedAnswer': {'@type': 'Answer', 'text': item[1]},
             })
     graph = [
         {
@@ -170,7 +177,7 @@ def build_schema(page: dict, slug: str) -> str:
             'itemListElement': [
                 {'@type': 'ListItem', 'position': 1, 'name': 'Inicio', 'item': f'{BASE_URL}/'},
                 {'@type': 'ListItem', 'position': 2, 'name': page.get('introTitle') or slug, 'item': canonical},
-            ]
+            ],
         },
         {
             '@type': 'Article',
@@ -179,8 +186,8 @@ def build_schema(page: dict, slug: str) -> str:
             'url': canonical,
             'mainEntityOfPage': canonical,
             'author': {'@type': 'Organization', 'name': 'CholloBici'},
-            'publisher': {'@type': 'Organization', 'name': 'CholloBici'}
-        }
+            'publisher': {'@type': 'Organization', 'name': 'CholloBici'},
+        },
     ]
     if faq_entities:
         graph.append({'@type': 'FAQPage', 'mainEntity': faq_entities})
@@ -191,8 +198,17 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
     slug = str(page.get('slug') or '').strip('/')
     canonical = f'{BASE_URL}/{slug}/'
     related_deals = pick_related_deals(page, deals)
-    paragraphs = ''.join(f'<p>{p}</p>' for p in ((page.get('articleParagraphs') or [page.get('introText') or page.get('description') or '']) if page.get('articleParagraphs') else [page.get('introText') or page.get('description') or '']))
-    article_lead = f'<div class="guide-article-block guide-lead-block"><p>{page.get("articleLead")}</p></div>' if page.get('articleLead') else ''
+
+    if page.get('articleParagraphs'):
+        paragraph_values = page.get('articleParagraphs') or []
+    else:
+        paragraph_values = [page.get('introText') or page.get('description') or '']
+    paragraphs = ''.join(f'<p>{escape(p)}</p>' for p in paragraph_values)
+
+    article_lead = ''
+    if page.get('articleLead'):
+        article_lead = f'<div class="guide-article-block guide-lead-block"><p>{escape(page.get("articleLead"))}</p></div>'
+
     featured_html = render_featured_deals(related_deals)
     featured_block = (
         '<div class="guide-article-block guide-featured-block">'
@@ -201,6 +217,7 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
         f'{featured_html}'
         '</div>'
     ) if featured_html else ''
+
     related_offers = render_related_offer_list(related_deals)
     related_offers_block = (
         '<div class="guide-article-block guide-related-offers-block">'
@@ -209,6 +226,7 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
         f'{related_offers}'
         '</div>'
     ) if related_offers else ''
+
     related_guides_block = render_related_guides(slug, page, all_pages)
     faq_block = render_faq(page)
     schema_json = build_schema(page, slug)
@@ -220,6 +238,7 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
     closing_title = escape(page.get('closingTitle') or 'Consejos finales')
     closing_text = escape(page.get('closingText') or '')
     current_year_script = "<script>document.addEventListener('DOMContentLoaded',function(){var y=document.getElementById('currentYear');if(y){y.textContent=new Date().getFullYear();}});</script>"
+
     return f'''<!doctype html>
 <html lang="es">
 <head>
@@ -253,8 +272,8 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
           <h1>{intro_title}</h1>
           <p>{intro_text}</p>
           <div class="hero-pills">
-            <span class="hero-pill">🧭 Guía estática indexable</span>
-            <span class="hero-pill">🚴 Contenido útil y ofertas relacionadas</span>
+            <span class="hero-pill">Guia estatica indexable</span>
+            <span class="hero-pill">Contenido util y ofertas relacionadas</span>
             <span class="hero-pill"><a href="/" style="color:inherit;text-decoration:none;">Ver todas las ofertas</a></span>
           </div>
         </div>
@@ -297,7 +316,7 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
     <div class="wrap footer-inner">
       <div>
         <strong>CholloBici</strong>
-        <p>Seleccionamos ofertas ciclistas y publicamos guías útiles para comprar mejor.</p>
+        <p>Seleccionamos ofertas ciclistas y publicamos guias utiles para comprar mejor.</p>
       </div>
       <nav class="footer-links" aria-label="Enlaces de pie">
         <a href="/">Inicio</a>
