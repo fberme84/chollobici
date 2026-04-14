@@ -395,8 +395,19 @@ function renderGuideFaq(faq = []) {
   `;
 }
 
-function renderRelatedGuides(currentSlug) {
-  const guides = state.seoPages.filter(page => page.slug !== currentSlug).slice(0, 4);
+function renderRelatedGuides(currentSlug, preferredSlugs = []) {
+  const preferred = Array.isArray(preferredSlugs) ? preferredSlugs.filter(Boolean) : [];
+  const selected = [];
+  preferred.forEach(slug => {
+    const guide = state.seoPages.find(page => page.slug === slug && page.slug !== currentSlug);
+    if (guide && !selected.some(item => item.slug === guide.slug)) selected.push(guide);
+  });
+  state.seoPages.forEach(page => {
+    if (page.slug === currentSlug) return;
+    if (selected.some(item => item.slug === page.slug)) return;
+    selected.push(page);
+  });
+  const guides = selected.slice(0, 4);
   if (!guides.length) return '';
   const items = guides.map(page => `<li><a href="${buildPath('/' + page.slug)}" data-link="internal">${page.introTitle}</a></li>`).join('');
   return `
@@ -1277,6 +1288,7 @@ function renderProductPage(slug) {
     title: `${deal.title} al mejor precio | CholloBici`,
     description: `${deal.title}. Precio actual ${hasValidPrice(deal.price) ? formatPrice(deal.price) : 'consultar en tienda'}${getPrimaryDiscount(deal) ? ` con descuento del ${getPrimaryDiscount(deal)}%` : ''}.`,
     path: deal.path,
+    robots: 'noindex,follow,max-image-preview:large',
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -1317,7 +1329,7 @@ function renderGuidePage(slug) {
   ]);
 
   const faqHtml = renderGuideFaq(page.faq || []);
-  const relatedGuidesHtml = renderRelatedGuides(page.slug);
+  const relatedGuidesHtml = renderRelatedGuides(page.slug, page.relatedGuideSlugs || []);
   const paragraphs = (page.articleParagraphs && page.articleParagraphs.length ? page.articleParagraphs : [page.introText || page.description || '']).filter(Boolean);
   const paragraphsHtml = renderGuideParagraphs(paragraphs, relatedDeals);
   const featuredDealsHtml = renderGuideFeaturedDeals(relatedDeals.slice(0, 2));

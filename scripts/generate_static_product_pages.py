@@ -221,7 +221,7 @@ def main():
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{escape(title)} al mejor precio | CholloBici</title>
   <meta name="description" content="{escape(description)}">
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="robots" content="noindex,follow,max-image-preview:large">
   <link rel="canonical" href="{canonical}">
   <meta property="og:type" content="product">
   <meta property="og:title" content="{escape(title)} al mejor precio | CholloBici">

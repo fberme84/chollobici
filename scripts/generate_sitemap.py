@@ -62,23 +62,12 @@ def main() -> None:
     urls: "OrderedDict[str, dict]" = OrderedDict()
 
     add_url(urls, "/", "daily", "1.0")
-    add_url(urls, "/ofertas", "daily", "0.9")
 
     for page in seo_pages:
         slug = str(page.get("slug") or "").strip("/")
         if slug:
             add_url(urls, f"/{slug}", "weekly", "0.8")
 
-    categories = sorted({str(deal.get("category") or "").strip() for deal in deals if str(deal.get("category") or "").strip()})
-    for category in categories:
-        add_url(urls, f"/ofertas/{slugify(category)}", "daily", "0.8")
-
-    for index, deal in enumerate(deals):
-        product_slug = build_product_slug(deal, index)
-        if not product_slug:
-            continue
-        lastmod = str(deal.get("updated_at") or deal.get("last_checked") or "").strip()
-        add_url(urls, f"/producto/{product_slug}/", "daily", "0.7", lastmod)
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for item in urls.values():
