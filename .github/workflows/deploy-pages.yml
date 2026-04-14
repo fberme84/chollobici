@@ -41,6 +41,7 @@ jobs:
         run: |
           python scripts/update_deals.py
           python scripts/generate_static_product_pages.py
+          python scripts/generate_static_guides.py
           python scripts/generate_sitemap.py
 
       - name: Setup Pages
