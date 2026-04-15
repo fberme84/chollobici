@@ -13,6 +13,11 @@ DEALS_FILE = DATA_DIR / "generated_deals.json"
 HISTORY_FILE = DATA_DIR / "history.json"
 AMAZON_PRODUCTS_FILE = DATA_DIR / "amazon_products.json"
 ALIEXPRESS_PRODUCTS_FILE = DATA_DIR / "aliexpress_products.json"
+DECATHLON_PRODUCTS_FILE = DATA_DIR / "decathlon_products.json"
+
+SHOW_AMAZON_PRODUCTS = os.getenv("SHOW_AMAZON_PRODUCTS", "0").strip() == "1"
+SHOW_ALIEXPRESS_PRODUCTS = os.getenv("SHOW_ALIEXPRESS_PRODUCTS", "1").strip() == "1"
+SHOW_DECATLON_PRODUCTS = os.getenv("SHOW_DECATLON_PRODUCTS", "1").strip() == "1"
 
 AMAZON_TAG = os.getenv("AMAZON_PARTNER_TAG", "").strip()
 TODAY_UTC = datetime.now(timezone.utc)
@@ -214,11 +219,27 @@ def keyword_boost(title: str) -> int:
     return score
 
 
+def is_publishable_source(product: dict) -> bool:
+    store = str(product.get("store") or "").strip().lower()
+    source = str(product.get("source") or "").strip().lower()
+
+    if store == "amazon" or source.startswith("amazon"):
+        return SHOW_AMAZON_PRODUCTS
+    if store == "aliexpress" or source.startswith("aliexpress"):
+        return SHOW_ALIEXPRESS_PRODUCTS
+    if store == "decathlon" or source.startswith("decathlon"):
+        return SHOW_DECATLON_PRODUCTS
+    return True
+
+
 def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[dict]:
     deals: list[dict] = []
     suspicious_count = 0
 
     for product in products:
+        if not is_publishable_source(product):
+            continue
+
         if product.get("suspicious_price"):
             suspicious_count += 1
             print(f"[WARN] {product['title']}: {product['suspicious_reason']}")
@@ -301,6 +322,7 @@ def main() -> None:
     products = []
     products.extend(load_catalog_products(AMAZON_PRODUCTS_FILE, default_store="Amazon", tag_amazon=True))
     products.extend(load_catalog_products(ALIEXPRESS_PRODUCTS_FILE, default_store="AliExpress", tag_amazon=False))
+    products.extend(load_catalog_products(DECATHLON_PRODUCTS_FILE, default_store="Decathlon", tag_amazon=False))
     history = update_history(history, products)
     deals = build_deals(products, history)
 
@@ -309,8 +331,10 @@ def main() -> None:
 
     amazon_count = len(load_json(AMAZON_PRODUCTS_FILE, []))
     aliexpress_count = len(load_json(ALIEXPRESS_PRODUCTS_FILE, []))
+    decathlon_count = len(load_json(DECATHLON_PRODUCTS_FILE, []))
     print(f"Productos Amazon leídos: {amazon_count}")
     print(f"Productos AliExpress leídos: {aliexpress_count}")
+    print(f"Productos Decathlon leídos: {decathlon_count}")
     print(f"Productos totales procesados: {len(products)}")
     print(f"Ofertas publicadas: {len(deals)}")
 

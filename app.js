@@ -450,11 +450,26 @@ function populateFilters(deals) {
   const categories = [...new Set(deals.map(d => d.category).filter(Boolean))].sort();
   const stores = [...new Set(deals.map(d => getStoreLabel(d)).filter(Boolean))].sort();
 
+  const previousCategory = els.category.value;
+  const previousStore = els.store.value;
+
   els.category.innerHTML = '<option value="">Todas</option>';
   els.store.innerHTML = '<option value="">Todas</option>';
 
   categories.forEach(c => els.category.appendChild(createOption(c)));
   stores.forEach(s => els.store.appendChild(createOption(s)));
+
+  els.category.value = categories.includes(previousCategory) ? previousCategory : '';
+
+  const preferredStore = stores.includes('Decathlon') ? 'Decathlon' : '';
+  if (stores.includes(previousStore)) {
+    els.store.value = previousStore;
+  } else if (preferredStore) {
+    els.store.value = preferredStore;
+  } else {
+    els.store.value = '';
+  }
+
   buildCategoryChips(categories);
 }
 

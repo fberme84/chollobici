@@ -38,7 +38,9 @@ jobs:
       - name: Build generated deals file
         env:
           AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: |
+          python scripts/refresh_decathlon_products.py
           python scripts/update_deals.py
           python scripts/generate_static_product_pages.py
           python scripts/generate_static_guides.py
