@@ -238,7 +238,7 @@ function renderGuideArticleLinks(deals) {
     const shopHref = deal.affiliate_url || deal.url || '#';
     return `
       <li class="guide-link-item">
-        <a href="${productHref}" data-link="internal" class="guide-link-main">${deal.title}</a>
+        ${shouldShowDetailLink(deal) ? `<a href="${productHref}" data-link="internal" class="guide-link-main">${deal.title}</a>` : `<a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-link-main">${deal.title}</a>`}
         <div class="guide-link-meta">
           <span>${deal.category || 'Categoría'}</span>
           <span>·</span>
@@ -246,7 +246,7 @@ function renderGuideArticleLinks(deals) {
           ${deal.price ? `<span>·</span><span>${formatPrice(deal.price)}</span>` : ''}
         </div>
         <div class="guide-link-actions">
-          <a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>
+          ${shouldShowDetailLink(deal) ? `<a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>` : ``}
           <a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>
         </div>
       </li>
@@ -267,7 +267,7 @@ function renderGuideFeaturedDeals(deals = []) {
     const reasonHtml = deal.reason ? `<p class="guide-featured-reason">${escapeHtml(deal.reason)}</p>` : '';
     return `
       <article class="guide-featured-card">
-        <a href="${productHref}" data-link="internal" class="guide-featured-media">
+        <a href="${shouldShowDetailLink(deal) ? productHref : shopHref}" ${shouldShowDetailLink(deal) ? `data-link="internal"` : `target="_blank" rel="noopener sponsored nofollow"`} class="guide-featured-media">
           <img src="${imageSrc}" alt="${escapeHtml(deal.title)}" loading="lazy">
         </a>
         <div class="guide-featured-content">
@@ -275,11 +275,11 @@ function renderGuideFeaturedDeals(deals = []) {
             <span class="guide-featured-store">${getStoreLabel(deal)}</span>
             ${priceHtml}
           </div>
-          <h3><a href="${productHref}" data-link="internal">${shortTitle}</a></h3>
+          <h3>${shouldShowDetailLink(deal) ? `<a href="${productHref}" data-link="internal">${shortTitle}</a>` : `<a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow">${shortTitle}</a>`}</h3>
           <p class="guide-featured-meta">${escapeHtml(deal.category || 'Producto recomendado')}</p>
           ${reasonHtml}
           <div class="guide-featured-actions">
-            <a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>
+            ${shouldShowDetailLink(deal) ? `<a href="${productHref}" data-link="internal" class="guide-inline-link">Ver ficha</a>` : ``}
             <a href="${shopHref}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>
           </div>
         </div>
@@ -695,14 +695,14 @@ function renderTopPicks(deals = state.enrichedDeals) {
       </div>
       <div class="top-pick-content">
         <p class="top-pick-meta">${linkTo(deal.categoryPath, deal.category, 'inline-link')} · ${linkTo(deal.brandPath, deal.brand, 'inline-link')}</p>
-        <h3>${linkTo(deal.path, titleText, 'top-pick-title-link', deal.title)}</h3>
+        <h3>${renderDealHeadingLink(deal, titleText, 'top-pick-title-link', deal.title)}</h3>
         <div class="top-pick-price-row">
           <strong>${currentPrice}</strong>
           ${oldPrice}
         </div>
         <p class="top-pick-submeta">${salesText}</p>
         <div class="top-pick-actions">
-          <a class="btn btn-light" href="${buildPath(deal.path)}" data-link="internal">Ver ficha</a>
+          ${renderDetailButton(deal)}
           <a class="top-pick-link" href="${deal.affiliate_url || deal.url || '#'}" target="_blank" rel="noopener sponsored nofollow">${getStoreButtonText(deal)}</a>
         </div>
       </div>
@@ -712,21 +712,23 @@ function renderTopPicks(deals = state.enrichedDeals) {
     if (img) img.onerror = () => { img.src = placeholderImage(deal.title, getStoreLabel(deal)); };
 
     const productHref = buildPath(deal.path);
-    item.dataset.href = productHref;
-    item.setAttribute('role', 'link');
-    item.setAttribute('tabindex', '0');
-    item.setAttribute('aria-label', `Abrir ficha de ${deal.title}`);
-    item.addEventListener('click', (event) => {
-      if (event.target.closest('a, button')) return;
-      window.location.href = productHref;
-    });
-    item.addEventListener('keydown', (event) => {
-      if (event.target.closest('a, button')) return;
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
+    if (shouldShowDetailLink(deal)) {
+      item.dataset.href = productHref;
+      item.setAttribute('role', 'link');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', `Abrir ficha de ${deal.title}`);
+      item.addEventListener('click', (event) => {
+        if (event.target.closest('a, button')) return;
         window.location.href = productHref;
-      }
-    });
+      });
+      item.addEventListener('keydown', (event) => {
+        if (event.target.closest('a, button')) return;
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          window.location.href = productHref;
+        }
+      });
+    }
 
     els.topPicks.appendChild(item);
   });
@@ -759,7 +761,7 @@ function renderDealCards(deals) {
 
     node.querySelector('.store-pill').textContent = getStoreLabel(deal);
     categoryEl.innerHTML = `${linkTo(deal.categoryPath, deal.category, 'inline-link')} · ${linkTo(deal.brandPath, deal.brand, 'inline-link')}`;
-    titleEl.innerHTML = linkTo(deal.path, deal.title, 'deal-title-link', deal.title);
+    titleEl.innerHTML = renderDealHeadingLink(deal, deal.title, 'deal-title-link', deal.title);
 
     const primaryDiscount = getPrimaryDiscount(deal);
     if (primaryDiscount) {
@@ -803,35 +805,35 @@ function renderDealCards(deals) {
     btn.href = deal.affiliate_url || deal.url || '#';
     btn.textContent = getStoreButtonText(deal);
 
-    const more = document.createElement('a');
-    more.className = 'btn btn-light';
-    more.href = buildPath(deal.path);
-    more.dataset.link = 'internal';
-    more.textContent = 'Ver ficha';
-    node.querySelector('.deal-actions').prepend(more);
+    const detailHtml = renderDetailButton(deal);
+    if (detailHtml) {
+      node.querySelector('.deal-actions').insertAdjacentHTML('afterbegin', detailHtml);
+    }
 
     imageWrap.dataset.category = deal.category || 'Otros';
 
     const productHref = buildPath(deal.path);
-    node.dataset.href = productHref;
-    node.setAttribute('role', 'link');
-    node.setAttribute('tabindex', '0');
-    node.setAttribute('aria-label', `Abrir ficha de ${deal.title}`);
+    if (shouldShowDetailLink(deal)) {
+      node.dataset.href = productHref;
+      node.setAttribute('role', 'link');
+      node.setAttribute('tabindex', '0');
+      node.setAttribute('aria-label', `Abrir ficha de ${deal.title}`);
 
-    node.addEventListener('click', (event) => {
-      if (event.target.closest('.favorite-btn')) return;
-      const externalLink = event.target.closest('a:not([data-link="internal"])');
-      if (externalLink) return;
-      window.location.href = productHref;
-    });
-
-    node.addEventListener('keydown', (event) => {
-      if (event.target.closest('a, button')) return;
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
+      node.addEventListener('click', (event) => {
+        if (event.target.closest('.favorite-btn')) return;
+        const externalLink = event.target.closest('a:not([data-link="internal"])');
+        if (externalLink) return;
         window.location.href = productHref;
-      }
-    });
+      });
+
+      node.addEventListener('keydown', (event) => {
+        if (event.target.closest('a, button')) return;
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          window.location.href = productHref;
+        }
+      });
+    }
 
     els.grid.appendChild(node);
   });
@@ -1106,7 +1108,7 @@ function renderProductView(deal) {
 
       node.querySelector('.store-pill').textContent = getStoreLabel(item);
       node.querySelector('.deal-category').innerHTML = `${linkTo(item.categoryPath, item.category, 'inline-link')} · ${linkTo(item.brandPath, item.brand, 'inline-link')}`;
-      node.querySelector('.deal-title').innerHTML = linkTo(item.path, item.title, 'deal-title-link', item.title);
+      node.querySelector('.deal-title').innerHTML = renderDealHeadingLink(item, item.title, 'deal-title-link', item.title);
       node.querySelector('.price-current').textContent = hasValidPrice(item.price) ? formatPrice(item.price) : 'Ver en tienda';
       node.querySelector('.price-old').textContent = hasValidPrice(item.old_price) ? formatPrice(item.old_price) : '';
       node.querySelector('.metric-discount').textContent = getPrimaryDiscount(item) ? `Descuento ${getPrimaryDiscount(item)}%` : 'Oferta activa';
@@ -1114,12 +1116,10 @@ function renderProductView(deal) {
       node.querySelector('.btn').href = item.affiliate_url || item.url || '#';
       node.querySelector('.btn').textContent = getStoreButtonText(item);
 
-      const more = document.createElement('a');
-      more.className = 'btn btn-light';
-      more.href = buildPath(item.path);
-      more.dataset.link = 'internal';
-      more.textContent = 'Ver ficha';
-      node.querySelector('.deal-actions').prepend(more);
+      const detailHtml = renderDetailButton(item);
+      if (detailHtml) {
+        node.querySelector('.deal-actions').insertAdjacentHTML('afterbegin', detailHtml);
+      }
 
       if (getPrimaryDiscount(item)) {
         const discountBadge = document.createElement('span');

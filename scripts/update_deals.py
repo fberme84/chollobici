@@ -164,6 +164,10 @@ def load_catalog_products(path: Path, *, default_store: str, tag_amazon: bool = 
         if old_price and price and old_price > price:
             discount_pct = round((old_price - price) / old_price * 100)
 
+        detail_enabled = item.get('detail_enabled')
+        if detail_enabled is None:
+            detail_enabled = default_store.lower() != 'decathlon'
+
         products.append(
             {
                 "id": product_id,
@@ -187,6 +191,10 @@ def load_catalog_products(path: Path, *, default_store: str, tag_amazon: bool = 
                 "reason": item.get("reason"),
                 "sales": sales,
                 "commission_rate": commission_rate,
+                "detail_enabled": bool(detail_enabled),
+                "catalog_excluded": bool(item.get('catalog_excluded', False)),
+                "link_validation_status": item.get('link_validation_status', ''),
+                "final_affiliate_url": item.get('final_affiliate_url', ''),
             }
         )
 
@@ -238,6 +246,9 @@ def build_deals(products: list[dict], history: dict[str, list[dict]]) -> list[di
 
     for product in products:
         if not is_publishable_source(product):
+            continue
+
+        if product.get('catalog_excluded'):
             continue
 
         if product.get("suspicious_price"):
