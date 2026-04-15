@@ -26,12 +26,22 @@ CYCLING_KEYWORDS = [
     "puños", "rueda bici", "cubierta bici", "camara bici", "cámara bici",
     "herramienta bici", "cadena bici", "freno bici", "btt", "endura", "spiuk",
     "siroko", "ergon", "look keo", "calas", "guardabarros bici", "grips", "sillin bici",
+    "portaherramientas", "triatlon", "triatlón", "bikepacking", "portabultos bici",
 ]
 
 EXCLUDE_KEYWORDS = [
     "fútbol", "running", "pesca", "yoga", "voleibol", "baloncesto", "béisbol",
     "bikini", "esquí", "pádel", "boxeo", "judo", "natación", "snow", "surf",
 ]
+
+BAD_WORDS = [
+    "calcetines fútbol", "futbol", "fútbol", "pesca", "yoga", "voleibol",
+    "baloncesto", "béisbol", "bikini", "esquí", "pádel", "boxeo", "judo",
+]
+
+MIN_PRICE = 5.0
+MIN_DISCOUNT_PCT = 10
+MAX_PRODUCTS = 200
 
 def log(msg: str) -> None:
     print(msg, flush=True)
@@ -172,8 +182,32 @@ def build_product_record(product: ET.Element) -> dict:
         "currency": currency,
         "detail_enabled": False,
         "catalog_excluded": False,
+        "recomendacion": discount_pct,
         "_combined_text": combined,
     }
+
+def should_keep_product(record: dict) -> bool:
+    text = (record.get("title") or "").lower()
+    combined = (record.get("_combined_text") or "").lower()
+
+    if any(bad in text for bad in BAD_WORDS):
+        return False
+
+    price = record.get("price")
+    if price is None or price <= MIN_PRICE:
+        return False
+
+    discount_pct = record.get("discount_pct") or 0
+    if discount_pct < MIN_DISCOUNT_PCT:
+        return False
+
+    if not record.get("image") or not record.get("url"):
+        return False
+
+    if any(bad in combined for bad in EXCLUDE_KEYWORDS):
+        return False
+
+    return True
 
 def parse_feed(raw_text: str) -> list[dict]:
     log("[INFO] Inicio parseo feed Decathlon")
@@ -189,6 +223,7 @@ def parse_feed(raw_text: str) -> list[dict]:
     candidates = 0
     cycling = 0
     duplicates = 0
+    filtered_out = 0
     seen_ids: set[str] = set()
 
     try:
@@ -214,6 +249,10 @@ def parse_feed(raw_text: str) -> list[dict]:
                 continue
             seen_ids.add(dedupe_key)
 
+            if not should_keep_product(record):
+                filtered_out += 1
+                continue
+
             record.pop("_combined_text", None)
             products.append(record)
 
@@ -221,10 +260,21 @@ def parse_feed(raw_text: str) -> list[dict]:
         log(f"[ERROR] Fallo parseando XML de Decathlon: {exc}")
         return []
 
+    products.sort(
+        key=lambda x: (
+            x.get("discount_pct", 0),
+            x.get("recomendacion", 0),
+            -(x.get("price") or 0)
+        ),
+        reverse=True,
+    )
+    products = products[:MAX_PRODUCTS]
+
     log(f"[INFO] Registros candidatos XML Decathlon detectados: {candidates}")
     log(f"[INFO] Registros Decathlon ciclismo antes de deduplicar: {cycling}")
     log(f"[INFO] Duplicados Decathlon descartados: {duplicates}")
-    log(f"[INFO] Registros Decathlon ciclismo tras deduplicar: {len(products)}")
+    log(f"[INFO] Productos Decathlon descartados por filtros de calidad: {filtered_out}")
+    log(f"[INFO] Registros Decathlon ciclismo tras filtros y límite: {len(products)}")
     return products
 
 def save_products(products: list[dict]) -> None:
