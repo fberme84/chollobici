@@ -22,15 +22,13 @@ function formatPrice(price) {
 }
 
 // ==============================
-// RENDER HELPERS (CLAVE)
+// RENDER HELPERS
 // ==============================
 function renderDealHeadingLink(deal) {
-  // SIN ficha → solo texto
   return `<span class="deal-title">${deal.title}</span>`;
 }
 
 function renderDetailButton(deal) {
-  // SIN ficha → no mostramos botón
   return "";
 }
 
@@ -41,7 +39,8 @@ function renderShopButton(deal) {
     <a href="${deal.affiliate_url}" 
        target="_blank" 
        rel="noopener sponsored nofollow"
-       class="btn-primary">
+       class="btn-primary"
+       onclick="event.stopPropagation();">
        Ver en tienda
     </a>
   `;
@@ -51,8 +50,11 @@ function renderShopButton(deal) {
 // CARD
 // ==============================
 function renderDealCard(deal) {
+  const url = deal.affiliate_url || deal.url;
+
   return `
-    <div class="deal-card">
+    <div class="deal-card" onclick="window.open('${url}', '_blank')">
+      
       <div class="deal-image">
         <img src="${deal.image}" alt="${deal.title}" />
       </div>
@@ -66,9 +68,9 @@ function renderDealCard(deal) {
 
         <div class="deal-actions">
           ${renderShopButton(deal)}
-          ${renderDetailButton(deal)}
         </div>
       </div>
+
     </div>
   `;
 }
@@ -80,13 +82,17 @@ function renderTopPicks(deals) {
   const container = document.getElementById("top-picks");
   if (!container) return;
 
-  let html = "";
+  container.innerHTML = deals.slice(0, 12).map(renderDealCard).join("");
+}
 
-  deals.forEach(deal => {
-    html += renderDealCard(deal);
-  });
+// ==============================
+// LISTADO COMPLETO
+// ==============================
+function renderDealsGrid(deals) {
+  const container = document.getElementById("deals-grid");
+  if (!container) return;
 
-  container.innerHTML = html;
+  container.innerHTML = deals.slice(0, 60).map(renderDealCard).join("");
 }
 
 // ==============================
@@ -94,15 +100,13 @@ function renderTopPicks(deals) {
 // ==============================
 function renderHomePage(deals) {
   renderTopPicks(deals);
+  renderDealsGrid(deals); // 🔥 ESTE ERA EL FALLO
 }
 
 // ==============================
 // ROUTER SIMPLE
 // ==============================
 function renderCurrentRoute(deals) {
-  const path = window.location.pathname;
-
-  // solo home de momento
   renderHomePage(deals);
 }
 
@@ -113,6 +117,9 @@ async function init() {
   try {
     const res = await fetch(DATA_URL);
     const deals = await res.json();
+
+    // ordenar por descuento si existe
+    deals.sort((a, b) => (b.discount_pct || 0) - (a.discount_pct || 0));
 
     renderCurrentRoute(deals);
 
