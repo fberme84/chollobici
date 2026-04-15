@@ -734,6 +734,13 @@ function renderTopPicks(deals = state.enrichedDeals) {
   });
 }
 
+function renderDealHeadingLink(deal) {
+  if (deal.detail_enabled) {
+    return `<a href="/producto/${slugify(deal.title)}" class="deal-title">${deal.title}</a>`;
+  }
+  return `<span class="deal-title">${deal.title}</span>`;
+}
+
 function renderDealCards(deals) {
   clearGrid();
   els.info.textContent = `${deals.length} resultado(s) mostrado(s)`;
