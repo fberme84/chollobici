@@ -1,313 +1,346 @@
 from __future__ import annotations
+
+import hashlib
+import html
 import json
 import re
+import shutil
 import unicodedata
-from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "https://www.chollobici.com"
-DEALS_PATH = ROOT / "data" / "generated_deals.json"
-OUTPUT_DIR = ROOT / "producto"
+DATA_PATH = ROOT / "data" / "generated_deals.json"
+PRODUCT_DIR = ROOT / "producto"
 
-def slugify(text: str) -> str:
-    value = str(text or "").strip().lower()
+
+def slugify(value: str) -> str:
+    value = str(value or "").strip().lower()
     value = unicodedata.normalize("NFD", value)
     value = "".join(ch for ch in value if unicodedata.category(ch) != "Mn")
     value = re.sub(r"&", " y ", value)
     value = re.sub(r"[^a-z0-9]+", "-", value)
+    value = re.sub(r"-{2,}", "-", value)
     return value.strip("-")
 
-def short_product_slug(title: str, pid: str, max_prefix: int = 42) -> str:
-    prefix = slugify(title)[:max_prefix].rstrip("-")
-    pid = slugify(str(pid))
-    return f"{prefix}-{pid}" if prefix else pid
 
-def get_deal_id(deal: dict, index: int) -> str:
-    return str(deal.get("id") or deal.get("asin") or deal.get("url") or deal.get("title") or index)
+def build_safe_product_slug(product: dict) -> str:
+    """
+    Genera un slug corto, estable y seguro:
+    - usa solo el título (recortado)
+    - añade un hash corto de url/id para evitar duplicados
+    - nunca mete la URL completa en el nombre de carpeta
+    """
+    title = str(product.get("title") or "producto").strip()
+    base = slugify(title)[:70].rstrip("-")
 
-def build_product_slug(deal: dict, index: int) -> str:
-    return short_product_slug(deal.get("title", ""), get_deal_id(deal, index))
+    unique_source = (
+        str(product.get("product_id") or "")
+        or str(product.get("id") or "")
+        or str(product.get("affiliate_url") or "")
+        or str(product.get("url") or "")
+        or title
+    )
+    unique_hash = hashlib.md5(unique_source.encode("utf-8")).hexdigest()[:10]
+
+    if not base:
+        base = "producto"
+
+    return f"{base}-{unique_hash}"
+
 
 def format_price(value) -> str:
+    if value is None or value == "":
+        return ""
     try:
         amount = float(value)
         return f"{amount:,.2f} €".replace(",", "X").replace(".", ",").replace("X", ".")
     except Exception:
-        return "Ver en tienda"
+        return ""
 
-def to_text(value, fallback: str) -> str:
-    text = str(value or "").strip()
-    return text if text else fallback
 
-def schema_safe_name(text: str, max_length: int = 150) -> str:
-    clean = " ".join(str(text or "").split()).strip()
-    if not clean:
-        return "Producto ciclista"
-    return clean[: max_length - 1].rstrip() + "…" if len(clean) > max_length else clean
+def calculate_discount_pct(price, old_price) -> int:
+    try:
+        p = float(price)
+        o = float(old_price)
+        if o > 0 and p <= o:
+            return round((o - p) / o * 100)
+    except Exception:
+        pass
+    return 0
 
-def build_description(deal: dict) -> str:
-    title = to_text(deal.get("title"), "Producto ciclista")
-    category = to_text(deal.get("category"), "ciclismo")
-    store = to_text(deal.get("source_label") or deal.get("store"), "tienda")
-    price = format_price(deal.get("price")) if deal.get("price") not in (None, "") else "precio disponible en tienda"
-    discount = int(round(float(deal.get("discount_pct") or 0)))
-    sales = deal.get("sales")
-    rating = deal.get("rating")
-    parts = [f"{title}.", f"Oferta dentro de la categoría {category.lower()} en {store}."]
-    if deal.get("price") not in (None, ""):
-        parts.append(f"Precio actual: {price}.")
+
+def get_store_label(product: dict) -> str:
+    return str(
+        product.get("source_label")
+        or product.get("store")
+        or product.get("source")
+        or "Tienda"
+    )
+
+
+def build_canonical(slug: str) -> str:
+    return f"https://www.chollobici.com/producto/{slug}/"
+
+
+def build_product_description(product: dict) -> str:
+    title = str(product.get("title") or "Producto ciclista").strip()
+    brand = str(product.get("brand") or "").strip()
+    category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
+    price = format_price(product.get("price"))
+    old_price = format_price(product.get("old_price"))
+    store = get_store_label(product)
+
+    parts = [title]
+    if brand:
+        parts.append(f"de {brand}")
+    if category_hint:
+        parts.append(f"en la categoría {category_hint}")
+    if price:
+        parts.append(f"por {price}")
+    if old_price and old_price != price:
+        parts.append(f"antes {old_price}")
+    parts.append(f"en {store}")
+
+    text = " ".join(parts)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def render_price_block(product: dict) -> str:
+    price = format_price(product.get("price"))
+    old_price = format_price(product.get("old_price"))
+    discount = product.get("discount_pct")
+    if discount in (None, "", 0):
+        discount = calculate_discount_pct(product.get("price"), product.get("old_price"))
+
+    bits = []
+    if old_price and old_price != price:
+        bits.append(f'<span class="product-old-price">{html.escape(old_price)}</span>')
+    if price:
+        bits.append(f'<span class="product-price">{html.escape(price)}</span>')
     if discount:
-        parts.append(f"Descuento visible del {discount}% frente al precio anterior.")
-    if sales:
-        try:
-            parts.append(f"Más de {int(sales):,}".replace(",", ".") + " ventas registradas.")
-        except Exception:
-            pass
-    if rating:
-        parts.append(f"Valoración visible de {rating}.")
-    return " ".join(parts)
+        bits.append(f'<span class="product-discount">-{int(discount)}%</span>')
 
-def build_reason_paragraphs(deal: dict) -> list[str]:
-    category = to_text(deal.get("category"), "ciclismo").lower()
-    store = to_text(deal.get("source_label") or deal.get("store"), "tienda")
-    discount = int(round(float(deal.get("discount_pct") or 0)))
-    sales = deal.get("sales")
-    rating = deal.get("rating")
-    price = format_price(deal.get("price")) if deal.get("price") not in (None, "") else "precio disponible en tienda"
-    paragraphs = [
-        f"Esta ficha reúne la información principal de la oferta para que puedas valorar rápido si encaja con lo que buscas dentro de {category}. Hemos dejado visible el precio actual, el acceso directo a la tienda y los datos básicos para comparar mejor antes de comprar.",
-        f"El producto está publicado en {store} y actualmente aparece con un precio de {price}{f' y un descuento del {discount}%' if discount else ''}. Esto no significa necesariamente que sea la mejor opción para todo el mundo, pero sí que merece una revisión si estabas buscando algo similar y querías detectar una bajada de precio sin perder tiempo."
-    ]
-    extra = []
-    if sales:
-        try:
-            extra.append(f"{int(sales):,}".replace(",", ".") + " ventas")
-        except Exception:
-            pass
-    if rating:
-        extra.append(f"valoración {rating}")
-    if extra:
-        paragraphs.append("Como referencia adicional, esta oferta cuenta con " + " y ".join(extra) + ", lo que puede ayudarte a priorizarla frente a otras alternativas.")
-    else:
-        paragraphs.append("Para decidir mejor, te recomendamos comparar también con otras ofertas relacionadas de la misma categoría que aparecen más abajo en esta página.")
-    return paragraphs
+    if not bits:
+        return ""
 
-def build_product_jsonld(safe_name, description, image, brand, store, price_value, affiliate, canonical, category, cat_slug, rating_value, sales_value):
-    data = {
+    return '<div class="product-price-row">' + "".join(bits) + "</div>"
+
+
+def render_badges(product: dict) -> str:
+    badges = []
+    store = get_store_label(product)
+    if store:
+        badges.append(f'<span class="badge badge-store">{html.escape(store)}</span>')
+
+    brand = str(product.get("brand") or "").strip()
+    if brand:
+        badges.append(f'<span class="badge">{html.escape(brand)}</span>')
+
+    category_hint = str(product.get("category_hint") or "").strip()
+    if category_hint:
+        badges.append(f'<span class="badge">{html.escape(category_hint)}</span>')
+
+    if not badges:
+        return ""
+    return '<div class="product-badges">' + "".join(badges) + "</div>"
+
+
+def render_schema(product: dict, slug: str) -> str:
+    canonical = build_canonical(slug)
+    title = str(product.get("title") or "Producto ciclista").strip()
+    image = str(product.get("image") or "").strip()
+    description = build_product_description(product)
+    price = product.get("price")
+    store = get_store_label(product)
+
+    schema = {
         "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": "Inicio", "item": f"{BASE_URL}/"},
-                    {"@type": "ListItem", "position": 2, "name": "Ofertas", "item": f"{BASE_URL}/ofertas"},
-                    {"@type": "ListItem", "position": 3, "name": category, "item": f"{BASE_URL}/ofertas/{cat_slug}"},
-                    {"@type": "ListItem", "position": 4, "name": safe_name, "item": canonical}
-                ]
-            },
-            {
-                "@type": "Product",
-                "name": safe_name,
-                "image": [image],
-                "description": description,
-                "brand": {"@type": "Brand", "name": brand},
-                "offers": {
-                    "@type": "Offer",
-                    "priceCurrency": "EUR",
-                    "price": str(price_value or ""),
-                    "availability": "https://schema.org/InStock",
-                    "url": affiliate,
-                    "shippingDetails": {
-                        "@type": "OfferShippingDetails",
-                        "shippingRate": {"@type": "MonetaryAmount", "value": 0, "currency": "EUR"},
-                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"},
-                        "deliveryTime": {
-                            "@type": "ShippingDeliveryTime",
-                            "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"},
-                            "transitTime": {"@type": "QuantitativeValue", "minValue": 2, "maxValue": 5, "unitCode": "DAY"}
-                        }
-                    },
-                    "hasMerchantReturnPolicy": {
-                        "@type": "MerchantReturnPolicy",
-                        "applicableCountry": "ES",
-                        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-                        "merchantReturnDays": 14,
-                        "returnFees": "https://schema.org/FreeReturn",
-                        "returnMethod": "https://schema.org/ReturnByMail"
-                    }
-                }
-            }
-        ]
+        "@type": "Product",
+        "name": title,
+        "description": description,
+        "url": canonical,
+        "brand": {"@type": "Brand", "name": str(product.get("brand") or store or "CholloBici")},
     }
-    if rating_value:
-        data["@graph"][1]["aggregateRating"] = {
-            "@type": "AggregateRating",
-            "ratingValue": rating_value,
-            "reviewCount": sales_value or 1,
-            "ratingCount": sales_value or 1,
-            "bestRating": 100,
-            "worstRating": 0
+
+    if image:
+        schema["image"] = image
+
+    if price not in (None, ""):
+        schema["offers"] = {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "price": str(price),
+            "availability": "https://schema.org/InStock",
+            "url": str(product.get("affiliate_url") or product.get("url") or canonical),
+            "seller": {"@type": "Organization", "name": store},
         }
-        data["@graph"][1]["review"] = [{
-            "@type": "Review",
-            "reviewRating": {"@type": "Rating", "ratingValue": rating_value, "bestRating": 100, "worstRating": 0},
-            "author": {"@type": "Organization", "name": store},
-            "reviewBody": f"Valoración visible del producto en {store}."
-        }]
-    return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
 
-def main():
-    deals = json.loads(DEALS_PATH.read_text(encoding="utf-8"))
-    if OUTPUT_DIR.exists():
-        for path in sorted(OUTPUT_DIR.rglob("*"), reverse=True):
-            if path.is_file():
-                path.unlink()
-            elif path.is_dir():
-                path.rmdir()
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    return json.dumps(schema, ensure_ascii=False)
 
-    for idx, deal in enumerate(deals):
-        slug = build_product_slug(deal, idx)
-        page_dir = OUTPUT_DIR / slug
-        page_dir.mkdir(parents=True, exist_ok=True)
 
-        title = to_text(deal.get("title"), "Oferta ciclista")
-        safe_name = schema_safe_name(title)
-        category = to_text(deal.get("category"), "Ciclismo")
-        cat_slug = slugify(category)
-        brand = to_text(deal.get("brand"), "Selección destacada")
-        store = to_text(deal.get("source_label") or deal.get("store"), "Tienda")
-        image = to_text(deal.get("image"), "/assets/chollobici-logo.png")
-        affiliate = to_text(deal.get("affiliate_url") or deal.get("url"), "#")
-        canonical = f"{BASE_URL}/producto/{slug}/"
-        description = build_description(deal)
-        price = format_price(deal.get("price")) if deal.get("price") not in (None, "") else "Ver en tienda"
-        old_price = format_price(deal.get("old_price")) if deal.get("old_price") not in (None, "") else ""
-        discount = int(round(float(deal.get("discount_pct") or 0)))
-        checked = to_text(deal.get("last_checked") or deal.get("updated_at"), "sin fecha")
-        rating_value = deal.get("rating")
-        sales_value = int(deal.get("sales") or 0) if str(deal.get("sales") or "").strip() else 0
+def build_html(product: dict, slug: str) -> str:
+    title = str(product.get("title") or "Producto ciclista").strip()
+    canonical = build_canonical(slug)
+    description = build_product_description(product)
+    image = str(product.get("image") or "").strip()
+    affiliate_url = str(product.get("affiliate_url") or product.get("url") or "").strip()
+    brand = str(product.get("brand") or "").strip()
+    category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
+    size = str(product.get("size") or "").strip()
+    store = get_store_label(product)
 
-        same_category = [(j, d) for j, d in enumerate(deals) if j != idx and str(d.get("category") or "").strip().lower() == str(deal.get("category") or "").strip().lower()]
-        if len(same_category) < 4:
-            extras = [(j, d) for j, d in enumerate(deals) if j != idx and (j, d) not in same_category]
-            same_category.extend(extras)
-        related = same_category[:4]
+    detail_note = ""
+    if product.get("source") == "decathlon":
+        detail_note = (
+            '<p class="product-note">Ficha simplificada. '
+            'Para confirmar disponibilidad y precio actualizado, consulta la tienda.</p>'
+        )
 
-        related_html = []
-        for j, rel in related:
-            rel_slug = build_product_slug(rel, j)
-            rel_title = to_text(rel.get("title"), "Oferta relacionada")
-            rel_desc = build_description(rel)
-            rel_price = format_price(rel.get("price")) if rel.get("price") not in (None, "") else "Ver en tienda"
-            related_html.append(f'''
-              <article class="related-card">
-                <span class="badge">{escape(to_text(rel.get("category"), "Ciclismo"))}</span>
-                <h3><a href="/producto/{escape(rel_slug)}/">{escape(rel_title)}</a></h3>
-                <div class="related-price">{escape(rel_price)}</div>
-                <p>{escape(rel_desc[:120].rstrip())}{"..." if len(rel_desc) > 120 else ""}</p>
-                <a href="/producto/{escape(rel_slug)}/">Ver ficha →</a>
-              </article>
-            ''')
+    details = []
+    if brand:
+        details.append(f"<li><strong>Marca:</strong> {html.escape(brand)}</li>")
+    if category_hint:
+        details.append(f"<li><strong>Categoría:</strong> {html.escape(category_hint)}</li>")
+    if size:
+        details.append(f"<li><strong>Variante:</strong> {html.escape(size)}</li>")
+    details.append(f"<li><strong>Tienda:</strong> {html.escape(store)}</li>")
 
-        reason_html = "".join(f"<p>{escape(par)}</p>" for par in build_reason_paragraphs(deal))
-        schema = build_product_jsonld(safe_name, description, image, brand, store, deal.get("price"), affiliate, canonical, category, cat_slug, rating_value, sales_value)
+    image_block = ""
+    if image:
+        image_block = (
+            f'<div class="product-media"><img src="{html.escape(image, quote=True)}" '
+            f'alt="{html.escape(title)}" loading="eager"></div>'
+        )
 
-        html_content = f'''<!doctype html>
+    cta_block = ""
+    if affiliate_url:
+        cta_block = (
+            '<div class="product-actions">'
+            f'<a class="btn-primary" href="{html.escape(affiliate_url, quote=True)}" '
+            'target="_blank" rel="noopener sponsored nofollow">Ver en tienda</a>'
+            '<a class="btn-secondary" href="/">Volver a ofertas</a>'
+            "</div>"
+        )
+    else:
+        cta_block = '<div class="product-actions"><a class="btn-secondary" href="/">Volver a ofertas</a></div>'
+
+    og_image = ""
+    if image:
+        og_image = f'<meta property="og:image" content="{html.escape(image, quote=True)}">'
+
+    return f"""<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(title)} al mejor precio | CholloBici</title>
-  <meta name="description" content="{escape(description)}">
-  <meta name="robots" content="noindex,follow,max-image-preview:large">
-  <link rel="canonical" href="{canonical}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{html.escape(title)} | CholloBici</title>
+  <meta name="description" content="{html.escape(description)}">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="{html.escape(canonical, quote=True)}">
+  <meta property="og:title" content="{html.escape(title)} | CholloBici">
+  <meta property="og:description" content="{html.escape(description)}">
   <meta property="og:type" content="product">
-  <meta property="og:title" content="{escape(title)} al mejor precio | CholloBici">
-  <meta property="og:description" content="{escape(description)}">
-  <meta property="og:url" content="{canonical}">
-  <meta property="og:image" content="{escape(image)}">
+  <meta property="og:url" content="{html.escape(canonical, quote=True)}">
+  {og_image}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{escape(title)} al mejor precio | CholloBici">
-  <meta name="twitter:description" content="{escape(description)}">
-  <meta name="twitter:image" content="{escape(image)}">
-  <link rel="icon" type="image/png" href="/assets/favicon-chollobici.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/static-product.css">
-  <script type="application/ld+json">{schema}</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .product-page {{ max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }}
+    .product-card {{ background:#fff; border:1px solid #e5e7eb; border-radius:18px; overflow:hidden; }}
+    .product-layout {{ display:grid; grid-template-columns: minmax(260px, 380px) 1fr; gap:24px; padding:24px; }}
+    .product-media img {{ width:100%; height:auto; display:block; border-radius:14px; background:#f8fafc; }}
+    .product-content h1 {{ margin:0 0 12px; line-height:1.15; }}
+    .product-badges {{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }}
+    .badge {{ display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; font-size:13px; }}
+    .badge-store {{ background:#ecfeff; }}
+    .product-price-row {{ display:flex; gap:12px; align-items:center; margin:16px 0; flex-wrap:wrap; }}
+    .product-old-price {{ text-decoration:line-through; color:#6b7280; }}
+    .product-price {{ font-size:30px; font-weight:800; }}
+    .product-discount {{ color:#065f46; background:#d1fae5; padding:6px 10px; border-radius:999px; font-weight:700; }}
+    .product-details {{ margin:18px 0; padding-left:18px; }}
+    .product-details li {{ margin:8px 0; }}
+    .product-actions {{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }}
+    .btn-primary, .btn-secondary {{ text-decoration:none; padding:12px 16px; border-radius:12px; font-weight:700; display:inline-block; }}
+    .btn-primary {{ background:#111827; color:#fff; }}
+    .btn-secondary {{ background:#f3f4f6; color:#111827; }}
+    .product-note {{ color:#6b7280; }}
+    @media (max-width: 760px) {{
+      .product-layout {{ grid-template-columns: 1fr; }}
+    }}
+  </style>
+  <script type="application/ld+json">{render_schema(product, slug)}</script>
 </head>
 <body>
-  <header class="site-top">
-    <div class="wrap site-top-inner">
-      <a href="/"><img src="/assets/chollobici-logo.png" alt="CholloBici" class="site-logo"></a>
-      <nav class="site-top-nav" aria-label="Navegación principal">
-        <a href="/">Inicio</a>
-        <a href="/ofertas">Ofertas</a>
-        <a href="/ofertas/{cat_slug}">Más de {escape(category)}</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <nav class="breadcrumbs" aria-label="Migas de pan">
-      <a href="/">Inicio</a><span class="sep">·</span>
-      <a href="/ofertas">Ofertas</a><span class="sep">·</span>
-      <a href="/ofertas/{cat_slug}">{escape(category)}</a><span class="sep">·</span>
-      <span>{escape(title)}</span>
-    </nav>
-
+  <main class="product-page">
     <article class="product-card">
       <div class="product-layout">
-        <div class="media-card">
-          <img src="{escape(image)}" alt="{escape(title)}" loading="eager">
-        </div>
-        <div class="product-copy">
-          <div class="meta-row">
-            <span class="badge">{escape(category)}</span>
-            <span class="badge">{escape(store)}</span>
-          </div>
-          <h1>{escape(title)}</h1>
-          <div class="price-row">
-            <span class="price-main">{escape(price)}</span>
-            {"<span class='price-old'>" + escape(old_price) + "</span>" if old_price else ""}
-          </div>
-          <div class="metric-row">
-            {f"<span class='metric discount'>Descuento {discount}%</span>" if discount else ""}
-            <span class="metric store">Tienda: {escape(store)}</span>
-            <span class="metric review">Revisado: {escape(checked)}</span>
-          </div>
-          {reason_html}
-          <div class="cta-row">
-            <a class="btn btn-primary" href="{escape(affiliate)}" target="_blank" rel="noopener sponsored nofollow">Ver oferta en {escape(store)}</a>
-            <a class="btn btn-light" href="/ofertas/{cat_slug}">Más ofertas de {escape(category)}</a>
-          </div>
+        {image_block}
+        <div class="product-content">
+          {render_badges(product)}
+          <h1>{html.escape(title)}</h1>
+          <p>{html.escape(description)}</p>
+          {render_price_block(product)}
+          {detail_note}
+          <ul class="product-details">
+            {''.join(details)}
+          </ul>
+          {cta_block}
         </div>
       </div>
     </article>
-
-    <section class="section">
-      <h2>Por qué puede merecer la pena</h2>
-      <p>Esta página está pensada para ofrecer una ficha clara y directa del producto, con datos visibles de precio, descuento y acceso a tienda. Así Google puede rastrear mejor el contenido y tú puedes comparar rápido antes de salir a comprar.</p>
-      <p>Si estás revisando varias alternativas, lo más útil suele ser comparar esta oferta con otros productos de la misma categoría. Por eso enlazamos opciones similares justo debajo para facilitar la navegación y el descubrimiento de nuevos chollos.</p>
-    </section>
-
-    <section class="section">
-      <h2>Productos relacionados</h2>
-      <div class="related-grid">
-        {''.join(related_html)}
-      </div>
-    </section>
-
-    <p class="footer-note">Aviso: los precios y descuentos pueden cambiar con el tiempo. Comprueba siempre el importe final antes de completar la compra en la tienda de destino.</p>
   </main>
 </body>
-</html>'''
-        (page_dir / "index.html").write_text(html_content, encoding="utf-8")
+</html>
+"""
 
-    print(f"Páginas HTML de producto generadas: {len(deals)}")
+
+def load_products() -> list[dict]:
+    if not DATA_PATH.exists():
+        print(f"No existe {DATA_PATH}")
+        return []
+
+    try:
+        return json.loads(DATA_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"Error leyendo {DATA_PATH}: {exc}")
+        return []
+
+
+def should_generate_detail_page(product: dict) -> bool:
+    """
+    Regla crítica:
+    - si detail_enabled es False, NO se genera ficha
+    - esto evita rutas largas innecesarias y fichas poco fiables
+    """
+    return bool(product.get("detail_enabled"))
+
+
+def main() -> None:
+    products = load_products()
+
+    if PRODUCT_DIR.exists():
+        shutil.rmtree(PRODUCT_DIR)
+    PRODUCT_DIR.mkdir(parents=True, exist_ok=True)
+
+    generated = 0
+    skipped = 0
+
+    for product in products:
+        if not should_generate_detail_page(product):
+            skipped += 1
+            continue
+
+        slug = build_safe_product_slug(product)
+        page_dir = PRODUCT_DIR / slug
+        page_dir.mkdir(parents=True, exist_ok=True)
+
+        html_text = build_html(product, slug)
+        (page_dir / "index.html").write_text(html_text, encoding="utf-8")
+        generated += 1
+
+    print(f"Páginas HTML de producto generadas: {generated}")
+    print(f"Productos omitidos sin ficha local: {skipped}")
+
 
 if __name__ == "__main__":
     main()
