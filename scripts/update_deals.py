@@ -178,6 +178,34 @@ def sort_products(products: list[dict]) -> list[dict]:
     )
 
 
+
+def passes_decathlon_filter(product: dict) -> bool:
+    title = (product.get("title") or "").lower()
+    text = f" {title} "
+
+    price = safe_float(product.get("price"))
+    old_price = safe_float(product.get("old_price"))
+    discount = compute_discount_pct(product)
+    savings = (old_price - price) if old_price > price else 0
+
+    premium_terms = ["carbon","cf","sl","pro","racing","team","ultra","factory"]
+    if any(term in text for term in premium_terms):
+        return False
+
+    if discount < 15:
+        return False
+
+    if savings < 20:
+        return False
+
+    is_bike = any(term in text for term in ["bici","bicicleta","mtb","gravel","carretera","rockrider","triban","van rysel"])
+
+    if is_bike:
+        return price <= 1500
+    else:
+        return price <= 300
+
+
 def main() -> None:
     decathlon_raw = load_json(DECATHLON_PATH)
     aliexpress_raw = load_json(ALIEXPRESS_PATH)
@@ -195,6 +223,7 @@ def main() -> None:
     aliexpress_products = [p for p in aliexpress_products if is_valid_product(p)]
 
     decathlon_products = dedupe_products(decathlon_products)
+    decathlon_products = [p for p in decathlon_products if passes_decathlon_filter(p)]
     aliexpress_products = dedupe_products(aliexpress_products)
 
     decathlon_products = sort_products(decathlon_products)[:MAX_DECATHLON]
