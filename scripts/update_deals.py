@@ -4,158 +4,228 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "data"
-DECATHLON_PATH = DATA_DIR / "decathlon_products.json"
-ALIEXPRESS_PATH = DATA_DIR / "aliexpress_products.json"
-AMAZON_PATH = DATA_DIR / "amazon_products.json"
-OUTPUT_PATH = DATA_DIR / "generated_deals.json"
-SUMMARY_PATH = DATA_DIR / "merge_summary.json"
 
-MAX_DECATHLON = 140
-MAX_ALIEXPRESS = 80
-MAX_TOTAL = 220
+DECATHLON_PATH = ROOT / "data" / "decathlon_products.json"
+ALIEXPRESS_PATH = ROOT / "data" / "aliexpress_products.json"
+OUTPUT_PATH = ROOT / "data" / "generated_deals.json"
+SUMMARY_PATH = ROOT / "data" / "merge_summary.json"
+
+MAX_DECATHLON = 100
+MAX_ALIEXPRESS = 60
+MAX_TOTAL = 160
 
 
-def load_json(path: Path):
+def load_json(path: Path) -> list[dict]:
     if not path.exists():
         return []
     try:
-        data = json.loads(path.read_text(encoding='utf-8'))
+        data = json.loads(path.read_text(encoding="utf-8"))
         return data if isinstance(data, list) else []
-    except Exception:
+    except Exception as exc:
+        print(f"[WARN] No se pudo leer {path.name}: {exc}")
         return []
 
 
-def to_float(value, default=0.0):
+def safe_float(value) -> float:
     try:
-        if value in (None, ''):
-            return default
-        return float(str(value).replace('%', '').replace(',', '.'))
+        if value is None or value == "":
+            return 0.0
+        return float(str(value).replace("%", "").replace(",", "."))
     except Exception:
-        return default
+        return 0.0
 
 
-def normalize_decathlon(item: dict) -> dict | None:
-    title = str(item.get('title') or '').strip()
-    url = str(item.get('affiliate_url') or item.get('url') or '').strip()
-    image = str(item.get('image') or '').strip()
-    price = to_float(item.get('price'), default=0.0)
-    if not title or not url or not image or price <= 0:
-        return None
+def compute_discount_pct(product: dict) -> int:
+    explicit = product.get("discount_pct")
+    try:
+        explicit_num = int(float(explicit))
+        if explicit_num > 0:
+            return explicit_num
+    except Exception:
+        pass
 
-    old_price = to_float(item.get('old_price'), default=price)
-    discount_pct = int(round(to_float(item.get('discount_pct'), default=0)))
-    if discount_pct < 0:
-        discount_pct = 0
+    # Para AliExpress el campo suele venir como "discount"
+    ali_discount = product.get("discount")
+    try:
+        ali_discount_num = int(float(str(ali_discount).replace("%", "").replace(",", ".")))
+        if ali_discount_num > 0:
+            return ali_discount_num
+    except Exception:
+        pass
 
-    normalized = {
-        'id': str(item.get('id') or item.get('product_id') or url),
-        'title': title,
-        'brand': str(item.get('brand') or '').strip(),
-        'category': str(item.get('category') or 'ciclismo').strip() or 'ciclismo',
-        'category_hint': str(item.get('category_hint') or '').strip(),
-        'price': price,
-        'old_price': old_price if old_price > 0 else price,
-        'discount_pct': discount_pct,
-        'url': url,
-        'affiliate_url': url,
-        'image': image,
-        'source': 'decathlon',
-        'source_label': 'Decathlon',
-        'detail_enabled': False,
-        'recomendacion': float(item.get('recomendacion') or (discount_pct * 1000 - price)),
-    }
-    return normalized
+    price = safe_float(product.get("price"))
+    old_price = safe_float(product.get("old_price"))
+    if old_price > 0 and price > 0 and old_price >= price:
+        return round((old_price - price) / old_price * 100)
+
+    return 0
 
 
-def normalize_aliexpress(item: dict) -> dict | None:
-    title = str(item.get('title') or '').strip()
-    url = str(item.get('affiliate_url') or item.get('url') or '').strip()
-    image = str(item.get('image') or '').strip()
-    price = to_float(item.get('price'), default=0.0)
-    if not title or not url or not image or price <= 0:
-        return None
-
-    old_price = to_float(item.get('old_price'), default=price)
-    discount_pct = int(round(to_float(item.get('discount_pct') or item.get('discount'), default=0)))
-    if discount_pct == 0 and old_price > price > 0:
-        discount_pct = int(round((old_price - price) / old_price * 100))
-    if discount_pct < 0:
-        discount_pct = 0
-
-    normalized = {
-        'id': str(item.get('id') or url),
-        'title': title,
-        'brand': str(item.get('brand') or item.get('shop_name') or '').strip(),
-        'category': str(item.get('category') or 'Accesorios').strip() or 'Accesorios',
-        'category_hint': str(item.get('category') or '').strip(),
-        'price': price,
-        'old_price': old_price if old_price > 0 else price,
-        'discount_pct': discount_pct,
-        'url': url,
-        'affiliate_url': url,
-        'image': image,
-        'source': 'aliexpress',
-        'source_label': 'AliExpress',
-        'detail_enabled': False,
-        'sales': int(float(item.get('sales') or 0)) if str(item.get('sales') or '0').replace('.', '', 1).isdigit() else 0,
-        'recomendacion': (discount_pct * 1000) + min(int(float(item.get('sales') or 0)), 50000) - price,
-    }
-    return normalized
+def normalize_store_label(product: dict, default_store: str) -> dict:
+    product["source"] = default_store.lower()
+    product["source_label"] = default_store
+    return product
 
 
-def dedupe_by_title_and_source(items: list[dict]) -> list[dict]:
-    seen = set()
-    result = []
-    for item in items:
-        key = (item['source'], item['title'].strip().lower())
-        if key in seen:
+def normalize_product(product: dict, default_store: str) -> dict:
+    p = dict(product)
+
+    normalize_store_label(p, default_store)
+
+    p["title"] = str(p.get("title") or "").strip()
+    p["brand"] = str(p.get("brand") or p.get("shop_name") or "").strip()
+    p["category"] = str(p.get("category") or "ciclismo").strip()
+    p["category_hint"] = str(p.get("category_hint") or p.get("category") or "").strip()
+    p["image"] = str(p.get("image") or "").strip()
+    p["url"] = str(p.get("url") or "").strip()
+    p["affiliate_url"] = str(p.get("affiliate_url") or p.get("url") or "").strip()
+    p["price"] = safe_float(p.get("price"))
+    p["old_price"] = safe_float(p.get("old_price"))
+    p["discount_pct"] = compute_discount_pct(p)
+    p["detail_enabled"] = bool(p.get("detail_enabled", False))
+
+    if not p.get("id"):
+        p["id"] = (
+            p.get("product_id")
+            or p.get("sku")
+            or p.get("affiliate_url")
+            or p.get("url")
+            or p["title"]
+        )
+
+    return p
+
+
+def is_valid_product(product: dict) -> bool:
+    title = (product.get("title") or "").lower()
+    category_hint = (product.get("category_hint") or "").lower()
+    text = f"{title} {category_hint}"
+
+    blocked_terms = [
+        "futbol",
+        "fútbol",
+        "yoga",
+        "baloncesto",
+        "beisbol",
+        "béisbol",
+        "natacion",
+        "natación",
+        "pesca",
+        "padel",
+        "pádel",
+        "boxeo",
+        "judo",
+        "voleibol",
+        "running",
+        "esqui",
+        "esquí",
+        "surf",
+        "bikini",
+        "peluca",
+        "pelucas",
+        "peluquin",
+        "maquillaje",
+        "uñas",
+        "coche",
+        "moto",
+        "motocicleta",
+    ]
+
+    if any(term in text for term in blocked_terms):
+        return False
+
+    if not product.get("title"):
+        return False
+    if not product.get("image"):
+        return False
+    if not product.get("affiliate_url"):
+        return False
+    if product.get("price", 0) <= 0:
+        return False
+
+    return True
+
+
+def dedupe_products(products: list[dict]) -> list[dict]:
+    seen: set[str] = set()
+    result: list[dict] = []
+
+    for product in products:
+        key = str(
+            product.get("id")
+            or product.get("affiliate_url")
+            or product.get("url")
+            or product.get("title")
+        ).strip()
+
+        if not key or key in seen:
             continue
+
         seen.add(key)
-        result.append(item)
+        result.append(product)
+
     return result
+
+
+def sort_products(products: list[dict]) -> list[dict]:
+    return sorted(
+        products,
+        key=lambda x: (
+            x.get("discount_pct", 0),     # más descuento arriba
+            -safe_float(x.get("price")),  # empate: algo de preferencia a precio más alto
+        ),
+        reverse=True,
+    )
 
 
 def main() -> None:
     decathlon_raw = load_json(DECATHLON_PATH)
     aliexpress_raw = load_json(ALIEXPRESS_PATH)
-    amazon_raw = load_json(AMAZON_PATH)
 
-    decathlon = [x for x in (normalize_decathlon(item) for item in decathlon_raw) if x]
-    aliexpress = [x for x in (normalize_aliexpress(item) for item in aliexpress_raw) if x]
+    decathlon_products = [
+        normalize_product(item, "Decathlon")
+        for item in decathlon_raw
+    ]
+    aliexpress_products = [
+        normalize_product(item, "AliExpress")
+        for item in aliexpress_raw
+    ]
 
-    decathlon.sort(key=lambda x: (x.get('discount_pct', 0), -(x.get('price') or 0)), reverse=True)
-    aliexpress.sort(key=lambda x: (x.get('discount_pct', 0), x.get('sales', 0)), reverse=True)
+    decathlon_products = [p for p in decathlon_products if is_valid_product(p)]
+    aliexpress_products = [p for p in aliexpress_products if is_valid_product(p)]
 
-    decathlon = dedupe_by_title_and_source(decathlon)[:MAX_DECATHLON]
-    aliexpress = dedupe_by_title_and_source(aliexpress)[:MAX_ALIEXPRESS]
+    decathlon_products = dedupe_products(decathlon_products)
+    aliexpress_products = dedupe_products(aliexpress_products)
 
-    merged = decathlon + aliexpress
-    merged.sort(key=lambda x: (x.get('recomendacion', 0), x.get('discount_pct', 0)), reverse=True)
-    merged = merged[:MAX_TOTAL]
+    decathlon_products = sort_products(decathlon_products)[:MAX_DECATHLON]
+    aliexpress_products = sort_products(aliexpress_products)[:MAX_ALIEXPRESS]
 
-    OUTPUT_PATH.write_text(json.dumps(merged, ensure_ascii=False, indent=2), encoding='utf-8')
+    all_products = decathlon_products + aliexpress_products
+    all_products = dedupe_products(all_products)
+    all_products = sort_products(all_products)[:MAX_TOTAL]
+
+    OUTPUT_PATH.write_text(
+        json.dumps(all_products, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
     summary = {
-        'decathlon_read': len(decathlon_raw),
-        'aliexpress_read': len(aliexpress_raw),
-        'amazon_read': len(amazon_raw),
-        'decathlon_published': len(decathlon),
-        'aliexpress_published': len(aliexpress),
-        'amazon_published': 0,
-        'total_published': len(merged),
-        'stores': sorted({item['source_label'] for item in merged}),
+        "decathlon_loaded": len(decathlon_raw),
+        "aliexpress_loaded": len(aliexpress_raw),
+        "decathlon_published": len(decathlon_products),
+        "aliexpress_published": len(aliexpress_products),
+        "total_published": len(all_products),
     }
-    SUMMARY_PATH.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
 
-    print(f"Productos Decathlon leídos: {len(decathlon_raw)}")
-    print(f"Productos AliExpress leídos: {len(aliexpress_raw)}")
-    print(f"Productos Amazon leídos: {len(amazon_raw)}")
-    print(f"Productos Decathlon publicados: {len(decathlon)}")
-    print(f"Productos AliExpress publicados: {len(aliexpress)}")
-    print(f"Productos Amazon publicados: 0")
-    print(f"Ofertas publicadas: {len(merged)}")
+    SUMMARY_PATH.write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    print(f"Productos Decathlon publicados: {len(decathlon_products)}")
+    print(f"Productos AliExpress publicados: {len(aliexpress_products)}")
+    print(f"Ofertas publicadas: {len(all_products)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
