@@ -2,6 +2,7 @@
 // CONFIG
 // ==============================
 const DATA_URL = "/data/generated_deals.json";
+const SEO_PAGES_URL = "/data/seo_pages.json";
 
 // ==============================
 // STATE
@@ -9,6 +10,7 @@ const DATA_URL = "/data/generated_deals.json";
 let allDeals = [];
 let filteredDeals = [];
 let favoritesOnly = false;
+let seoPages = [];
 
 // ==============================
 // HELPERS
@@ -35,10 +37,6 @@ function getStoreLabel(deal) {
   return deal.source_label || deal.store || deal.source || "Tienda";
 }
 
-function getCategoryLabel(deal) {
-  return deal.category_hint || deal.category || "Ciclismo";
-}
-
 function getDealUrl(deal) {
   return deal.affiliate_url || deal.url || "#";
 }
@@ -55,7 +53,13 @@ function normalizeText(value) {
   return safeText(value)
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "");
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function slugify(value) {
+  return normalizeText(value)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function getFavoriteKey(deal) {
@@ -94,15 +98,51 @@ function toggleFavorite(deal) {
 function inferBucket(deal) {
   const text = normalizeText(`${deal.title || ""} ${deal.brand || ""} ${deal.category_hint || ""}`);
 
-  if (/(bicicleta|e-bike|ebike|gravel bike|mtb|mountain bike|urbana|carretera)/.test(text)) return "Bicis";
+  if (/(bicicleta|e-bike|ebike|gravel bike|mtb|mountain bike|urbana|carretera|gravel)/.test(text)) return "Bicis";
   if (/(casco|helmet)/.test(text)) return "Cascos";
-  if (/(maillot|culotte|chaqueta|ropa|guantes|camiseta|malla|jersey|cubrezapatillas)/.test(text)) return "Ropa";
-  if (/(luz|luces|faro|rear light|trasera)/.test(text)) return "Luces";
-  if (/(sillin|sillin|manillar|pedal|cadena|freno|rueda|cubierta|camara|potencia|punos|grips|calas)/.test(text)) return "Componentes";
+  if (/(maillot|culotte|chaqueta|ropa|guantes|camiseta|malla|jersey|cubrezapatillas|calcetin|calcetines)/.test(text)) return "Ropa";
+  if (/(luz|luces|faro|rear light|trasera|delantera)/.test(text)) return "Luces";
+  if (/(sillin|manillar|pedal|cadena|freno|rueda|cubierta|camara|potencia|punos|grips|calas)/.test(text)) return "Componentes";
   if (/(herramienta|bomba|inflador|multiherramienta|soporte|portabidon|guardabarros|bolsa|bidon)/.test(text)) return "Accesorios";
   return "Otros";
 }
 
+function getStoreClass(deal) {
+  const store = normalizeText(getStoreLabel(deal));
+  if (store.includes("decathlon")) return "store-pill--decathlon";
+  if (store.includes("aliexpress")) return "store-pill--aliexpress";
+  if (store.includes("amazon")) return "store-pill--amazon";
+  return "store-pill--generic";
+}
+
+// ==============================
+// GUIDE RENDER
+// ==============================
+function renderSeoGuides(pages) {
+  const grid = document.getElementById("seoGuidesGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  pages.forEach((page) => {
+    const card = document.createElement("article");
+    card.className = "seo-guide-home-card";
+    const slug = safeText(page.slug).replace(/^\/+|\/+$/g, "");
+    const href = `/${slug}/`;
+    card.innerHTML = `
+      <div class="seo-guide-home-top">
+        <span class="seo-guide-badge">${safeText(page.kicker || "Guía")}</span>
+      </div>
+      <h3><a href="${href}">${safeText(page.shortLabel || page.introTitle || slug)}</a></h3>
+      <p>${safeText(page.description || page.introText || "")}</p>
+      <a class="seo-guide-cta" href="${href}">Abrir guía</a>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ==============================
+// TEMPLATE RENDER
+// ==============================
 function renderDealCard(deal) {
   const template = document.getElementById("dealCardTemplate");
   if (!template) return document.createElement("div");
@@ -111,7 +151,22 @@ function renderDealCard(deal) {
   const url = getDealUrl(deal);
 
   const storePill = node.querySelector(".store-pill");
-  if (storePill) storePill.textContent = getStoreLabel(deal);
+  if (storePill) {
+    storePill.textContent = getStoreLabel(deal);
+    storePill.classList.add(getStoreClass(deal));
+  }
+
+  const imageBadges = node.querySelector(".image-badges");
+  if (imageBadges) {
+    imageBadges.innerHTML = "";
+    const discount = getDiscountPct(deal);
+    if (discount > 0) {
+      const badge = document.createElement("span");
+      badge.className = "overlay-badge discount";
+      badge.textContent = `-${discount}%`;
+      imageBadges.appendChild(badge);
+    }
+  }
 
   const image = node.querySelector(".deal-image");
   if (image) {
@@ -172,6 +227,7 @@ function renderDealCard(deal) {
   const favoriteBtn = node.querySelector(".favorite-btn");
   if (favoriteBtn) {
     favoriteBtn.textContent = isFavorite(deal) ? "♥" : "♡";
+    favoriteBtn.classList.toggle("is-favorite", isFavorite(deal));
     favoriteBtn.addEventListener("click", (event) => {
       event.stopPropagation();
       toggleFavorite(deal);
@@ -185,6 +241,9 @@ function renderDealCard(deal) {
   return node;
 }
 
+// ==============================
+// FILTERS UI
+// ==============================
 function populateStoreFilter(deals) {
   const select = document.getElementById("storeFilter");
   if (!select) return;
@@ -214,7 +273,7 @@ function populateCategoryChips(deals) {
   const createChip = (label, value) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "chip-btn";
+    btn.className = "filter-chip";
     btn.textContent = label;
     if (current === value) btn.classList.add("is-active");
     btn.addEventListener("click", () => {
@@ -242,6 +301,9 @@ function populateCategoryChips(deals) {
   }
 }
 
+// ==============================
+// FILTER / SORT
+// ==============================
 function applyFilters(deals) {
   const search = normalizeText(document.getElementById("searchInput")?.value || "");
   const store = document.getElementById("storeFilter")?.value || "";
@@ -288,7 +350,7 @@ function buildTopPicks(deals, maxItems = 12) {
     grouped.get(bucket).push(deal);
   });
 
-  for (const [bucket, list] of grouped.entries()) {
+  for (const [, list] of grouped.entries()) {
     list.sort((a, b) => {
       const storeBiasA = getStoreLabel(a) === "Decathlon" ? 50 : 0;
       const storeBiasB = getStoreLabel(b) === "Decathlon" ? 50 : 0;
@@ -296,7 +358,6 @@ function buildTopPicks(deals, maxItems = 12) {
       const scoreB = (getDiscountPct(b) * 1000) + storeBiasB - (Number(b.price) || 0);
       return scoreB - scoreA;
     });
-    grouped.set(bucket, list);
   }
 
   const picks = [];
@@ -313,6 +374,9 @@ function buildTopPicks(deals, maxItems = 12) {
   return picks;
 }
 
+// ==============================
+// RENDER MAIN
+// ==============================
 function renderTopPicks(deals) {
   const container = document.getElementById("topPicksGrid");
   if (!container) return;
@@ -331,10 +395,11 @@ function renderDealsInfo(deals) {
   const info = document.getElementById("dealsInfo");
   if (!info) return;
   const stores = [...new Set(deals.map(getStoreLabel))];
-  info.textContent = `${deals.length} oferta(s) encontrada(s) · ${stores.join(", ")}`;
+  info.textContent = `${deals.length} oferta(s) encontrada(s)${stores.length ? ` · ${stores.join(", ")}` : ""}`;
 }
 
 function renderHomePage(deals) {
+  renderSeoGuides(seoPages);
   renderTopPicks(deals);
   renderDealsGrid(deals);
   renderDealsInfo(deals);
@@ -344,6 +409,66 @@ function renderCurrentRoute(deals) {
   renderHomePage(deals);
 }
 
+// ==============================
+// TOGGLES / MODALS
+// ==============================
+function setupCollapsible(sectionId, bodyId, buttonId, expandedText = "Ocultar", collapsedText = "Mostrar") {
+  const section = document.getElementById(sectionId);
+  const body = document.getElementById(bodyId);
+  const button = document.getElementById(buttonId);
+  if (!section || !body || !button) return;
+
+  const sync = (expanded) => {
+    body.hidden = !expanded;
+    section.classList.toggle("is-collapsed", !expanded);
+    button.setAttribute("aria-expanded", expanded ? "true" : "false");
+    button.textContent = expanded ? expandedText : collapsedText;
+  };
+
+  sync(true);
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    sync(!expanded);
+  });
+}
+
+function setupCookiesModal() {
+  const banner = document.getElementById("cookieBanner");
+  const modal = document.getElementById("cookiesModal");
+  const acceptBtn = document.getElementById("acceptCookiesBtn");
+  const moreInfoBtn = document.getElementById("cookieMoreInfo");
+  const openBtn = document.getElementById("openCookiesPolicy");
+  const closeBtn = document.getElementById("closeCookiesModal");
+  const backdrop = document.querySelector("[data-close-cookies='true']");
+  const key = "chollobici_cookie_notice_accepted";
+
+  if (!banner || !modal) return;
+
+  const openModal = () => {
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("has-modal-open");
+  };
+  const closeModal = () => {
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("has-modal-open");
+  };
+
+  if (!localStorage.getItem(key)) banner.hidden = false;
+  acceptBtn?.addEventListener("click", () => {
+    localStorage.setItem(key, "1");
+    banner.hidden = true;
+  });
+  moreInfoBtn?.addEventListener("click", openModal);
+  openBtn?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+  backdrop?.addEventListener("click", closeModal);
+}
+
+// ==============================
+// EVENTS
+// ==============================
 function attachEvents() {
   document.getElementById("searchInput")?.addEventListener("input", applyFiltersAndRender);
   document.getElementById("storeFilter")?.addEventListener("change", applyFiltersAndRender);
@@ -357,9 +482,14 @@ function attachEvents() {
     if (btn) {
       btn.setAttribute("aria-pressed", favoritesOnly ? "true" : "false");
       btn.textContent = favoritesOnly ? "♥ Solo favoritos" : "♡ Solo favoritos";
+      btn.classList.toggle("is-active", favoritesOnly);
     }
     applyFiltersAndRender();
   });
+
+  setupCollapsible("seoGuidesSection", "seoGuidesBody", "toggleGuidesBtn", "Ocultar", "Mostrar");
+  setupCollapsible("filtersSection", "filtersBody", "toggleFiltersBtn", "Ocultar", "Mostrar");
+  setupCookiesModal();
 }
 
 function applyFiltersAndRender() {
@@ -368,11 +498,23 @@ function applyFiltersAndRender() {
   renderCurrentRoute(filteredDeals);
 }
 
+// ==============================
+// INIT
+// ==============================
 async function init() {
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" });
-    const deals = await res.json();
+    const [dealsRes, seoRes] = await Promise.all([
+      fetch(DATA_URL, { cache: "no-store" }),
+      fetch(SEO_PAGES_URL, { cache: "no-store" }).catch(() => null),
+    ]);
+
+    const deals = await dealsRes.json();
     allDeals = Array.isArray(deals) ? deals : [];
+
+    if (seoRes && seoRes.ok) {
+      seoPages = await seoRes.json();
+      if (!Array.isArray(seoPages)) seoPages = [];
+    }
 
     populateStoreFilter(allDeals);
     populateCategoryChips(allDeals);

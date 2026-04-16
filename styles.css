@@ -1746,3 +1746,54 @@ input:focus, select:focus {
     aspect-ratio: 4 / 3;
   }
 }
+
+
+/* v4.21 fixes */
+.store-pill--decathlon {
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+  color: #fff;
+}
+
+.store-pill--aliexpress {
+  background: linear-gradient(135deg, #e85d04, #ff7b00);
+  color: #fff;
+}
+
+.store-pill--amazon {
+  background: linear-gradient(135deg, #111827, #374151);
+  color: #fff;
+}
+
+.store-pill--generic {
+  background: #0f172a;
+  color: #fff;
+}
+
+.filter-chip {
+  border: 1px solid #d7e4f7;
+  background: #fff;
+  color: #1e293b;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-chip.is-active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 20px rgba(13, 99, 201, .24);
+}
+
+#topPicksGrid.top-picks-grid,
+#dealsGrid.deals-grid {
+  align-items: stretch;
+}
+
+.top-picks-section .deal-card,
+#dealsGrid .deal-card {
+  min-height: 100%;
+}
