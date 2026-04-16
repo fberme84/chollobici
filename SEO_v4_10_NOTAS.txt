@@ -1,0 +1,6 @@
+v4.10 - schema fix Search Console
+- añadido aggregateRating cuando hay rating
+- añadido review cuando hay rating
+- añadido shippingDetails en offers
+- añadido hasMerchantReturnPolicy en offers
+- name del Product saneado y limitado
