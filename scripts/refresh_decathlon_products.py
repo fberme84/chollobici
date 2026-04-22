@@ -1,14 +1,12 @@
 from __future__ import annotations
 
-import html
 import json
 import os
 import re
 import time
-import urllib.parse
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Optional
 
 import requests
 
@@ -47,11 +45,9 @@ def ensure_dirs():
 
 
 def safe_float(value: Optional[str]) -> Optional[float]:
-    if value is None:
+    if not value:
         return None
-    text = normalize(value)
-    if not text:
-        return None
+    text = str(value).strip()
     text = text.replace("€", "").replace("EUR", "").replace(",", ".")
     text = re.sub(r"[^0-9.]", "", text)
     if not text:
@@ -62,55 +58,16 @@ def safe_float(value: Optional[str]) -> Optional[float]:
         return None
 
 
-def normalize(text: Optional[str]) -> str:
-    value = html.unescape(str(text or ""))
-    value = urllib.parse.unquote(value)
-    value = re.sub(r"\s+", " ", value).strip()
-    return value
+def normalize(text):
+    return re.sub(r"\s+", " ", (text or "")).strip()
 
 
-def local_name(tag: str) -> str:
-    tag = str(tag or "")
-    if "}" in tag:
-        tag = tag.rsplit("}", 1)[-1]
-    if ":" in tag:
-        tag = tag.rsplit(":", 1)[-1]
-    return tag.strip().lower()
-
-
-def iter_texts(elem: ET.Element, names: Iterable[str]) -> Iterable[str]:
-    wanted = {n.lower() for n in names}
-    for node in elem.iter():
-        if local_name(node.tag) not in wanted:
-            continue
-        text = normalize(node.text)
-        if text:
-            yield text
-        for attr_name, attr_value in node.attrib.items():
-            if local_name(attr_name) in {"href", "src", "url", "link"}:
-                attr_text = normalize(attr_value)
-                if attr_text:
-                    yield attr_text
-
-
-def extract_first(elem: ET.Element, names: Iterable[str], *, reject_url_like: bool = False) -> str:
-    for value in iter_texts(elem, names):
-        if reject_url_like and is_url_like(value):
-            continue
-        return value
+def extract(product, names):
+    for n in names:
+        node = product.find(n)
+        if node is not None and node.text:
+            return normalize(node.text)
     return ""
-
-
-def extract_url(elem: ET.Element, names: Iterable[str]) -> str:
-    for value in iter_texts(elem, names):
-        if is_url_like(value):
-            return value
-    return ""
-
-
-def is_url_like(value: str) -> bool:
-    text = normalize(value).lower()
-    return text.startswith(("http://", "https://", "//", "www.")) or "afiliacion.decathlon" in text or "decathlon.es" in text
 
 
 def fetch_feed():
@@ -145,11 +102,12 @@ def fetch_feed():
 
 
 def is_cycling(text: str):
-    text = normalize(text).lower()
+    text = text.lower()
     return any(k in text for k in CYCLING_KEYWORDS) and not any(k in text for k in EXCLUDE_KEYWORDS)
 
 
 def quality_filter(p):
+    # temporalmente relajado para diagnosticar
     if not p["image"] or not p["url"] or not p["title"]:
         return False
     if p["price"] is not None and p["price"] < MIN_PRICE:
@@ -173,32 +131,33 @@ def parse_feed(raw):
     context = ET.iterparse(TMP_XML_PATH, events=("end",))
 
     for _, elem in context:
-        if local_name(elem.tag) != "product":
+        if elem.tag != "Product":
             continue
 
         total_products += 1
 
-        name = extract_first(elem, ["Name", "Title", "Product_Name", "ProductName"], reject_url_like=True)
-        brand = extract_first(elem, ["Brand", "Brand_Name", "BrandName"])
-        url = extract_url(elem, ["Url", "URL", "Product_URL", "ProductUrl", "DeepLink", "TrackingUrl", "Link"])
-        image = extract_url(elem, ["Images", "Image", "Image_URL", "ImageUrl", "ImageLink", "Picture", "PictureUrl"])
-        nature = extract_first(elem, ["Product_Nature", "Nature", "Category", "Product_Category", "Google_Product_Category"])
+        name = extract(elem, ["Name", "Title"])
+        brand = extract(elem, ["Brand"])
+        url = extract(elem, ["Url", "URL", "Product_URL", "ProductUrl"])
+        image = extract(elem, ["Images", "Image", "Image_URL", "ImageUrl"])
+        nature = extract(elem, ["Product_Nature", "Nature", "Category"])
 
+        # probamos más nombres posibles de precio
         price = None
         for tag in [
             "Sale_Price", "Current_Price", "Price", "Final_Price", "Promo_Price",
-            "Offer_Price", "Best_Price", "Discount_Price", "Price_Sale", "Amount"
+            "Offer_Price", "Best_Price", "Discount_Price", "Price_Sale"
         ]:
-            price = safe_float(extract_first(elem, [tag]))
+            price = safe_float(extract(elem, [tag]))
             if price is not None:
                 break
 
         old_price = None
         for tag in [
             "Retail_Price", "Original_Price", "Old_Price", "OldPrice",
-            "Price_Before", "Regular_Price", "List_Price", "Price_Original", "Recommended_Price"
+            "Price_Before", "Regular_Price", "List_Price", "Price_Original"
         ]:
-            old_price = safe_float(extract_first(elem, [tag]))
+            old_price = safe_float(extract(elem, [tag]))
             if old_price is not None:
                 break
 
