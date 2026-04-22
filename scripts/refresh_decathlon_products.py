@@ -1,3 +1,6 @@
+print("🚨🚨🚨 SCRIPT NUEVO DECATHLON 🚨🚨🚨")
+raise SystemExit("STOP")
+
 from __future__ import annotations
 
 import html
