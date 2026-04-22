@@ -23,31 +23,28 @@ MIN_PRICE = 10
 MAX_PRODUCTS = 200
 
 CYCLING_KEYWORDS = [
-    "ciclismo", "bicicleta", "bici", "mtb", "gravel", "carretera",
+    "ciclismo", "bicicleta", "bicicletas", "bici", "bicis", "mtb", "gravel", "carretera",
     "maillot", "culotte", "casco", "pedal", "pedales", "sillin", "sillín",
     "manillar", "zapatillas ciclismo", "gafas ciclismo", "luces bici",
     "bidon", "bidón", "portabidon", "portabidón", "cadena bici", "freno bici",
-    "herramienta bici", "rueda bici", "cubierta bici", "cámara bici",
+    "herramienta bici", "rueda bici", "cubierta bici", "cubiertas bici", "cámara bici",
     "cubrezapatillas", "portabultos", "guardabarros", "calas", "look keo",
-    "btwin", "b'twin", "rockrider", "triban", "van rysel"
+    "rockrider", "triban", "van rysel", "btwin", "b'twin", "rodillo", "rodillos",
+    "portabicis", "gps ciclismo", "ciclocomputador", "camelbak", "bikepacking"
 ]
 
 EXCLUDE_KEYWORDS = [
     "fútbol", "running", "pesca", "yoga", "voleibol", "baloncesto",
-    "béisbol", "bikini", "esquí", "pádel", "boxeo", "judo", "natación"
+    "béisbol", "bikini", "esquí", "pádel", "boxeo", "judo", "natación",
+    "golf", "tenis", "surf", "kayak", "piragua", "camping", "senderismo",
+    "musculación", "crossfit", "pilates"
 ]
 
 BRAND_MARKERS = [
-    "DECATHLON", "BTWIN", "B'TWIN", "ROCKRIDER", "TRIBAN", "VAN RYSEL",
-    "KIPSTA", "DOMYOS", "OXELO", "NABAIJI", "QUECHUA", "WEDZE",
-    "FORCLAZ", "INESIS", "SOLOGNAC", "KALENJI", "NYAMBA", "CAPERLAN",
-    "OUTSHOCK", "TARMAK", "ARTENGO", "KIMJALY", "GEOLOGIC", "FOUGANZA"
+    "DECATHLON", "ROCKRIDER", "TRIBAN", "VAN RYSEL", "BTWIN", "B'TWIN",
+    "KIPRUN", "PUMA", "ADIDAS", "SHIMANO", "KALENJI", "ELOPS", "RIVERSIDE",
+    "OXELO", "FOUGANZA", "KIPSTA", "DOMYOS", "QUECHUA", "WEDZE", "ARTENGO"
 ]
-
-BRAND_PATTERN = re.compile(r"\b(" + "|".join(re.escape(x) for x in BRAND_MARKERS) + r")\b")
-IMAGE_RE = re.compile(r"https://contents\.mediadecathlon\.com[^\s<>\"]+")
-AFFILIATE_RE = re.compile(r"https?://afiliacion\.decathlon\.es/tracking/clk\?[^\s<>\"]+")
-PRICE_RE = re.compile(r"\b(\d+\.\d{2})\b")
 
 
 def log(msg: str):
@@ -96,13 +93,14 @@ def fetch_feed():
             r = requests.get(FEED_URL, timeout=(20, 180))
             text = r.text or ""
 
-            DEBUG_RAW_PATH.write_text(text[:20000], encoding="utf-8")
+            DEBUG_RAW_PATH.write_text(text[:50000], encoding="utf-8")
             log(f"[INFO] Status: {r.status_code}")
             log(f"[INFO] Bytes: {len(text)}")
 
             if r.status_code == 200 and len(text) > 1000:
                 TMP_XML_PATH.write_text(text, encoding="utf-8")
                 return text
+
         except Exception as e:
             log(f"[ERROR] {e}")
 
@@ -116,155 +114,238 @@ def is_cycling(text: str):
     return any(k in text for k in CYCLING_KEYWORDS) and not any(k in text for k in EXCLUDE_KEYWORDS)
 
 
-def quality_filter(product: dict) -> bool:
-    if not product.get("image") or not product.get("url") or not product.get("title"):
+def quality_filter(p):
+    if not p["image"] or not p["url"] or not p["title"]:
         return False
-    if product.get("price") is not None and product["price"] < MIN_PRICE:
+    if p["price"] is not None and p["price"] < MIN_PRICE:
         return False
     return True
 
 
-def decode_affiliate_target(url: str) -> str:
-    if not url:
+def canonical_url_from_affiliate(affiliate_url: str) -> str:
+    affiliate_url = normalize(affiliate_url)
+    if not affiliate_url:
         return ""
+
     try:
-        parsed = urllib.parse.urlparse(url)
-        params = urllib.parse.parse_qs(parsed.query)
-        target = params.get("url", [""])[0]
-        return normalize(target)
+        parsed = urllib.parse.urlparse(affiliate_url)
+        qs = urllib.parse.parse_qs(parsed.query)
+        real = qs.get("url", [""])[0]
+        real = normalize(real)
+        if real.startswith("http://") or real.startswith("https://"):
+            return real
     except Exception:
+        pass
+
+    return ""
+
+
+def find_price_before_affiliate(text: str, affiliate_url: str) -> Optional[float]:
+    before = text
+    if affiliate_url and affiliate_url in text:
+        before = text.split(affiliate_url, 1)[0]
+
+    matches = re.findall(r"(?<!\d)(\d{1,4}[.,]\d{2})(?!\d)", before)
+    if not matches:
+        return None
+
+    # coge el último decimal antes de la URL de afiliación, que en este feed suele ser el precio.
+    return safe_float(matches[-1])
+
+
+def clean_title(raw_title: str) -> str:
+    title = normalize(raw_title)
+    if not title:
         return ""
 
-
-def build_title(prefix_text: str, sku: str, brand: str) -> str:
-    text = normalize(prefix_text)
-
-    # recorta descripciones largas y se queda con la parte de nombre más cercana al SKU
-    if sku:
-        m = re.search(rf"\b{re.escape(sku)}\b\s+(.+?)\s+\b{re.escape(sku)}\b", text)
-        if m:
-            candidate = normalize(m.group(1))
-            if candidate:
-                return candidate[:180]
-
-    # fallback: eliminar la marca al inicio y una posible descripción demasiado larga
-    if brand and text.startswith(brand):
-        text = normalize(text[len(brand):])
-
-    # si aparece una imagen, normalmente el nombre útil va al final de la zona previa a la imagen
-    parts = re.split(r"[.!?]\s+", text)
-    if len(parts) > 1:
-        # suele ser mejor la última frase antes de la imagen
-        candidate = normalize(parts[-1])
-        if candidate:
-            return candidate[:180]
-
-    return text[:180]
+    title = re.sub(r"\b\d{7,8}\b", "", title)
+    title = re.sub(r"\b(Talla única|XS|S|M|L|XL|XXL|XXXL|2XL|3XL|4XL)\b$", "", title, flags=re.I)
+    title = re.sub(r"\s+", " ", title).strip(" -|")
+    return title
 
 
-def parse_entry(entry_text: str, brand: str) -> Optional[dict]:
-    image_match = IMAGE_RE.search(entry_text)
-    affiliate_match = AFFILIATE_RE.search(entry_text)
+def extract_title(block: str, image_url: str, affiliate_url: str, sku: str) -> str:
+    work = normalize(block)
 
-    if not image_match or not affiliate_match:
-        return None
-
-    image = normalize(image_match.group(0))
-    affiliate_url = normalize(affiliate_match.group(0))
-    url = decode_affiliate_target(affiliate_url)
-
-    before_image = normalize(entry_text[:image_match.start()])
-    between = normalize(entry_text[image_match.end():affiliate_match.start()])
-
-    sku_match = re.search(r"\b(\d{7})\b", between)
-    sku = sku_match.group(1) if sku_match else ""
-
-    price = None
-    prices = PRICE_RE.findall(between)
-    if prices:
-        # normalmente el último precio antes de la affiliate_url es el bueno
-        price = safe_float(prices[-1])
-
-    title = build_title(before_image + " " + between, sku, brand)
-
-    cycling_text = f"{brand} {title} {between}"
-    if not is_cycling(cycling_text):
-        return None
-
-    product = {
-        "id": url or affiliate_url,
-        "title": title,
-        "brand": brand,
-        "category": "ciclismo",
-        "category_hint": between[:200],
-        "image": image,
-        "url": url,
-        "affiliate_url": affiliate_url,
-        "source": "decathlon",
-        "source_label": "Decathlon",
-        "price": price,
-        "old_price": None,
-        "discount_pct": 0,
-        "recomendacion": 0,
-        "detail_enabled": False,
-        "sku": sku,
-    }
-
-    if product["price"] is not None:
-        product["recomendacion"] = max(0, 1000 - product["price"])
+    if image_url and image_url in work:
+        after_image = work.split(image_url, 1)[1].strip()
     else:
-        product["recomendacion"] = 0
+        after_image = work
 
-    return product if quality_filter(product) else None
+    if affiliate_url and affiliate_url in after_image:
+        before_aff = after_image.split(affiliate_url, 1)[0].strip()
+    else:
+        before_aff = after_image
+
+    if sku:
+        before_aff = re.sub(rf"\b{re.escape(sku)}\b", " ", before_aff)
+        # A veces aparece el SKU dos veces.
+        before_aff = re.sub(rf"\b{re.escape(sku)}\b", " ", before_aff)
+
+    # Intenta cortar por categorías/tienda/talla típicas del feed.
+    cut_markers = [
+        r"\bDecathlon\b",
+        r"\bTalla única\b",
+        r"\bXS\b", r"\bS\b", r"\bM\b", r"\bL\b", r"\bXL\b", r"\bXXL\b", r"\bXXXL\b",
+        r"\b[0-9]{1,3}-[0-9]{1,3}cm\b",
+        r"\b[0-9]{1,2}-[0-9]{1,2}A\b",
+    ]
+    for marker in cut_markers:
+        parts = re.split(marker, before_aff, maxsplit=1, flags=re.I)
+        if parts:
+            before_aff = parts[0].strip()
+
+    # Busca una secuencia razonable tras el SKU.
+    title = before_aff.strip()
+
+    # Si hay demasiada basura delante, intenta quedarte con la parte final útil.
+    pieces = [p.strip(" -|") for p in re.split(r"\s{2,}| \| ", title) if p.strip(" -|")]
+    if pieces:
+        # normalmente el último fragmento largo es el nombre del producto
+        pieces_sorted = sorted(pieces, key=len, reverse=True)
+        candidate = pieces_sorted[0]
+        if len(candidate) >= 8:
+            title = candidate
+
+    title = clean_title(title)
+
+    if len(title) < 8:
+        # último recurso: intentar reconstruir desde URL real
+        real = canonical_url_from_affiliate(affiliate_url)
+        if real:
+            slug = urllib.parse.urlparse(real).path.rstrip("/").split("/")[-1]
+            slug = re.sub(r"^[a-z]\d+[a-z0-9]*$", "", slug, flags=re.I)
+            title = clean_title(slug.replace("-", " "))
+
+    return title
 
 
-def parse_feed(raw: str):
-    text = normalize(raw)
+def extract_brand(block: str) -> str:
+    upper = normalize(block).upper()
+    for brand in BRAND_MARKERS:
+        if upper.startswith(brand):
+            return brand
+    for brand in BRAND_MARKERS:
+        if f" {brand} " in f" {upper} ":
+            return brand
+    return "DECATHLON"
+
+
+def split_blocks(raw: str):
+    text = raw.replace("\r", " ").replace("\n", " ")
+    text = normalize(text)
+
+    # El feed nuevo concatena productos en una sola línea usando la URL de afiliación
+    # como delimitador de cierre de bloque.
+    aff_pattern = re.compile(r"https://afiliacion\.decathlon\.es/tracking/clk\?[^\s<]+", re.I)
+
+    matches = list(aff_pattern.finditer(text))
+    if not matches:
+        return []
+
+    blocks = []
+    start = 0
+    for m in matches:
+        end = m.end()
+        block = text[start:end].strip()
+        if block:
+            blocks.append(block)
+        start = end
+
+    # Si queda cola con otro producto incompleto, la ignoramos.
+    return blocks
+
+
+def parse_feed(raw):
     products = []
     seen = set()
 
-    # trocea el feed a partir de cada marca reconocida
-    matches = list(BRAND_PATTERN.finditer(text))
+    blocks = split_blocks(raw)
 
-    total_blocks = 0
-    valid_products = 0
+    total_blocks = len(blocks)
+    with_title = 0
+    with_url = 0
+    with_image = 0
+    with_price = 0
+    cycling_products = 0
     filtered_out = 0
     duplicates = 0
 
-    for i, match in enumerate(matches):
-        brand = normalize(match.group(1))
-        start = match.start()
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
-        block = text[start:end]
+    for block in blocks:
+        affiliate_match = re.search(r"https://afiliacion\.decathlon\.es/tracking/clk\?[^\s<]+", block, re.I)
+        image_match = re.search(r"https://contents\.mediadecathlon\.com/[^\s<]+", block, re.I)
+        sku_match = re.search(r"\b(\d{7,8})\b", block)
 
-        if "afiliacion.decathlon.es/tracking/clk" not in block:
+        affiliate_url = normalize(affiliate_match.group(0)) if affiliate_match else ""
+        image = normalize(image_match.group(0)) if image_match else ""
+        sku = sku_match.group(1) if sku_match else ""
+
+        url = canonical_url_from_affiliate(affiliate_url)
+        price = find_price_before_affiliate(block, affiliate_url)
+        title = extract_title(block, image, affiliate_url, sku)
+        brand = extract_brand(block)
+
+        if title:
+            with_title += 1
+        if url:
+            with_url += 1
+        if image:
+            with_image += 1
+        if price is not None:
+            with_price += 1
+
+        text_for_filter = f"{title} {brand} {block}"
+
+        if not is_cycling(text_for_filter):
             continue
 
-        total_blocks += 1
-        product = parse_entry(block, brand)
+        cycling_products += 1
 
-        if not product:
-            filtered_out += 1
-            continue
-
-        key = product["url"] or product["affiliate_url"]
+        key = url or affiliate_url or title
         if key in seen:
             duplicates += 1
             continue
         seen.add(key)
 
-        products.append(product)
-        valid_products += 1
+        product = {
+            "id": key,
+            "title": title,
+            "brand": brand,
+            "category": "ciclismo",
+            "category_hint": "",
+            "image": image,
+            "url": url,
+            "affiliate_url": affiliate_url or url,
+            "source": "decathlon",
+            "source_label": "Decathlon",
+            "price": price,
+            "old_price": None,
+            "discount_pct": 0,
+            "recomendacion": 0,
+            "detail_enabled": False,
+        }
+
+        if quality_filter(product):
+            # Puntúa mejor lo barato si no hay descuento explícito.
+            product["recomendacion"] = round(max(0, 100 - (product["price"] or 0)), 2)
+            products.append(product)
+        else:
+            filtered_out += 1
 
     log(f"[INFO] Bloques detectados en feed plano: {total_blocks}")
-    log(f"[INFO] Productos válidos detectados: {valid_products}")
+    log(f"[INFO] Productos con título: {with_title}")
+    log(f"[INFO] Productos con URL: {with_url}")
+    log(f"[INFO] Productos con imagen: {with_image}")
+    log(f"[INFO] Productos con precio detectado: {with_price}")
+    log(f"[INFO] Productos ciclismo detectados: {cycling_products}")
     log(f"[INFO] Duplicados descartados: {duplicates}")
-    log(f"[INFO] Productos descartados por quality_filter/parser: {filtered_out}")
+    log(f"[INFO] Productos descartados por quality_filter: {filtered_out}")
+    log(f"[INFO] Productos válidos antes de limitar: {len(products)}")
 
     products.sort(
         key=lambda x: (
             x.get("recomendacion", 0),
-            -(x.get("price") or 999999)
+            -(x.get("price") or 0)
         ),
         reverse=True
     )
