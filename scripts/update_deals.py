@@ -11,6 +11,32 @@ def load_json(path):
     except:
         return []
 
+def parse_discount(value):
+    if value is None:
+        return 0
+    if isinstance(value, (int, float)):
+        return value
+    if isinstance(value, str):
+        value = value.replace("%", "").strip()
+        try:
+            return float(value)
+        except:
+            return 0
+    return 0
+
+def parse_price(value):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return value
+    if isinstance(value, str):
+        value = value.replace("€", "").replace(",", ".").strip()
+        try:
+            return float(value)
+        except:
+            return None
+    return None
+
 def calculate_score(p):
     score = 0
 
@@ -39,10 +65,15 @@ def calculate_score(p):
 def clean_products(products):
     clean = []
     for p in products:
-        if not p.get("price"):
+        price = parse_price(p.get("price"))
+        if not price:
             continue
-        if p.get("discount", 0) <= 0:
+        p["price"] = price
+
+        discount = parse_discount(p.get("discount"))
+        if discount <= 0:
             continue
+        p["discount"] = discount
 
         if not p.get("image"):
             p["image"] = "/assets/placeholder-product.svg"
@@ -63,19 +94,8 @@ def main():
     all_products = ali + deca + amazon
     all_products.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    out_path = BASE / "data" / "generated_deals.json"
-    with open(out_path, "w", encoding="utf-8") as f:
+    with open(BASE / "data" / "generated_deals.json", "w", encoding="utf-8") as f:
         json.dump(all_products, f, ensure_ascii=False, indent=2)
-
-    summary = {
-        "total": len(all_products),
-        "ali": len(ali),
-        "decathlon": len(deca),
-        "amazon": len(amazon)
-    }
-
-    with open(BASE / "data" / "merge_summary.json", "w", encoding="utf-8") as f:
-        json.dump(summary, f, indent=2)
 
 if __name__ == "__main__":
     main()
