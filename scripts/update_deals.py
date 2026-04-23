@@ -97,15 +97,6 @@ def load_json(path):
         return []
 
 
-def normalize_product(product: dict) -> dict:
-    p = dict(product)
-    p["image"] = clean_image_url(p.get("image", ""))
-    p["category_hint"] = clean_text(p.get("category_hint", ""))
-    p["discount_pct"] = compute_discount_pct(p)
-    p["recomendacion"] = compute_recommendation(p)
-    return p
-
-
 def compute_recommendation(product: dict) -> int:
     price = safe_float(product.get("price"))
     discount_pct = compute_discount_pct(product)
@@ -114,11 +105,8 @@ def compute_recommendation(product: dict) -> int:
     text = f"{title} {category_hint}"
 
     score = 0.0
-
-    # descuento manda, cuando exista
     score += discount_pct * 1.3
 
-    # precio razonable premia
     if price > 0:
         if price <= 15:
             score += 22
@@ -137,7 +125,6 @@ def compute_recommendation(product: dict) -> int:
         elif price <= 600:
             score += 1
 
-    # productos útiles / buscables
     useful_terms = [
         "casco", "maillot", "culotte", "guantes", "luz", "luces", "zapatillas",
         "pedal", "pedales", "cadena", "cubierta", "camara", "cámara", "bidon",
@@ -147,7 +134,6 @@ def compute_recommendation(product: dict) -> int:
     if any(term in text for term in useful_terms):
         score += 6
 
-    # bicis sí, pero sin dominar el ranking
     if is_bike_product(title):
         if price <= 600:
             score += 5
@@ -156,7 +142,6 @@ def compute_recommendation(product: dict) -> int:
         else:
             score -= 8
 
-    # un poco de señal extra de AliExpress si viene con ventas
     sales = product.get("sales")
     try:
         sales_value = int(float(sales))
@@ -167,27 +152,23 @@ def compute_recommendation(product: dict) -> int:
     return max(0, round(score))
 
 
-def interleave_lists(a, b, max_total=40):
+def normalize_product(product: dict) -> dict:
+    p = dict(product)
+    p["image"] = clean_image_url(p.get("image", ""))
+    p["category_hint"] = clean_text(p.get("category_hint", ""))
+    p["discount_pct"] = compute_discount_pct(p)
+    p["recomendacion"] = compute_recommendation(p)
+    return p
+
+
+def strict_interleave(a, b, max_total=40):
     result = []
-    i = j = 0
-    turn_a = True
-
-    while len(result) < max_total and (i < len(a) or j < len(b)):
-        if turn_a and i < len(a):
+    limit = max(len(a), len(b))
+    for i in range(limit):
+        if i < len(a) and len(result) < max_total:
             result.append(a[i])
-            i += 1
-        elif (not turn_a) and j < len(b):
-            result.append(b[j])
-            j += 1
-        elif i < len(a):
-            result.append(a[i])
-            i += 1
-        elif j < len(b):
-            result.append(b[j])
-            j += 1
-
-        turn_a = not turn_a
-
+        if i < len(b) and len(result) < max_total:
+            result.append(b[i])
     return result[:max_total]
 
 
@@ -203,39 +184,18 @@ def main():
 
     print(f"Decathlon tras filtro: {len(decathlon_filtered)}")
 
-    decathlon_sorted = sorted(
-        decathlon_filtered,
-        key=lambda x: (
-            x.get("recomendacion", 0),
-            -safe_float(x.get("price"))
-        ),
-        reverse=True
-    )
+    decathlon_sorted = sorted(decathlon_filtered, key=lambda x: (x.get("recomendacion", 0), -safe_float(x.get("price"))), reverse=True)
+    aliexpress_sorted = sorted(aliexpress_normalized, key=lambda x: (x.get("recomendacion", 0), -safe_float(x.get("price"))), reverse=True)
 
-    aliexpress_sorted = sorted(
-        aliexpress_normalized,
-        key=lambda x: (
-            x.get("recomendacion", 0),
-            -safe_float(x.get("price"))
-        ),
-        reverse=True
-    )
+    deals = strict_interleave(aliexpress_sorted[:TARGET_PER_SOURCE], decathlon_sorted[:TARGET_PER_SOURCE], max_total=MAX_TOTAL)
 
-    primary = interleave_lists(
-        aliexpress_sorted[:TARGET_PER_SOURCE],
-        decathlon_sorted[:TARGET_PER_SOURCE],
-        max_total=MAX_TOTAL
-    )
-
-    if len(primary) < MAX_TOTAL:
-        used_ids = {str(p.get("id")) for p in primary}
+    if len(deals) < MAX_TOTAL:
+        used_ids = {str(p.get("id")) for p in deals}
         remaining = [
             p for p in (aliexpress_sorted[TARGET_PER_SOURCE:] + decathlon_sorted[TARGET_PER_SOURCE:])
             if str(p.get("id")) not in used_ids
         ]
-        primary.extend(remaining[:MAX_TOTAL - len(primary)])
-
-    deals = primary[:MAX_TOTAL]
+        deals.extend(remaining[:MAX_TOTAL - len(deals)])
 
     decathlon_deals = sum(1 for d in deals if is_decathlon(d))
     print(f"TOTAL DEALS FINAL: {len(deals)}")
@@ -249,14 +209,8 @@ def main():
         "total_published": len(deals),
     }
 
-    OUTPUT_PATH.write_text(
-        json.dumps(deals, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
-    MERGE_SUMMARY_PATH.write_text(
-        json.dumps(summary, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
+    OUTPUT_PATH.write_text(json.dumps(deals, indent=2, ensure_ascii=False), encoding="utf-8")
+    MERGE_SUMMARY_PATH.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 if __name__ == "__main__":
