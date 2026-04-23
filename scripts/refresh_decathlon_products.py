@@ -291,9 +291,11 @@ def parse_feed(raw):
             "source_label": "Decathlon",
             "price": price,
             "old_price": None,
+            "discount": 0,
             "discount_pct": 0,
             "recomendacion": 0,
             "detail_enabled": False,
+            "sales": 0,
             "sku": sku,
         }
 
