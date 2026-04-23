@@ -42,33 +42,7 @@ function getDealUrl(deal) {
 }
 
 function getImageUrl(deal) {
-  const image = safeText(deal.image).trim();
-  return image && !image.includes("<") ? image : "/assets/placeholder-product.svg";
-}
-
-function getRecommendation(deal) {
-  const explicit = Number(deal.recomendacion);
-  if (Number.isFinite(explicit) && explicit > 0) return explicit;
-
-  const discount = getDiscountPct(deal);
-  const price = Number(deal.price) || 0;
-  let score = discount * 1.3;
-
-  if (price > 0) {
-    if (price <= 15) score += 22;
-    else if (price <= 30) score += 18;
-    else if (price <= 50) score += 15;
-    else if (price <= 80) score += 12;
-    else if (price <= 120) score += 9;
-    else if (price <= 200) score += 6;
-    else if (price <= 300) score += 3;
-    else if (price <= 600) score += 1;
-  }
-
-  const sales = Number(deal.sales) || 0;
-  score += Math.min(sales / 500, 8);
-
-  return Math.max(0, Math.round(score));
+  return deal.image || "/assets/chollobici-logo.png";
 }
 
 function safeText(value) {
@@ -179,7 +153,6 @@ function renderDealCard(deal) {
   const storePill = node.querySelector(".store-pill");
   if (storePill) {
     storePill.textContent = getStoreLabel(deal);
-    storePill.dataset.source = safeText(deal.source || "").toLowerCase();
     storePill.classList.add(getStoreClass(deal));
   }
 
@@ -358,7 +331,12 @@ function applyFilters(deals) {
     if (sort === "price_asc") return (Number(a.price) || 0) - (Number(b.price) || 0);
     if (sort === "price_desc") return (Number(b.price) || 0) - (Number(a.price) || 0);
     if (sort === "sales") return (Number(b.sales) || 0) - (Number(a.sales) || 0);
-    return getRecommendation(b) - getRecommendation(a);
+
+    const storeBiasA = getStoreLabel(a) === "Decathlon" ? 50 : 0;
+    const storeBiasB = getStoreLabel(b) === "Decathlon" ? 50 : 0;
+    const scoreA = (getDiscountPct(a) * 1000) + storeBiasA - (Number(a.price) || 0);
+    const scoreB = (getDiscountPct(b) * 1000) + storeBiasB - (Number(b.price) || 0);
+    return scoreB - scoreA;
   });
 
   return result;
@@ -373,7 +351,13 @@ function buildTopPicks(deals, maxItems = 12) {
   });
 
   for (const [, list] of grouped.entries()) {
-    list.sort((a, b) => getRecommendation(b) - getRecommendation(a));
+    list.sort((a, b) => {
+      const storeBiasA = getStoreLabel(a) === "Decathlon" ? 50 : 0;
+      const storeBiasB = getStoreLabel(b) === "Decathlon" ? 50 : 0;
+      const scoreA = (getDiscountPct(a) * 1000) + storeBiasA - (Number(a.price) || 0);
+      const scoreB = (getDiscountPct(b) * 1000) + storeBiasB - (Number(b.price) || 0);
+      return scoreB - scoreA;
+    });
   }
 
   const picks = [];
