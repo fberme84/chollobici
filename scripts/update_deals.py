@@ -1,263 +1,81 @@
+
 import json
 from pathlib import Path
 
-DATA_DIR = Path("data")
-DECATHLON_PATH = DATA_DIR / "decathlon_products.json"
-ALIEXPRESS_PATH = DATA_DIR / "aliexpress_products.json"
-OUTPUT_PATH = DATA_DIR / "generated_deals.json"
-MERGE_SUMMARY_PATH = DATA_DIR / "merge_summary.json"
-
-MAX_TOTAL = 40
-TARGET_PER_SOURCE = 20
-
-
-def safe_float(x):
-    try:
-        return float(x)
-    except Exception:
-        return 0.0
-
-
-def compute_discount_pct(product):
-    explicit = product.get("discount_pct")
-    if explicit not in (None, "", 0, "0"):
-        try:
-            return int(float(explicit))
-        except Exception:
-            pass
-
-    raw_discount = str(product.get("discount") or "").replace("%", "").strip()
-    if raw_discount:
-        try:
-            return int(float(raw_discount))
-        except Exception:
-            pass
-
-    price = safe_float(product.get("price"))
-    old = safe_float(product.get("old_price"))
-
-    if old > 0 and price > 0 and price <= old:
-        return round((old - price) / old * 100)
-    return 0
-
-
-def is_decathlon(product):
-    return str(product.get("source") or "").lower() == "decathlon"
-
-
-def clean_image_url(url: str) -> str:
-    text = str(url or "").strip()
-    if "<" in text:
-        text = text.split("<", 1)[0].strip()
-    return text
-
-
-def clean_text(value: str) -> str:
-    text = str(value or "").strip()
-    if "<" in text:
-        text = text.split("<", 1)[0].strip()
-    return text
-
-
-def is_bike_product(title: str) -> bool:
-    text = f" {str(title or '').lower()} "
-    return any(term in text for term in [
-        " bici ", " bicicleta", " mtb", " gravel", " carretera", " rockrider",
-        " triban", " van rysel", " cervélo", " cervelo", " ebike", " e-bike"
-    ])
-
-
-def passes_decathlon_filter(product: dict) -> bool:
-    title = (product.get("title") or "").lower()
-    text = f" {title} "
-
-    price = safe_float(product.get("price"))
-    if not price:
-        return False
-
-    premium_terms = [
-        "s-works", "pinarello", "cervélo", "cervelo", "dogma", "super record",
-        " dura-ace ", " etap ", " axs ", " factory "
-    ]
-    if any(term in text for term in premium_terms):
-        return False
-
-    if is_bike_product(title):
-        return price <= 1500
-
-    return price <= 300
-
+BASE = Path(__file__).resolve().parents[1]
 
 def load_json(path):
-    if not path.exists():
-        return []
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except:
         return []
 
+def calculate_score(p):
+    score = 0
 
-def normalize_product(product: dict) -> dict:
-    p = dict(product)
-    p["image"] = clean_image_url(p.get("image", ""))
-    p["category_hint"] = clean_text(p.get("category_hint", ""))
-    p["discount_pct"] = compute_discount_pct(p)
-    p["recomendacion"] = compute_recommendation(p)
-    return p
+    if p.get("discount"):
+        score += min(p["discount"], 70) * 2
 
+    if p.get("price"):
+        if p["price"] < 20:
+            score += 20
+        elif p["price"] < 50:
+            score += 10
 
-def compute_recommendation(product: dict) -> int:
-    price = safe_float(product.get("price"))
-    discount_pct = compute_discount_pct(product)
-    title = (product.get("title") or "").lower()
-    category_hint = (product.get("category_hint") or "").lower()
-    text = f"{title} {category_hint}"
+    if p.get("image"):
+        score += 10
+    else:
+        score -= 30
 
-    score = 0.0
+    if not p.get("old_price"):
+        score -= 10
 
-    # descuento manda, cuando exista
-    score += discount_pct * 1.3
+    if p.get("sales"):
+        score += min(p["sales"] / 10, 20)
 
-    # precio razonable premia
-    if price > 0:
-        if price <= 15:
-            score += 22
-        elif price <= 30:
-            score += 18
-        elif price <= 50:
-            score += 15
-        elif price <= 80:
-            score += 12
-        elif price <= 120:
-            score += 9
-        elif price <= 200:
-            score += 6
-        elif price <= 300:
-            score += 3
-        elif price <= 600:
-            score += 1
+    return score
 
-    # productos útiles / buscables
-    useful_terms = [
-        "casco", "maillot", "culotte", "guantes", "luz", "luces", "zapatillas",
-        "pedal", "pedales", "cadena", "cubierta", "camara", "cámara", "bidon",
-        "bidón", "portabidon", "portabidón", "herramienta", "rodillo",
-        "sillin", "sillín", "gafas", "bomba", "inflador", "soporte"
-    ]
-    if any(term in text for term in useful_terms):
-        score += 6
+def clean_products(products):
+    clean = []
+    for p in products:
+        if not p.get("price"):
+            continue
+        if p.get("discount", 0) <= 0:
+            continue
 
-    # bicis sí, pero sin dominar el ranking
-    if is_bike_product(title):
-        if price <= 600:
-            score += 5
-        elif price <= 1000:
-            score += 2
-        else:
-            score -= 8
+        if not p.get("image"):
+            p["image"] = "/assets/placeholder-product.svg"
 
-    # un poco de señal extra de AliExpress si viene con ventas
-    sales = product.get("sales")
-    try:
-        sales_value = int(float(sales))
-    except Exception:
-        sales_value = 0
-    score += min(sales_value / 500, 8)
-
-    return max(0, round(score))
-
-
-def interleave_lists(a, b, max_total=40):
-    result = []
-    i = j = 0
-    turn_a = True
-
-    while len(result) < max_total and (i < len(a) or j < len(b)):
-        if turn_a and i < len(a):
-            result.append(a[i])
-            i += 1
-        elif (not turn_a) and j < len(b):
-            result.append(b[j])
-            j += 1
-        elif i < len(a):
-            result.append(a[i])
-            i += 1
-        elif j < len(b):
-            result.append(b[j])
-            j += 1
-
-        turn_a = not turn_a
-
-    return result[:max_total]
-
+        p["score"] = calculate_score(p)
+        clean.append(p)
+    return clean
 
 def main():
-    decathlon = load_json(DECATHLON_PATH)
-    aliexpress = load_json(ALIEXPRESS_PATH)
+    ali = load_json(BASE / "data" / "aliexpress_products.json")
+    deca = load_json(BASE / "data" / "decathlon_products.json")
+    amazon = load_json(BASE / "data" / "amazon_products.json")
 
-    print(f"Decathlon leídos: {len(decathlon)}")
-    print(f"AliExpress leídos: {len(aliexpress)}")
+    ali = clean_products(ali)
+    deca = clean_products(deca)
+    amazon = clean_products(amazon)
 
-    decathlon_filtered = [normalize_product(p) for p in decathlon if passes_decathlon_filter(p)]
-    aliexpress_normalized = [normalize_product(p) for p in aliexpress]
+    all_products = ali + deca + amazon
+    all_products.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    print(f"Decathlon tras filtro: {len(decathlon_filtered)}")
-
-    decathlon_sorted = sorted(
-        decathlon_filtered,
-        key=lambda x: (
-            x.get("recomendacion", 0),
-            -safe_float(x.get("price"))
-        ),
-        reverse=True
-    )
-
-    aliexpress_sorted = sorted(
-        aliexpress_normalized,
-        key=lambda x: (
-            x.get("recomendacion", 0),
-            -safe_float(x.get("price"))
-        ),
-        reverse=True
-    )
-
-    primary = interleave_lists(
-        aliexpress_sorted[:TARGET_PER_SOURCE],
-        decathlon_sorted[:TARGET_PER_SOURCE],
-        max_total=MAX_TOTAL
-    )
-
-    if len(primary) < MAX_TOTAL:
-        used_ids = {str(p.get("id")) for p in primary}
-        remaining = [
-            p for p in (aliexpress_sorted[TARGET_PER_SOURCE:] + decathlon_sorted[TARGET_PER_SOURCE:])
-            if str(p.get("id")) not in used_ids
-        ]
-        primary.extend(remaining[:MAX_TOTAL - len(primary)])
-
-    deals = primary[:MAX_TOTAL]
-
-    decathlon_deals = sum(1 for d in deals if is_decathlon(d))
-    print(f"TOTAL DEALS FINAL: {len(deals)}")
-    print(f"DECATHLON DEALS FINAL: {decathlon_deals}")
+    out_path = BASE / "data" / "generated_deals.json"
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(all_products, f, ensure_ascii=False, indent=2)
 
     summary = {
-        "decathlon_read": len(decathlon),
-        "aliexpress_read": len(aliexpress),
-        "decathlon_published": decathlon_deals,
-        "aliexpress_published": len(deals) - decathlon_deals,
-        "total_published": len(deals),
+        "total": len(all_products),
+        "ali": len(ali),
+        "decathlon": len(deca),
+        "amazon": len(amazon)
     }
 
-    OUTPUT_PATH.write_text(
-        json.dumps(deals, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
-    MERGE_SUMMARY_PATH.write_text(
-        json.dumps(summary, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
-
+    with open(BASE / "data" / "merge_summary.json", "w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2)
 
 if __name__ == "__main__":
     main()
