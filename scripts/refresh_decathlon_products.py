@@ -43,7 +43,8 @@ EXCLUDE_KEYWORDS = [
 BRAND_WORDS = [
     "DECATHLON", "KIPSTA", "DOMYOS", "ROCKRIDER", "TRIBAN", "VAN RYSEL", "BTWIN",
     "B'TWIN", "RIVERSIDE", "WEDZE", "KALENJI", "PUMA", "MINN KOTA", "CYCOLOGY",
-    "VITTORIA", "SHIMANO", "GARMIN", "ELOPS", "OXELO", "FORCLAZ", "QUECHUA"
+    "VITTORIA", "SHIMANO", "GARMIN", "ELOPS", "OXELO", "FORCLAZ", "QUECHUA",
+    "CERVÉLO", "CERVELO", "MICHELIN", "SRAM", "LOOK", "MAVIC"
 ]
 
 
@@ -60,6 +61,23 @@ def normalize(text: Optional[str]) -> str:
     value = urllib.parse.unquote(value)
     value = re.sub(r"\s+", " ", value).strip()
     return value
+
+
+def strip_xml_tail(text: Optional[str]) -> str:
+    value = normalize(text)
+    if "<" in value:
+        value = value.split("<", 1)[0].strip()
+    return value
+
+
+def clean_category_hint(text: Optional[str]) -> str:
+    value = normalize(text)
+    # quitar tags XML
+    value = re.sub(r"</?[^>]+>", " ", value)
+    # cortar bloques técnicos que no aportan
+    value = re.sub(r"\b(SkuID|Seller|Price|Size|URL|Img|Name|Sport)\b.*", "", value, flags=re.I)
+    value = re.sub(r"\s+", " ", value).strip(" -|")
+    return value[:180]
 
 
 def safe_float(value: Optional[str]) -> Optional[float]:
@@ -115,10 +133,10 @@ def is_cycling(text: str):
     return any(k in text for k in CYCLING_KEYWORDS) and not any(k in text for k in EXCLUDE_KEYWORDS)
 
 
-def quality_filter(p):
-    if not p["image"] or not p["url"] or not p["title"]:
+def quality_filter(product: dict) -> bool:
+    if not product["image"] or not product["url"] or not product["title"]:
         return False
-    if p["price"] is not None and p["price"] < MIN_PRICE:
+    if product["price"] is not None and product["price"] < MIN_PRICE:
         return False
     return True
 
@@ -144,15 +162,24 @@ def parse_affiliate_url(url: str):
 
 
 def guess_brand(chunk: str):
-    prefix = normalize(chunk[:120])
+    prefix = normalize(chunk[:140])
     for brand in sorted(BRAND_WORDS, key=len, reverse=True):
         if prefix.upper().startswith(brand.upper()):
-            return brand
-    m = re.match(r"^\s*([A-Z0-9][A-Z0-9'&\- ]{1,30})\b", prefix)
+            return brand.title() if brand.isupper() else brand
+    seller_match = re.search(r"<Seller>([^<]+)</Seller>", chunk, flags=re.I)
+    if seller_match:
+        return normalize(seller_match.group(1))
+    m = re.match(r"^\s*([A-Z0-9ÁÉÍÓÚÜÑ][A-Z0-9ÁÉÍÓÚÜÑ'&\- ]{1,30})\b", prefix)
     return normalize(m.group(1)) if m else ""
 
 
 def extract_price(before_url: str) -> Optional[float]:
+    tag_match = re.search(r"<Price>([^<]+)</Price>", before_url, flags=re.I)
+    if tag_match:
+        price = safe_float(tag_match.group(1))
+        if price is not None:
+            return price
+
     candidates = re.findall(r'(?<![\d])(\d{1,4}[.,]\d{2})(?!\d)', before_url)
     if not candidates:
         return None
@@ -160,12 +187,13 @@ def extract_price(before_url: str) -> Optional[float]:
 
 
 def extract_image(chunk: str) -> str:
-    m = re.search(r'https://contents\.mediadecathlon\.com/\S+', chunk)
-    return normalize(m.group(0)) if m else ""
+    m = re.search(r'https://contents\.mediadecathlon\.com/[^\s<]+', chunk)
+    return strip_xml_tail(m.group(0)) if m else ""
 
 
 def clean_title(title: str, brand: str = "") -> str:
     title = normalize(title)
+    title = re.sub(r"</?[^>]+>", " ", title)
     title = re.sub(r"\s+", " ", title).strip(" -|")
     if brand and title.upper().startswith(brand.upper() + " "):
         title = title[len(brand):].strip(" -|")
@@ -179,7 +207,7 @@ def fallback_title_from_url(url: str) -> str:
         path = urllib.parse.urlparse(url).path
         slug = path.rstrip("/").split("/")[-1]
         slug = re.sub(r"[-_]+", " ", slug)
-        slug = re.sub(r"\b(c\d+|m\d+|\d+)\b", "", slug, flags=re.I)
+        slug = re.sub(r"\b(c\d+|m\d+|x\d+|\d+)\b", "", slug, flags=re.I)
         return clean_title(slug.title())
     except Exception:
         return ""
@@ -215,7 +243,7 @@ def parse_feed(raw):
         image = extract_image(chunk)
         before_aff = chunk[:chunk.rfind(affiliate_url)] if affiliate_url in chunk else chunk
         price = extract_price(before_aff)
-        brand = guess_brand(before_aff)
+        brand = guess_brand(chunk)
 
         real_url, sku, title_from_pca = parse_affiliate_url(affiliate_url)
         title = clean_title(title_from_pca, brand=brand)
@@ -223,7 +251,8 @@ def parse_feed(raw):
         if not title:
             title = fallback_title_from_url(real_url)
 
-        category_hint = normalize(before_aff[-180:])
+        sport_match = re.search(r"<Sport>([^<]+)</Sport>", chunk, flags=re.I)
+        category_hint = clean_category_hint(sport_match.group(1) if sport_match else before_aff[-180:])
         text = f"{brand} {title} {real_url} {category_hint} {chunk}"
 
         if not title:
@@ -263,7 +292,7 @@ def parse_feed(raw):
             "price": price,
             "old_price": None,
             "discount_pct": 0,
-            "recomendacion": price or 0,
+            "recomendacion": 0,
             "detail_enabled": False,
             "sku": sku,
         }
@@ -282,14 +311,6 @@ def parse_feed(raw):
     log(f"[INFO] Duplicados descartados: {duplicates}")
     log(f"[INFO] Productos descartados por quality_filter: {filtered_out}")
     log(f"[INFO] Productos válidos antes de limitar: {len(products)}")
-
-    products.sort(
-        key=lambda x: (
-            x.get("recomendacion") or 0,
-            -(x.get("price") or 0)
-        ),
-        reverse=True
-    )
 
     sample = products[:5]
     DEBUG_PRODUCTS_PATH.write_text(json.dumps(sample, ensure_ascii=False, indent=2), encoding="utf-8")
