@@ -566,8 +566,13 @@ input:focus, select:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  min-height: 34px;
+  min-height: 0;
   margin-bottom: 10px;
+}
+
+.deal-metrics[hidden] {
+  display: none !important;
+  margin-bottom: 0;
 }
 
 .metric {

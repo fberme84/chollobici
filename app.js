@@ -42,7 +42,8 @@ function getDealUrl(deal) {
 }
 
 function getImageUrl(deal) {
-  return deal.image || "/assets/chollobici-logo.png";
+  const value = String(deal.image || "").trim();
+  return value && value.length > 10 ? value : "/assets/chollobici-logo.png";
 }
 
 function safeText(value) {
@@ -189,32 +190,51 @@ function renderDealCard(deal) {
     if (oldPrice && oldPrice !== formatPrice(deal.price)) {
       priceOld.textContent = oldPrice;
       priceOld.hidden = false;
+      priceOld.style.display = "";
     } else {
       priceOld.textContent = "";
       priceOld.hidden = true;
+      priceOld.style.display = "none";
     }
   }
 
   const metricDiscount = node.querySelector(".metric-discount");
+  let hasDiscountMetric = false;
   if (metricDiscount) {
     const discount = getDiscountPct(deal);
     if (discount > 0) {
       metricDiscount.textContent = `-${discount}%`;
       metricDiscount.hidden = false;
+      metricDiscount.style.display = "";
+      hasDiscountMetric = true;
     } else {
+      metricDiscount.textContent = "";
       metricDiscount.hidden = true;
+      metricDiscount.style.display = "none";
     }
   }
 
   const metricSales = node.querySelector(".metric-sales");
+  let hasSalesMetric = false;
   if (metricSales) {
     const sales = Number(deal.sales || 0);
     if (sales > 0) {
       metricSales.textContent = `${sales.toLocaleString("es-ES")} vendidos`;
       metricSales.hidden = false;
+      metricSales.style.display = "";
+      hasSalesMetric = true;
     } else {
+      metricSales.textContent = "";
       metricSales.hidden = true;
+      metricSales.style.display = "none";
     }
+  }
+
+  const metricsRow = node.querySelector(".deal-metrics");
+  if (metricsRow) {
+    const showMetrics = hasDiscountMetric || hasSalesMetric;
+    metricsRow.hidden = !showMetrics;
+    metricsRow.style.display = showMetrics ? "" : "none";
   }
 
   const actionBtn = node.querySelector(".deal-actions a");
