@@ -23,7 +23,6 @@ def compute_discount_pct(p):
     return 0
 
 
-# 🔥 FILTRO DECATHLON CORREGIDO
 def passes_decathlon_filter(product: dict) -> bool:
     title = (product.get("title") or "").lower()
     text = f" {title} "
@@ -32,7 +31,6 @@ def passes_decathlon_filter(product: dict) -> bool:
     if not price:
         return False
 
-    # ❌ evitar gama alta absurda
     premium_terms = ["carbon", "cf", "sl", "pro", "racing", "team", "ultra", "factory"]
     if any(term in text for term in premium_terms):
         return False
@@ -42,11 +40,9 @@ def passes_decathlon_filter(product: dict) -> bool:
         "rockrider", "triban", "van rysel"
     ])
 
-    # 🚴 bicis
     if is_bike:
         return price <= 1500
 
-    # 🎒 resto
     return price <= 300
 
 
@@ -66,18 +62,14 @@ def main():
     print(f"Decathlon leídos: {len(decathlon)}")
     print(f"AliExpress leídos: {len(aliexpress)}")
 
-    # 🔧 aplicar filtro Decathlon
     decathlon_filtered = [
         p for p in decathlon if passes_decathlon_filter(p)
     ]
 
     print(f"Decathlon tras filtro: {len(decathlon_filtered)}")
 
-    # combinar
-    deals = decathlon_filtered + aliexpress
-
-    # ordenar por "recomendación"
-    deals.sort(
+    # ordenar cada fuente
+    aliexpress.sort(
         key=lambda x: (
             compute_discount_pct(x),
             safe_float(x.get("price"))
@@ -85,8 +77,20 @@ def main():
         reverse=True
     )
 
-    # limitar tamaño
-    deals = deals[:40]
+    decathlon_filtered.sort(
+        key=lambda x: safe_float(x.get("price")),
+        reverse=False
+    )
+
+    # mezcla 20/20
+    deals = aliexpress[:20] + decathlon_filtered[:20]
+
+    # rellenar si falta
+    if len(deals) < 40:
+        extra_ali = aliexpress[20:]
+        extra_deca = decathlon_filtered[20:]
+        extras = extra_ali + extra_deca
+        deals.extend(extras[:40 - len(deals)])
 
     print(f"TOTAL DEALS FINAL: {len(deals)}")
 
