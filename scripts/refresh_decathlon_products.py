@@ -301,19 +301,38 @@ def parse_feed(raw):
 def save(products):
     ensure_dirs()
     tmp = OUTPUT_PATH.with_suffix(".tmp")
-    tmp.write_text(json.dumps(products, ensure_ascii=False, indent=2), encoding="utf-8")
+    payload = json.dumps(products, ensure_ascii=False, indent=2)
+    tmp.write_text(payload, encoding="utf-8")
     tmp.replace(OUTPUT_PATH)
+    print("WRITE OK:", OUTPUT_PATH, "BYTES:", len(payload), flush=True)
 
 
 def main():
+    print("=== MAIN DECATHLON START ===", flush=True)
+
     raw = fetch_feed()
+    print("RAW OK:", bool(raw), flush=True)
 
     if not raw:
         log("[WARN] No se pudo obtener feed")
         return
 
     products = parse_feed(raw)
+    print("PARSE COUNT:", len(products), flush=True)
+    if products:
+        print("PARSE FIRST:", products[:2], flush=True)
+    else:
+        print("PARSE FIRST: []", flush=True)
+
     save(products)
+    print("SAVE DONE:", OUTPUT_PATH, flush=True)
+
+    try:
+        saved = json.loads(OUTPUT_PATH.read_text(encoding="utf-8"))
+        print("SAVED COUNT:", len(saved), flush=True)
+        print("SAVED FIRST:", saved[:2], flush=True)
+    except Exception as e:
+        print("READBACK ERROR:", repr(e), flush=True)
 
     log(f"Productos Decathlon finales: {len(products)}")
 
