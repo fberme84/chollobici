@@ -119,6 +119,65 @@ function getStoreClass(deal) {
   return "store-pill--generic";
 }
 
+
+function getRecommendationScore(deal) {
+  const baseScore = Number(deal.recomendacion || deal.score || 0);
+  const discount = getDiscountPct(deal) * 5;
+  const sales = Math.min(Number(deal.sales || 0), 5000) / 100;
+  const price = Number(deal.price || 0);
+  const priceBonus = price > 0 && price < 40 ? 8 : price > 0 && price < 100 ? 4 : 0;
+  return baseScore + discount + sales + priceBonus;
+}
+
+function diversifyByStore(deals, maxConsecutive = 2) {
+  const groups = new Map();
+  deals.forEach((deal) => {
+    const key = getStoreLabel(deal);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(deal);
+  });
+
+  for (const [, list] of groups.entries()) {
+    list.sort((a, b) => getRecommendationScore(b) - getRecommendationScore(a));
+  }
+
+  const result = [];
+  let lastStore = "";
+  let consecutive = 0;
+
+  while ([...groups.values()].some((list) => list.length)) {
+    const candidates = [...groups.entries()]
+      .filter(([, list]) => list.length)
+      .map(([store, list]) => ({ store, deal: list[0] }))
+      .sort((a, b) => getRecommendationScore(b.deal) - getRecommendationScore(a.deal));
+
+    let chosen = candidates.find((item) => !(item.store === lastStore && consecutive >= maxConsecutive));
+    if (!chosen) chosen = candidates[0];
+    if (!chosen) break;
+
+    result.push(chosen.deal);
+    groups.get(chosen.store).shift();
+
+    if (chosen.store === lastStore) {
+      consecutive += 1;
+    } else {
+      lastStore = chosen.store;
+      consecutive = 1;
+    }
+  }
+
+  return result;
+}
+
+function getPriceDropText(deal) {
+  const price = Number(deal.price || 0);
+  const oldPrice = Number(deal.old_price || 0);
+  if (!Number.isFinite(price) || !Number.isFinite(oldPrice) || oldPrice <= price) return "";
+  const diff = oldPrice - price;
+  if (diff < 1) return "";
+  return `Baja ${formatPrice(diff)}`;
+}
+
 // ==============================
 // GUIDE RENDER
 // ==============================
@@ -169,6 +228,14 @@ function renderDealCard(deal) {
       const badge = document.createElement("span");
       badge.className = "overlay-badge discount";
       badge.textContent = `-${discount}%`;
+      imageBadges.appendChild(badge);
+    }
+
+    const score = getRecommendationScore(deal);
+    if (score >= 120) {
+      const badge = document.createElement("span");
+      badge.className = "overlay-badge pick";
+      badge.textContent = "Top del día";
       imageBadges.appendChild(badge);
     }
   }
@@ -238,9 +305,25 @@ function renderDealCard(deal) {
     }
   }
 
+  const metricDrop = node.querySelector(".metric-drop");
+  let hasDropMetric = false;
+  if (metricDrop) {
+    const dropText = getPriceDropText(deal);
+    if (dropText) {
+      metricDrop.textContent = `🔻 ${dropText}`;
+      metricDrop.hidden = false;
+      metricDrop.style.display = "";
+      hasDropMetric = true;
+    } else {
+      metricDrop.textContent = "";
+      metricDrop.hidden = true;
+      metricDrop.style.display = "none";
+    }
+  }
+
   const metricsRow = node.querySelector(".deal-metrics");
   if (metricsRow) {
-    const showMetrics = hasDiscountMetric || hasSalesMetric;
+    const showMetrics = hasDiscountMetric || hasSalesMetric || hasDropMetric;
     metricsRow.hidden = !showMetrics;
     metricsRow.style.display = showMetrics ? "" : "none";
   }
@@ -248,7 +331,7 @@ function renderDealCard(deal) {
   const actionBtn = node.querySelector(".deal-actions a");
   if (actionBtn) {
     actionBtn.href = url;
-    actionBtn.textContent = "Ver en tienda";
+    actionBtn.textContent = `Ver en ${getStoreLabel(deal)}`;
     actionBtn.addEventListener("click", (event) => event.stopPropagation());
   }
 
@@ -360,46 +443,15 @@ function applyFilters(deals) {
     if (sort === "price_desc") return (Number(b.price) || 0) - (Number(a.price) || 0);
     if (sort === "sales") return (Number(b.sales) || 0) - (Number(a.sales) || 0);
 
-    const storeBiasA = getStoreLabel(a) === "Decathlon" ? 50 : 0;
-    const storeBiasB = getStoreLabel(b) === "Decathlon" ? 50 : 0;
-    const scoreA = (getDiscountPct(a) * 1000) + storeBiasA - (Number(a.price) || 0);
-    const scoreB = (getDiscountPct(b) * 1000) + storeBiasB - (Number(b.price) || 0);
-    return scoreB - scoreA;
+    return getRecommendationScore(b) - getRecommendationScore(a);
   });
 
   return result;
 }
 
-function buildTopPicks(deals, maxItems = 12) {
-  const grouped = new Map();
-  deals.forEach((deal) => {
-    const bucket = inferBucket(deal);
-    if (!grouped.has(bucket)) grouped.set(bucket, []);
-    grouped.get(bucket).push(deal);
-  });
-
-  for (const [, list] of grouped.entries()) {
-    list.sort((a, b) => {
-      const storeBiasA = getStoreLabel(a) === "Decathlon" ? 50 : 0;
-      const storeBiasB = getStoreLabel(b) === "Decathlon" ? 50 : 0;
-      const scoreA = (getDiscountPct(a) * 1000) + storeBiasA - (Number(a.price) || 0);
-      const scoreB = (getDiscountPct(b) * 1000) + storeBiasB - (Number(b.price) || 0);
-      return scoreB - scoreA;
-    });
-  }
-
-  const picks = [];
-  let added = true;
-  while (picks.length < maxItems && added) {
-    added = false;
-    for (const [, list] of grouped.entries()) {
-      if (list.length && picks.length < maxItems) {
-        picks.push(list.shift());
-        added = true;
-      }
-    }
-  }
-  return picks;
+function buildTopPicks(deals, maxItems = 8) {
+  const sorted = [...deals].sort((a, b) => getRecommendationScore(b) - getRecommendationScore(a));
+  return diversifyByStore(sorted, 1).slice(0, maxItems);
 }
 
 // ==============================
@@ -416,14 +468,14 @@ function renderDealsGrid(deals) {
   const container = document.getElementById("dealsGrid");
   if (!container) return;
   container.innerHTML = "";
-  deals.slice(0, 60).forEach((deal) => container.appendChild(renderDealCard(deal)));
+  diversifyByStore(deals, 2).slice(0, 48).forEach((deal) => container.appendChild(renderDealCard(deal)));
 }
 
 function renderDealsInfo(deals) {
   const info = document.getElementById("dealsInfo");
   if (!info) return;
   const stores = [...new Set(deals.map(getStoreLabel))];
-  info.textContent = `${deals.length} oferta(s) encontrada(s)${stores.length ? ` · ${stores.join(", ")}` : ""}`;
+  info.textContent = `${deals.length} oferta(s) encontrada(s) · Mostrando hasta 48${stores.length ? ` · ${stores.join(", ")}` : ""}`;
 }
 
 function renderHomePage(deals) {
@@ -549,8 +601,18 @@ async function init() {
     attachEvents();
     applyFiltersAndRender();
 
+    const lastChecked = allDeals
+      .map((deal) => safeText(deal.last_checked))
+      .filter(Boolean)
+      .sort()
+      .reverse()[0];
+
     const lastUpdate = document.getElementById("lastUpdate");
-    if (lastUpdate) lastUpdate.textContent = `Última actualización: ${new Date().toLocaleString("es-ES")}`;
+    if (lastUpdate) {
+      lastUpdate.textContent = lastChecked
+        ? `Última actualización: ${lastChecked}`
+        : `Última actualización: ${new Date().toLocaleDateString("es-ES")}`;
+    }
 
     const currentYear = document.getElementById("currentYear");
     if (currentYear) currentYear.textContent = new Date().getFullYear();
