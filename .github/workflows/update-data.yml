@@ -22,14 +22,24 @@ jobs:
         run: |
           pip install requests
 
+      # -----------------------------
+      # DECATHLON
+      # -----------------------------
       - name: Refresh Decathlon products
+        env:
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: python scripts/refresh_decathlon_products.py
 
       - name: DEBUG FILE AFTER SCRIPT
+        env:
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: |
           python - <<'PY'
           import json
+          import os
           from pathlib import Path
+
+          print("SECRET PRESENT:", bool(os.getenv("DECATHLON_FEED_URL")))
 
           p = Path("data/decathlon_products.json")
           print("AFTER SCRIPT EXISTS:", p.exists())
@@ -42,6 +52,8 @@ jobs:
           PY
 
       - name: DEBUG Decathlon output
+        env:
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: |
           python - <<'PY'
           import json
@@ -69,10 +81,17 @@ jobs:
           name: decathlon-products-json
           path: data/decathlon_products.json
 
+      # -----------------------------
+      # ALIEXPRESS
+      # -----------------------------
       - name: Refresh AliExpress products
+        env:
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: python scripts/update_deals.py
 
       - name: DEBUG final deals
+        env:
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: |
           python - <<'PY'
           import json
@@ -104,6 +123,9 @@ jobs:
           name: generated-deals-json
           path: data/generated_deals.json
 
+      # -----------------------------
+      # COMMIT (si usas repo como storage)
+      # -----------------------------
       - name: Commit data
         run: |
           git config user.name "github-actions"
