@@ -1,0 +1,6 @@
+# Añade este bloque antes del paso de Decathlon en tu workflow
+
+- name: DEBUG LIST FILES
+  run: |
+    echo "=== LISTADO DE FICHEROS ==="
+    ls -R
