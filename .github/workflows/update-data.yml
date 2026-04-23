@@ -26,23 +26,23 @@ jobs:
       # DECATHLON
       # -----------------------------
       - name: Refresh Decathlon products
-          run: python scripts/refresh_decathlon_products.py
+        run: python scripts/refresh_decathlon_products.py
 
-        - name: DEBUG FILE AFTER SCRIPT
-          run: |
-            python - <<'PY'
-            import json
-            from pathlib import Path
+      - name: DEBUG FILE AFTER SCRIPT
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
 
-            p = Path("data/decathlon_products.json")
-            print("AFTER SCRIPT EXISTS:", p.exists())
-            if p.exists():
-                text = p.read_text(encoding="utf-8")
-                print("AFTER SCRIPT BYTES:", len(text))
-                data = json.loads(text)
-                print("AFTER SCRIPT COUNT:", len(data))
-                print("AFTER SCRIPT FIRST:", data[:2])
-            PY
+          p = Path("data/decathlon_products.json")
+          print("AFTER SCRIPT EXISTS:", p.exists())
+          if p.exists():
+              text = p.read_text(encoding="utf-8")
+              print("AFTER SCRIPT BYTES:", len(text))
+              data = json.loads(text)
+              print("AFTER SCRIPT COUNT:", len(data))
+              print("AFTER SCRIPT FIRST:", data[:2])
+          PY
 
       - name: DEBUG Decathlon output
         run: |
