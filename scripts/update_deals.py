@@ -1,20 +1,94 @@
 import json
-import re
 from pathlib import Path
 
 DATA_DIR = Path("data")
-ALIEXPRESS_PATH = DATA_DIR / "aliexpress_products.json"
 DECATHLON_PATH = DATA_DIR / "decathlon_products.json"
-AMAZON_PATH = DATA_DIR / "amazon_products.json"
+ALIEXPRESS_PATH = DATA_DIR / "aliexpress_products.json"
 OUTPUT_PATH = DATA_DIR / "generated_deals.json"
 MERGE_SUMMARY_PATH = DATA_DIR / "merge_summary.json"
 
 MAX_TOTAL = 40
-MAX_PER_SOURCE = 18
-PLACEHOLDER_IMAGE = "/assets/placeholder-product.svg"
+TARGET_PER_SOURCE = 20
 
 
-def load_json(path: Path):
+def safe_float(x):
+    try:
+        return float(x)
+    except Exception:
+        return 0.0
+
+
+def compute_discount_pct(product):
+    explicit = product.get("discount_pct")
+    if explicit not in (None, "", 0, "0"):
+        try:
+            return int(float(explicit))
+        except Exception:
+            pass
+
+    raw_discount = str(product.get("discount") or "").replace("%", "").strip()
+    if raw_discount:
+        try:
+            return int(float(raw_discount))
+        except Exception:
+            pass
+
+    price = safe_float(product.get("price"))
+    old = safe_float(product.get("old_price"))
+
+    if old > 0 and price > 0 and price <= old:
+        return round((old - price) / old * 100)
+    return 0
+
+
+def is_decathlon(product):
+    return str(product.get("source") or "").lower() == "decathlon"
+
+
+def clean_image_url(url: str) -> str:
+    text = str(url or "").strip()
+    if "<" in text:
+        text = text.split("<", 1)[0].strip()
+    return text
+
+
+def clean_text(value: str) -> str:
+    text = str(value or "").strip()
+    if "<" in text:
+        text = text.split("<", 1)[0].strip()
+    return text
+
+
+def is_bike_product(title: str) -> bool:
+    text = f" {str(title or '').lower()} "
+    return any(term in text for term in [
+        " bici ", " bicicleta", " mtb", " gravel", " carretera", " rockrider",
+        " triban", " van rysel", " cervélo", " cervelo", " ebike", " e-bike"
+    ])
+
+
+def passes_decathlon_filter(product: dict) -> bool:
+    title = (product.get("title") or "").lower()
+    text = f" {title} "
+
+    price = safe_float(product.get("price"))
+    if not price:
+        return False
+
+    premium_terms = [
+        "s-works", "pinarello", "cervélo", "cervelo", "dogma", "super record",
+        " dura-ace ", " etap ", " axs ", " factory "
+    ]
+    if any(term in text for term in premium_terms):
+        return False
+
+    if is_bike_product(title):
+        return price <= 1500
+
+    return price <= 300
+
+
+def load_json(path):
     if not path.exists():
         return []
     try:
@@ -23,224 +97,166 @@ def load_json(path: Path):
         return []
 
 
-def clean_text(value):
-    text = str(value or "").strip()
-    if "<" in text:
-        text = text.split("<", 1)[0].strip()
-    return text
+def normalize_product(product: dict) -> dict:
+    p = dict(product)
+    p["image"] = clean_image_url(p.get("image", ""))
+    p["category_hint"] = clean_text(p.get("category_hint", ""))
+    p["discount_pct"] = compute_discount_pct(p)
+    p["recomendacion"] = compute_recommendation(p)
+    return p
 
 
-def clean_url(value):
-    text = clean_text(value)
-    if text.startswith("http://") or text.startswith("https://"):
-        return text
-    return ""
-
-
-def parse_number(value):
-    if value is None:
-        return 0.0
-    if isinstance(value, (int, float)):
-        return float(value)
-    text = str(value).strip()
-    if not text:
-        return 0.0
-    text = text.replace("€", "").replace("EUR", "").replace("%", "").replace("\xa0", " ").strip()
-    text = re.sub(r"[^0-9,.-]", "", text)
-    if text.count(",") and text.count("."):
-        if text.rfind(",") > text.rfind("."):
-            text = text.replace(".", "").replace(",", ".")
-        else:
-            text = text.replace(",", "")
-    else:
-        text = text.replace(",", ".")
-    try:
-        return float(text)
-    except Exception:
-        return 0.0
-
-
-def normalize_source(value):
-    source = clean_text(value).lower()
-    if source in ("manual", "amazon"):
-        return "amazon", "Amazon"
-    if "deca" in source:
-        return "decathlon", "Decathlon"
-    if "ali" in source:
-        return "aliexpress", "AliExpress"
-    if source:
-        return source, source.title()
-    return "otros", "Tienda"
-
-
-def compute_discount_pct(product):
-    explicit = parse_number(product.get("discount_pct") or product.get("discount"))
-    if explicit > 0:
-        return round(explicit)
-    price = parse_number(product.get("price"))
-    old_price = parse_number(product.get("old_price"))
-    if price > 0 and old_price > price:
-        return round(((old_price - price) / old_price) * 100)
-    return 0
-
-
-def get_image(product):
-    image = clean_text(product.get("image"))
-    if image.startswith("http://") or image.startswith("https://"):
-        return image
-    return PLACEHOLDER_IMAGE
-
-
-def compute_score(product):
-    price = parse_number(product.get("price"))
-    old_price = parse_number(product.get("old_price"))
+def compute_recommendation(product: dict) -> int:
+    price = safe_float(product.get("price"))
     discount_pct = compute_discount_pct(product)
-    sales = parse_number(product.get("sales"))
-    title = clean_text(product.get("title")).lower()
+    title = (product.get("title") or "").lower()
+    category_hint = (product.get("category_hint") or "").lower()
+    text = f"{title} {category_hint}"
+
     score = 0.0
 
-    score += discount_pct * 1.4
+    # descuento manda, cuando exista
+    score += discount_pct * 1.3
 
+    # precio razonable premia
     if price > 0:
-        if price <= 20:
+        if price <= 15:
+            score += 22
+        elif price <= 30:
             score += 18
         elif price <= 50:
+            score += 15
+        elif price <= 80:
             score += 12
-        elif price <= 100:
-            score += 8
-        elif price <= 250:
-            score += 5
+        elif price <= 120:
+            score += 9
+        elif price <= 200:
+            score += 6
+        elif price <= 300:
+            score += 3
+        elif price <= 600:
+            score += 1
 
-    if old_price > price > 0:
-        score += 6
-
-    if product.get("image") and product.get("image") != PLACEHOLDER_IMAGE:
-        score += 4
-
-    if sales > 0:
-        score += min(sales / 250, 8)
-
+    # productos útiles / buscables
     useful_terms = [
         "casco", "maillot", "culotte", "guantes", "luz", "luces", "zapatillas",
         "pedal", "pedales", "cadena", "cubierta", "camara", "cámara", "bidon",
-        "bidón", "herramienta", "rodillo", "gafas", "bomba", "soporte", "sillin", "sillín"
+        "bidón", "portabidon", "portabidón", "herramienta", "rodillo",
+        "sillin", "sillín", "gafas", "bomba", "inflador", "soporte"
     ]
-    if any(term in title for term in useful_terms):
-        score += 5
-
-    if product.get("editor_pick"):
+    if any(term in text for term in useful_terms):
         score += 6
+
+    # bicis sí, pero sin dominar el ranking
+    if is_bike_product(title):
+        if price <= 600:
+            score += 5
+        elif price <= 1000:
+            score += 2
+        else:
+            score -= 8
+
+    # un poco de señal extra de AliExpress si viene con ventas
+    sales = product.get("sales")
+    try:
+        sales_value = int(float(sales))
+    except Exception:
+        sales_value = 0
+    score += min(sales_value / 500, 8)
 
     return max(0, round(score))
 
 
-def normalize_product(product, fallback_source=None):
-    source, source_label = normalize_source(product.get("source") or fallback_source)
-    title = clean_text(product.get("title"))
-    url = clean_url(product.get("affiliate_url") or product.get("url"))
-    price = parse_number(product.get("price"))
-    if not title or not url or price <= 0:
-        return None
-
-    old_price = parse_number(product.get("old_price"))
-    if old_price <= price:
-        old_price = 0.0
-
-    normalized = {
-        "id": clean_text(product.get("id") or product.get("asin") or url or title),
-        "title": title,
-        "brand": clean_text(product.get("brand") or product.get("shop_name")),
-        "category": clean_text(product.get("category")),
-        "category_hint": clean_text(product.get("category_hint") or product.get("category")),
-        "price": round(price, 2),
-        "old_price": round(old_price, 2) if old_price > 0 else 0,
-        "discount_pct": compute_discount_pct({**product, "price": price, "old_price": old_price}),
-        "url": url,
-        "affiliate_url": url,
-        "image": get_image(product),
-        "source": source,
-        "source_label": source_label,
-        "detail_enabled": bool(product.get("detail_enabled", True)),
-        "sales": int(parse_number(product.get("sales"))) if parse_number(product.get("sales")) > 0 else 0,
-    }
-    normalized["recomendacion"] = compute_score(normalized)
-    return normalized
-
-
-def dedupe_products(products):
-    seen = set()
+def interleave_lists(a, b, max_total=40):
     result = []
-    for p in products:
-        key = (p.get("source"), p.get("url") or p.get("title"))
-        if key in seen:
-            continue
-        seen.add(key)
-        result.append(p)
-    return result
+    i = j = 0
+    turn_a = True
 
+    while len(result) < max_total and (i < len(a) or j < len(b)):
+        if turn_a and i < len(a):
+            result.append(a[i])
+            i += 1
+        elif (not turn_a) and j < len(b):
+            result.append(b[j])
+            j += 1
+        elif i < len(a):
+            result.append(a[i])
+            i += 1
+        elif j < len(b):
+            result.append(b[j])
+            j += 1
 
-def round_robin_merge(grouped, max_total):
-    result = []
-    source_order = [src for src, items in grouped if items]
-    idx = {src: 0 for src, _ in grouped}
-    while len(result) < max_total and source_order:
-        next_order = []
-        for src, items in grouped:
-            i = idx[src]
-            if i < len(items) and len(result) < max_total:
-                result.append(items[i])
-                idx[src] += 1
-            if idx[src] < len(items):
-                next_order.append(src)
-        if not next_order:
-            break
-        source_order = next_order
+        turn_a = not turn_a
+
     return result[:max_total]
 
 
 def main():
-    raw_sources = {
-        "aliexpress": load_json(ALIEXPRESS_PATH),
-        "decathlon": load_json(DECATHLON_PATH),
-        "amazon": load_json(AMAZON_PATH),
+    decathlon = load_json(DECATHLON_PATH)
+    aliexpress = load_json(ALIEXPRESS_PATH)
+
+    print(f"Decathlon leídos: {len(decathlon)}")
+    print(f"AliExpress leídos: {len(aliexpress)}")
+
+    decathlon_filtered = [normalize_product(p) for p in decathlon if passes_decathlon_filter(p)]
+    aliexpress_normalized = [normalize_product(p) for p in aliexpress]
+
+    print(f"Decathlon tras filtro: {len(decathlon_filtered)}")
+
+    decathlon_sorted = sorted(
+        decathlon_filtered,
+        key=lambda x: (
+            x.get("recomendacion", 0),
+            -safe_float(x.get("price"))
+        ),
+        reverse=True
+    )
+
+    aliexpress_sorted = sorted(
+        aliexpress_normalized,
+        key=lambda x: (
+            x.get("recomendacion", 0),
+            -safe_float(x.get("price"))
+        ),
+        reverse=True
+    )
+
+    primary = interleave_lists(
+        aliexpress_sorted[:TARGET_PER_SOURCE],
+        decathlon_sorted[:TARGET_PER_SOURCE],
+        max_total=MAX_TOTAL
+    )
+
+    if len(primary) < MAX_TOTAL:
+        used_ids = {str(p.get("id")) for p in primary}
+        remaining = [
+            p for p in (aliexpress_sorted[TARGET_PER_SOURCE:] + decathlon_sorted[TARGET_PER_SOURCE:])
+            if str(p.get("id")) not in used_ids
+        ]
+        primary.extend(remaining[:MAX_TOTAL - len(primary)])
+
+    deals = primary[:MAX_TOTAL]
+
+    decathlon_deals = sum(1 for d in deals if is_decathlon(d))
+    print(f"TOTAL DEALS FINAL: {len(deals)}")
+    print(f"DECATHLON DEALS FINAL: {decathlon_deals}")
+
+    summary = {
+        "decathlon_read": len(decathlon),
+        "aliexpress_read": len(aliexpress),
+        "decathlon_published": decathlon_deals,
+        "aliexpress_published": len(deals) - decathlon_deals,
+        "total_published": len(deals),
     }
 
-    normalized_by_source = {}
-    read_summary = {}
-    for source_name, items in raw_sources.items():
-        read_summary[f"{source_name}_read"] = len(items)
-        normalized = [normalize_product(item, source_name) for item in items]
-        normalized = [p for p in normalized if p is not None]
-        normalized = dedupe_products(normalized)
-        normalized.sort(key=lambda x: (x.get("recomendacion", 0), x.get("discount_pct", 0), -x.get("price", 0)), reverse=True)
-        normalized_by_source[source_name] = normalized[:MAX_PER_SOURCE]
-
-    grouped = [
-        ("decathlon", normalized_by_source.get("decathlon", [])),
-        ("amazon", normalized_by_source.get("amazon", [])),
-        ("aliexpress", normalized_by_source.get("aliexpress", [])),
-    ]
-    deals = round_robin_merge(grouped, MAX_TOTAL)
-
-    if len(deals) < MAX_TOTAL:
-        used = {(p.get("source"), p.get("url")) for p in deals}
-        leftovers = []
-        for src in ["decathlon", "amazon", "aliexpress"]:
-            for p in normalized_by_source.get(src, [])[MAX_PER_SOURCE:]:
-                key = (p.get("source"), p.get("url"))
-                if key not in used:
-                    leftovers.append(p)
-        deals.extend(leftovers[: MAX_TOTAL - len(deals)])
-
-    summary = {**read_summary, "total_published": len(deals)}
-    for src in ["decathlon", "amazon", "aliexpress"]:
-        summary[f"{src}_published"] = sum(1 for d in deals if d.get("source") == src)
-
-    OUTPUT_PATH.write_text(json.dumps(deals, ensure_ascii=False, indent=2), encoding="utf-8")
-    MERGE_SUMMARY_PATH.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-
-    print(f"Publicados: {len(deals)}")
-    print(summary)
+    OUTPUT_PATH.write_text(
+        json.dumps(deals, indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
+    MERGE_SUMMARY_PATH.write_text(
+        json.dumps(summary, indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
 
 
 if __name__ == "__main__":

@@ -1,3 +1,15 @@
+
+BLACKLIST = ["futbol","pesca","yoga","baloncesto","running","camping","moto","coche","gimnasio","boxeo"]
+WHITELIST = ["bici","bicicleta","ciclismo","mtb","xco","carretera","gravel","casco","culotte","maillot","pedales","sillin","inflador","portabidon","gafas"]
+
+def is_valid_product(title):
+    t = title.lower()
+    if any(b in t for b in BLACKLIST):
+        return False
+    if any(w in t for w in WHITELIST):
+        return True
+    return True
+
 import json
 import os
 import re
