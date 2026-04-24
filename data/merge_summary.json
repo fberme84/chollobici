@@ -1,12 +1,9 @@
 {
-  "decathlon_read": 31826,
+  "decathlon_read": 200,
   "aliexpress_read": 40,
   "amazon_read": 20,
-  "decathlon_published": 0,
-  "aliexpress_published": 40,
-  "amazon_published": 0,
-  "total_published": 40,
-  "stores": [
-    "AliExpress"
-  ]
+  "decathlon_published": 25,
+  "aliexpress_published": 18,
+  "amazon_published": 5,
+  "total_published": 48
 }
