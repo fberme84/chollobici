@@ -280,7 +280,7 @@ def build_html(product: dict, slug: str) -> str:
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{html.escape(title)} | CholloBici</title>
   <meta name="description" content="{html.escape(description)}">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="{html.escape(canonical, quote=True)}">
   <meta property="og:title" content="{html.escape(title)} | CholloBici">
   <meta property="og:description" content="{html.escape(description)}">
