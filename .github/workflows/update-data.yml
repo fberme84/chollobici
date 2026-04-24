@@ -5,6 +5,9 @@ on:
     - cron: "0 5 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
@@ -20,117 +23,88 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install requests
 
-      # -----------------------------
-      # DECATHLON
-      # -----------------------------
       - name: Refresh Decathlon products
         env:
           DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: python scripts/refresh_decathlon_products.py
 
-      - name: DEBUG FILE AFTER SCRIPT
-        env:
-          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-
-          print("SECRET PRESENT:", bool(os.getenv("DECATHLON_FEED_URL")))
-
-          p = Path("data/decathlon_products.json")
-          print("AFTER SCRIPT EXISTS:", p.exists())
-          if p.exists():
-              text = p.read_text(encoding="utf-8")
-              print("AFTER SCRIPT BYTES:", len(text))
-              data = json.loads(text)
-              print("AFTER SCRIPT COUNT:", len(data))
-              print("AFTER SCRIPT FIRST:", data[:2])
-          PY
-
-      - name: DEBUG Decathlon output
-        env:
-          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          p = Path("data/decathlon_products.json")
-          print("===== DECATHLON DEBUG =====")
-          print("FILE EXISTS:", p.exists())
-
-          if p.exists():
-              data = json.loads(p.read_text(encoding="utf-8"))
-              print("TOTAL PRODUCTS:", len(data))
-              print("FIRST 3:")
-              for i, item in enumerate(data[:3]):
-                  print(f"{i+1} ->", item)
-          else:
-              print("FILE NOT FOUND")
-          print("===========================")
-          PY
-
-      - name: Upload Decathlon JSON
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: decathlon-products-json
-          path: data/decathlon_products.json
-
-      # -----------------------------
-      # ALIEXPRESS
-      # -----------------------------
       - name: Refresh AliExpress products
+        continue-on-error: true
         env:
-          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
+          ALIEXPRESS_API_URL: ${{ secrets.ALIEXPRESS_API_URL }}
+        run: python scripts/refresh_aliexpress_products.py
+
+      - name: Refresh Amazon products
+        env:
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+          AMAZON_PAAPI_ACCESS_KEY: ${{ secrets.AMAZON_PAAPI_ACCESS_KEY }}
+          AMAZON_PAAPI_SECRET_KEY: ${{ secrets.AMAZON_PAAPI_SECRET_KEY }}
+          AMAZON_PAAPI_PARTNER_TAG: ${{ secrets.AMAZON_PAAPI_PARTNER_TAG }}
+          AMAZON_PAAPI_REGION: ${{ secrets.AMAZON_PAAPI_REGION }}
+          AMAZON_PAAPI_HOST: ${{ secrets.AMAZON_PAAPI_HOST }}
+        run: python scripts/refresh_amazon_products.py
+
+      - name: Update merged deals
         run: python scripts/update_deals.py
 
-      - name: DEBUG final deals
-        env:
-          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
+      - name: Generate product pages
+        run: python scripts/generate_static_product_pages.py
+
+      - name: Generate static guides
+        run: python scripts/generate_static_guides.py
+
+      - name: Generate sitemap
+        run: python scripts/generate_sitemap.py
+
+      - name: Debug generated output
+        if: always()
         run: |
           python - <<'PY'
           import json
+          from collections import Counter
           from pathlib import Path
 
-          p = Path("data/generated_deals.json")
-          print("===== FINAL DEALS DEBUG =====")
-          print("FILE EXISTS:", p.exists())
+          deals_path = Path("data/generated_deals.json")
+          summary_path = Path("data/merge_summary.json")
 
-          if p.exists():
-              data = json.loads(p.read_text(encoding="utf-8"))
-              print("TOTAL DEALS:", len(data))
+          print("===== CHOLLOBICI UPDATE DEBUG =====")
+          print("generated_deals exists:", deals_path.exists())
+          if deals_path.exists():
+              deals = json.loads(deals_path.read_text(encoding="utf-8"))
+              print("total deals:", len(deals))
+              print("by source:", dict(Counter(d.get("source", "unknown") for d in deals)))
+              print("first 3:", deals[:3])
 
-              deca = [d for d in data if d.get("source") == "decathlon"]
-              print("DECATHLON DEALS:", len(deca))
-
-              print("FIRST 3 DEALS:")
-              for i, item in enumerate(data[:3]):
-                  print(f"{i+1} ->", item)
-          else:
-              print("FILE NOT FOUND")
-          print("=============================")
+          print("merge_summary exists:", summary_path.exists())
+          if summary_path.exists():
+              print(summary_path.read_text(encoding="utf-8"))
+          print("===================================")
           PY
 
-      - name: Upload final deals JSON
+      - name: Upload generated data artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: generated-deals-json
-          path: data/generated_deals.json
+          name: chollobici-generated-data
+          path: |
+            data/generated_deals.json
+            data/merge_summary.json
+            data/decathlon_products.json
+            data/aliexpress_products.json
+            data/amazon_products.json
+            sitemap.xml
 
-      # -----------------------------
-      # COMMIT (si usas repo como storage)
-      # -----------------------------
-      - name: Commit data
+      - name: Commit generated files
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-
-          git add data/*.json || true
+          git add data/*.json sitemap.xml producto/ || true
+          git add casco* gafas* luces* herramientas* ropa* componentes* accesorios* taller* bolsas* hidratacion* electronica* || true
           git commit -m "Update deals data" || echo "No changes"
           git push || echo "Nothing to push"
