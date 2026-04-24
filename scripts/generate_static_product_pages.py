@@ -85,24 +85,53 @@ def build_canonical(slug: str) -> str:
 def build_product_description(product: dict) -> str:
     title = str(product.get("title") or "Producto ciclista").strip()
     brand = str(product.get("brand") or "").strip()
-    category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
+    category_hint = str(product.get("category_hint") or product.get("category") or "").strip().lower()
     price = format_price(product.get("price"))
     old_price = format_price(product.get("old_price"))
     store = get_store_label(product)
+    discount = product.get("discount_pct")
+    try:
+        discount = int(float(discount))
+    except Exception:
+        discount = calculate_discount_pct(product.get("price"), product.get("old_price"))
 
-    parts = [title]
+    category_map = {
+        "cascos": "casco de ciclismo",
+        "gafas": "gafas de ciclismo",
+        "ropa": "ropa de ciclismo",
+        "luces": "luces para bici",
+        "herramientas": "herramientas para bici",
+        "componentes": "componentes de bicicleta",
+        "taller": "accesorios de taller para bici",
+        "accesorios": "accesorios de ciclismo",
+        "bolsas": "bolsa o accesorio para bicicleta",
+        "hidratación": "accesorio de hidratación para ciclismo",
+        "hidratacion": "accesorio de hidratación para ciclismo",
+        "electrónica": "electrónica para ciclismo",
+        "electronica": "electrónica para ciclismo",
+    }
+    category_text = category_map.get(category_hint, category_hint or "producto de ciclismo")
+
+    bits = []
     if brand:
-        parts.append(f"de {brand}")
-    if category_hint:
-        parts.append(f"en la categoría {category_hint}")
-    if price:
-        parts.append(f"por {price}")
-    if old_price and old_price != price:
-        parts.append(f"antes {old_price}")
-    parts.append(f"en {store}")
+        bits.append(f"{brand} {category_text}")
+    else:
+        bits.append(title)
 
-    text = " ".join(parts)
-    return re.sub(r"\s+", " ", text).strip()
+    if price:
+        bits.append(f"con precio actual de {price}")
+
+    if discount:
+        bits.append(f"y descuento aproximado del {discount}%")
+
+    if old_price and old_price != price:
+        bits.append(f"frente a un precio anterior de {old_price}")
+
+    bits.append(f"disponible en {store}")
+    bits.append("Oferta pensada para ciclistas que buscan una compra útil, económica y fácil de comparar antes de decidir")
+
+    text = ". ".join(bit.strip().rstrip(".") for bit in bits if bit).strip()
+    return re.sub(r"\s+", " ", text).strip() + "."
 
 
 def render_price_block(product: dict) -> str:

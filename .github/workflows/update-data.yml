@@ -98,7 +98,6 @@ jobs:
             data/decathlon_products.json
             data/aliexpress_products.json
             data/amazon_products.json
-            data/decathlon_price_history.json
             sitemap.xml
 
       - name: Commit generated files

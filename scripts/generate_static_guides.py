@@ -52,73 +52,17 @@ def load_json(path: Path):
     return json.loads(path.read_text(encoding='utf-8'))
 
 
-def normalize_search_text(value: str) -> str:
-    value = str(value or '').strip().lower()
-    value = unicodedata.normalize('NFD', value)
-    value = ''.join(ch for ch in value if unicodedata.category(ch) != 'Mn')
-    return value
-
-
-def deal_matches_page(page: dict, deal: dict) -> int:
-    wanted_category = normalize_search_text(page.get('category') or '')
-    title = normalize_search_text(deal.get('title') or '')
-    category = normalize_search_text(deal.get('category') or deal.get('category_hint') or '')
-    text = f"{title} {category}"
-
-    score = 0
-
-    if wanted_category and wanted_category in category:
-        score += 25
-
-    slug = normalize_search_text(page.get('slug') or '')
-    if 'casco' in slug:
-        terms = ['casco', 'helmet', 'proteccion']
-    elif 'gafas' in slug:
-        terms = ['gafas', 'lentes', 'polarizadas', 'fotocromaticas', 'glasses']
-    elif 'luces' in slug:
-        terms = ['luz', 'luces', 'faro', 'usb', 'linterna', 'trasera']
-    else:
-        terms = [wanted_category] if wanted_category else []
-
-    for term in terms:
-        if term and term in text:
-            score += 18
-
-    score += int(deal.get('recomendacion') or 0) // 8
-    score += int(deal.get('discount_pct') or 0) // 5
-
-    if deal.get('image'):
-        score += 2
-    if deal.get('price'):
-        score += 2
-
-    return score
-
-
 def pick_related_deals(page: dict, deals: list[dict]) -> list[tuple[int, dict]]:
-    scored = []
-    for idx, deal in enumerate(deals):
-        score = deal_matches_page(page, deal)
-        if score > 0:
-            scored.append((score, idx, deal))
-
-    scored.sort(key=lambda item: item[0], reverse=True)
-    selected = [(idx, deal) for score, idx, deal in scored[:12]]
-
-    # Fallback: si no hay suficientes coincidencias, completa con mejores productos.
-    if len(selected) < 6:
-        already = {idx for idx, _ in selected}
-        fallback = [
-            (idx, deal)
-            for idx, deal in enumerate(deals)
-            if idx not in already
-        ]
-        fallback.sort(
-            key=lambda item: ((item[1].get('recomendacion') or 0) + (item[1].get('discount_pct') or 0)),
-            reverse=True,
-        )
-        selected.extend(fallback[: 6 - len(selected)])
-
+    category = str(page.get('category') or '').strip().lower()
+    selected = [
+        (idx, deal)
+        for idx, deal in enumerate(deals)
+        if not category or str(deal.get('category') or '').strip().lower() == category
+    ]
+    selected.sort(
+        key=lambda item: ((item[1].get('recomendacion') or 0) + (item[1].get('discount_pct') or 0)),
+        reverse=True,
+    )
     return selected[:12]
 
 
@@ -153,46 +97,38 @@ def render_featured_deals(related_deals: list[tuple[int, dict]]) -> str:
     if not related_deals:
         return ''
     cards: list[str] = []
-    for idx, deal in related_deals[:4]:
+    for idx, deal in related_deals[:2]:
         slug = build_product_slug(deal, idx)
         product_href = f'/producto/{slug}/'
         shop_href = escape(deal.get('affiliate_url') or deal.get('url') or '#', quote=True)
         title = escape(deal.get('title') or 'Producto recomendado')
-        category = escape(deal.get('category') or deal.get('category_hint') or 'Producto recomendado')
-        image = escape(deal.get('image') or '/assets/placeholder-product.svg', quote=True)
+        category = escape(deal.get('category') or 'Producto recomendado')
+        image = escape(deal.get('image') or '/assets/chollobici-logo.png', quote=True)
         price = format_price(deal.get('price'))
-        old_price = format_price(deal.get('old_price'))
-        discount = deal.get('discount_pct') or 0
-        store = escape(get_store_label(deal))
+        reason = escape(deal.get('reason') or '')
 
         price_html = f'<div class="guide-featured-price">{price}</div>' if price else ''
-        old_price_html = f'<span class="guide-featured-old-price">{old_price}</span>' if old_price and old_price != price else ''
-        discount_html = f'<span class="guide-featured-discount">-{int(discount)}%</span>' if discount else ''
-        drop_html = ''
-        if deal.get('is_price_drop') and deal.get('price_drop_eur'):
-            drop_html = f'<span class="guide-featured-drop">Baja {format_price(deal.get("price_drop_eur"))}</span>'
+        reason_html = f'<p class="guide-featured-reason">{reason}</p>' if reason else ''
 
         cards.append(
-            '<article class="guide-featured-card guide-featured-card-pro">'
+            '<article class="guide-featured-card">'
             f'<a href="{product_href}" class="guide-featured-media"><img src="{image}" alt="{title}" loading="lazy"></a>'
             '<div class="guide-featured-content">'
             '<div class="guide-featured-top">'
-            f'<span class="guide-featured-store">{store}</span>'
-            f'{discount_html}{drop_html}'
+            f'<span class="guide-featured-store">{escape(get_store_label(deal))}</span>'
+            f'{price_html}'
             '</div>'
             f'<h3><a href="{product_href}">{title}</a></h3>'
             f'<p class="guide-featured-meta">{category}</p>'
-            '<div class="guide-featured-price-row">'
-            f'{old_price_html}{price_html}'
-            '</div>'
+            f'{reason_html}'
             '<div class="guide-featured-actions">'
-            f'<a href="{product_href}" class="guide-inline-link">Ver análisis</a>'
-            f'<a href="{shop_href}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link guide-shop-link">Ver oferta</a>'
+            f'<a href="{product_href}" class="guide-inline-link">Ver ficha</a>'
+            f'<a href="{shop_href}" target="_blank" rel="noopener sponsored nofollow" class="guide-inline-link">Ver en tienda</a>'
             '</div>'
             '</div>'
             '</article>'
         )
-    return '<div class="guide-featured-grid guide-featured-grid-pro">' + ''.join(cards) + '</div>'
+    return '<div class="guide-featured-grid">' + ''.join(cards) + '</div>'
 
 
 def render_faq(page: dict) -> str:
