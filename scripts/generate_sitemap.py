@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import re
 import unicodedata
@@ -22,31 +21,27 @@ def slugify(text: str) -> str:
     value = "".join(ch for ch in value if unicodedata.category(ch) != "Mn")
     value = re.sub(r"&", " y ", value)
     value = re.sub(r"[^a-z0-9]+", "-", value)
-    value = re.sub(r"-{2,}", "-", value)
     return value.strip("-")
 
 
-def build_safe_product_slug(product: dict) -> str:
-    title = str(product.get("title") or "producto").strip()
-    base = slugify(title)[:70].rstrip("-")
-    unique_source = (
-        str(product.get("product_id") or "")
-        or str(product.get("id") or "")
-        or str(product.get("affiliate_url") or "")
-        or str(product.get("url") or "")
-        or title
+def short_product_slug(title: str, pid: str, max_prefix: int = 42) -> str:
+    prefix = slugify(title)[:max_prefix].rstrip("-")
+    pid = slugify(str(pid))
+    return f"{prefix}-{pid}" if prefix else pid
+
+
+def get_deal_id(deal: dict, index: int) -> str:
+    return str(
+        deal.get("id")
+        or deal.get("asin")
+        or deal.get("url")
+        or deal.get("title")
+        or index
     )
-    unique_hash = hashlib.md5(unique_source.encode("utf-8")).hexdigest()[:10]
-    return f"{base or 'producto'}-{unique_hash}"
 
 
-def load_json(path: Path, default):
-    if not path.exists():
-        return default
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return default
+def build_product_slug(deal: dict, index: int) -> str:
+    return short_product_slug(deal.get('title', ''), get_deal_id(deal, index))
 
 
 def add_url(urls: "OrderedDict[str, dict]", path: str, changefreq: str, priority: str, lastmod: str = "") -> None:
@@ -56,32 +51,25 @@ def add_url(urls: "OrderedDict[str, dict]", path: str, changefreq: str, priority
             "loc": full_url,
             "changefreq": changefreq,
             "priority": priority,
-            "lastmod": lastmod or "",
+            "lastmod": lastmod or ""
         }
 
 
 def main() -> None:
-    deals = load_json(DEALS_PATH, [])
-    seo_pages = load_json(SEO_PAGES_PATH, [])
+    deals = json.loads(DEALS_PATH.read_text(encoding="utf-8"))
+    seo_pages = json.loads(SEO_PAGES_PATH.read_text(encoding="utf-8"))
 
     urls: "OrderedDict[str, dict]" = OrderedDict()
+
     add_url(urls, "/", "daily", "1.0")
 
     for page in seo_pages:
         slug = str(page.get("slug") or "").strip("/")
         if slug:
-            add_url(urls, f"/{slug}/", "weekly", "0.8")
+            add_url(urls, f"/{slug}", "weekly", "0.8")
 
-    for product in deals:
-        if product.get("detail_enabled"):
-            slug = build_safe_product_slug(product)
-            if slug:
-                add_url(urls, f"/producto/{slug}/", "weekly", "0.6")
 
-    lines = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ]
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for item in urls.values():
         lines.append("  <url>")
         lines.append(f"    <loc>{xml_escape(item['loc'])}</loc>")
@@ -91,7 +79,6 @@ def main() -> None:
         lines.append(f"    <priority>{item['priority']}</priority>")
         lines.append("  </url>")
     lines.append("</urlset>")
-
     SITEMAP_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Sitemap generado correctamente con {len(urls)} URLs: {SITEMAP_PATH}")
 

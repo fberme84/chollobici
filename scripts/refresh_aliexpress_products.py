@@ -18,18 +18,7 @@ TRACKING_ID = (os.getenv("ALIEXPRESS_TRACKING_ID") or "").strip()
 BLOCKED_TERMS = [
     "peluca", "pelucas", "peluquin",
     "maquillaje", "uñas",
-    "coche", "moto", "motocicleta",
-    "pesca", "futbol", "fútbol", "baloncesto", "yoga", "pilates",
-    "boxeo", "golf", "tenis", "camping", "senderismo", "trekking",
-    "padel", "pádel", "running", "gimnasio", "fitness"
-]
-
-PREFERRED_TERMS = [
-    "bici", "bicicleta", "ciclismo", "mtb", "xco", "xc", "gravel", "carretera",
-    "casco", "maillot", "culotte", "guantes", "pedales", "calas", "sillin",
-    "sillín", "cadena", "cubierta", "camara", "cámara", "luz", "luces",
-    "bidon", "bidón", "portabidon", "portabidón", "bomba", "inflador",
-    "multiherramienta", "herramienta", "manillar", "rueda", "freno", "gafas"
+    "coche", "moto", "motocicleta"
 ]
 
 
@@ -68,15 +57,12 @@ def is_relevant_product(product: Dict[str, Any], expected_category: str = "") ->
     title = (product.get("product_title") or "").lower()
     category = (product.get("second_level_category_name") or "").lower()
     first_cat = (product.get("first_level_category_name") or "").lower()
-    text = f"{title} {category} {first_cat} {(expected_category or '').lower()}"
+    text = f"{title} {category} {first_cat}"
 
     if any(term in text for term in BLOCKED_TERMS):
         return False
 
-    if "bicic" in text or "cicl" in text:
-        return True
-
-    return any(term in text for term in PREFERRED_TERMS)
+    return True
 
 
 def dedupe_products(products: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -111,21 +97,7 @@ def product_score(product: Dict[str, Any]) -> float:
     volume = to_float(product.get("lastest_volume"), 0.0)
     commission = to_float(product.get("commission_rate"), 0.0)
 
-    text = " ".join([
-        str(product.get("product_title") or "").lower(),
-        str(product.get("second_level_category_name") or "").lower(),
-        str(product.get("first_level_category_name") or "").lower(),
-    ])
-
-    relevance = 0.0
-    if "bicic" in text or "cicl" in text:
-        relevance += 12
-    if any(term in text for term in PREFERRED_TERMS):
-        relevance += 10
-    if any(term in text for term in ["casco", "maillot", "culotte", "luz", "pedal", "cadena", "cubierta", "herramienta", "gafas"]):
-        relevance += 6
-
-    return relevance + discount * 1.8 + min(volume / 1500, 6) + commission
+    return discount * 2 + min(volume / 1000, 20) + commission
 
 
 def canonical_aliexpress_url(url: str) -> str:

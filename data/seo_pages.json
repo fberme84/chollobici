@@ -233,5 +233,116 @@
       "mejores-luces-bici-potentes-baratas",
       "ropa-ciclismo-verano-barata"
     ]
+  },
+  {
+    "slug": "casco-mtb-barato",
+    "category": "Cascos",
+    "kicker": "Guía de compra",
+    "metaTitle": "Casco MTB barato: ofertas y modelos calidad-precio | CholloBici",
+    "introTitle": "Casco MTB barato: cómo elegir una buena oferta sin jugártela",
+    "description": "Guía para encontrar un casco MTB barato con buena relación calidad-precio, ventilación, ajuste cómodo y ofertas actualizadas.",
+    "introText": "Seleccionamos cascos MTB económicos y ofertas relacionadas para ayudarte a comprar mejor sin perder seguridad.",
+    "articleLead": "Un casco MTB barato puede ser una compra muy inteligente si eliges bien. La clave no es comprar el más barato de todos, sino encontrar un modelo cómodo, ventilado y con buen ajuste que realmente sirva para rutas de montaña, caminos y salidas habituales.",
+    "articleParagraphs": [
+      "Para acertar con un casco MTB barato conviene fijarse en tres puntos: sistema de ajuste trasero, ventilación y cobertura de la nuca. En montaña se agradece un casco algo más envolvente que uno urbano básico, especialmente si ruedas por pistas, senderos o terrenos sueltos.",
+      "También es importante revisar si incluye visera, almohadillas reemplazables y tallas claras. Un casco con mal ajuste acabará siendo incómodo y probablemente lo usarás menos, aunque haya costado poco.",
+      "En CholloBici priorizamos modelos con precio razonable, ficha completa y señales de oferta. Si detectamos una bajada de precio o un descuento interesante, la oferta gana prioridad frente a productos genéricos."
+    ],
+    "linksTitle": "Ofertas de cascos MTB y accesorios relacionados",
+    "linksIntro": "Estas ofertas se actualizan desde el catálogo de CholloBici y priorizan cascos, protección y productos útiles para ciclismo de montaña.",
+    "closingTitle": "Consejo final antes de comprar",
+    "closingText": "No compres un casco solo por el descuento. Comprueba talla, ajuste y uso recomendado. Si dudas entre dos opciones, elige la que tenga mejor ajuste y ventilación.",
+    "faq": [
+      [
+        "¿Un casco MTB barato es seguro?",
+        "Puede serlo si cumple normativa, ajusta bien y está pensado para ciclismo. Evita modelos sin información clara."
+      ],
+      [
+        "¿Qué diferencia hay entre casco MTB y casco de carretera?",
+        "El MTB suele cubrir algo más la nuca y puede incluir visera. El de carretera suele priorizar ligereza y ventilación."
+      ],
+      [
+        "¿Cuándo debo cambiar el casco?",
+        "Tras una caída fuerte o si ves grietas, deformaciones o desgaste importante."
+      ]
+    ],
+    "relatedGuideSlugs": [
+      "gafas-ciclismo-baratas",
+      "luces-bici-potentes"
+    ]
+  },
+  {
+    "slug": "gafas-ciclismo-baratas",
+    "category": "Gafas",
+    "kicker": "Guía de compra",
+    "metaTitle": "Gafas de ciclismo baratas: ofertas polarizadas y fotocromáticas | CholloBici",
+    "introTitle": "Gafas de ciclismo baratas: protección, comodidad y precio",
+    "description": "Selección de gafas de ciclismo baratas, polarizadas o fotocromáticas, con consejos para elegir modelos cómodos y útiles.",
+    "introText": "Encuentra gafas de ciclismo económicas para protegerte del sol, viento, polvo e insectos en carretera, MTB o gravel.",
+    "articleLead": "Las gafas de ciclismo baratas son uno de los accesorios con mejor relación utilidad-precio. No solo protegen del sol: también evitan molestias por viento, polvo, ramas, insectos y salpicaduras.",
+    "articleParagraphs": [
+      "Para uso diario, unas gafas ligeras con buena cobertura suelen ser más prácticas que un modelo muy llamativo pero incómodo. Si sales a distintas horas, las lentes fotocromáticas son especialmente interesantes porque se adaptan a los cambios de luz.",
+      "Las gafas polarizadas pueden venir bien en días soleados, aunque para MTB en zonas de sombra algunos ciclistas prefieren lentes claras o intercambiables. Lo importante es que no se empañen fácilmente y que no presionen demasiado con el casco.",
+      "En esta guía damos prioridad a ofertas de gafas pensadas para ciclismo, evitando productos genéricos que no aportan buena visibilidad o sujeción sobre la bici."
+    ],
+    "linksTitle": "Ofertas de gafas de ciclismo",
+    "linksIntro": "Aquí se muestran gafas y accesorios relacionados detectados en CholloBici, priorizando modelos útiles para ciclismo.",
+    "closingTitle": "Consejo final antes de comprar",
+    "closingText": "Si solo vas a comprar unas gafas, busca un modelo cómodo, ligero y con lente versátil. La comodidad suele importar más que el descuento más agresivo.",
+    "faq": [
+      [
+        "¿Merecen la pena las gafas fotocromáticas?",
+        "Sí, si alternas sol y sombra o sales a diferentes horas. Son muy cómodas para MTB y gravel."
+      ],
+      [
+        "¿Polarizadas o fotocromáticas?",
+        "Polarizadas para mucho sol; fotocromáticas para cambios de luz. Para uso mixto, fotocromáticas suelen ser más versátiles."
+      ],
+      [
+        "¿Sirven unas gafas normales?",
+        "Pueden servir, pero las de ciclismo cubren mejor y se sujetan mejor con casco y movimiento."
+      ]
+    ],
+    "relatedGuideSlugs": [
+      "casco-mtb-barato",
+      "luces-bici-potentes"
+    ]
+  },
+  {
+    "slug": "luces-bici-potentes",
+    "category": "Luces",
+    "kicker": "Guía de compra",
+    "metaTitle": "Luces de bici potentes: ofertas USB para ver y ser visto | CholloBici",
+    "introTitle": "Luces de bici potentes: seguridad y visibilidad al mejor precio",
+    "description": "Guía de luces de bici potentes para ciudad, carretera y MTB, con ofertas actualizadas y consejos de compra.",
+    "introText": "Seleccionamos luces delanteras y traseras para bicicleta con buena potencia, carga USB y precio competitivo.",
+    "articleLead": "Una buena luz de bici no es solo para salir de noche. También ayuda a que otros vehículos y ciclistas te vean antes, especialmente en días nublados, túneles, amaneceres y atardeceres.",
+    "articleParagraphs": [
+      "Para elegir luces de bici potentes conviene mirar lúmenes, autonomía, modos de parpadeo, facilidad de montaje y tipo de carga. Para ciudad puede bastar una luz compacta, pero para carretera o caminos oscuros interesa más potencia y una batería fiable.",
+      "La luz trasera es igual de importante que la delantera. Muchas veces una buena luz roja con modo intermitente mejora mucho la visibilidad desde lejos y cuesta poco.",
+      "En CholloBici priorizamos luces con precio razonable, ficha clara y utilidad real para ciclismo, evitando gadgets genéricos poco fiables."
+    ],
+    "linksTitle": "Ofertas de luces para bicicleta",
+    "linksIntro": "Estas ofertas incluyen luces delanteras, traseras y accesorios relacionados para mejorar tu visibilidad en bici.",
+    "closingTitle": "Consejo final antes de comprar",
+    "closingText": "No mires solo la potencia máxima. Revisa autonomía real, soporte al manillar o tija y facilidad de carga. Una luz cómoda se usa más.",
+    "faq": [
+      [
+        "¿Cuántos lúmenes necesito?",
+        "Para ciudad, una luz para ser visto puede ser suficiente. Para rutas oscuras, busca más potencia y buena autonomía."
+      ],
+      [
+        "¿Es necesaria luz trasera?",
+        "Sí. Es clave para que te vean desde atrás, especialmente en carretera y zonas con tráfico."
+      ],
+      [
+        "¿Mejor batería USB o pilas?",
+        "USB suele ser más cómodo y económico a medio plazo."
+      ]
+    ],
+    "relatedGuideSlugs": [
+      "casco-mtb-barato",
+      "gafas-ciclismo-baratas"
+    ]
   }
 ]

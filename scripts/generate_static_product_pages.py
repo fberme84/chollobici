@@ -85,56 +85,24 @@ def build_canonical(slug: str) -> str:
 def build_product_description(product: dict) -> str:
     title = str(product.get("title") or "Producto ciclista").strip()
     brand = str(product.get("brand") or "").strip()
-    category_hint = str(product.get("category_hint") or product.get("category") or "").strip().lower()
+    category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
     price = format_price(product.get("price"))
     old_price = format_price(product.get("old_price"))
     store = get_store_label(product)
-    discount = product.get("discount_pct")
-    try:
-        discount = int(float(discount))
-    except Exception:
-        discount = calculate_discount_pct(product.get("price"), product.get("old_price"))
 
-    category_map = {
-        "cascos": "casco de ciclismo",
-        "gafas": "gafas de ciclismo",
-        "ropa": "ropa de ciclismo",
-        "luces": "luces para bici",
-        "herramientas": "herramientas para bici",
-        "componentes": "componentes de bicicleta",
-        "taller": "accesorios de taller para bici",
-        "accesorios": "accesorios de ciclismo",
-        "bolsas": "bolsa o accesorio para bicicleta",
-        "hidratación": "accesorio de hidratación para ciclismo",
-        "hidratacion": "accesorio de hidratación para ciclismo",
-        "electrónica": "electrónica para ciclismo",
-        "electronica": "electrónica para ciclismo",
-    }
-    category_text = category_map.get(category_hint, category_hint or "producto de ciclismo")
-
-    bits = []
+    parts = [title]
     if brand:
-        bits.append(f"{brand} {category_text}")
-    else:
-        bits.append(title)
-
+        parts.append(f"de {brand}")
+    if category_hint:
+        parts.append(f"en la categoría {category_hint}")
     if price:
-        bits.append(f"con precio actual de {price}")
-
-    if product.get("is_price_drop") and product.get("price_drop_eur"):
-        bits.append(f"con bajada reciente de {format_price(product.get('price_drop_eur'))}")
-
-    if discount:
-        bits.append(f"y descuento aproximado del {discount}%")
-
+        parts.append(f"por {price}")
     if old_price and old_price != price:
-        bits.append(f"frente a un precio anterior de {old_price}")
+        parts.append(f"antes {old_price}")
+    parts.append(f"en {store}")
 
-    bits.append(f"disponible en {store}")
-    bits.append("Oferta pensada para ciclistas que buscan una compra útil, económica y fácil de comparar antes de decidir")
-
-    text = ". ".join(bit.strip().rstrip(".") for bit in bits if bit).strip()
-    return re.sub(r"\s+", " ", text).strip() + "."
+    text = " ".join(parts)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def render_price_block(product: dict) -> str:
@@ -151,19 +119,6 @@ def render_price_block(product: dict) -> str:
         bits.append(f'<span class="product-price">{html.escape(price)}</span>')
     if discount:
         bits.append(f'<span class="product-discount">-{int(discount)}%</span>')
-
-    if product.get("is_price_drop") and product.get("price_drop_eur"):
-        drop = format_price(product.get("price_drop_eur"))
-        prev = format_price(product.get("previous_price"))
-        label = f'Baja {drop}'
-        if prev:
-            label += f' desde {prev}'
-        bits.append(f'<span class="product-price-drop">🔻 {html.escape(label)}</span>')
-
-    if product.get("is_recent_min_price"):
-        min_price = format_price(product.get("min_price_30d"))
-        if min_price:
-            bits.append(f'<span class="product-min-price">Mínimo 30 días: {html.escape(min_price)}</span>')
 
     if not bits:
         return ""
@@ -280,7 +235,7 @@ def build_html(product: dict, slug: str) -> str:
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{html.escape(title)} | CholloBici</title>
   <meta name="description" content="{html.escape(description)}">
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="{html.escape(canonical, quote=True)}">
   <meta property="og:title" content="{html.escape(title)} | CholloBici">
   <meta property="og:description" content="{html.escape(description)}">
@@ -302,8 +257,6 @@ def build_html(product: dict, slug: str) -> str:
     .product-old-price {{ text-decoration:line-through; color:#6b7280; }}
     .product-price {{ font-size:30px; font-weight:800; }}
     .product-discount {{ color:#065f46; background:#d1fae5; padding:6px 10px; border-radius:999px; font-weight:700; }}
-    .product-price-drop {{ color:#991b1b; background:#fee2e2; padding:6px 10px; border-radius:999px; font-weight:800; }}
-    .product-min-price {{ color:#075985; background:#e0f2fe; padding:6px 10px; border-radius:999px; font-weight:700; }}
     .product-details {{ margin:18px 0; padding-left:18px; }}
     .product-details li {{ margin:8px 0; }}
     .product-actions {{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }}
