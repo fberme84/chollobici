@@ -121,6 +121,9 @@ def build_product_description(product: dict) -> str:
     if price:
         bits.append(f"con precio actual de {price}")
 
+    if product.get("is_price_drop") and product.get("price_drop_eur"):
+        bits.append(f"con bajada reciente de {format_price(product.get('price_drop_eur'))}")
+
     if discount:
         bits.append(f"y descuento aproximado del {discount}%")
 
@@ -148,6 +151,19 @@ def render_price_block(product: dict) -> str:
         bits.append(f'<span class="product-price">{html.escape(price)}</span>')
     if discount:
         bits.append(f'<span class="product-discount">-{int(discount)}%</span>')
+
+    if product.get("is_price_drop") and product.get("price_drop_eur"):
+        drop = format_price(product.get("price_drop_eur"))
+        prev = format_price(product.get("previous_price"))
+        label = f'Baja {drop}'
+        if prev:
+            label += f' desde {prev}'
+        bits.append(f'<span class="product-price-drop">🔻 {html.escape(label)}</span>')
+
+    if product.get("is_recent_min_price"):
+        min_price = format_price(product.get("min_price_30d"))
+        if min_price:
+            bits.append(f'<span class="product-min-price">Mínimo 30 días: {html.escape(min_price)}</span>')
 
     if not bits:
         return ""
@@ -286,6 +302,8 @@ def build_html(product: dict, slug: str) -> str:
     .product-old-price {{ text-decoration:line-through; color:#6b7280; }}
     .product-price {{ font-size:30px; font-weight:800; }}
     .product-discount {{ color:#065f46; background:#d1fae5; padding:6px 10px; border-radius:999px; font-weight:700; }}
+    .product-price-drop {{ color:#991b1b; background:#fee2e2; padding:6px 10px; border-radius:999px; font-weight:800; }}
+    .product-min-price {{ color:#075985; background:#e0f2fe; padding:6px 10px; border-radius:999px; font-weight:700; }}
     .product-details {{ margin:18px 0; padding-left:18px; }}
     .product-details li {{ margin:8px 0; }}
     .product-actions {{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }}
