@@ -3,6 +3,8 @@
   "aliexpress_read": 40,
   "amazon_read": 20,
   "decathlon_published": 25,
+  "decathlon_price_drops_published": 0,
+  "decathlon_recent_min_published": 25,
   "aliexpress_published": 18,
   "amazon_published": 5,
   "total_published": 48
