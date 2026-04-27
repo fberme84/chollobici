@@ -1927,3 +1927,9 @@ input:focus, select:focus {
 @media (max-width: 700px){
   .seo-entry-grid{grid-template-columns:1fr;}
 }
+
+
+/* Collapsible móvil */
+.collapsible .content {display:block;}
+.collapsible .toggle {cursor:pointer;}
+@media (max-width:768px){.collapsible .content{display:none;}.collapsible.active .content{display:block;}}

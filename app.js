@@ -518,3 +518,5 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.collapsible .toggle').forEach(t=>{t.addEventListener('click',()=>{t.parentElement.classList.toggle('active');});});});

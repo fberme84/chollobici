@@ -30,6 +30,8 @@ jobs:
         env:
           DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: python scripts/refresh_decathlon_products.py
+      - name: Update Decathlon price history
+        run: python scripts/update_decathlon_price_history.py
 
       - name: Refresh AliExpress products
         continue-on-error: true
