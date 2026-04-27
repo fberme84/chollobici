@@ -209,6 +209,7 @@ def attach_decathlon_price_history(product: dict, history: dict) -> dict:
     previous_price = safe_float(entry.get("previous_price"))
     min_price_30d = safe_float(entry.get("min_price_30d"))
     min_price_all = safe_float(entry.get("min_price_all"))
+    avg_price_30d = safe_float(entry.get("avg_price_30d"))
 
     if previous_price > 0:
         product["previous_price"] = previous_price
@@ -222,6 +223,9 @@ def attach_decathlon_price_history(product: dict, history: dict) -> dict:
 
     if min_price_all > 0:
         product["min_price_all"] = min_price_all
+
+    if avg_price_30d > 0:
+        product["avg_price_30d"] = avg_price_30d
 
     # Pequeño empujón al ranking si Decathlon baja de precio o está en mínimo reciente.
     bonus = 0
@@ -316,9 +320,100 @@ def normalize_product(product: dict) -> dict:
     return p
 
 
+
+def compute_chollometer(product: dict) -> dict:
+    price = safe_float(product.get("price"))
+    discount_pct = max(0, safe_float(product.get("discount_pct")))
+    recommendation = max(0, safe_float(product.get("recomendacion")))
+    source = get_source(product)
+
+    score = min(recommendation, 55) * 0.75
+    reasons = []
+
+    if discount_pct >= 50:
+        score += 22; reasons.append(f"-{round(discount_pct)}%")
+    elif discount_pct >= 35:
+        score += 17; reasons.append(f"-{round(discount_pct)}%")
+    elif discount_pct >= 20:
+        score += 11; reasons.append(f"-{round(discount_pct)}%")
+    elif discount_pct >= 10:
+        score += 6; reasons.append(f"-{round(discount_pct)}%")
+
+    price_change_pct = safe_float(product.get("price_change_pct"))
+    min_price_30d = safe_float(product.get("min_price_30d"))
+    min_price_all = safe_float(product.get("min_price_all"))
+    avg_price_30d = safe_float(product.get("avg_price_30d"))
+
+    if product.get("is_price_drop") and price_change_pct < 0:
+        score += min(abs(price_change_pct) * 1.6, 28)
+        reasons.append(f"baja {abs(price_change_pct):.0f}%")
+
+    if product.get("is_recent_min_price") and min_price_30d > 0:
+        score += 14
+        reasons.append("mínimo 30d")
+
+    if min_price_all > 0 and price > 0 and price <= min_price_all:
+        score += 8
+        reasons.append("mínimo histórico")
+
+    if avg_price_30d and price and price < avg_price_30d:
+        below_avg = (avg_price_30d - price) / avg_price_30d * 100
+        if below_avg >= 5:
+            score += min(below_avg * 0.7, 12)
+            reasons.append(f"{below_avg:.0f}% bajo media")
+
+    sales = product.get("sales") or product.get("lastest_volume")
+    try:
+        sales_value = int(float(str(sales or 0).replace(".", "").replace(",", ".")))
+    except Exception:
+        sales_value = 0
+    if sales_value >= 5000:
+        score += 7; reasons.append("muy vendido")
+    elif sales_value >= 1000:
+        score += 4; reasons.append("vendido")
+
+    rating = safe_float(product.get("rating") or product.get("evaluation_rating"))
+    if rating >= 4.7:
+        score += 5; reasons.append("valoración alta")
+    elif rating >= 4.4:
+        score += 3
+
+    if source == "decathlon" and (product.get("is_price_drop") or product.get("is_recent_min_price")):
+        score += 5
+    elif source == "amazon":
+        score += 3
+
+    if price > 0:
+        if is_bike_product(product.get("title")) and price > 1500 and not product.get("is_price_drop"):
+            score -= 12
+        elif price > 300 and discount_pct < 10 and not product.get("is_price_drop"):
+            score -= 8
+
+    score = max(0, min(100, round(score)))
+    if score >= 85:
+        label = "Chollo TOP"
+    elif score >= 70:
+        label = "Muy buen precio"
+    elif score >= 55:
+        label = "Buen precio"
+    elif product.get("is_recent_min_price"):
+        label = "Mínimo reciente"
+    else:
+        label = "Precio interesante"
+
+    product["chollometer_score"] = score
+    product["chollometer_label"] = label
+    product["chollometer_reasons"] = list(dict.fromkeys([r for r in reasons if r]))[:3]
+    product["recomendacion"] = max(int(product.get("recomendacion", 0) or 0), score)
+    return product
+
+
+
 def sort_key(product):
     return (
-        product.get("recomendacion", 0),
+        product.get("chollometer_score", product.get("recomendacion", 0)),
+        product.get("is_price_drop", False),
+        product.get("is_recent_min_price", False),
         relevance_score(product),
         product.get("discount_pct", 0),
         -safe_float(product.get("price"))
@@ -362,12 +457,12 @@ def main():
     decathlon_history = load_json_dict(DECATHLON_HISTORY_PATH)
 
     decathlon_filtered = [
-        attach_decathlon_price_history(normalize_product(p), decathlon_history)
+        compute_chollometer(attach_decathlon_price_history(normalize_product(p), decathlon_history))
         for p in decathlon
         if passes_decathlon_filter(p)
     ]
-    aliexpress_filtered = [normalize_product(p) for p in aliexpress if passes_base_filter(p)]
-    amazon_filtered = [normalize_product(p) for p in amazon if passes_base_filter(p)]
+    aliexpress_filtered = [compute_chollometer(normalize_product(p)) for p in aliexpress if passes_base_filter(p)]
+    amazon_filtered = [compute_chollometer(normalize_product(p)) for p in amazon if passes_base_filter(p)]
 
     decathlon_sorted = sorted(decathlon_filtered, key=sort_key, reverse=True)
     aliexpress_sorted = sorted(aliexpress_filtered, key=sort_key, reverse=True)
@@ -399,6 +494,8 @@ def main():
         "decathlon_published": sum(1 for d in deals if d.get("source") == "decathlon"),
         "decathlon_price_drops_published": sum(1 for d in deals if d.get("source") == "decathlon" and d.get("is_price_drop")),
         "decathlon_recent_min_published": sum(1 for d in deals if d.get("source") == "decathlon" and d.get("is_recent_min_price")),
+        "chollometer_top_published": sum(1 for d in deals if d.get("chollometer_score", 0) >= 85),
+        "chollometer_avg_score": round(sum(d.get("chollometer_score", 0) for d in deals) / len(deals), 2) if deals else 0,
         "aliexpress_published": sum(1 for d in deals if d.get("source") == "aliexpress"),
         "amazon_published": sum(1 for d in deals if d.get("source") == "amazon"),
         "total_published": len(deals),

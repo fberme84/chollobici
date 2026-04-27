@@ -33,6 +33,27 @@ function getDiscountPct(deal) {
   return 0;
 }
 
+function getChollometerScore(deal) {
+  const score = Number(deal.chollometer_score ?? deal.recomendacion ?? 0);
+  if (!Number.isFinite(score)) return 0;
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function getChollometerLabel(deal) {
+  return safeText(deal.chollometer_label || "Precio interesante");
+}
+
+function formatSignedPct(value) {
+  const num = Number(value);
+  if (!Number.isFinite(num) || num === 0) return "";
+  const sign = num > 0 ? "+" : "";
+  return `${sign}${num.toFixed(Math.abs(num) >= 10 ? 0 : 1).replace(".", ",")}%`;
+}
+
+function formatPriceCompact(price) {
+  return formatPrice(price).replace(" €", "€");
+}
+
 function getStoreLabel(deal) {
   return deal.source_label || deal.store || deal.source || "Tienda";
 }
@@ -171,6 +192,25 @@ function renderDealCard(deal) {
       badge.textContent = `-${discount}%`;
       imageBadges.appendChild(badge);
     }
+
+    const score = getChollometerScore(deal);
+    if (score >= 70) {
+      const badge = document.createElement("span");
+      badge.className = "overlay-badge chollometer";
+      badge.textContent = `🔥 ${score}`;
+      badge.title = getChollometerLabel(deal);
+      imageBadges.appendChild(badge);
+    } else if (deal.is_price_drop) {
+      const badge = document.createElement("span");
+      badge.className = "overlay-badge price-drop";
+      badge.textContent = "📉 Baja";
+      imageBadges.appendChild(badge);
+    } else if (deal.is_recent_min_price) {
+      const badge = document.createElement("span");
+      badge.className = "overlay-badge min-price";
+      badge.textContent = "🏷️ Mín. 30d";
+      imageBadges.appendChild(badge);
+    }
   }
 
   const image = node.querySelector(".deal-image");
@@ -239,8 +279,44 @@ function renderDealCard(deal) {
   }
 
   const metricsRow = node.querySelector(".deal-metrics");
+  let hasChollometerMetric = false;
+  let hasHistoryMetric = false;
+
   if (metricsRow) {
-    const showMetrics = hasDiscountMetric || hasSalesMetric;
+    const score = getChollometerScore(deal);
+    if (score >= 45) {
+      const metric = document.createElement("span");
+      metric.className = "metric metric-chollometer";
+      metric.textContent = `🔥 ${score}/100 · ${getChollometerLabel(deal)}`;
+      metricsRow.appendChild(metric);
+      hasChollometerMetric = true;
+    }
+
+    const changePct = Number(deal.price_change_pct);
+    if (Number.isFinite(changePct) && changePct < 0) {
+      const metric = document.createElement("span");
+      metric.className = "metric metric-price-drop";
+      metric.textContent = `📉 ${formatSignedPct(changePct)} desde ${formatPriceCompact(deal.previous_price)}`;
+      metricsRow.appendChild(metric);
+      hasHistoryMetric = true;
+    } else if (deal.is_recent_min_price) {
+      const metric = document.createElement("span");
+      metric.className = "metric metric-min-price";
+      metric.textContent = "🏷️ mínimo 30 días";
+      metricsRow.appendChild(metric);
+      hasHistoryMetric = true;
+    }
+
+    const reasons = Array.isArray(deal.chollometer_reasons) ? deal.chollometer_reasons.filter(Boolean) : [];
+    if (reasons.length) {
+      const metric = document.createElement("span");
+      metric.className = "metric metric-reason";
+      metric.textContent = reasons.join(" · ");
+      metricsRow.appendChild(metric);
+      hasHistoryMetric = true;
+    }
+
+    const showMetrics = hasDiscountMetric || hasSalesMetric || hasChollometerMetric || hasHistoryMetric;
     metricsRow.hidden = !showMetrics;
     metricsRow.style.display = showMetrics ? "" : "none";
   }
@@ -356,12 +432,13 @@ function applyFilters(deals) {
 
   result.sort((a, b) => {
     if (sort === "discount") return getDiscountPct(b) - getDiscountPct(a);
+    if (sort === "chollometer") return getChollometerScore(b) - getChollometerScore(a);
     if (sort === "price_asc") return (Number(a.price) || 0) - (Number(b.price) || 0);
     if (sort === "price_desc") return (Number(b.price) || 0) - (Number(a.price) || 0);
     if (sort === "sales") return (Number(b.sales) || 0) - (Number(a.sales) || 0);
 
-    const scoreA = (Number(a.recomendacion) || 0) * 1000 + getDiscountPct(a) * 10 - (Number(a.price) || 0);
-    const scoreB = (Number(b.recomendacion) || 0) * 1000 + getDiscountPct(b) * 10 - (Number(b.price) || 0);
+    const scoreA = getChollometerScore(a) * 1000 + getDiscountPct(a) * 10 - (Number(a.price) || 0);
+    const scoreB = getChollometerScore(b) * 1000 + getDiscountPct(b) * 10 - (Number(b.price) || 0);
     return scoreB - scoreA;
   });
 
@@ -371,6 +448,20 @@ function applyFilters(deals) {
 // ==============================
 // RENDER MAIN
 // ==============================
+function renderTopPicks(deals) {
+  const section = document.getElementById("topPicksSection");
+  const container = document.getElementById("topPicksGrid");
+  if (!section || !container) return;
+
+  const picks = [...deals]
+    .sort((a, b) => getChollometerScore(b) - getChollometerScore(a))
+    .slice(0, 3);
+
+  container.innerHTML = "";
+  picks.forEach((deal) => container.appendChild(renderDealCard(deal)));
+  section.hidden = picks.length === 0;
+}
+
 function renderDealsGrid(deals) {
   const container = document.getElementById("dealsGrid");
   if (!container) return;
@@ -387,6 +478,7 @@ function renderDealsInfo(deals) {
 
 function renderHomePage(deals) {
   renderSeoGuides(seoPages);
+  renderTopPicks(deals);
   renderDealsGrid(deals);
   renderDealsInfo(deals);
 }
@@ -404,6 +496,8 @@ function setupCollapsible(sectionId, bodyId, buttonId, expandedText = "Ocultar",
   const button = document.getElementById(buttonId);
   if (!section || !body || !button) return;
 
+  const isMobileViewport = () => window.matchMedia("(max-width: 768px)").matches;
+
   const sync = (expanded) => {
     body.hidden = !expanded;
     section.classList.toggle("is-collapsed", !expanded);
@@ -411,7 +505,13 @@ function setupCollapsible(sectionId, bodyId, buttonId, expandedText = "Ocultar",
     button.textContent = expanded ? expandedText : collapsedText;
   };
 
-  sync(true);
+  const syncByViewport = () => {
+    sync(!isMobileViewport());
+  };
+
+  syncByViewport();
+  window.addEventListener("resize", syncByViewport);
+
   button.addEventListener("click", () => {
     const expanded = button.getAttribute("aria-expanded") === "true";
     sync(!expanded);
@@ -518,5 +618,3 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.collapsible .toggle').forEach(t=>{t.addEventListener('click',()=>{t.parentElement.classList.toggle('active');});});});

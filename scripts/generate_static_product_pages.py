@@ -336,12 +336,16 @@ def load_products() -> list[dict]:
 
 
 def should_generate_detail_page(product: dict) -> bool:
+    """Genera ficha si hay datos mínimos.
+
+    Antes dependía de detail_enabled=True, pero en generated_deals.json
+    no se estaba informando y se quedaban carpetas /producto/* vacías.
+    Con esta regla se generan páginas reales para productos con título, precio y URL.
     """
-    Regla crítica:
-    - si detail_enabled es False, NO se genera ficha
-    - esto evita rutas largas innecesarias y fichas poco fiables
-    """
-    return bool(product.get("detail_enabled"))
+    title = str(product.get("title") or "").strip()
+    url = str(product.get("affiliate_url") or product.get("url") or "").strip()
+    price = product.get("price")
+    return bool(title and url and price not in (None, ""))
 
 
 def main() -> None:

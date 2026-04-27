@@ -4,7 +4,7 @@ import json
 import re
 import shutil
 import unicodedata
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -194,6 +194,28 @@ def build_schema(page: dict, slug: str) -> str:
     return json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False, separators=(',', ':'))
 
 
+def render_rich_text(value: str) -> str:
+    """Renderiza texto controlado de guías permitiendo enlaces internos ya definidos."""
+    text = unescape(str(value or ''))
+    allowed_links: list[str] = []
+
+    def keep_link(match):
+        href = match.group(1)
+        label = match.group(2)
+        if re.fullmatch(r'/[a-z0-9-]+/?', href or ''):
+            clean_href = href if href.endswith('/') else href + '/'
+            token = f'__CHOLLOBICI_LINK_{len(allowed_links)}__'
+            allowed_links.append(f'<a href="{escape(clean_href, quote=True)}" data-link="internal">{escape(label)}</a>')
+            return token
+        return escape(match.group(0))
+
+    text = re.sub(r'<a\s+href=["\']([^"\']+)["\']\s+data-link=["\']internal["\']>(.*?)</a>', keep_link, text)
+    text = escape(text)
+    for idx, link in enumerate(allowed_links):
+        text = text.replace(f'__CHOLLOBICI_LINK_{idx}__', link)
+    return text
+
+
 def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str:
     slug = str(page.get('slug') or '').strip('/')
     canonical = f'{BASE_URL}/{slug}/'
@@ -203,11 +225,11 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
         paragraph_values = page.get('articleParagraphs') or []
     else:
         paragraph_values = [page.get('introText') or page.get('description') or '']
-    paragraphs = ''.join(f'<p>{escape(p)}</p>' for p in paragraph_values)
+    paragraphs = ''.join(f'<p>{render_rich_text(p)}</p>' for p in paragraph_values)
 
     article_lead = ''
     if page.get('articleLead'):
-        article_lead = f'<div class="guide-article-block guide-lead-block"><p>{escape(page.get("articleLead"))}</p></div>'
+        article_lead = f'<div class="guide-article-block guide-lead-block"><p>{render_rich_text(page.get("articleLead"))}</p></div>'
 
     featured_html = render_featured_deals(related_deals)
     featured_block = (
