@@ -1,0 +1,82 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests; fi
+
+      - name: Refresh Decathlon products
+        env:
+          DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
+        run: python scripts/refresh_decathlon_products.py
+
+      - name: Update Decathlon price history
+        run: python scripts/update_decathlon_price_history.py
+
+      - name: Refresh AliExpress products
+        continue-on-error: true
+        env:
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
+          ALIEXPRESS_API_URL: ${{ secrets.ALIEXPRESS_API_URL }}
+        run: python scripts/refresh_aliexpress_products.py
+
+      - name: Refresh Amazon products
+        env:
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+          AMAZON_PAAPI_ACCESS_KEY: ${{ secrets.AMAZON_PAAPI_ACCESS_KEY }}
+          AMAZON_PAAPI_SECRET_KEY: ${{ secrets.AMAZON_PAAPI_SECRET_KEY }}
+          AMAZON_PAAPI_PARTNER_TAG: ${{ secrets.AMAZON_PAAPI_PARTNER_TAG }}
+          AMAZON_PAAPI_REGION: ${{ secrets.AMAZON_PAAPI_REGION }}
+          AMAZON_PAAPI_HOST: ${{ secrets.AMAZON_PAAPI_HOST }}
+        run: python scripts/refresh_amazon_products.py
+
+      - name: Build generated site files
+        run: |
+          python scripts/update_deals.py
+          python scripts/generate_static_product_pages.py
+          python scripts/generate_static_guides.py
+          python scripts/generate_sitemap.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

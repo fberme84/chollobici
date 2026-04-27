@@ -8,6 +8,7 @@ ALIEXPRESS_PATH = DATA_DIR / "aliexpress_products.json"
 AMAZON_PATH = DATA_DIR / "amazon_products.json"
 OUTPUT_PATH = DATA_DIR / "generated_deals.json"
 MERGE_SUMMARY_PATH = DATA_DIR / "merge_summary.json"
+DECATHLON_HISTORY_PATH = DATA_DIR / "decathlon_price_history.json"
 
 MAX_TOTAL = 48
 TARGET_PER_SOURCE = 18
@@ -168,6 +169,74 @@ def load_json(path):
         return []
 
 
+def load_json_dict(path):
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def decathlon_history_keys(product: dict):
+    keys = []
+    for value in (
+        product.get("sku"),
+        product.get("id"),
+        product.get("url"),
+        product.get("affiliate_url"),
+    ):
+        if value not in (None, ""):
+            keys.append(str(value))
+    return keys
+
+
+def attach_decathlon_price_history(product: dict, history: dict) -> dict:
+    if get_source(product) != "decathlon" or not history:
+        return product
+
+    entry = None
+    for key in decathlon_history_keys(product):
+        if key in history:
+            entry = history[key]
+            break
+
+    if not isinstance(entry, dict):
+        return product
+
+    current_price = safe_float(product.get("price"))
+    previous_price = safe_float(entry.get("previous_price"))
+    min_price_30d = safe_float(entry.get("min_price_30d"))
+    min_price_all = safe_float(entry.get("min_price_all"))
+
+    if previous_price > 0:
+        product["previous_price"] = previous_price
+        product["price_change_abs"] = round(current_price - previous_price, 2)
+        product["price_change_pct"] = round((current_price - previous_price) / previous_price * 100, 2)
+        product["is_price_drop"] = current_price > 0 and current_price < previous_price
+
+    if min_price_30d > 0:
+        product["min_price_30d"] = min_price_30d
+        product["is_recent_min_price"] = current_price > 0 and current_price <= min_price_30d
+
+    if min_price_all > 0:
+        product["min_price_all"] = min_price_all
+
+    # Pequeño empujón al ranking si Decathlon baja de precio o está en mínimo reciente.
+    bonus = 0
+    if product.get("is_price_drop"):
+        bonus += 14
+    if product.get("is_recent_min_price"):
+        bonus += 8
+    if product.get("price_change_pct", 0) < 0:
+        bonus += min(abs(product.get("price_change_pct", 0)) * 0.8, 12)
+    if bonus:
+        product["recomendacion"] = max(0, round(product.get("recomendacion", 0) + bonus))
+
+    return product
+
+
 def compute_recommendation(product: dict) -> int:
     price = safe_float(product.get("price"))
     discount_pct = compute_discount_pct(product)
@@ -290,8 +359,13 @@ def main():
     decathlon = load_json(DECATHLON_PATH)
     aliexpress = load_json(ALIEXPRESS_PATH)
     amazon = load_json(AMAZON_PATH)
+    decathlon_history = load_json_dict(DECATHLON_HISTORY_PATH)
 
-    decathlon_filtered = [normalize_product(p) for p in decathlon if passes_decathlon_filter(p)]
+    decathlon_filtered = [
+        attach_decathlon_price_history(normalize_product(p), decathlon_history)
+        for p in decathlon
+        if passes_decathlon_filter(p)
+    ]
     aliexpress_filtered = [normalize_product(p) for p in aliexpress if passes_base_filter(p)]
     amazon_filtered = [normalize_product(p) for p in amazon if passes_base_filter(p)]
 
@@ -323,6 +397,8 @@ def main():
         "aliexpress_read": len(aliexpress),
         "amazon_read": len(amazon),
         "decathlon_published": sum(1 for d in deals if d.get("source") == "decathlon"),
+        "decathlon_price_drops_published": sum(1 for d in deals if d.get("source") == "decathlon" and d.get("is_price_drop")),
+        "decathlon_recent_min_published": sum(1 for d in deals if d.get("source") == "decathlon" and d.get("is_recent_min_price")),
         "aliexpress_published": sum(1 for d in deals if d.get("source") == "aliexpress"),
         "amazon_published": sum(1 for d in deals if d.get("source") == "amazon"),
         "total_published": len(deals),
