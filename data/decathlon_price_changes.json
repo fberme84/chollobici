@@ -1,12 +1,12 @@
 {
   "summary": {
-    "date": null,
-    "products_read": 0,
-    "products_with_price": 0,
-    "new_products": 0,
+    "date": "2026-04-27",
+    "products_read": 200,
+    "products_with_price": 200,
+    "new_products": 193,
     "price_drops": 0,
     "price_rises": 0,
-    "unchanged": 0,
+    "unchanged": 7,
     "updated_same_day": 0
   },
   "changes": [],
