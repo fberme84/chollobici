@@ -405,17 +405,75 @@ def load_products() -> list[dict]:
         return []
 
 
-def should_generate_detail_page(product: dict) -> bool:
-    """Genera ficha si hay datos mínimos.
+def has_real_image(product: dict) -> bool:
+    image = str(product.get("image") or "").strip().lower()
+    if not image:
+        return False
+    if "placeholder" in image or image.endswith("placeholder-product.svg"):
+        return False
+    return image.startswith("http://") or image.startswith("https://") or image.startswith("/")
 
-    Antes dependía de detail_enabled=True, pero en generated_deals.json
-    no se estaba informando y se quedaban carpetas /producto/* vacías.
-    Con esta regla se generan páginas reales para productos con título, precio y URL.
+
+def parse_positive_float(value) -> float:
+    try:
+        if value in (None, ""):
+            return 0.0
+        return float(str(value).replace(",", "."))
+    except Exception:
+        return 0.0
+
+
+def get_effective_discount(product: dict) -> int:
+    discount = product.get("discount_pct") or product.get("discount")
+    try:
+        discount_value = int(float(discount))
+    except Exception:
+        discount_value = 0
+
+    if discount_value <= 0:
+        discount_value = calculate_discount_pct(product.get("price"), product.get("old_price"))
+
+    return max(0, discount_value)
+
+
+def get_product_quality_reasons(product: dict) -> list[str]:
+    """Devuelve motivos por los que NO conviene crear una ficha SEO indexable.
+
+    Regla v4.3: la home puede enseñar productos con datos incompletos, pero
+    /producto/* solo debe generarse para ofertas suficientemente buenas para Google.
+    Así evitamos URLs pobres, antiguas, sin imagen o sin valor real en el sitemap.
     """
-    title = str(product.get("title") or "").strip()
+    reasons: list[str] = []
+
+    title = re.sub(r"\s+", " ", str(product.get("title") or "").strip())
     url = str(product.get("affiliate_url") or product.get("url") or "").strip()
-    price = product.get("price")
-    return bool(title and url and price not in (None, ""))
+    price = parse_positive_float(product.get("price"))
+    discount = get_effective_discount(product)
+    source = str(product.get("source") or product.get("store") or "").strip().lower()
+
+    if len(title) < 18:
+        reasons.append("titulo_corto")
+    if len(title) > 140:
+        reasons.append("titulo_demasiado_largo")
+    if not (url.startswith("http://") or url.startswith("https://")):
+        reasons.append("url_no_valida")
+    if price <= 0:
+        reasons.append("precio_no_valido")
+    if not has_real_image(product):
+        reasons.append("sin_imagen_real")
+    if not source:
+        reasons.append("sin_tienda")
+
+    # Para evitar páginas finas: debe haber una razón comercial clara.
+    # Excepción: productos marcados manualmente como editor_pick.
+    if discount <= 0 and not product.get("editor_pick"):
+        reasons.append("sin_descuento_ni_editor_pick")
+
+    return reasons
+
+
+def should_generate_detail_page(product: dict) -> bool:
+    return not get_product_quality_reasons(product)
 
 
 def main() -> None:
@@ -427,10 +485,14 @@ def main() -> None:
 
     generated = 0
     skipped = 0
+    skip_reasons: dict[str, int] = {}
 
     for product in products:
-        if not should_generate_detail_page(product):
+        reasons = get_product_quality_reasons(product)
+        if reasons:
             skipped += 1
+            for reason in reasons:
+                skip_reasons[reason] = skip_reasons.get(reason, 0) + 1
             continue
 
         slug = build_safe_product_slug(product)
@@ -441,8 +503,20 @@ def main() -> None:
         (page_dir / "index.html").write_text(html_text, encoding="utf-8")
         generated += 1
 
+    report = {
+        "generated_product_pages": generated,
+        "skipped_products": skipped,
+        "skip_reasons": dict(sorted(skip_reasons.items())),
+    }
+    (ROOT / "data" / "seo_product_generation_report.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     print(f"Páginas HTML de producto generadas: {generated}")
     print(f"Productos omitidos sin ficha local: {skipped}")
+    if skip_reasons:
+        print("Motivos de omisión SEO:", dict(sorted(skip_reasons.items())))
 
 
 if __name__ == "__main__":

@@ -2,19 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Página no encontrada | CholloBici</title>
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://www.chollobici.com/404.html">
+  <link rel="stylesheet" href="/styles.css">
   <script>
     (function() {
-      const path = window.location.pathname;
-
-      // 🔁 Redirección de productos antiguos → HOME
-      if (path.startsWith('/producto/')) {
-        window.location.replace('/');
-        return;
-      }
-
-      // 🔁 Redirección de guías sin slash final
+      // Solo normalizamos guías antiguas sin slash final.
+      // Las URLs /producto/* inexistentes deben quedarse como 404 real para evitar soft-404.
       const guias = [
         'mejores-gafas-ciclismo-baratas',
         'mejores-luces-bici-potentes-baratas',
@@ -22,20 +18,33 @@
         'accesorios-ciclismo-baratos',
         'herramientas-bici-baratas'
       ];
-
-      const cleanPath = path.replace(/^\/|\/$/g, '');
-
+      const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '');
       if (guias.includes(cleanPath)) {
         window.location.replace('/' + cleanPath + '/');
-        return;
       }
-
-      // 🔁 fallback → HOME
-      window.location.replace('/');
     })();
   </script>
+  <style>
+    .not-found-page { max-width: 760px; margin: 0 auto; padding: 56px 18px; text-align: center; }
+    .not-found-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 18px; padding: 32px; }
+    .not-found-card h1 { margin: 0 0 12px; }
+    .not-found-card p { color: #4b5563; }
+    .not-found-actions { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .not-found-actions a { text-decoration: none; padding: 12px 16px; border-radius: 12px; font-weight: 700; }
+    .primary-link { background: #111827; color: #fff; }
+    .secondary-link { background: #f3f4f6; color: #111827; }
+  </style>
 </head>
 <body>
-  <p>Redirigiendo...</p>
+  <main class="not-found-page">
+    <section class="not-found-card">
+      <h1>Esta oferta ya no está disponible</h1>
+      <p>Puede que el producto haya caducado, cambiado de URL o dejado de estar activo. Puedes volver al listado principal para ver chollos actuales de ciclismo.</p>
+      <div class="not-found-actions">
+        <a class="primary-link" href="/">Ver ofertas actuales</a>
+        <a class="secondary-link" href="/mejores-gafas-ciclismo-baratas/">Ver guías de compra</a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
