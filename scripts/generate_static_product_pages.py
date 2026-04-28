@@ -82,6 +82,34 @@ def build_canonical(slug: str) -> str:
     return f"https://www.chollobici.com/producto/{slug}/"
 
 
+def clean_text(value: str, max_len: int = 160) -> str:
+    text = re.sub(r"\s+", " ", str(value or "")).strip()
+    if len(text) <= max_len:
+        return text
+    return text[:max_len].rsplit(" ", 1)[0].rstrip(" ,.;:-") + "…"
+
+
+def build_meta_title(title: str, store: str) -> str:
+    base = clean_text(title, 72)
+    suffix = f" | {store} | CholloBici" if store else " | CholloBici"
+    if len(base + suffix) > 90:
+        base = clean_text(base, max(40, 90 - len(suffix)))
+    return base + suffix
+
+
+def get_abs_image_url(image: str) -> str:
+    image = str(image or "").strip()
+    if not image:
+        return "https://www.chollobici.com/assets/placeholder-product.svg"
+    if image.startswith("//"):
+        return "https:" + image
+    if image.startswith("http://") or image.startswith("https://"):
+        return image
+    if image.startswith("/"):
+        return "https://www.chollobici.com" + image
+    return image
+
+
 def build_product_description(product: dict) -> str:
     title = str(product.get("title") or "Producto ciclista").strip()
     brand = str(product.get("brand") or "").strip()
@@ -176,42 +204,85 @@ def render_badges(product: dict) -> str:
 
 def render_schema(product: dict, slug: str) -> str:
     canonical = build_canonical(slug)
-    title = str(product.get("title") or "Producto ciclista").strip()
-    image = str(product.get("image") or "").strip()
-    description = build_product_description(product)
+    raw_title = str(product.get("title") or "Producto ciclista").strip()
+    title = clean_text(raw_title, 120)
+    image = get_abs_image_url(str(product.get("image") or ""))
+    description = clean_text(build_product_description(product), 500)
     price = product.get("price")
     store = get_store_label(product)
+    affiliate_url = str(product.get("affiliate_url") or product.get("url") or canonical)
+    brand_name = clean_text(str(product.get("brand") or store or "CholloBici"), 80)
 
-    schema = {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": title,
-        "description": description,
-        "url": canonical,
-        "brand": {"@type": "Brand", "name": str(product.get("brand") or store or "CholloBici")},
-    }
-
-    if image:
-        schema["image"] = image
+    graph = [
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.chollobici.com/"},
+                {"@type": "ListItem", "position": 2, "name": "Productos", "item": "https://www.chollobici.com/producto/"},
+                {"@type": "ListItem", "position": 3, "name": title, "item": canonical},
+            ],
+        },
+        {
+            "@type": "Product",
+            "name": title,
+            "description": description,
+            "url": canonical,
+            "image": [image],
+            "brand": {"@type": "Brand", "name": brand_name},
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock",
+                "url": affiliate_url,
+                "seller": {"@type": "Organization", "name": store},
+                "itemCondition": "https://schema.org/NewCondition",
+                "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"},
+                    "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 3, "unitCode": "DAY"},
+                        "transitTime": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 10, "unitCode": "DAY"},
+                    },
+                },
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "ES",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                    "merchantReturnDays": 14,
+                    "returnMethod": "https://schema.org/ReturnByMail",
+                    "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+                },
+            },
+        },
+    ]
 
     if price not in (None, ""):
-        schema["offers"] = {
-            "@type": "Offer",
-            "priceCurrency": "EUR",
-            "price": str(price),
-            "availability": "https://schema.org/InStock",
-            "url": str(product.get("affiliate_url") or product.get("url") or canonical),
-            "seller": {"@type": "Organization", "name": store},
-        }
+        graph[1]["offers"]["price"] = str(price)
 
-    return json.dumps(schema, ensure_ascii=False)
+    # Solo publicamos valoraciones/reviews si vienen en el feed. Evitamos inventarlas.
+    rating = product.get("rating") or product.get("aggregateRating")
+    review_count = product.get("review_count") or product.get("reviews_count")
+    try:
+        rating_value = float(rating)
+        count_value = int(float(review_count or 0))
+        if rating_value > 0 and count_value > 0:
+            graph[1]["aggregateRating"] = {
+                "@type": "AggregateRating",
+                "ratingValue": round(rating_value, 1),
+                "reviewCount": count_value,
+            }
+    except Exception:
+        pass
+
+    return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
 
 
 def build_html(product: dict, slug: str) -> str:
     title = str(product.get("title") or "Producto ciclista").strip()
     canonical = build_canonical(slug)
-    description = build_product_description(product)
-    image = str(product.get("image") or "").strip()
+    description = clean_text(build_product_description(product), 160)
+    image = str(product.get("image") or "/assets/placeholder-product.svg").strip()
     affiliate_url = str(product.get("affiliate_url") or product.get("url") or "").strip()
     brand = str(product.get("brand") or "").strip()
     category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
@@ -253,20 +324,19 @@ def build_html(product: dict, slug: str) -> str:
     else:
         cta_block = '<div class="product-actions"><a class="btn-secondary" href="/">Volver a ofertas</a></div>'
 
-    og_image = ""
-    if image:
-        og_image = f'<meta property="og:image" content="{html.escape(image, quote=True)}">'
+    meta_title = build_meta_title(title, store)
+    og_image = f'<meta property="og:image" content="{html.escape(get_abs_image_url(image), quote=True)}">'
 
     return f"""<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{html.escape(title)} | CholloBici</title>
+  <title>{html.escape(meta_title)}</title>
   <meta name="description" content="{html.escape(description)}">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="{html.escape(canonical, quote=True)}">
-  <meta property="og:title" content="{html.escape(title)} | CholloBici">
+  <meta property="og:title" content="{html.escape(meta_title)}">
   <meta property="og:description" content="{html.escape(description)}">
   <meta property="og:type" content="product">
   <meta property="og:url" content="{html.escape(canonical, quote=True)}">

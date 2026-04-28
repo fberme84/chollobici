@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import shutil
@@ -22,18 +23,19 @@ def slugify(text: str) -> str:
     return value.strip('-')
 
 
-def short_product_slug(title: str, pid: str, max_prefix: int = 42) -> str:
-    prefix = slugify(title)[:max_prefix].rstrip('-')
-    pid = slugify(str(pid))
-    return f"{prefix}-{pid}" if prefix else pid
-
-
-def get_deal_id(deal: dict, index: int) -> str:
-    return str(deal.get('id') or deal.get('asin') or deal.get('url') or deal.get('title') or index)
-
-
 def build_product_slug(deal: dict, index: int) -> str:
-    return short_product_slug(deal.get('title', ''), get_deal_id(deal, index))
+    title = str(deal.get('title') or 'producto').strip()
+    base = slugify(title)[:70].rstrip('-') or 'producto'
+    unique_source = (
+        str(deal.get('product_id') or '')
+        or str(deal.get('id') or '')
+        or str(deal.get('affiliate_url') or '')
+        or str(deal.get('url') or '')
+        or title
+        or str(index)
+    )
+    unique_hash = hashlib.md5(unique_source.encode('utf-8')).hexdigest()[:10]
+    return f"{base}-{unique_hash}"
 
 
 def format_price(value) -> str:
