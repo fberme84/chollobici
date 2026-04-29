@@ -1933,3 +1933,40 @@ input:focus, select:focus {
 .collapsible .content {display:block;}
 .collapsible .toggle {cursor:pointer;}
 @media (max-width:768px){.collapsible .content{display:none;}.collapsible.active .content{display:block;}}
+
+
+/* v4.4 - Histórico de precios y chollómetro */
+.overlay-badge.chollometer {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.overlay-badge.price-drop {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.overlay-badge.min-price {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.metric-chollometer {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.metric-price-drop {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.metric-min-price {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.metric-reason {
+  background: #eef2ff;
+  color: #3730a3;
+}

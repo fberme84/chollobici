@@ -7,6 +7,7 @@ import re
 import shutil
 import unicodedata
 from pathlib import Path
+from datetime import date, timedelta
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "generated_deals.json"
@@ -183,6 +184,47 @@ def render_price_block(product: dict) -> str:
     return '<div class="product-price-row">' + "".join(bits) + "</div>"
 
 
+
+
+def format_signed_pct(value) -> str:
+    try:
+        num = float(value)
+    except Exception:
+        return ""
+    if num == 0:
+        return ""
+    text = f"{abs(num):.1f}" if abs(num) < 10 else f"{abs(num):.0f}"
+    return text.replace(".", ",")
+
+
+def render_price_history_block(product: dict) -> str:
+    """Bloque visible de histórico para fichas /producto/*."""
+    rows = []
+    if product.get("is_price_drop"):
+        pct = format_signed_pct(product.get("price_change_pct"))
+        previous = format_price(product.get("previous_price"))
+        label = "Ha bajado"
+        if pct:
+            label += f" un {pct}%"
+        if previous:
+            label += f" desde {previous}"
+        rows.append(f'<span class="price-history-badge price-history-drop">📉 {html.escape(label)}</span>')
+    if product.get("is_recent_min_price"):
+        min_30 = format_price(product.get("min_price_30d"))
+        label = "Mínimo 30 días"
+        if min_30:
+            label += f": {min_30}"
+        rows.append(f'<span class="price-history-badge price-history-min">🏷️ {html.escape(label)}</span>')
+    min_all = format_price(product.get("min_price_all"))
+    if min_all:
+        rows.append(f'<span class="price-history-badge price-history-soft">Histórico mínimo: {html.escape(min_all)}</span>')
+    avg_30 = format_price(product.get("avg_price_30d"))
+    if avg_30:
+        rows.append(f'<span class="price-history-badge price-history-soft">Media 30 días: {html.escape(avg_30)}</span>')
+    if not rows:
+        return ""
+    return '<div class="price-history-box" aria-label="Histórico de precio">' + "".join(rows) + "</div>"
+
 def render_badges(product: dict) -> str:
     badges = []
     store = get_store_label(product)
@@ -236,6 +278,7 @@ def render_schema(product: dict, slug: str) -> str:
                 "url": affiliate_url,
                 "seller": {"@type": "Organization", "name": store},
                 "itemCondition": "https://schema.org/NewCondition",
+                "priceValidUntil": (date.today() + timedelta(days=14)).isoformat(),
                 "shippingDetails": {
                     "@type": "OfferShippingDetails",
                     "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"},
@@ -356,6 +399,11 @@ def build_html(product: dict, slug: str) -> str:
     .product-old-price {{ text-decoration:line-through; color:#6b7280; }}
     .product-price {{ font-size:30px; font-weight:800; }}
     .product-discount {{ color:#065f46; background:#d1fae5; padding:6px 10px; border-radius:999px; font-weight:700; }}
+    .price-history-box {{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 16px; }}
+    .price-history-badge {{ display:inline-flex; align-items:center; padding:7px 10px; border-radius:999px; font-size:13px; font-weight:750; }}
+    .price-history-drop {{ background:#fee2e2; color:#991b1b; }}
+    .price-history-min {{ background:#dcfce7; color:#166534; }}
+    .price-history-soft {{ background:#f3f4f6; color:#374151; }}
     .product-details {{ margin:18px 0; padding-left:18px; }}
     .product-details li {{ margin:8px 0; }}
     .product-actions {{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }}
@@ -379,6 +427,7 @@ def build_html(product: dict, slug: str) -> str:
           <h1>{html.escape(title)}</h1>
           <p>{html.escape(description)}</p>
           {render_price_block(product)}
+          {render_price_history_block(product)}
           {detail_note}
           <ul class="product-details">
             {''.join(details)}

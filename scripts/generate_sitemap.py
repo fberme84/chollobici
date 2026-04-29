@@ -136,7 +136,8 @@ def main() -> None:
             skipped_products += 1
             continue
         slug = build_product_slug(deal, idx)
-        add_url(urls, f"/producto/{slug}/", "weekly", "0.6", today)
+        priority = "0.7" if deal.get("is_price_drop") or deal.get("is_recent_min_price") else "0.6"
+        add_url(urls, f"/producto/{slug}/", "weekly", priority, today)
         generated_products += 1
 
     lines = [
