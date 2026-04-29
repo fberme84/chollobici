@@ -529,35 +529,41 @@ def get_effective_discount(product: dict) -> int:
 def get_product_quality_reasons(product: dict) -> list[str]:
     """Devuelve motivos por los que NO conviene crear una ficha SEO indexable.
 
-    Regla v4.3: la home puede enseñar productos con datos incompletos, pero
-    /producto/* solo debe generarse para ofertas suficientemente buenas para Google.
-    Así evitamos URLs pobres, antiguas, sin imagen o sin valor real en el sitemap.
+    Regla v4.5 ajustada:
+    - Generamos más fichas de producto para mejorar enlazado interno y cobertura SEO.
+    - Ya NO exigimos descuento obligatorio.
+    - Sí exigimos mínimos de calidad: título útil, precio, imagen real, URL válida y tienda.
+    - El descuento, ventas o rating se muestran si existen, pero no bloquean la ficha.
     """
     reasons: list[str] = []
 
     title = re.sub(r"\s+", " ", str(product.get("title") or "").strip())
-    url = str(product.get("affiliate_url") or product.get("url") or "").strip()
+    url = str(product.get("affiliate_url") or product.get("url") or product.get("link") or "").strip()
     price = parse_positive_float(product.get("price"))
-    discount = get_effective_discount(product)
-    source = str(product.get("source") or product.get("store") or "").strip().lower()
+    source = str(
+        product.get("source_label")
+        or product.get("source")
+        or product.get("store")
+        or ""
+    ).strip().lower()
 
-    if len(title) < 18:
+    # Título suficientemente descriptivo, pero sin ser tan restrictivo como antes.
+    if len(title) < 10:
         reasons.append("titulo_corto")
-    if len(title) > 140:
-        reasons.append("titulo_demasiado_largo")
+
+    # Evitamos URLs absurdamente largas en metadatos/títulos, pero no bloqueamos títulos largos
+    # porque algunos feeds de AliExpress/Decathlon son naturalmente descriptivos.
     if not (url.startswith("http://") or url.startswith("https://")):
         reasons.append("url_no_valida")
+
     if price <= 0:
         reasons.append("precio_no_valido")
+
     if not has_real_image(product):
         reasons.append("sin_imagen_real")
+
     if not source:
         reasons.append("sin_tienda")
-
-    # Para evitar páginas finas: debe haber una razón comercial clara.
-    # Excepción: productos marcados manualmente como editor_pick.
-    if discount <= 0 and not product.get("editor_pick"):
-        reasons.append("sin_descuento_ni_editor_pick")
 
     return reasons
 
