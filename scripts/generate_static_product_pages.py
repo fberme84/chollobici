@@ -417,7 +417,7 @@ def build_html(product: dict, slug: str) -> str:
   </style>
   <script type="application/ld+json">{render_schema(product, slug)}</script>
 </head>
-<body>
+<body><header class='site-header'><a href='/'>🚴 CholloBici</a></header><div class='breadcrumbs'><a href='/'>Inicio</a></div>
   <main class="product-page">
     <article class="product-card">
       <div class="product-layout">
@@ -437,7 +437,7 @@ def build_html(product: dict, slug: str) -> str:
       </div>
     </article>
   </main>
-</body>
+<a href='{url}' target='_blank' class='cta-button'>Ver oferta en tienda</a></body>
 </html>
 """
 

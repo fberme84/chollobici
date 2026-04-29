@@ -1970,3 +1970,5 @@ input:focus, select:focus {
   background: #eef2ff;
   color: #3730a3;
 }
+
+.site-header{background:#0d47a1;padding:12px}.site-header a{color:white;font-weight:bold}.breadcrumbs{font-size:13px;color:#666}.cta-button{background:#ff6600;color:#fff;padding:10px;border-radius:5px}.btn-buy{font-size:12px;color:#0d47a1}
