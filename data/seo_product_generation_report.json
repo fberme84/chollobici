@@ -1,9 +1,7 @@
 {
-  "generated_product_pages": 9,
-  "skipped_products": 39,
+  "generated_product_pages": 46,
+  "skipped_products": 2,
   "skip_reasons": {
-    "sin_descuento_ni_editor_pick": 25,
-    "sin_imagen_real": 2,
-    "titulo_demasiado_largo": 12
+    "sin_imagen_real": 2
   }
 }
