@@ -62,6 +62,23 @@ function getDealUrl(deal) {
   return deal.affiliate_url || deal.url || "#";
 }
 
+function getProductDetailUrl(deal) {
+  const value = deal.product_detail_path || deal.product_detail_url || "";
+  if (!value) return "";
+  try {
+    const parsed = new URL(value, window.location.origin);
+    if (parsed.origin === window.location.origin && parsed.pathname.startsWith("/producto/")) {
+      return parsed.pathname.endsWith("/") ? parsed.pathname : parsed.pathname + "/";
+    }
+  } catch {
+    // Si no es una URL absoluta válida, tratamos el valor como ruta local.
+  }
+  if (String(value).startsWith("/producto/")) {
+    return String(value).endsWith("/") ? String(value) : String(value) + "/";
+  }
+  return "";
+}
+
 function getImageUrl(deal) {
   const value = String(deal.image || "").trim();
   if (!value || value.length < 10 || value.includes("</") || !/^https?:\/\//i.test(value)) {
@@ -338,8 +355,13 @@ function renderDealCard(deal) {
     });
   }
 
+  const detailUrl = getProductDetailUrl(deal);
   node.addEventListener("click", () => {
-    window.open(url, "_blank", "noopener");
+    if (detailUrl) {
+      window.location.href = detailUrl;
+    } else {
+      window.open(url, "_blank", "noopener");
+    }
   });
 
   return node;

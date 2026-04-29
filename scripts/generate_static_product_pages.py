@@ -321,60 +321,126 @@ def render_schema(product: dict, slug: str) -> str:
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
 
 
-def build_html(product, slug):
-    title = product.get("title", "Producto ciclismo")
-    price = product.get("price", "")
-    image = product.get("image", "")
-    description = product.get("description", "")
-    
-    # ✅ FIX IMPORTANTE (para evitar el NameError)
-    url = product.get("url") or product.get("link") or product.get("affiliate_url") or "#"
+def build_html(product: dict, slug: str) -> str:
+    title = str(product.get("title") or "Producto ciclista").strip()
+    canonical = build_canonical(slug)
+    description = clean_text(build_product_description(product), 160)
+    image = str(product.get("image") or "/assets/placeholder-product.svg").strip()
+    affiliate_url = str(product.get("affiliate_url") or product.get("url") or "").strip()
+    brand = str(product.get("brand") or "").strip()
+    category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
+    size = str(product.get("size") or "").strip()
+    store = get_store_label(product)
 
-    html = f"""
-<!DOCTYPE html>
+    detail_note = ""
+    if product.get("source") == "decathlon":
+        detail_note = (
+            '<p class="product-note">Ficha simplificada. '
+            'Para confirmar disponibilidad y precio actualizado, consulta la tienda.</p>'
+        )
+
+    details = []
+    if brand:
+        details.append(f"<li><strong>Marca:</strong> {html.escape(brand)}</li>")
+    if category_hint:
+        details.append(f"<li><strong>Categoría:</strong> {html.escape(category_hint)}</li>")
+    if size:
+        details.append(f"<li><strong>Variante:</strong> {html.escape(size)}</li>")
+    details.append(f"<li><strong>Tienda:</strong> {html.escape(store)}</li>")
+
+    image_block = ""
+    if image:
+        image_block = (
+            f'<div class="product-media"><img src="{html.escape(image, quote=True)}" '
+            f'alt="{html.escape(title)}" loading="eager"></div>'
+        )
+
+    cta_block = ""
+    if affiliate_url:
+        cta_block = (
+            '<div class="product-actions">'
+            f'<a class="btn-primary" href="{html.escape(affiliate_url, quote=True)}" '
+            'target="_blank" rel="noopener sponsored nofollow">Ver en tienda</a>'
+            '<a class="btn-secondary" href="/">Volver a ofertas</a>'
+            "</div>"
+        )
+    else:
+        cta_block = '<div class="product-actions"><a class="btn-secondary" href="/">Volver a ofertas</a></div>'
+
+    meta_title = build_meta_title(title, store)
+    og_image = f'<meta property="og:image" content="{html.escape(get_abs_image_url(image), quote=True)}">'
+
+    return f"""<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>{title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{html.escape(meta_title)}</title>
+  <meta name="description" content="{html.escape(description)}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="{html.escape(canonical, quote=True)}">
+  <meta property="og:title" content="{html.escape(meta_title)}">
+  <meta property="og:description" content="{html.escape(description)}">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="{html.escape(canonical, quote=True)}">
+  {og_image}
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .product-page {{ max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }}
+    .product-card {{ background:#fff; border:1px solid #e5e7eb; border-radius:18px; overflow:hidden; }}
+    .product-layout {{ display:grid; grid-template-columns: minmax(260px, 380px) 1fr; gap:24px; padding:24px; }}
+    .product-media img {{ width:100%; height:auto; display:block; border-radius:14px; background:#f8fafc; }}
+    .product-content h1 {{ margin:0 0 12px; line-height:1.15; }}
+    .product-badges {{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }}
+    .badge {{ display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; font-size:13px; }}
+    .badge-store {{ background:#ecfeff; }}
+    .product-price-row {{ display:flex; gap:12px; align-items:center; margin:16px 0; flex-wrap:wrap; }}
+    .product-old-price {{ text-decoration:line-through; color:#6b7280; }}
+    .product-price {{ font-size:30px; font-weight:800; }}
+    .product-discount {{ color:#065f46; background:#d1fae5; padding:6px 10px; border-radius:999px; font-weight:700; }}
+    .price-history-box {{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 16px; }}
+    .price-history-badge {{ display:inline-flex; align-items:center; padding:7px 10px; border-radius:999px; font-size:13px; font-weight:750; }}
+    .price-history-drop {{ background:#fee2e2; color:#991b1b; }}
+    .price-history-min {{ background:#dcfce7; color:#166534; }}
+    .price-history-soft {{ background:#f3f4f6; color:#374151; }}
+    .product-details {{ margin:18px 0; padding-left:18px; }}
+    .product-details li {{ margin:8px 0; }}
+    .product-actions {{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }}
+    .btn-primary, .btn-secondary {{ text-decoration:none; padding:12px 16px; border-radius:12px; font-weight:700; display:inline-block; }}
+    .btn-primary {{ background:#111827; color:#fff; }}
+    .btn-secondary {{ background:#f3f4f6; color:#111827; }}
+    .product-note {{ color:#6b7280; }}
+    @media (max-width: 760px) {{
+      .product-layout {{ grid-template-columns: 1fr; }}
+    }}
+  </style>
+  <script type="application/ld+json">{render_schema(product, slug)}</script>
 </head>
-
 <body>
-
-<!-- 🧭 CABECERA -->
-<header class="site-header">
-    <div class="container">
-        <a href="/" class="logo">🚴 CholloBici</a>
-    </div>
-</header>
-
-<div class="container">
-
-    <!-- 🍞 BREADCRUMB -->
-    <div class="breadcrumbs">
-        <a href="/">Inicio</a> > <span>{title}</span>
-    </div>
-
-    <!-- 🛍️ PRODUCTO -->
-    <h1>{title}</h1>
-
-    <img src="{image}" alt="{title}" style="max-width:300px;">
-
-    <p><strong>Precio:</strong> {price}</p>
-
-    <p>{description}</p>
-
-    <!-- 🎯 CTA -->
-    <a href="{url}" target="_blank" class="cta-button">
-        Ver oferta en tienda
-    </a>
-
-</div>
-
+  <main class="product-page">
+    <article class="product-card">
+      <div class="product-layout">
+        {image_block}
+        <div class="product-content">
+          {render_badges(product)}
+          <h1>{html.escape(title)}</h1>
+          <p>{html.escape(description)}</p>
+          {render_price_block(product)}
+          {render_price_history_block(product)}
+          {detail_note}
+          <ul class="product-details">
+            {''.join(details)}
+          </ul>
+          {cta_block}
+        </div>
+      </div>
+    </article>
+  </main>
 </body>
 </html>
 """
-    return html
+
 
 def load_products() -> list[dict]:
     if not DATA_PATH.exists():
@@ -471,6 +537,14 @@ def main() -> None:
     skip_reasons: dict[str, int] = {}
 
     for product in products:
+        # Estos campos los consume app.js para saber si la tarjeta debe abrir
+        # ficha interna o ir directamente a tienda. Se limpian en cada ejecución
+        # para no dejar enlaces internos obsoletos de productos que ya no pasan
+        # el filtro SEO.
+        product.pop("product_detail_path", None)
+        product.pop("product_detail_url", None)
+        product["has_product_detail_page"] = False
+
         reasons = get_product_quality_reasons(product)
         if reasons:
             skipped += 1
@@ -484,7 +558,14 @@ def main() -> None:
 
         html_text = build_html(product, slug)
         (page_dir / "index.html").write_text(html_text, encoding="utf-8")
+
+        product["product_detail_path"] = f"/producto/{slug}/"
+        product["product_detail_url"] = build_canonical(slug)
+        product["has_product_detail_page"] = True
+
         generated += 1
+
+    DATA_PATH.write_text(json.dumps(products, ensure_ascii=False, indent=2), encoding="utf-8")
 
     report = {
         "generated_product_pages": generated,
