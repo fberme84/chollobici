@@ -387,7 +387,17 @@ def build_html(product: dict, slug: str) -> str:
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/styles.css">
   <style>
-    .product-page {{ max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }}
+    .product-site-header {{ background: linear-gradient(135deg, #071b35, #0b3f7a 60%, #2dd4bf); color:#fff; }}
+    .product-site-header-inner {{ max-width: 1120px; margin: 0 auto; padding: 14px 16px; display:flex; align-items:center; justify-content:space-between; gap:18px; }}
+    .product-site-brand {{ display:flex; align-items:center; gap:12px; color:#fff; text-decoration:none; font-weight:900; letter-spacing:-.02em; }}
+    .product-site-brand:hover {{ text-decoration:none; }}
+    .product-site-logo {{ width: 142px; max-width: 42vw; height:auto; display:block; }}
+    .product-site-nav {{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }}
+    .product-site-nav a {{ color:#fff; text-decoration:none; font-weight:750; opacity:.95; }}
+    .product-site-nav a:hover {{ text-decoration:underline; }}
+    .product-breadcrumbs {{ max-width: 960px; margin: 18px auto 0; padding: 0 16px; color:#64748b; font-size:14px; }}
+    .product-breadcrumbs a {{ color:#0b5fc8; font-weight:700; }}
+    .product-page {{ max-width: 960px; margin: 0 auto; padding: 18px 16px 48px; }}
     .product-card {{ background:#fff; border:1px solid #e5e7eb; border-radius:18px; overflow:hidden; }}
     .product-layout {{ display:grid; grid-template-columns: minmax(260px, 380px) 1fr; gap:24px; padding:24px; }}
     .product-media img {{ width:100%; height:auto; display:block; border-radius:14px; background:#f8fafc; }}
@@ -418,6 +428,21 @@ def build_html(product: dict, slug: str) -> str:
   <script type="application/ld+json">{render_schema(product, slug)}</script>
 </head>
 <body>
+  <header class="product-site-header">
+    <div class="product-site-header-inner">
+      <a class="product-site-brand" href="/" aria-label="Volver a CholloBici">
+        <img src="/assets/chollobici-logo.png" alt="CholloBici" class="product-site-logo">
+      </a>
+      <nav class="product-site-nav" aria-label="NavegaciÃ³n principal">
+        <a href="/">Inicio</a>
+        <a href="/#seoGuidesSection">GuÃ­as</a>
+        <a href="/#listSectionHead">Ofertas</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="product-breadcrumbs" aria-label="Migas de pan">
+    <a href="/">Inicio</a> / <a href="/#listSectionHead">Ofertas</a> / <span>{html.escape(title)}</span>
+  </nav>
   <main class="product-page">
     <article class="product-card">
       <div class="product-layout">
