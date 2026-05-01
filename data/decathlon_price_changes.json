@@ -1,15 +1,89 @@
 {
   "summary": {
-    "date": "2026-04-30",
+    "date": "2026-05-01",
     "products_read": 200,
     "products_with_price": 200,
-    "new_products": 140,
+    "new_products": 149,
     "price_drops": 0,
-    "price_rises": 0,
-    "unchanged": 60,
+    "price_rises": 2,
+    "unchanged": 49,
     "updated_same_day": 0
   },
-  "changes": [],
+  "changes": [
+    {
+      "date": "2026-05-01",
+      "type": "rise",
+      "id": "https://www.decathlon.es/es/p/casco-equitacion-equitheme-glint-adultos-ninos-negro-purpurina/383290/m9010105",
+      "sku": "9010105",
+      "title": "Casco Equitación Equitheme Glint Adultos/Niños Negro Purpurina",
+      "url": "https://www.decathlon.es/es/p/casco-equitacion-equitheme-glint-adultos-ninos-negro-purpurina/383290/m9010105",
+      "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9010105|Casco Equitación Equitheme Glint Adultos/Niños Negro Purpurina|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casco-equitacion-equitheme-glint-adultos-ninos-negro-purpurina/383290/m9010105",
+      "image": "https://contents.mediadecathlon.com/p3001229/k$c0cd3c10ff1d268752c7e78a290f8728/picture.jpg?f=300x300",
+      "previous_date": "2026-04-30",
+      "previous_price": 121.49,
+      "new_price": 141.49,
+      "change_abs": 20.0,
+      "change_pct": 16.46,
+      "min_price_30d": 121.49,
+      "min_price_all": 121.49,
+      "is_recent_min_price": false
+    },
+    {
+      "date": "2026-05-01",
+      "type": "rise",
+      "id": "https://www.decathlon.es/es/p/campanas-equitacion-500-waldhausen-caballo-poni-abiertas/383595/m9011959",
+      "sku": "9011959",
+      "title": "Campanas Equitación 500 Waldhausen Caballo Poni Abiertas",
+      "url": "https://www.decathlon.es/es/p/campanas-equitacion-500-waldhausen-caballo-poni-abiertas/383595/m9011959",
+      "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9011959|Campanas Equitación 500 Waldhausen Caballo Poni Abiertas|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/campanas-equitacion-500-waldhausen-caballo-poni-abiertas/383595/m9011959",
+      "image": "https://contents.mediadecathlon.com/p3071425/k$1d1af6b936fb496ac41bda6d175809d9/picture.jpg?f=300x300",
+      "previous_date": "2026-04-30",
+      "previous_price": 14.99,
+      "new_price": 18.49,
+      "change_abs": 3.5,
+      "change_pct": 23.35,
+      "min_price_30d": 14.99,
+      "min_price_all": 14.99,
+      "is_recent_min_price": false
+    }
+  ],
   "drops": [],
-  "rises": []
+  "rises": [
+    {
+      "date": "2026-05-01",
+      "type": "rise",
+      "id": "https://www.decathlon.es/es/p/casco-equitacion-equitheme-glint-adultos-ninos-negro-purpurina/383290/m9010105",
+      "sku": "9010105",
+      "title": "Casco Equitación Equitheme Glint Adultos/Niños Negro Purpurina",
+      "url": "https://www.decathlon.es/es/p/casco-equitacion-equitheme-glint-adultos-ninos-negro-purpurina/383290/m9010105",
+      "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9010105|Casco Equitación Equitheme Glint Adultos/Niños Negro Purpurina|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casco-equitacion-equitheme-glint-adultos-ninos-negro-purpurina/383290/m9010105",
+      "image": "https://contents.mediadecathlon.com/p3001229/k$c0cd3c10ff1d268752c7e78a290f8728/picture.jpg?f=300x300",
+      "previous_date": "2026-04-30",
+      "previous_price": 121.49,
+      "new_price": 141.49,
+      "change_abs": 20.0,
+      "change_pct": 16.46,
+      "min_price_30d": 121.49,
+      "min_price_all": 121.49,
+      "is_recent_min_price": false
+    },
+    {
+      "date": "2026-05-01",
+      "type": "rise",
+      "id": "https://www.decathlon.es/es/p/campanas-equitacion-500-waldhausen-caballo-poni-abiertas/383595/m9011959",
+      "sku": "9011959",
+      "title": "Campanas Equitación 500 Waldhausen Caballo Poni Abiertas",
+      "url": "https://www.decathlon.es/es/p/campanas-equitacion-500-waldhausen-caballo-poni-abiertas/383595/m9011959",
+      "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9011959|Campanas Equitación 500 Waldhausen Caballo Poni Abiertas|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/campanas-equitacion-500-waldhausen-caballo-poni-abiertas/383595/m9011959",
+      "image": "https://contents.mediadecathlon.com/p3071425/k$1d1af6b936fb496ac41bda6d175809d9/picture.jpg?f=300x300",
+      "previous_date": "2026-04-30",
+      "previous_price": 14.99,
+      "new_price": 18.49,
+      "change_abs": 3.5,
+      "change_pct": 23.35,
+      "min_price_30d": 14.99,
+      "min_price_all": 14.99,
+      "is_recent_min_price": false
+    }
+  ]
 }
