@@ -218,11 +218,22 @@
     "sku": "8999168",
     "title": "Maillot Ciclismo MTB 500 Amarillo Manga Corta Transpirable",
     "url": "https://www.decathlon.es/es/p/maillot-ciclismo-mtb-500-amarillo-manga-corta-transpirable/380660/c269c404m8999168",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8999168|Maillot Ciclismo MTB 500 Amarillo Manga Corta Transpirable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-ciclismo-mtb-500-amarillo-manga-corta-transpirable/380660/c269c404m8999168",
+    "image": "https://contents.mediadecathlon.com/p3102908/k$c2b23187deecd989c6a2474ea6ed8b4f/picture.jpg?f=300x300",
     "last_price": 19.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 19.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 19.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 19.99
       }
     ]
@@ -282,7 +293,7 @@
     "image": "https://contents.mediadecathlon.com/p3067044/k$806f200f954145622c4251cb33b9a3ba/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -294,6 +305,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -577,12 +592,23 @@
     "sku": "8771010",
     "title": "Bicicleta Todocamino Riverside 120 Gris",
     "url": "https://www.decathlon.es/es/p/bicicleta-todocamino-riverside-120-gris/300806/c208m8771010",
-    "last_price": 229.99,
-    "last_seen": "2026-04-24",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8771010|Bicicleta Todocamino Riverside 120 Gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-todocamino-riverside-120-gris/300806/c208m8771010",
+    "image": "https://contents.mediadecathlon.com/p2578961/k$2ba673af554eca4a373e23ebe0c081c3/picture.jpg?f=300x300",
+    "last_price": 259.99,
+    "previous_price": 229.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 229.99,
+    "min_price_all": 229.99,
+    "avg_price_30d": 244.99,
+    "is_recent_min_price": false,
     "prices": [
       {
         "date": "2026-04-24",
         "price": 229.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 259.99
       }
     ]
   },
@@ -1068,11 +1094,22 @@
     "sku": "8670362",
     "title": "Guantes ciclismo MTB Race Negro Antideslizantes",
     "url": "https://www.decathlon.es/es/p/guantes-ciclismo-mtb-race-negro-antideslizantes/334279/c382c382m8670362",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8670362|Guantes ciclismo MTB Race Negro Antideslizantes|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/guantes-ciclismo-mtb-race-negro-antideslizantes/334279/c382c382m8670362",
+    "image": "https://contents.mediadecathlon.com/p2673536/k$87f542d5022d40d5458a43dda8e25593/picture.jpg?f=300x300",
     "last_price": 24.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 24.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 24.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 24.99
       }
     ]
@@ -1356,7 +1393,7 @@
     "image": "https://contents.mediadecathlon.com/p2481549/k$c90437ae7c5c27062168608a18dd8cc3/picture.jpg?f=300x300",
     "last_price": 399.99,
     "previous_price": 399.99,
-    "last_seen": "2026-04-29",
+    "last_seen": "2026-05-04",
     "min_price_30d": 399.99,
     "min_price_all": 399.99,
     "avg_price_30d": 399.99,
@@ -1368,6 +1405,10 @@
       },
       {
         "date": "2026-04-29",
+        "price": 399.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 399.99
       }
     ]
@@ -1419,11 +1460,22 @@
     "sku": "8582728",
     "title": "Pantalón corto ciclismo MTB hombre Rockrider ST 500 negro",
     "url": "https://www.decathlon.es/es/p/pantalon-corto-ciclismo-mtb-hombre-rockrider-st-500-negro/324656/c382c382m8582728",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8582728|Pantalón corto ciclismo MTB hombre Rockrider ST 500 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-corto-ciclismo-mtb-hombre-rockrider-st-500-negro/324656/c382c382m8582728",
+    "image": "https://contents.mediadecathlon.com/p2415416/k$1c65e7a89ad518474a57f711e7a0c0a5/picture.jpg?f=300x300",
     "last_price": 39.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 39.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 39.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 39.99
       }
     ]
@@ -1475,11 +1527,22 @@
     "sku": "8329145",
     "title": "CASETE 7 VELOCIDADES 12x28",
     "url": "https://www.decathlon.es/es/p/casete-7-velocidades-12x28/100585/m8329145",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8329145|CASETE 7 VELOCIDADES 12x28|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casete-7-velocidades-12x28/100585/m8329145",
+    "image": "https://contents.mediadecathlon.com/p2712209/k$718e97fbf79c75b17a3601939937458c/picture.jpg?f=300x300",
     "last_price": 13.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 13.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 13.99,
+    "min_price_all": 13.99,
+    "avg_price_30d": 13.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 13.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 13.99
       }
     ]
@@ -1737,7 +1800,7 @@
     "image": "https://contents.mediadecathlon.com/p2045354/k$9d18e217c305242abbc736deba8b8d5b/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -1753,6 +1816,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 34.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 34.99
       }
     ]
@@ -1920,11 +1987,22 @@
     "sku": "8927389",
     "title": "Cassette Bicicleta Gravel 10 Velocidades 11x48",
     "url": "https://www.decathlon.es/es/p/cassette-bicicleta-gravel-10-velocidades-11x48/360021/m8927389",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8927389|Cassette Bicicleta Gravel 10 Velocidades 11x48|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cassette-bicicleta-gravel-10-velocidades-11x48/360021/m8927389",
+    "image": "https://contents.mediadecathlon.com/p2920393/k$7934e6e1e971d411745d964994fbe162/picture.jpg?f=300x300",
     "last_price": 34.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 34.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 34.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 34.99
       }
     ]
@@ -2324,7 +2402,7 @@
     "image": "https://contents.mediadecathlon.com/p2021839/k$9ef77d1c20368b5fd1bd0e44805b47a6/picture.jpg?f=300x300",
     "last_price": 539.99,
     "previous_price": 539.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 539.99,
     "min_price_all": 539.99,
     "avg_price_30d": 539.99,
@@ -2340,6 +2418,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 539.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 539.99
       }
     ]
@@ -2380,11 +2462,22 @@
     "sku": "9023329",
     "title": "Mini compresor de aire Leotec Airpower Max 6000",
     "url": "https://www.decathlon.es/es/p/mini-compresor-de-aire-leotec-airpower-max-6000/X9023329/m9023329",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9023329|Mini compresor de aire Leotec Airpower Max 6000|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mini-compresor-de-aire-leotec-airpower-max-6000/X9023329/m9023329",
+    "image": "https://contents.mediadecathlon.com/p3027786/k$45ee69102805975a4a5ce8642d5de54c/picture.jpg?f=300x300",
     "last_price": 44.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 44.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 44.99,
+    "min_price_all": 44.99,
+    "avg_price_30d": 44.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 44.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 44.99
       }
     ]
@@ -2630,7 +2723,7 @@
     "image": "https://contents.mediadecathlon.com/p2762742/k$f996bd9ec2dce1f25c313ed523c2db68/picture.jpg?f=300x300",
     "last_price": 89.99,
     "previous_price": 89.99,
-    "last_seen": "2026-05-01",
+    "last_seen": "2026-05-04",
     "min_price_30d": 89.99,
     "min_price_all": 89.99,
     "avg_price_30d": 89.99,
@@ -2646,6 +2739,10 @@
       },
       {
         "date": "2026-05-01",
+        "price": 89.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 89.99
       }
     ]
@@ -2772,11 +2869,22 @@
     "sku": "8872852",
     "title": "Bicicleta Estática EB900 B Conectada Autoalimentada Garantía Decathlon",
     "url": "https://www.decathlon.es/es/p/bicicleta-estatica-eb900-b-conectada-autoalimentada-garantia-decathlon/353185/c344m8872852",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8872852|Bicicleta Estática EB900 B Conectada Autoalimentada Garantía Decathlon|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-estatica-eb900-b-conectada-autoalimentada-garantia-decathlon/353185/c344m8872852",
+    "image": "https://contents.mediadecathlon.com/p2707465/k$288ae58faebe73df4a723c7a3308b5a9/picture.jpg?f=300x300",
     "last_price": 499.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 499.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 499.99,
+    "min_price_all": 499.99,
+    "avg_price_30d": 499.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 499.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 499.99
       }
     ]
@@ -2802,12 +2910,23 @@
     "sku": "8363393",
     "title": "LÍQUIDO ANTIPINCHAZOS PARA TUBELESS HUTCHINSON PROTECT'AIR MAX 1L",
     "url": "https://www.decathlon.es/es/p/liquido-antipinchazos-para-tubeless-hutchinson-protect-air-max-1l/X8363393/m8363393",
-    "last_price": 19.49,
-    "last_seen": "2026-04-24",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8363393|LÍQUIDO ANTIPINCHAZOS PARA TUBELESS HUTCHINSON PROTECT'AIR MAX 1L|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/liquido-antipinchazos-para-tubeless-hutchinson-protect-air-max-1l/X8363393/m8363393",
+    "image": "https://contents.mediadecathlon.com/p830323/k$1c1b118c56f67faf5fff00be53fec619/picture.jpg?f=300x300",
+    "last_price": 23.99,
+    "previous_price": 19.49,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.49,
+    "min_price_all": 19.49,
+    "avg_price_30d": 21.74,
+    "is_recent_min_price": false,
     "prices": [
       {
         "date": "2026-04-24",
         "price": 19.49
+      },
+      {
+        "date": "2026-05-04",
+        "price": 23.99
       }
     ]
   },
@@ -2948,7 +3067,7 @@
     "image": "https://contents.mediadecathlon.com/p2879868/k$a178f56e9855c57de345ee61f6f8d7f8/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -2960,6 +3079,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -3060,7 +3183,7 @@
     "image": "https://contents.mediadecathlon.com/p3113092/k$14047a644e3f90ba9493a7be513b1ab2/picture.jpg?f=300x300",
     "last_price": 799.99,
     "previous_price": 799.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 799.99,
     "min_price_all": 799.99,
     "avg_price_30d": 799.99,
@@ -3077,6 +3200,10 @@
       {
         "date": "2026-05-02",
         "price": 799.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 799.99
       }
     ]
   },
@@ -3090,7 +3217,7 @@
     "image": "https://contents.mediadecathlon.com/p2850259/k$516f6ee99559accb9e106cf3ad5394d6/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -3106,6 +3233,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 69.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 69.99
       }
     ]
@@ -3165,7 +3296,7 @@
     "image": "https://contents.mediadecathlon.com/p3108183/k$6f09f367e70bfb8f4f47e5707900f69b/picture.jpg?f=300x300",
     "last_price": 109.99,
     "previous_price": 109.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 109.99,
     "min_price_all": 109.99,
     "avg_price_30d": 109.99,
@@ -3181,6 +3312,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 109.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 109.99
       }
     ]
@@ -3225,7 +3360,7 @@
     "image": "https://contents.mediadecathlon.com/p2102154/k$4862b4e82a8173f300b8a39739bb52ee/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -3241,6 +3376,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -3277,11 +3416,22 @@
     "sku": "8351215",
     "title": "Rueda Bicicleta MTB 27,5\" Trasera Freno Disco Cassette Doble Pared Negra",
     "url": "https://www.decathlon.es/es/p/rueda-bicicleta-mtb-27-5-trasera-freno-disco-cassette-doble-pared-negra/315005/m8351215",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8351215|Rueda Bicicleta MTB 27,5\" Trasera Freno Disco Cassette Doble Pared Negra|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rueda-bicicleta-mtb-27-5-trasera-freno-disco-cassette-doble-pared-negra/315005/m8351215",
+    "image": "https://contents.mediadecathlon.com/p1030888/k$b63f3d0c887bb7344f6a94cc0e2f7b16/picture.jpg?f=300x300",
     "last_price": 59.99,
-    "last_seen": "2026-04-24",
+    "previous_price": 59.99,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 59.99,
+    "min_price_all": 59.99,
+    "avg_price_30d": 59.99,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-24",
+        "price": 59.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 59.99
       }
     ]
@@ -5006,7 +5156,7 @@
     "image": "https://contents.mediadecathlon.com/p3033572/k$1dfefe9db9adcb0b441ecd351d4e9e4c/picture.jpg?f=300x300",
     "last_price": 43.99,
     "previous_price": 43.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 43.99,
     "min_price_all": 43.99,
     "avg_price_30d": 43.99,
@@ -5023,6 +5173,10 @@
       {
         "date": "2026-05-03",
         "price": 43.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 43.99
       }
     ]
   },
@@ -5036,7 +5190,7 @@
     "image": "https://contents.mediadecathlon.com/p3033337/k$49c91cd33c2e384ba43a88ae42cd4763/picture.jpg?f=300x300",
     "last_price": 35.99,
     "previous_price": 35.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 35.99,
     "min_price_all": 35.99,
     "avg_price_30d": 35.99,
@@ -5052,6 +5206,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 35.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 35.99
       }
     ]
@@ -5066,7 +5224,7 @@
     "image": "https://contents.mediadecathlon.com/p3033332/k$bea6aafb3c2bc0223f958199254d4d90/picture.jpg?f=300x300",
     "last_price": 35.99,
     "previous_price": 35.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 35.99,
     "min_price_all": 35.99,
     "avg_price_30d": 35.99,
@@ -5083,6 +5241,10 @@
       {
         "date": "2026-05-03",
         "price": 35.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 35.99
       }
     ]
   },
@@ -5096,7 +5258,7 @@
     "image": "https://contents.mediadecathlon.com/p3033308/k$c9709a78d2962207c001997b26e91ee7/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -5113,6 +5275,10 @@
       {
         "date": "2026-05-03",
         "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 29.99
       }
     ]
   },
@@ -5126,7 +5292,7 @@
     "image": "https://contents.mediadecathlon.com/p3039921/k$2053e7ea6d5956cb9b6c9f8fc7327190/picture.jpg?f=300x300",
     "last_price": 36.99,
     "previous_price": 36.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 36.99,
     "min_price_all": 36.99,
     "avg_price_30d": 36.99,
@@ -5143,6 +5309,10 @@
       {
         "date": "2026-05-03",
         "price": 36.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 36.99
       }
     ]
   },
@@ -5154,13 +5324,13 @@
     "url": "https://www.decathlon.es/es/p/bicicleta-la-patrulla-canina-sin-pedales-regulable-en-altura-max-20-kg-cd/X9024521/m9024521",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9024521|Bicicleta La Patrulla Canina sin pedales regulable en altura máx. 20 kg - CD|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-la-patrulla-canina-sin-pedales-regulable-en-altura-max-20-kg-cd/X9024521/m9024521",
     "image": "https://contents.mediadecathlon.com/p3039771/k$be077902aa7c5d75acdbb80abfb245bc/picture.jpg?f=300x300",
-    "last_price": 49.99,
+    "last_price": 44.99,
     "previous_price": 49.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
-    "avg_price_30d": 48.32,
-    "is_recent_min_price": false,
+    "avg_price_30d": 47.49,
+    "is_recent_min_price": true,
     "prices": [
       {
         "date": "2026-04-27",
@@ -5173,6 +5343,10 @@
       {
         "date": "2026-05-03",
         "price": 49.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 44.99
       }
     ]
   },
@@ -5186,7 +5360,7 @@
     "image": "https://contents.mediadecathlon.com/p3039650/k$e1b3c95775597f8dceb17188a56608b4/picture.jpg?f=300x300",
     "last_price": 30.99,
     "previous_price": 30.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 30.99,
     "min_price_all": 30.99,
     "avg_price_30d": 30.99,
@@ -5203,6 +5377,10 @@
       {
         "date": "2026-05-03",
         "price": 30.99
+      },
+      {
+        "date": "2026-05-04",
+        "price": 30.99
       }
     ]
   },
@@ -5216,10 +5394,10 @@
     "image": "https://contents.mediadecathlon.com/p3039634/k$39bb54ca12dd66bc644edf2764725d53/picture.jpg?f=300x300",
     "last_price": 37.99,
     "previous_price": 37.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 30.99,
     "min_price_all": 30.99,
-    "avg_price_30d": 35.66,
+    "avg_price_30d": 36.24,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -5232,6 +5410,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 37.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 37.99
       }
     ]
@@ -5246,7 +5428,7 @@
     "image": "https://contents.mediadecathlon.com/p3039644/k$5cdd5dbeba7392e646f537252f2c368e/picture.jpg?f=300x300",
     "last_price": 30.49,
     "previous_price": 30.49,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 30.49,
     "min_price_all": 30.49,
     "avg_price_30d": 30.49,
@@ -5262,6 +5444,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 30.49
+      },
+      {
+        "date": "2026-05-04",
         "price": 30.49
       }
     ]
@@ -5298,7 +5484,7 @@
     "image": "https://contents.mediadecathlon.com/p2833232/k$7f136ce0659915b5ace4fcf4b1ffab7e/picture.jpg?f=300x300",
     "last_price": 1699.0,
     "previous_price": 1699.0,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 1699.0,
     "min_price_all": 1699.0,
     "avg_price_30d": 1699.0,
@@ -5310,6 +5496,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 1699.0
+      },
+      {
+        "date": "2026-05-04",
         "price": 1699.0
       }
     ]
@@ -5845,8 +6035,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8828470|Culotte ciclismo corto sin tirantes Hombre Endurance Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/culotte-ciclismo-corto-sin-tirantes-hombre-endurance-negro/349697/c382m8828470",
     "image": "https://contents.mediadecathlon.com/p3073064/k$6913a18f3f439876a2fceaf869061a93/picture.jpg?f=300x300",
     "last_price": 39.99,
-    "previous_price": null,
-    "last_seen": "2026-04-27",
+    "previous_price": 39.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -5854,6 +6044,10 @@
     "prices": [
       {
         "date": "2026-04-27",
+        "price": 39.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 39.99
       }
     ]
@@ -6070,7 +6264,7 @@
     "image": "https://contents.mediadecathlon.com/p1567326/k$d379db62afb8a84ad52e383e08bf083a/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -6086,6 +6280,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 24.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 24.99
       }
     ]
@@ -6358,7 +6556,7 @@
     "image": "https://contents.mediadecathlon.com/p3128730/k$287910b73ebee1fbd830cb2dc7456e4f/picture.jpg?f=300x300",
     "last_price": 94.99,
     "previous_price": 94.99,
-    "last_seen": "2026-05-01",
+    "last_seen": "2026-05-04",
     "min_price_30d": 94.99,
     "min_price_all": 94.99,
     "avg_price_30d": 94.99,
@@ -6378,6 +6576,10 @@
       },
       {
         "date": "2026-05-01",
+        "price": 94.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 94.99
       }
     ]
@@ -6632,7 +6834,7 @@
     "image": "https://contents.mediadecathlon.com/p1803990/k$016f0fb242f3a16702a00679f23063e1/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-05-01",
+    "last_seen": "2026-05-04",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -6644,6 +6846,10 @@
       },
       {
         "date": "2026-05-01",
+        "price": 19.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 19.99
       }
     ]
@@ -7786,7 +7992,7 @@
     "image": "https://contents.mediadecathlon.com/p2445825/k$7088a96098988a9c6e4feef345226428/picture.jpg?f=300x300",
     "last_price": 94.99,
     "previous_price": 94.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 94.99,
     "min_price_all": 94.99,
     "avg_price_30d": 94.99,
@@ -7806,6 +8012,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 94.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 94.99
       }
     ]
@@ -7986,7 +8196,7 @@
     "image": "https://contents.mediadecathlon.com/p1746061/k$42c0fd6ec08b81fa46bf551d91eb7ebf/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-04-29",
+    "last_seen": "2026-05-04",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -7998,6 +8208,10 @@
       },
       {
         "date": "2026-04-29",
+        "price": 39.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 39.99
       }
     ]
@@ -9090,7 +9304,7 @@
     "image": "https://contents.mediadecathlon.com/p2411924/k$bfedb162bebfb11061100fbac376bf5e/picture.jpg?f=300x300",
     "last_price": 49.99,
     "previous_price": 49.99,
-    "last_seen": "2026-04-30",
+    "last_seen": "2026-05-04",
     "min_price_30d": 49.99,
     "min_price_all": 49.99,
     "avg_price_30d": 49.99,
@@ -9106,6 +9320,10 @@
       },
       {
         "date": "2026-04-30",
+        "price": 49.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 49.99
       }
     ]
@@ -9386,7 +9604,7 @@
     "image": "https://contents.mediadecathlon.com/p2874888/k$5e860b6da52893081473fdd1a47f0e88/picture.jpg?f=300x300",
     "last_price": 54.99,
     "previous_price": 54.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
     "avg_price_30d": 54.99,
@@ -9402,6 +9620,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 54.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 54.99
       }
     ]
@@ -9464,7 +9686,7 @@
     "image": "https://contents.mediadecathlon.com/p3073159/k$1134e366c52e14046d047cb0a155fffa/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-04-28",
+    "last_seen": "2026-05-04",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -9476,6 +9698,10 @@
       },
       {
         "date": "2026-04-28",
+        "price": 59.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 59.99
       }
     ]
@@ -9564,7 +9790,7 @@
     "image": "https://contents.mediadecathlon.com/p3094770/k$93da5315d23067bb72a0eac869c099ea/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-05-02",
+    "last_seen": "2026-05-04",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -9580,6 +9806,10 @@
       },
       {
         "date": "2026-05-02",
+        "price": 69.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 69.99
       }
     ]
@@ -10384,7 +10614,7 @@
     "image": "https://contents.mediadecathlon.com/p2694152/k$6272b558c283724ebf0f3e75953d292b/picture.jpg?f=300x300",
     "last_price": 5499.0,
     "previous_price": 5499.0,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 5499.0,
     "min_price_all": 5499.0,
     "avg_price_30d": 5499.0,
@@ -10396,6 +10626,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 5499.0
+      },
+      {
+        "date": "2026-05-04",
         "price": 5499.0
       }
     ]
@@ -10974,7 +11208,7 @@
     "image": "https://contents.mediadecathlon.com/p3129365/k$4cc5c2813d01034b584c44c2806ad066/picture.jpg?f=300x300",
     "last_price": 199.99,
     "previous_price": 199.99,
-    "last_seen": "2026-04-30",
+    "last_seen": "2026-05-04",
     "min_price_30d": 199.99,
     "min_price_all": 199.99,
     "avg_price_30d": 199.99,
@@ -10986,6 +11220,10 @@
       },
       {
         "date": "2026-04-30",
+        "price": 199.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 199.99
       }
     ]
@@ -13268,7 +13506,7 @@
     "image": "https://contents.mediadecathlon.com/p3128708/k$fb4f7186848aef1b3c2544e1de174b37/picture.jpg?f=300x300",
     "last_price": 169.99,
     "previous_price": 169.99,
-    "last_seen": "2026-04-29",
+    "last_seen": "2026-05-04",
     "min_price_30d": 169.99,
     "min_price_all": 169.99,
     "avg_price_30d": 169.99,
@@ -13280,6 +13518,10 @@
       },
       {
         "date": "2026-04-29",
+        "price": 169.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 169.99
       }
     ]
@@ -13570,7 +13812,7 @@
     "image": "https://contents.mediadecathlon.com/p3096325/k$d9e86951cf7f3a3dd85ac2adab7aa1f0/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-04-28",
+    "last_seen": "2026-05-04",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -13578,6 +13820,10 @@
     "prices": [
       {
         "date": "2026-04-28",
+        "price": 59.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 59.99
       }
     ]
@@ -13592,7 +13838,7 @@
     "image": "https://contents.mediadecathlon.com/p3098176/k$e53886e34c0919f5d5d2135e227d667c/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -13608,6 +13854,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 34.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 34.99
       }
     ]
@@ -14192,7 +14442,7 @@
     "image": "https://contents.mediadecathlon.com/p3002747/k$36f2be286bfe25c6d3784493de614e4b/picture.jpg?f=300x300",
     "last_price": 18.99,
     "previous_price": 18.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 18.99,
     "min_price_all": 18.99,
     "avg_price_30d": 18.99,
@@ -14204,6 +14454,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 18.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 18.99
       }
     ]
@@ -15192,7 +15446,7 @@
     "image": "https://contents.mediadecathlon.com/p1940876/k$101f28fa7827893f9e9c50851fbaf49c/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-04-29",
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -15200,6 +15454,10 @@
     "prices": [
       {
         "date": "2026-04-29",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -15618,7 +15876,7 @@
     "image": "https://contents.mediadecathlon.com/p2695899/k$e8c04b4fb7a94c8022091da1c52421ad/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-04-29",
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -15626,6 +15884,10 @@
     "prices": [
       {
         "date": "2026-04-29",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -16008,7 +16270,7 @@
     "image": "https://contents.mediadecathlon.com/p2839027/k$c8d681255539e7ac36146dec2c4c22f6/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-05-01",
+    "last_seen": "2026-05-04",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -16020,6 +16282,10 @@
       },
       {
         "date": "2026-05-01",
+        "price": 24.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 24.99
       }
     ]
@@ -16434,7 +16700,7 @@
     "image": "https://contents.mediadecathlon.com/p2483423/k$f6bd6d1d4c7ed3c8c3145a779d77280d/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-04-29",
+    "last_seen": "2026-05-04",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -16442,6 +16708,10 @@
     "prices": [
       {
         "date": "2026-04-29",
+        "price": 14.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 14.99
       }
     ]
@@ -17117,8 +17387,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8832715|Poncho ciclismo niños Visibilidad Diurna/Nocturna Impermeable Negro-Amarillo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/poncho-ciclismo-ninos-visibilidad-diurna-nocturna-impermeable-negro-amarillo/350234/c263m8832715",
     "image": "https://contents.mediadecathlon.com/p3003133/k$9fff6a5e1292394e53592a45b4346802/picture.jpg?f=300x300",
     "last_price": 39.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 39.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -17126,6 +17396,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 39.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 39.99
       }
     ]
@@ -17140,7 +17414,7 @@
     "image": "https://contents.mediadecathlon.com/p3152124/k$fb22c23e198c998b0ed22ab413be77ed/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -17152,6 +17426,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 34.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 34.99
       }
     ]
@@ -17705,8 +17983,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8555706|Cargador 42V 4A Batería Bicicleta Eléctrica E-ST 100, 500 , 900 Y Elops 900/920|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cargador-42v-4a-bateria-bicicleta-electrica-e-st-100-500-900-y-elops-900-920/201735/c1m8555706",
     "image": "https://contents.mediadecathlon.com/p1708809/k$220abbb0a7bcc5a8f5f77be9ae11fe4b/picture.jpg?f=300x300",
     "last_price": 59.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 59.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -17714,6 +17992,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 59.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 59.99
       }
     ]
@@ -18389,8 +18671,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8788239|Chaqueta Ciclismo Carretera Hombre Visibilidad EN 17353 Manga Larga Impermeable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-hombre-visibilidad-en-17353-manga-larga-impermeable/344897/c263m8788239",
     "image": "https://contents.mediadecathlon.com/p2989575/k$36aab8ef9f270c0ac688f781a2b5ce66/picture.jpg?f=300x300",
     "last_price": 28.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 28.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 28.99,
     "min_price_all": 28.99,
     "avg_price_30d": 28.99,
@@ -18398,6 +18680,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 28.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 28.99
       }
     ]
@@ -18455,8 +18741,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8926303|Maillot MTB 500 Hombre Marrón Cobrizo Manga Corta Transpirable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-mtb-500-hombre-marron-cobrizo-manga-corta-transpirable/356996/c101m8926303",
     "image": "https://contents.mediadecathlon.com/p3102965/k$e7b49dcff7bd11a5c9e1f102e233a0d9/picture.jpg?f=300x300",
     "last_price": 29.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 29.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -18464,6 +18750,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -18654,7 +18944,7 @@
     "image": "https://contents.mediadecathlon.com/p3113098/k$9be699efd098da0c1d8e34dd377563d5/picture.jpg?f=300x300",
     "last_price": 4499.0,
     "previous_price": 4499.0,
-    "last_seen": "2026-05-01",
+    "last_seen": "2026-05-04",
     "min_price_30d": 4499.0,
     "min_price_all": 4499.0,
     "avg_price_30d": 4499.0,
@@ -18666,6 +18956,10 @@
       },
       {
         "date": "2026-05-01",
+        "price": 4499.0
+      },
+      {
+        "date": "2026-05-04",
         "price": 4499.0
       }
     ]
@@ -18925,8 +19219,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8803784|Guantes Ciclismo 900 Entretiempo Impermeables|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/guantes-ciclismo-900-entretiempo-impermeables/347153/c382m8803784",
     "image": "https://contents.mediadecathlon.com/p3047141/k$15b6227209dc85fcba0b72d40128a514/picture.jpg?f=300x300",
     "last_price": 29.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 29.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -18934,6 +19228,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -19131,8 +19429,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8555715|Batería Externa Cuadro DK-11 36 V 14 Ah 504 Wh|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bateria-externa-cuadro-dk-11-36-v-14-ah-504-wh/201698/m8555715",
     "image": "https://contents.mediadecathlon.com/p1708896/k$796ab8f5693eb553675984215900f223/picture.jpg?f=300x300",
     "last_price": 474.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 474.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 474.99,
     "min_price_all": 474.99,
     "avg_price_30d": 474.99,
@@ -19140,6 +19438,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 474.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 474.99
       }
     ]
@@ -19865,8 +20167,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8523054|JUEGO DIRECCIÓN 1\"1/8 SEMIINTEGRADO ZS44/28.6 ZS44/30 NEGRO|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/juego-direccion-1-1-8-semiintegrado-zs44-28-6-zs44-30-negro/199346/m8523054",
     "image": "https://contents.mediadecathlon.com/p2060137/k$1d3311cf225abaa5eda4668b3f23cf59/picture.jpg?f=300x300",
     "last_price": 14.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 14.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -19874,6 +20176,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 14.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 14.99
       }
     ]
@@ -20155,8 +20461,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8969605|Culotte Corto Ciclismo Carretera RCR-R 2 Mujer Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/culotte-corto-ciclismo-carretera-rcr-r-2-mujer-negro/367691/c382m8969605",
     "image": "https://contents.mediadecathlon.com/p3043224/k$07dc861ac0829a1e477c7381bd19c57d/picture.jpg?f=300x300",
     "last_price": 69.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 69.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -20164,6 +20470,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 69.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 69.99
       }
     ]
@@ -21773,8 +22083,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8911396|Chaqueta impermeable y transpirable de senderismo hombre - MH500 naranja|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-impermeable-y-transpirable-de-senderismo-hombre-mh500-naranja/357657/c274m8911396",
     "image": "https://contents.mediadecathlon.com/p2443709/k$0467d4017a88616983734050133347a7/picture.jpg?f=300x300",
     "last_price": 89.99,
-    "previous_price": null,
-    "last_seen": "2026-05-01",
+    "previous_price": 89.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 89.99,
     "min_price_all": 89.99,
     "avg_price_30d": 89.99,
@@ -21782,6 +22092,10 @@
     "prices": [
       {
         "date": "2026-05-01",
+        "price": 89.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 89.99
       }
     ]
@@ -21905,8 +22219,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8403369|Bidón Estanco para Canoa Kayak y Paddle Surf Itiwit10 L Blanco|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bidon-estanco-para-canoa-kayak-y-paddle-surf-itiwit10-l-blanco/170899/c4c135m8403369",
     "image": "https://contents.mediadecathlon.com/p1828793/k$f9a0afe41fdce777982ea62119896f01/picture.jpg?f=300x300",
     "last_price": 29.99,
-    "previous_price": null,
-    "last_seen": "2026-05-01",
+    "previous_price": 29.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -21914,6 +22228,10 @@
     "prices": [
       {
         "date": "2026-05-01",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -22617,8 +22935,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8665784|Maillot gimnasia niña 900 rosa anaranjado|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-gimnasia-nina-900-rosa-anaranjado/305166/c24m8665784",
     "image": "https://contents.mediadecathlon.com/p2412489/k$f89884c27d95c6c512927993bf10ea43/picture.jpg?f=300x300",
     "last_price": 17.99,
-    "previous_price": null,
-    "last_seen": "2026-05-01",
+    "previous_price": 17.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 17.99,
     "min_price_all": 17.99,
     "avg_price_30d": 17.99,
@@ -22626,6 +22944,10 @@
     "prices": [
       {
         "date": "2026-05-01",
+        "price": 17.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 17.99
       }
     ]
@@ -22683,8 +23005,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8664006|Maillot Gimnasia JSM 540 Niña Negro Purpurina Azul Sin Mangas Cuello Redondo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-gimnasia-jsm-540-nina-negro-purpurina-azul-sin-mangas-cuello-redondo/333585/c382c1m8664006",
     "image": "https://contents.mediadecathlon.com/p2823129/k$15a2624906e10bec23cef8ea6fe4cd06/picture.jpg?f=300x300",
     "last_price": 14.99,
-    "previous_price": null,
-    "last_seen": "2026-05-01",
+    "previous_price": 14.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -22692,6 +23014,10 @@
     "prices": [
       {
         "date": "2026-05-01",
+        "price": 14.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 14.99
       }
     ]
@@ -24149,8 +24475,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8517197|PERNERAS TIEMPO FRESCO|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/perneras-tiempo-fresco/304083/c382m8517197",
     "image": "https://contents.mediadecathlon.com/p1515062/k$46571cf89b5783a758734ca7f7691e25/picture.jpg?f=300x300",
     "last_price": 17.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 17.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 17.99,
     "min_price_all": 17.99,
     "avg_price_30d": 17.99,
@@ -24158,6 +24484,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 17.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 17.99
       }
     ]
@@ -24238,7 +24568,7 @@
     "image": "https://contents.mediadecathlon.com/p3039669/k$d8673e0a38f7e3015971b726ba4cab4b/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -24250,6 +24580,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 44.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 44.99
       }
     ]
@@ -24264,7 +24598,7 @@
     "image": "https://contents.mediadecathlon.com/p3039925/k$8a95e98d60a56fa05c76e08970c1e6e3/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -24276,6 +24610,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 39.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 39.99
       }
     ]
@@ -24334,7 +24672,7 @@
     "image": "https://contents.mediadecathlon.com/p3039654/k$ac5b74dca6f0a80bfe71aa54409a7730/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -24346,6 +24684,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 44.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 44.99
       }
     ]
@@ -24426,7 +24768,7 @@
     "image": "https://contents.mediadecathlon.com/p3039627/k$9269e3aacece3a9fd71a66f15a97aafe/picture.jpg?f=300x300",
     "last_price": 30.49,
     "previous_price": 30.49,
-    "last_seen": "2026-05-03",
+    "last_seen": "2026-05-04",
     "min_price_30d": 30.49,
     "min_price_all": 30.49,
     "avg_price_30d": 30.49,
@@ -24438,6 +24780,10 @@
       },
       {
         "date": "2026-05-03",
+        "price": 30.49
+      },
+      {
+        "date": "2026-05-04",
         "price": 30.49
       }
     ]
@@ -24561,8 +24907,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8987884|Mono Ciclismo Carretera RCR-R Decathlon CMA CGM Réplica|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mono-ciclismo-carretera-rcr-r-decathlon-cma-cgm-replica/362906/m8987884",
     "image": "https://contents.mediadecathlon.com/p3136003/k$d11bf46c1a01edc25cf7966bdc4a950a/picture.jpg?f=300x300",
     "last_price": 129.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 129.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 129.99,
     "min_price_all": 129.99,
     "avg_price_30d": 129.99,
@@ -24570,6 +24916,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 129.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 129.99
       }
     ]
@@ -24693,8 +25043,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8299212|Estribo Freno V-Brake Bicicleta Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/estribo-freno-v-brake-bicicleta-negro/12240/m8299212",
     "image": "https://contents.mediadecathlon.com/p2605402/k$e85af72fe6589a1fdce9d586306b6999/picture.jpg?f=300x300",
     "last_price": 15.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 15.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 15.99,
     "min_price_all": 15.99,
     "avg_price_30d": 15.99,
@@ -24702,6 +25052,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 15.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 15.99
       }
     ]
@@ -25177,8 +25531,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9004106|Bañador Hombre Quiksilver 17' Cintura Elástica Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/banador-hombre-quiksilver-17-cintura-elastica-negro/382004/c1m9004106",
     "image": "https://contents.mediadecathlon.com/p3021731/k$375bf631f6b000dbed69f38999ce8d94/picture.jpg?f=300x300",
     "last_price": 39.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 39.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -25186,6 +25540,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 39.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 39.99
       }
     ]
@@ -25199,8 +25557,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8829910|Culotte ciclismo sin tirantes MTB mujer Rockrider ST 100Azul|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/culotte-ciclismo-sin-tirantes-mtb-mujer-rockrider-st-100azul/168851/c364c364m8829910",
     "image": "https://contents.mediadecathlon.com/p2662092/k$c3803fdd3eb6a162a93a73ca07f4188d/picture.jpg?f=300x300",
     "last_price": 19.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 19.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -25208,6 +25566,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 19.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 19.99
       }
     ]
@@ -25859,8 +26221,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8970681|Zapatillas Múltiples Deportes Playful Summer Niños Violeta Oscuro Transpirables|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-multiples-deportes-playful-summer-ninos-violeta-oscuro-transpirables/345134/c190m8970681",
     "image": "https://contents.mediadecathlon.com/p3066505/k$348bfaa1e8269133c337da937d1c8302/picture.jpg?f=300x300",
     "last_price": 24.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 24.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -25868,6 +26230,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 24.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 24.99
       }
     ]
@@ -25881,8 +26247,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8315962|Sillín Bici Todocamino/Trekking/MTB/Ciudad Unisex Gel|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sillin-bici-todocamino-trekking-mtb-ciudad-unisex-gel/15214/c1m8315962",
     "image": "https://contents.mediadecathlon.com/p1759507/k$28977d72824d1d2becf69be765a6f5bf/picture.jpg?f=300x300",
     "last_price": 29.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 29.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -25890,6 +26256,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -25969,8 +26339,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8973446|Casco Rockrider Race MIPS Réplica|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casco-rockrider-race-mips-replica/346532/c330m8973446",
     "image": "https://contents.mediadecathlon.com/p2926088/k$ded8ac1021a1b29248ff7594e18f1001/picture.jpg?f=300x300",
     "last_price": 89.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 89.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 89.99,
     "min_price_all": 89.99,
     "avg_price_30d": 89.99,
@@ -25978,6 +26348,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 89.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 89.99
       }
     ]
@@ -25991,8 +26365,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8808592|Casco Ciclismo MTB XC Race MIPS Blanco|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casco-ciclismo-mtb-xc-race-mips-blanco/346532/c227c382m8808592",
     "image": "https://contents.mediadecathlon.com/p2834772/k$2a201ea4bcd194db7e22b59d83015ba4/picture.jpg?f=300x300",
     "last_price": 89.99,
-    "previous_price": null,
-    "last_seen": "2026-05-02",
+    "previous_price": 89.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 89.99,
     "min_price_all": 89.99,
     "avg_price_30d": 89.99,
@@ -26000,6 +26374,10 @@
     "prices": [
       {
         "date": "2026-05-02",
+        "price": 89.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 89.99
       }
     ]
@@ -26739,8 +27117,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8987759|Sudadera Capucha Lifestyle Negro Pavés|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sudadera-capucha-lifestyle-negro-paves/377945/c382c140m8987759",
     "image": "https://contents.mediadecathlon.com/p3098053/k$1208b31bf097aa5bd0fbe83fd8453e72/picture.jpg?f=300x300",
     "last_price": 34.99,
-    "previous_price": null,
-    "last_seen": "2026-05-03",
+    "previous_price": 34.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -26748,6 +27126,10 @@
     "prices": [
       {
         "date": "2026-05-03",
+        "price": 34.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 34.99
       }
     ]
@@ -26937,8 +27319,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9025959|Grasa Cascos Equitación Kevin Bacon Hoof Dressing Original 1 Litro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/grasa-cascos-equitacion-kevin-bacon-hoof-dressing-original-1-litro/385974/m9025959",
     "image": "https://contents.mediadecathlon.com/p3071410/k$a17785617b80b8629ac0c8087c0e651c/picture.jpg?f=300x300",
     "last_price": 14.99,
-    "previous_price": null,
-    "last_seen": "2026-05-03",
+    "previous_price": 14.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -26946,6 +27328,10 @@
     "prices": [
       {
         "date": "2026-05-03",
+        "price": 14.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 14.99
       }
     ]
@@ -27047,8 +27433,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8970111|Maillot Gimnasia Niña Violeta Sin Mangas|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-gimnasia-nina-violeta-sin-mangas/347574/c16c16m8970111",
     "image": "https://contents.mediadecathlon.com/p3042095/k$0cfbc39afd449aeed45f67b7ba108f0b/picture.jpg?f=300x300",
     "last_price": 29.99,
-    "previous_price": null,
-    "last_seen": "2026-05-03",
+    "previous_price": 29.99,
+    "last_seen": "2026-05-04",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -27056,6 +27442,10 @@
     "prices": [
       {
         "date": "2026-05-03",
+        "price": 29.99
+      },
+      {
+        "date": "2026-05-04",
         "price": 29.99
       }
     ]
@@ -29477,6 +29867,2646 @@
       {
         "date": "2026-05-03",
         "price": 199.99
+      }
+    ]
+  },
+  "8328483": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cambio-trasero-btwin-bicicleta-mtb-3-7-velocidades/100591/m8328483",
+    "sku": "8328483",
+    "title": "Cambio trasero Btwin bicicleta MTB 3-7 Velocidades",
+    "url": "https://www.decathlon.es/es/p/cambio-trasero-btwin-bicicleta-mtb-3-7-velocidades/100591/m8328483",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8328483|Cambio trasero Btwin bicicleta MTB 3-7 Velocidades|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cambio-trasero-btwin-bicicleta-mtb-3-7-velocidades/100591/m8328483",
+    "image": "https://contents.mediadecathlon.com/p2605419/k$eb9141923a3d1350f3f6adabfaf27479/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8931927": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/ciclocomputador-ciclismo-van-rysel-bc-500-negro-sin-cable/361929/m8931927",
+    "sku": "8931927",
+    "title": "Ciclocomputador Ciclismo Van Rysel BC 500 Negro Sin Cable",
+    "url": "https://www.decathlon.es/es/p/ciclocomputador-ciclismo-van-rysel-bc-500-negro-sin-cable/361929/m8931927",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8931927|Ciclocomputador Ciclismo Van Rysel BC 500 Negro Sin Cable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/ciclocomputador-ciclismo-van-rysel-bc-500-negro-sin-cable/361929/m8931927",
+    "image": "https://contents.mediadecathlon.com/p2883727/k$7f43cbba41b1562c637dd25ff8eb00de/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "9001703": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-rosa-litchi-nobuk/371012/c25c382m9001703",
+    "sku": "9001703",
+    "title": "Cabezada Cuadra Equitación Caballo Rosa Litchi Nobuk",
+    "url": "https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-rosa-litchi-nobuk/371012/c25c382m9001703",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9001703|Cabezada Cuadra Equitación Caballo Rosa Litchi Nobuk|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-rosa-litchi-nobuk/371012/c25c382m9001703",
+    "image": "https://contents.mediadecathlon.com/p3009768/k$cf00dc8e6966ec40175172e35c521cc6/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8958415": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-negro-nobuk/371012/c382m8958415",
+    "sku": "8958415",
+    "title": "Cabezada Cuadra Equitación Caballo Negro Nobuk",
+    "url": "https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-negro-nobuk/371012/c382m8958415",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8958415|Cabezada Cuadra Equitación Caballo Negro Nobuk|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-negro-nobuk/371012/c382m8958415",
+    "image": "https://contents.mediadecathlon.com/p3009699/k$a4da54392a709eb8c39ee97d9cb26c51/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8969040": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-verde-eucalipto-nobuk/371012/c261c382m8969040",
+    "sku": "8969040",
+    "title": "Cabezada Cuadra Equitación Caballo Verde Eucalipto Nobuk",
+    "url": "https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-verde-eucalipto-nobuk/371012/c261c382m8969040",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8969040|Cabezada Cuadra Equitación Caballo Verde Eucalipto Nobuk|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cabezada-cuadra-equitacion-caballo-verde-eucalipto-nobuk/371012/c261c382m8969040",
+    "image": "https://contents.mediadecathlon.com/p3009745/k$c1d09b6bb2bf6313dd82ea7cc48e640f/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8940406": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/sudadera-deportiva-mujer-azul-marino-ligera-sin-capucha/364893/c195m8940406",
+    "sku": "8940406",
+    "title": "Sudadera Deportiva Mujer Azul Marino Ligera Sin Capucha",
+    "url": "https://www.decathlon.es/es/p/sudadera-deportiva-mujer-azul-marino-ligera-sin-capucha/364893/c195m8940406",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8940406|Sudadera Deportiva Mujer Azul Marino Ligera Sin Capucha|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sudadera-deportiva-mujer-azul-marino-ligera-sin-capucha/364893/c195m8940406",
+    "image": "https://contents.mediadecathlon.com/p3055080/k$9e04604646a6eda9a533c0831516fc03/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 34.99
+      }
+    ]
+  },
+  "8668276": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/tija-sillin-negro-34-430-mm-aluminio-velocargo-longtail-carga-trasera-r500/336234/m8668276",
+    "sku": "8668276",
+    "title": "Tija Sillín Negro 34*430 mm Aluminio Velocargo Longtail Carga Trasera R500",
+    "url": "https://www.decathlon.es/es/p/tija-sillin-negro-34-430-mm-aluminio-velocargo-longtail-carga-trasera-r500/336234/m8668276",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8668276|Tija Sillín Negro 34*430 mm Aluminio Velocargo Longtail Carga Trasera R500|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/tija-sillin-negro-34-430-mm-aluminio-velocargo-longtail-carga-trasera-r500/336234/m8668276",
+    "image": "https://contents.mediadecathlon.com/p2302083/k$1a0d2ff195cf54a3b2203b7fd83c496e/picture.jpg?f=300x300",
+    "last_price": 14.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 14.99,
+    "min_price_all": 14.99,
+    "avg_price_30d": 14.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 14.99
+      }
+    ]
+  },
+  "8953777": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-rcr-r-pro-ultralight-rain-impermeable/362962/m8953777",
+    "sku": "8953777",
+    "title": "Chaqueta Ciclismo Carretera RCR-R Pro Ultralight Rain Impermeable",
+    "url": "https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-rcr-r-pro-ultralight-rain-impermeable/362962/m8953777",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8953777|Chaqueta Ciclismo Carretera RCR-R Pro Ultralight Rain Impermeable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-rcr-r-pro-ultralight-rain-impermeable/362962/m8953777",
+    "image": "https://contents.mediadecathlon.com/p3017678/k$98fc69d93cb6021c9223a4b6fd74905e/picture.jpg?f=300x300",
+    "last_price": 289.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 289.99,
+    "min_price_all": 289.99,
+    "avg_price_30d": 289.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 289.99
+      }
+    ]
+  },
+  "8615085": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-mtb-all-mountain-e-feel-700-s-electrica-suspension-total-29/330291/c230m8615085",
+    "sku": "8615085",
+    "title": "Bicicleta MTB All-Mountain E-Feel 700 S Eléctrica Suspensión Total 29\"",
+    "url": "https://www.decathlon.es/es/p/bicicleta-mtb-all-mountain-e-feel-700-s-electrica-suspension-total-29/330291/c230m8615085",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8615085|Bicicleta MTB All-Mountain E-Feel 700 S Eléctrica Suspensión Total 29\"|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-mtb-all-mountain-e-feel-700-s-electrica-suspension-total-29/330291/c230m8615085",
+    "image": "https://contents.mediadecathlon.com/p2623144/k$6bef683c0170199924deb8790d6391ee/picture.jpg?f=300x300",
+    "last_price": 3499.0,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 3499.0,
+    "min_price_all": 3499.0,
+    "avg_price_30d": 3499.0,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 3499.0
+      }
+    ]
+  },
+  "8670052": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pantalon-corto-fitness-hombre-negro-2-en-1-transpirable-bolsillo-cremallera/327510/c382c382m8670052",
+    "sku": "8670052",
+    "title": "Pantalón Corto Fitness Hombre Negro 2 En 1 Transpirable Bolsillo Cremallera",
+    "url": "https://www.decathlon.es/es/p/pantalon-corto-fitness-hombre-negro-2-en-1-transpirable-bolsillo-cremallera/327510/c382c382m8670052",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8670052|Pantalón Corto Fitness Hombre Negro 2 En 1 Transpirable Bolsillo Cremallera|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-corto-fitness-hombre-negro-2-en-1-transpirable-bolsillo-cremallera/327510/c382c382m8670052",
+    "image": "https://contents.mediadecathlon.com/p2509355/k$b93ec8f187cd29a951506e5f402f3e54/picture.jpg?f=300x300",
+    "last_price": 21.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 21.99,
+    "min_price_all": 21.99,
+    "avg_price_30d": 21.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 21.99
+      }
+    ]
+  },
+  "8383918": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/accesorio-manillar-patinete-oxelo-freestyle-mf3-6-xl-negro/148315/c344m8383918",
+    "sku": "8383918",
+    "title": "Accesorio Manillar Patinete Oxelo Freestyle MF3.6 XL Negro",
+    "url": "https://www.decathlon.es/es/p/accesorio-manillar-patinete-oxelo-freestyle-mf3-6-xl-negro/148315/c344m8383918",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8383918|Accesorio Manillar Patinete Oxelo Freestyle MF3.6 XL Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/accesorio-manillar-patinete-oxelo-freestyle-mf3-6-xl-negro/148315/c344m8383918",
+    "image": "https://contents.mediadecathlon.com/p1145737/k$145fce7c2feade012f8894f7e4e072a6/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.99
+      }
+    ]
+  },
+  "9023438": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/la-patrulla-canina-patinete-3-ruedas-58x36x65-70-cm-max-20-kg-cd/X9023438/m9023438",
+    "sku": "9023438",
+    "title": "La Patrulla Canina Patinete 3 ruedas 58x36x65-70 cm máx. 20 kg - CD",
+    "url": "https://www.decathlon.es/es/p/la-patrulla-canina-patinete-3-ruedas-58x36x65-70-cm-max-20-kg-cd/X9023438/m9023438",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9023438|La Patrulla Canina Patinete 3 ruedas 58x36x65-70 cm máx. 20 kg - CD|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/la-patrulla-canina-patinete-3-ruedas-58x36x65-70-cm-max-20-kg-cd/X9023438/m9023438",
+    "image": "https://contents.mediadecathlon.com/p3033709/k$f1bcceb4e00aa4fb61e42f3990d6585f/picture.jpg?f=300x300",
+    "last_price": 26.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 26.49,
+    "min_price_all": 26.49,
+    "avg_price_30d": 26.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 26.49
+      }
+    ]
+  },
+  "8956325": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/aktive-silla-de-playa-plegable-baja-y-transpirable-naranja-c-posavasos-cd/X8956325/m8956325",
+    "sku": "8956325",
+    "title": "Aktive Silla de playa plegable baja y transpirable naranja c/posavasos - CD",
+    "url": "https://www.decathlon.es/es/p/aktive-silla-de-playa-plegable-baja-y-transpirable-naranja-c-posavasos-cd/X8956325/m8956325",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8956325|Aktive Silla de playa plegable baja y transpirable naranja c/posavasos - CD|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/aktive-silla-de-playa-plegable-baja-y-transpirable-naranja-c-posavasos-cd/X8956325/m8956325",
+    "image": "https://contents.mediadecathlon.com/p2780367/k$a832e46febd8a48baf5756ddee26fcb1/picture.jpg?f=300x300",
+    "last_price": 27.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 27.99,
+    "min_price_all": 27.99,
+    "avg_price_30d": 27.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 27.99
+      }
+    ]
+  },
+  "8900244": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/neumatico-carretera-vittoria-rubino-iv-700x25-negro-tubeless-varilla-flexible/X8900244/c1m8900244",
+    "sku": "8900244",
+    "title": "Neumático Carretera Vittoria Rubino IV 700x25 Negro Tubeless Varilla Flexible",
+    "url": "https://www.decathlon.es/es/p/neumatico-carretera-vittoria-rubino-iv-700x25-negro-tubeless-varilla-flexible/X8900244/c1m8900244",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8900244|Neumático Carretera Vittoria Rubino IV 700x25 Negro Tubeless Varilla Flexible|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/neumatico-carretera-vittoria-rubino-iv-700x25-negro-tubeless-varilla-flexible/X8900244/c1m8900244",
+    "image": "https://contents.mediadecathlon.com/p2638329/k$f58a954615fa8ff43512a7114a7d1e44/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 34.99
+      }
+    ]
+  },
+  "8972792": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/maillot-ciclismo-manga-corta-vestta-pro-plus-ruby-burdeos/X8972792/m8972792",
+    "sku": "8972792",
+    "title": "Maillot ciclismo manga corta Vestta Pro Plus Ruby burdeos",
+    "url": "https://www.decathlon.es/es/p/maillot-ciclismo-manga-corta-vestta-pro-plus-ruby-burdeos/X8972792/m8972792",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8972792|Maillot ciclismo manga corta Vestta Pro Plus Ruby burdeos|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-ciclismo-manga-corta-vestta-pro-plus-ruby-burdeos/X8972792/m8972792",
+    "image": "https://contents.mediadecathlon.com/p2918008/k$78a9c3fd345c0cd1cda5ed6073024097/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "8752080": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-gravel-grvl-af-discover-verde-microshift-acolyte-1x8v/342143/c261m8752080",
+    "sku": "8752080",
+    "title": "Bicicleta Gravel GRVL AF Discover Verde Microshift Acolyte 1x8v",
+    "url": "https://www.decathlon.es/es/p/bicicleta-gravel-grvl-af-discover-verde-microshift-acolyte-1x8v/342143/c261m8752080",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8752080|Bicicleta Gravel GRVL AF Discover Verde Microshift Acolyte 1x8v|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-gravel-grvl-af-discover-verde-microshift-acolyte-1x8v/342143/c261m8752080",
+    "image": "https://contents.mediadecathlon.com/p2855633/k$e70d04d6b9e3301e379eee3745e40ef0/picture.jpg?f=300x300",
+    "last_price": 749.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 749.99,
+    "min_price_all": 749.99,
+    "avg_price_30d": 749.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 749.99
+      }
+    ]
+  },
+  "9022471": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/colchon-hinchable-intex-individual-talla-s-dura-beam-deluxe-comfort-plus-cd/X9022471/m9022471",
+    "sku": "9022471",
+    "title": "Colchón hinchable INTEX individual Talla S Dura-Beam Deluxe Comfort-Plus - CD",
+    "url": "https://www.decathlon.es/es/p/colchon-hinchable-intex-individual-talla-s-dura-beam-deluxe-comfort-plus-cd/X9022471/m9022471",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9022471|Colchón hinchable INTEX individual Talla S Dura-Beam Deluxe Comfort-Plus - CD|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/colchon-hinchable-intex-individual-talla-s-dura-beam-deluxe-comfort-plus-cd/X9022471/m9022471",
+    "image": "https://contents.mediadecathlon.com/p3027103/k$62c340346ca004493b57357d8553f6c7/picture.jpg?f=300x300",
+    "last_price": 49.89,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.89,
+    "min_price_all": 49.89,
+    "avg_price_30d": 49.89,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.89
+      }
+    ]
+  },
+  "8796818": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/potencia-bici-elevada-35deg-oversize-110-mm/346044/c1m8796818",
+    "sku": "8796818",
+    "title": "Potencia Bici Elevada 35° Oversize 110 mm",
+    "url": "https://www.decathlon.es/es/p/potencia-bici-elevada-35deg-oversize-110-mm/346044/c1m8796818",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8796818|Potencia Bici Elevada 35° Oversize 110 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/potencia-bici-elevada-35deg-oversize-110-mm/346044/c1m8796818",
+    "image": "https://contents.mediadecathlon.com/p2708876/k$1baf381c62487db8c1efa86b5755e567/picture.jpg?f=300x300",
+    "last_price": 19.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 19.99
+      }
+    ]
+  },
+  "8872038": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/sandalias-de-senderismo-flexibles-mujer-nh500-outdoor-violeta/352896/c327c327m8872038",
+    "sku": "8872038",
+    "title": "Sandalias de senderismo flexibles mujer - NH500 Outdoor violeta",
+    "url": "https://www.decathlon.es/es/p/sandalias-de-senderismo-flexibles-mujer-nh500-outdoor-violeta/352896/c327c327m8872038",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8872038|Sandalias de senderismo flexibles mujer - NH500 Outdoor violeta|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sandalias-de-senderismo-flexibles-mujer-nh500-outdoor-violeta/352896/c327c327m8872038",
+    "image": "https://contents.mediadecathlon.com/p2839156/k$541f90fc75f1946d7ba20c91c8ecec71/picture.jpg?f=300x300",
+    "last_price": 44.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 44.99,
+    "min_price_all": 44.99,
+    "avg_price_30d": 44.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 44.99
+      }
+    ]
+  },
+  "9028427": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/golosinas-equitacion-caballo-pony-hippotonic-3kg-manzana/385962/g126m9028427",
+    "sku": "9028427",
+    "title": "Golosinas equitación caballo/pony Hippotonic 3kg manzana",
+    "url": "https://www.decathlon.es/es/p/golosinas-equitacion-caballo-pony-hippotonic-3kg-manzana/385962/g126m9028427",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9028427|Golosinas equitación caballo/pony Hippotonic 3kg manzana|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/golosinas-equitacion-caballo-pony-hippotonic-3kg-manzana/385962/g126m9028427",
+    "image": "https://contents.mediadecathlon.com/p3045589/k$dd60fcbcb7df358796ffa44437a25d1e/picture.jpg?f=300x300",
+    "last_price": 12.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 12.99,
+    "min_price_all": 12.99,
+    "avg_price_30d": 12.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 12.99
+      }
+    ]
+  },
+  "8652836": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-caza-solognac-100-adulto-treemetic-calida-impermeable/115386/c256c344c344m8652836",
+    "sku": "8652836",
+    "title": "Chaqueta Caza Solognac 100 Adulto Treemetic Cálida Impermeable",
+    "url": "https://www.decathlon.es/es/p/chaqueta-caza-solognac-100-adulto-treemetic-calida-impermeable/115386/c256c344c344m8652836",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8652836|Chaqueta Caza Solognac 100 Adulto Treemetic Cálida Impermeable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-caza-solognac-100-adulto-treemetic-calida-impermeable/115386/c256c344c344m8652836",
+    "image": "https://contents.mediadecathlon.com/p2676252/k$a08ec0faf9769a3e57b1571d84c35525/picture.jpg?f=300x300",
+    "last_price": 74.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 74.99,
+    "min_price_all": 74.99,
+    "avg_price_30d": 74.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 74.99
+      }
+    ]
+  },
+  "8853701": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-de-montana-y-trekking-impermeables-mujer-mh900-negro/351446/c396c286m8853701",
+    "sku": "8853701",
+    "title": "Zapatillas de montaña y trekking impermeables Mujer MH900 negro",
+    "url": "https://www.decathlon.es/es/p/zapatillas-de-montana-y-trekking-impermeables-mujer-mh900-negro/351446/c396c286m8853701",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8853701|Zapatillas de montaña y trekking impermeables Mujer MH900 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-de-montana-y-trekking-impermeables-mujer-mh900-negro/351446/c396c286m8853701",
+    "image": "https://contents.mediadecathlon.com/p2963080/k$f63795a190b630c693677477276e17f3/picture.jpg?f=300x300",
+    "last_price": 94.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 94.99,
+    "min_price_all": 94.99,
+    "avg_price_30d": 94.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 94.99
+      }
+    ]
+  },
+  "8771990": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-carretera-shimano-claris-2x8v-edr-af-gris/343180/c200c200m8771990",
+    "sku": "8771990",
+    "title": "Bicicleta Carretera Shimano Claris 2x8v EDR AF Gris",
+    "url": "https://www.decathlon.es/es/p/bicicleta-carretera-shimano-claris-2x8v-edr-af-gris/343180/c200c200m8771990",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8771990|Bicicleta Carretera Shimano Claris 2x8v EDR AF Gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-carretera-shimano-claris-2x8v-edr-af-gris/343180/c200c200m8771990",
+    "image": "https://contents.mediadecathlon.com/p3113053/k$a7cdfbbaf3efa25b7953d8676cc72b4e/picture.jpg?f=300x300",
+    "last_price": 799.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 799.99,
+    "min_price_all": 799.99,
+    "avg_price_30d": 799.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 799.99
+      }
+    ]
+  },
+  "8917724": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/sandalias-cerradas-de-senderismo-hombre-nh900-fresh-verde/324757/c311c277m8917724",
+    "sku": "8917724",
+    "title": "Sandalias cerradas de senderismo hombre - NH900 Fresh - verde",
+    "url": "https://www.decathlon.es/es/p/sandalias-cerradas-de-senderismo-hombre-nh900-fresh-verde/324757/c311c277m8917724",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8917724|Sandalias cerradas de senderismo hombre - NH900 Fresh - verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sandalias-cerradas-de-senderismo-hombre-nh900-fresh-verde/324757/c311c277m8917724",
+    "image": "https://contents.mediadecathlon.com/p2838655/k$5394b4b4221a23da4eb4efa576de1a41/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "8789181": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/luz-trasera-bicicleta-elops-rl-510-led-usb/344800/m8789181",
+    "sku": "8789181",
+    "title": "Luz trasera bicicleta Elops RL 510 LED USB",
+    "url": "https://www.decathlon.es/es/p/luz-trasera-bicicleta-elops-rl-510-led-usb/344800/m8789181",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8789181|Luz trasera bicicleta Elops RL 510 LED USB|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/luz-trasera-bicicleta-elops-rl-510-led-usb/344800/m8789181",
+    "image": "https://contents.mediadecathlon.com/p2795426/k$dc1ab73da938872ec32090f6567031ad/picture.jpg?f=300x300",
+    "last_price": 13.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 13.99,
+    "min_price_all": 13.99,
+    "avg_price_30d": 13.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 13.99
+      }
+    ]
+  },
+  "8558019": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cascos-electronicos-caza-tiro-deportivo-peltor-sporttac-26-db-carcasa-negro-rojo/X8558019/m8558019",
+    "sku": "8558019",
+    "title": "Cascos Electronicos Caza-Tiro Deportivo Peltor Sporttac 26 Db Carcasa Negro Rojo",
+    "url": "https://www.decathlon.es/es/p/cascos-electronicos-caza-tiro-deportivo-peltor-sporttac-26-db-carcasa-negro-rojo/X8558019/m8558019",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8558019|Cascos Electronicos Caza-Tiro Deportivo Peltor Sporttac 26 Db Carcasa Negro Rojo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cascos-electronicos-caza-tiro-deportivo-peltor-sporttac-26-db-carcasa-negro-rojo/X8558019/m8558019",
+    "image": "https://contents.mediadecathlon.com/p1644712/k$75bf9129302c317ef01ad21b7759975c/picture.jpg?f=300x300",
+    "last_price": 171.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 171.99,
+    "min_price_all": 171.99,
+    "avg_price_30d": 171.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 171.99
+      }
+    ]
+  },
+  "8949567": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mono-ciclismo-carretera-rcr-r-2-mujer-verde/367675/c266m8949567",
+    "sku": "8949567",
+    "title": "Mono Ciclismo Carretera RCR-R 2 Mujer Verde",
+    "url": "https://www.decathlon.es/es/p/mono-ciclismo-carretera-rcr-r-2-mujer-verde/367675/c266m8949567",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8949567|Mono Ciclismo Carretera RCR-R 2 Mujer Verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mono-ciclismo-carretera-rcr-r-2-mujer-verde/367675/c266m8949567",
+    "image": "https://contents.mediadecathlon.com/p3094791/k$a521c932d71fdb714c4baba6b51504c8/picture.jpg?f=300x300",
+    "last_price": 119.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 119.99,
+    "min_price_all": 119.99,
+    "avg_price_30d": 119.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 119.99
+      }
+    ]
+  },
+  "8881426": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/casco-ciclismo-play-100-ninos-gris-44-55-cm/354296/c200m8881426",
+    "sku": "8881426",
+    "title": "Casco Ciclismo Play 100 Niños Gris 44-55 cm",
+    "url": "https://www.decathlon.es/es/p/casco-ciclismo-play-100-ninos-gris-44-55-cm/354296/c200m8881426",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8881426|Casco Ciclismo Play 100 Niños Gris 44-55 cm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casco-ciclismo-play-100-ninos-gris-44-55-cm/354296/c200m8881426",
+    "image": "https://contents.mediadecathlon.com/p3120425/k$a211d426c1119ed63a2069ed31637857/picture.jpg?f=300x300",
+    "last_price": 14.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 14.99,
+    "min_price_all": 14.99,
+    "avg_price_30d": 14.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 14.99
+      }
+    ]
+  },
+  "8862191": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mochila-hidratacion-mtb-explore-7-l-2-l-agua/332901/c261c382m8862191",
+    "sku": "8862191",
+    "title": "Mochila Hidratación MTB Explore 7 l/2 l Agua",
+    "url": "https://www.decathlon.es/es/p/mochila-hidratacion-mtb-explore-7-l-2-l-agua/332901/c261c382m8862191",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8862191|Mochila Hidratación MTB Explore 7 l/2 l Agua|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mochila-hidratacion-mtb-explore-7-l-2-l-agua/332901/c261c382m8862191",
+    "image": "https://contents.mediadecathlon.com/p2628574/k$a0a2cd9221090b992b154b24111a03fc/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.99
+      }
+    ]
+  },
+  "8939992": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-lana-merina-reciclada-hombre-merino-rec-fresh/364687/c372m8939992",
+    "sku": "8939992",
+    "title": "Camiseta de montaña y trekking lana merina reciclada Hombre Merino Rec Fresh",
+    "url": "https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-lana-merina-reciclada-hombre-merino-rec-fresh/364687/c372m8939992",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8939992|Camiseta de montaña y trekking lana merina reciclada Hombre Merino Rec Fresh|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-lana-merina-reciclada-hombre-merino-rec-fresh/364687/c372m8939992",
+    "image": "https://contents.mediadecathlon.com/p3000253/k$df2ea37465fdb5034e57ccd7fcff0bca/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8644841": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mochila-hidratacion-bicicleta-mtb-7-l-2-l-agua-rockrider-explore-negra/332901/c382c382m8644841",
+    "sku": "8644841",
+    "title": "Mochila hidratación bicicleta MTB 7 l/2 l agua Rockrider Explore negra",
+    "url": "https://www.decathlon.es/es/p/mochila-hidratacion-bicicleta-mtb-7-l-2-l-agua-rockrider-explore-negra/332901/c382c382m8644841",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8644841|Mochila hidratación bicicleta MTB 7 l/2 l agua Rockrider Explore negra|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mochila-hidratacion-bicicleta-mtb-7-l-2-l-agua-rockrider-explore-negra/332901/c382c382m8644841",
+    "image": "https://contents.mediadecathlon.com/p2152743/k$977f4c37913c444e8f2d3eca93801877/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.99
+      }
+    ]
+  },
+  "8644847": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mochila-hidratacion-mtb-explore-7-l-2-l-agua/332901/c221c382m8644847",
+    "sku": "8644847",
+    "title": "Mochila Hidratación MTB Explore 7 l/2 l Agua",
+    "url": "https://www.decathlon.es/es/p/mochila-hidratacion-mtb-explore-7-l-2-l-agua/332901/c221c382m8644847",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8644847|Mochila Hidratación MTB Explore 7 l/2 l Agua|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mochila-hidratacion-mtb-explore-7-l-2-l-agua/332901/c221c382m8644847",
+    "image": "https://contents.mediadecathlon.com/p2628573/k$cef4867bf06aa348783976e015fc0b06/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.99
+      }
+    ]
+  },
+  "8598055": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/kit-cierre-micrometrico-atop/203134/m8598055",
+    "sku": "8598055",
+    "title": "Kit Cierre Micrométrico Atop",
+    "url": "https://www.decathlon.es/es/p/kit-cierre-micrometrico-atop/203134/m8598055",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8598055|Kit Cierre Micrométrico Atop|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/kit-cierre-micrometrico-atop/203134/m8598055",
+    "image": "https://contents.mediadecathlon.com/p2671827/k$cc884b8c04abedc5cd26dbd429901ac7/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8810246": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pantalon-corto-gimnasia-nina-negro-brillante/346904/c382m8810246",
+    "sku": "8810246",
+    "title": "Pantalón Corto Gimnasia Niña Negro Brillante",
+    "url": "https://www.decathlon.es/es/p/pantalon-corto-gimnasia-nina-negro-brillante/346904/c382m8810246",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8810246|Pantalón Corto Gimnasia Niña Negro Brillante|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-corto-gimnasia-nina-negro-brillante/346904/c382m8810246",
+    "image": "https://contents.mediadecathlon.com/p2620435/k$43ba58c7075360c2f3d244ca16dbb810/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8641561": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-ciclismo-mtb-rockrider-race-700-negro/331708/c1m8641561",
+    "sku": "8641561",
+    "title": "Zapatillas ciclismo MTB Rockrider Race 700 negro",
+    "url": "https://www.decathlon.es/es/p/zapatillas-ciclismo-mtb-rockrider-race-700-negro/331708/c1m8641561",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8641561|Zapatillas ciclismo MTB Rockrider Race 700 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-ciclismo-mtb-rockrider-race-700-negro/331708/c1m8641561",
+    "image": "https://contents.mediadecathlon.com/p2663577/k$7c3237afee59a90a32da9e5ba969c2eb/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "9054667": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/asiento-infantil-bicicleta-groovy-gris-fijacion-portaequipajes/391107/c3m9054667",
+    "sku": "9054667",
+    "title": "Asiento Infantil Bicicleta Groovy Gris Fijación Portaequipajes",
+    "url": "https://www.decathlon.es/es/p/asiento-infantil-bicicleta-groovy-gris-fijacion-portaequipajes/391107/c3m9054667",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9054667|Asiento Infantil Bicicleta Groovy Gris Fijación Portaequipajes|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/asiento-infantil-bicicleta-groovy-gris-fijacion-portaequipajes/391107/c3m9054667",
+    "image": "https://contents.mediadecathlon.com/p2802211/k$cc14114a56d44d281add90e25fea6c0e/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "8641526": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cesta-para-pelotas-tenis/324150/m8641526",
+    "sku": "8641526",
+    "title": "CESTA PARA PELOTAS TENIS",
+    "url": "https://www.decathlon.es/es/p/cesta-para-pelotas-tenis/324150/m8641526",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8641526|CESTA PARA PELOTAS TENIS|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cesta-para-pelotas-tenis/324150/m8641526",
+    "image": "https://contents.mediadecathlon.com/p2714041/k$4236af5f71486769bdd25044345defc2/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.99
+      }
+    ]
+  },
+  "8641350": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/kit-bolsa-sillin-easy-negro-m-0-6-l-multiherramienta-3-desmontables/312075/c382m8641350",
+    "sku": "8641350",
+    "title": "Kit Bolsa Sillín Easy Negro M 0,6 l Multiherramienta 3 Desmontables",
+    "url": "https://www.decathlon.es/es/p/kit-bolsa-sillin-easy-negro-m-0-6-l-multiherramienta-3-desmontables/312075/c382m8641350",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8641350|Kit Bolsa Sillín Easy Negro M 0,6 l + Multiherramienta + 3 Desmontables|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/kit-bolsa-sillin-easy-negro-m-0-6-l-multiherramienta-3-desmontables/312075/c382m8641350",
+    "image": "https://contents.mediadecathlon.com/p2307463/k$17232fff20f2dbeb79c8c23f410fe536/picture.jpg?f=300x300",
+    "last_price": 15.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 15.99,
+    "min_price_all": 15.99,
+    "avg_price_30d": 15.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 15.99
+      }
+    ]
+  },
+  "9018647": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-deportivas-adidas-grand-court-base-3-0-hombre-blanco/384841/c4m9018647",
+    "sku": "9018647",
+    "title": "Zapatillas deportivas adidas Grand Court Base 3.0 hombre, Blanco",
+    "url": "https://www.decathlon.es/es/p/zapatillas-deportivas-adidas-grand-court-base-3-0-hombre-blanco/384841/c4m9018647",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9018647|Zapatillas deportivas adidas Grand Court Base 3.0 hombre, Blanco|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-deportivas-adidas-grand-court-base-3-0-hombre-blanco/384841/c4m9018647",
+    "image": "https://contents.mediadecathlon.com/p3085182/k$8423359e2dd4d77e3c63b96a7501f6f5/picture.jpg?f=300x300",
+    "last_price": 59.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 59.99,
+    "min_price_all": 59.99,
+    "avg_price_30d": 59.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 59.99
+      }
+    ]
+  },
+  "8615622": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/culotte-ciclismo-interior-mtb-sin-tirantes-mujer-explore-700-negro/330723/c382c202m8615622",
+    "sku": "8615622",
+    "title": "Culotte ciclismo interior MTB sin tirantes mujer EXPLORE 700 negro",
+    "url": "https://www.decathlon.es/es/p/culotte-ciclismo-interior-mtb-sin-tirantes-mujer-explore-700-negro/330723/c382c202m8615622",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8615622|Culotte ciclismo interior MTB sin tirantes mujer EXPLORE 700 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/culotte-ciclismo-interior-mtb-sin-tirantes-mujer-explore-700-negro/330723/c382c202m8615622",
+    "image": "https://contents.mediadecathlon.com/p2217402/k$5fa95b9e18f95ae0fb43c868165ff22f/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 34.99
+      }
+    ]
+  },
+  "8912577": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pantalon-corto-vela-sailing-500-hombre-gris-negro-perlante/306003/c383c381m8912577",
+    "sku": "8912577",
+    "title": "Pantalón Corto Vela Sailing 500 Hombre Gris-Negro Perlante",
+    "url": "https://www.decathlon.es/es/p/pantalon-corto-vela-sailing-500-hombre-gris-negro-perlante/306003/c383c381m8912577",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8912577|Pantalón Corto Vela Sailing 500 Hombre Gris-Negro Perlante|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-corto-vela-sailing-500-hombre-gris-negro-perlante/306003/c383c381m8912577",
+    "image": "https://contents.mediadecathlon.com/p2839904/k$b7a233ff6d162d19a73ac62346469003/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8664555": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cassette-10-velocidades-11x48-bicicleta-montana-microshift-adventx/336743/m8664555",
+    "sku": "8664555",
+    "title": "Cassette 10 Velocidades 11X48 Bicicleta Montaña Microshift AdventX",
+    "url": "https://www.decathlon.es/es/p/cassette-10-velocidades-11x48-bicicleta-montana-microshift-adventx/336743/m8664555",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8664555|Cassette 10 Velocidades 11X48 Bicicleta Montaña Microshift AdventX|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cassette-10-velocidades-11x48-bicicleta-montana-microshift-adventx/336743/m8664555",
+    "image": "https://contents.mediadecathlon.com/p2062681/k$fe2e86daea1181c164d6eebc81a72be3/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 34.99
+      }
+    ]
+  },
+  "8958351": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-de-montana-y-trekking-hombre-izas-yvoire-rojo/X8958351/m8958351",
+    "sku": "8958351",
+    "title": "Zapatillas de montaña y trekking Hombre Izas Yvoire Rojo",
+    "url": "https://www.decathlon.es/es/p/zapatillas-de-montana-y-trekking-hombre-izas-yvoire-rojo/X8958351/m8958351",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8958351|Zapatillas de montaña y trekking Hombre Izas Yvoire Rojo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-de-montana-y-trekking-hombre-izas-yvoire-rojo/X8958351/m8958351",
+    "image": "https://contents.mediadecathlon.com/p2871505/k$76b5057b2fb3d6335e1de9b19ee38099/picture.jpg?f=300x300",
+    "last_price": 79.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 79.99,
+    "min_price_all": 79.99,
+    "avg_price_30d": 79.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 79.99
+      }
+    ]
+  },
+  "8827672": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pajita-filtrante-lifestraw-peak-series/349281/m8827672",
+    "sku": "8827672",
+    "title": "Pajita filtrante Lifestraw Peak Series",
+    "url": "https://www.decathlon.es/es/p/pajita-filtrante-lifestraw-peak-series/349281/m8827672",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8827672|Pajita filtrante Lifestraw Peak Series|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pajita-filtrante-lifestraw-peak-series/349281/m8827672",
+    "image": "https://contents.mediadecathlon.com/p2486143/k$8336102cd4737c51a69058bb84364a63/picture.jpg?f=300x300",
+    "last_price": 29.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.49,
+    "min_price_all": 29.49,
+    "avg_price_30d": 29.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.49
+      }
+    ]
+  },
+  "8851930": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-multiples-deportes-ninos-violeta-lila-ligera-transpirable/333479/c295c338c374m8851930",
+    "sku": "8851930",
+    "title": "Chaqueta Múltiples Deportes Niños Violeta-Lila Ligera Transpirable",
+    "url": "https://www.decathlon.es/es/p/chaqueta-multiples-deportes-ninos-violeta-lila-ligera-transpirable/333479/c295c338c374m8851930",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8851930|Chaqueta Múltiples Deportes Niños Violeta-Lila Ligera Transpirable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-multiples-deportes-ninos-violeta-lila-ligera-transpirable/333479/c295c338c374m8851930",
+    "image": "https://contents.mediadecathlon.com/p2794975/k$3fa1773a2340f7ffb46806363154e3ca/picture.jpg?f=300x300",
+    "last_price": 16.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 16.99,
+    "min_price_all": 16.99,
+    "avg_price_30d": 16.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 16.99
+      }
+    ]
+  },
+  "8739496": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/motor-rueda-42-nm-v3/339491/m8739496",
+    "sku": "8739496",
+    "title": "Motor Rueda 42 Nm V3",
+    "url": "https://www.decathlon.es/es/p/motor-rueda-42-nm-v3/339491/m8739496",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8739496|Motor Rueda 42 Nm V3|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/motor-rueda-42-nm-v3/339491/m8739496",
+    "image": "https://contents.mediadecathlon.com/p2936787/k$4f4bef383993fef553a7c498e8fc9b8d/picture.jpg?f=300x300",
+    "last_price": 119.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 119.99,
+    "min_price_all": 119.99,
+    "avg_price_30d": 119.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 119.99
+      }
+    ]
+  },
+  "8975985": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-surf-surfwchill-hombre-gris-manga-larga-corte-holgado-anti-uv/365654/c3m8975985",
+    "sku": "8975985",
+    "title": "Camiseta Surf Surfwchill Hombre Gris Manga Larga Corte Holgado Anti-UV",
+    "url": "https://www.decathlon.es/es/p/camiseta-surf-surfwchill-hombre-gris-manga-larga-corte-holgado-anti-uv/365654/c3m8975985",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8975985|Camiseta Surf Surfwchill Hombre Gris Manga Larga Corte Holgado Anti-UV|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-surf-surfwchill-hombre-gris-manga-larga-corte-holgado-anti-uv/365654/c3m8975985",
+    "image": "https://contents.mediadecathlon.com/p3059762/k$ef7fdbd51fc4002a9c7df8729ea94d41/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8519999": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/rueda-bicicleta-electrica-20-trasera-24v-tilt-500-e/199812/c1m8519999",
+    "sku": "8519999",
+    "title": "Rueda Bicicleta Eléctrica 20\" Trasera 24V Tilt 500-E",
+    "url": "https://www.decathlon.es/es/p/rueda-bicicleta-electrica-20-trasera-24v-tilt-500-e/199812/c1m8519999",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8519999|Rueda Bicicleta Eléctrica 20\" Trasera 24V Tilt 500-E|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rueda-bicicleta-electrica-20-trasera-24v-tilt-500-e/199812/c1m8519999",
+    "image": "https://contents.mediadecathlon.com/p1635296/k$07f3e17f241899a6be7781ee7c3857c2/picture.jpg?f=300x300",
+    "last_price": 274.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 274.99,
+    "min_price_all": 274.99,
+    "avg_price_30d": 274.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 274.99
+      }
+    ]
+  },
+  "8972791": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/maillot-ciclismo-manga-corta-vestta-pro-plus-jade-verde/X8972791/m8972791",
+    "sku": "8972791",
+    "title": "Maillot ciclismo manga corta Vestta Pro Plus Jade verde",
+    "url": "https://www.decathlon.es/es/p/maillot-ciclismo-manga-corta-vestta-pro-plus-jade-verde/X8972791/m8972791",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8972791|Maillot ciclismo manga corta Vestta Pro Plus Jade verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-ciclismo-manga-corta-vestta-pro-plus-jade-verde/X8972791/m8972791",
+    "image": "https://contents.mediadecathlon.com/p2918028/k$be1ff1202b3f89fdd1f3008ad06e5542/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "8528757": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/kit-pinza-de-frenos-mecanicos-hydro-trp-hidraulicos-discos-bicicleta-carretera/200731/m8528757",
+    "sku": "8528757",
+    "title": "Kit Pinza de Frenos Mecánicos Hydro Trp Hidráulicos Discos Bicicleta Carretera",
+    "url": "https://www.decathlon.es/es/p/kit-pinza-de-frenos-mecanicos-hydro-trp-hidraulicos-discos-bicicleta-carretera/200731/m8528757",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8528757|Kit Pinza de Frenos Mecánicos Hydro Trp Hidráulicos + Discos Bicicleta Carretera|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/kit-pinza-de-frenos-mecanicos-hydro-trp-hidraulicos-discos-bicicleta-carretera/200731/m8528757",
+    "image": "https://contents.mediadecathlon.com/p1635653/k$77b1dd3e3e8e052b17f6cb92f2e6d6c5/picture.jpg?f=300x300",
+    "last_price": 69.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 69.99,
+    "min_price_all": 69.99,
+    "avg_price_30d": 69.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 69.99
+      }
+    ]
+  },
+  "8486156": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/escarpines-surf-bajos-olaian-500-adulto-neopreno-2-mm-gris-negro/179834/c1m8486156",
+    "sku": "8486156",
+    "title": "Escarpines Surf Bajos Olaian 500 Adulto Neopreno 2 Mm Gris Negro",
+    "url": "https://www.decathlon.es/es/p/escarpines-surf-bajos-olaian-500-adulto-neopreno-2-mm-gris-negro/179834/c1m8486156",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8486156|Escarpines Surf Bajos Olaian 500 Adulto Neopreno 2 Mm Gris Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/escarpines-surf-bajos-olaian-500-adulto-neopreno-2-mm-gris-negro/179834/c1m8486156",
+    "image": "https://contents.mediadecathlon.com/p1355642/k$8bb8840c7729260fc492fcc4b6abebbc/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8853379": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-badminton-mujer-bs-sensation-530-blanco/340108/c227m8853379",
+    "sku": "8853379",
+    "title": "ZAPATILLAS BÁDMINTON MUJER BS SENSATION 530 BLANCO",
+    "url": "https://www.decathlon.es/es/p/zapatillas-badminton-mujer-bs-sensation-530-blanco/340108/c227m8853379",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8853379|ZAPATILLAS BÁDMINTON MUJER BS SENSATION 530 BLANCO|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-badminton-mujer-bs-sensation-530-blanco/340108/c227m8853379",
+    "image": "https://contents.mediadecathlon.com/p2586041/k$8cc3be1b2168c753533fdb4941ddf9f8/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.99
+      }
+    ]
+  },
+  "9016912": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-eliptica-initial-elliptical-100-negro-conectada/357484/m9016912",
+    "sku": "9016912",
+    "title": "Bicicleta Elíptica Initial Elliptical 100 Negro Conectada",
+    "url": "https://www.decathlon.es/es/p/bicicleta-eliptica-initial-elliptical-100-negro-conectada/357484/m9016912",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9016912|Bicicleta Elíptica Initial Elliptical 100 Negro Conectada|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-eliptica-initial-elliptical-100-negro-conectada/357484/m9016912",
+    "image": "https://contents.mediadecathlon.com/p3026249/k$a96c597f7a560a1de91975ab0a6b290b/picture.jpg?f=300x300",
+    "last_price": 199.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 199.99,
+    "min_price_all": 199.99,
+    "avg_price_30d": 199.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 199.99
+      }
+    ]
+  },
+  "8544785": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/maillot-ciclismo-manga-larga-hombre-van-rysel-rc100-negro/306991/c382c382m8544785",
+    "sku": "8544785",
+    "title": "Maillot ciclismo manga larga hombre Van Rysel RC100 negro",
+    "url": "https://www.decathlon.es/es/p/maillot-ciclismo-manga-larga-hombre-van-rysel-rc100-negro/306991/c382c382m8544785",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8544785|Maillot ciclismo manga larga hombre Van Rysel RC100 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-ciclismo-manga-larga-hombre-van-rysel-rc100-negro/306991/c382c382m8544785",
+    "image": "https://contents.mediadecathlon.com/p2993428/k$2329e2d311f2ed8c7e1a1c67acec8d1b/picture.jpg?f=300x300",
+    "last_price": 19.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 19.99
+      }
+    ]
+  },
+  "8946302": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/guantes-interiores-de-lana-merina-mt500-negro/353808/c382m8946302",
+    "sku": "8946302",
+    "title": "Guantes interiores de lana merina, MT500 negro",
+    "url": "https://www.decathlon.es/es/p/guantes-interiores-de-lana-merina-mt500-negro/353808/c382m8946302",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8946302|Guantes interiores de lana merina, MT500 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/guantes-interiores-de-lana-merina-mt500-negro/353808/c382m8946302",
+    "image": "https://contents.mediadecathlon.com/p2898620/k$5be5330d96ef536d969b03af39bc10f0/picture.jpg?f=300x300",
+    "last_price": 14.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 14.99,
+    "min_price_all": 14.99,
+    "avg_price_30d": 14.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 14.99
+      }
+    ]
+  },
+  "8544123": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/botas-de-nieve-y-apreski-de-piel-impermeables-piel-ninos-35-38-quechua-sh500/307314/c259c383m8544123",
+    "sku": "8544123",
+    "title": "Botas de nieve y apreski de piel impermeables piel Niños 35-38 Quechua SH500",
+    "url": "https://www.decathlon.es/es/p/botas-de-nieve-y-apreski-de-piel-impermeables-piel-ninos-35-38-quechua-sh500/307314/c259c383m8544123",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8544123|Botas de nieve y apreski de piel impermeables piel Niños 35-38 Quechua SH500|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/botas-de-nieve-y-apreski-de-piel-impermeables-piel-ninos-35-38-quechua-sh500/307314/c259c383m8544123",
+    "image": "https://contents.mediadecathlon.com/p2047906/k$2ea2de49fea7e38ef2377a043983f9c7/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.99
+      }
+    ]
+  },
+  "8955619": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/tritraje-triatlon-larga-distancia-rcr-x-mujer-verde/370194/c266m8955619",
+    "sku": "8955619",
+    "title": "Tritraje Triatlón Larga Distancia RCR-X Mujer Verde",
+    "url": "https://www.decathlon.es/es/p/tritraje-triatlon-larga-distancia-rcr-x-mujer-verde/370194/c266m8955619",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8955619|Tritraje Triatlón Larga Distancia RCR-X Mujer Verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/tritraje-triatlon-larga-distancia-rcr-x-mujer-verde/370194/c266m8955619",
+    "image": "https://contents.mediadecathlon.com/p3092189/k$6445701601637deac37958eb5d16f308/picture.jpg?f=300x300",
+    "last_price": 89.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 89.99,
+    "min_price_all": 89.99,
+    "avg_price_30d": 89.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 89.99
+      }
+    ]
+  },
+  "8612271": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/botella-termica-de-montana-y-trekking-acero-inoxidable-0-5l-quechua-mh500/301267/c414m8612271",
+    "sku": "8612271",
+    "title": "Botella térmica de montaña y trekking acero inoxidable 0'5L Quechua MH500",
+    "url": "https://www.decathlon.es/es/p/botella-termica-de-montana-y-trekking-acero-inoxidable-0-5l-quechua-mh500/301267/c414m8612271",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8612271|Botella térmica de montaña y trekking acero inoxidable 0'5L Quechua MH500|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/botella-termica-de-montana-y-trekking-acero-inoxidable-0-5l-quechua-mh500/301267/c414m8612271",
+    "image": "https://contents.mediadecathlon.com/p2579091/k$9ba7b1f8f476b55a0e148644f82cae62/picture.jpg?f=300x300",
+    "last_price": 12.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 12.99,
+    "min_price_all": 12.99,
+    "avg_price_30d": 12.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 12.99
+      }
+    ]
+  },
+  "8930097": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cubrezapatos-shimano-dual-h2o-amarillo/361128/m8930097",
+    "sku": "8930097",
+    "title": "Cubrezapatos Shimano Dual H2O Amarillo",
+    "url": "https://www.decathlon.es/es/p/cubrezapatos-shimano-dual-h2o-amarillo/361128/m8930097",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8930097|Cubrezapatos Shimano Dual H2O Amarillo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cubrezapatos-shimano-dual-h2o-amarillo/361128/m8930097",
+    "image": "https://contents.mediadecathlon.com/p2843552/k$c9d8985496d52dca1fd8bae47e5fac36/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.99
+      }
+    ]
+  },
+  "8814740": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/llave-dinamometrica-uncle-b-premium-4-24-nm/X8814740/m8814740",
+    "sku": "8814740",
+    "title": "Llave Dinamométrica Uncle B Premium 4-24 Nm",
+    "url": "https://www.decathlon.es/es/p/llave-dinamometrica-uncle-b-premium-4-24-nm/X8814740/m8814740",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8814740|Llave Dinamométrica Uncle B Premium 4-24 Nm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/llave-dinamometrica-uncle-b-premium-4-24-nm/X8814740/m8814740",
+    "image": "https://contents.mediadecathlon.com/p2378495/k$d215c5e61cc86d020d159d342b99483c/picture.jpg?f=300x300",
+    "last_price": 50.0,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 50.0,
+    "min_price_all": 50.0,
+    "avg_price_30d": 50.0,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 50.0
+      }
+    ]
+  },
+  "8503361": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/rodillo-trasero/302076/m8503361",
+    "sku": "8503361",
+    "title": "Rodillo Trasero",
+    "url": "https://www.decathlon.es/es/p/rodillo-trasero/302076/m8503361",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8503361|Rodillo Trasero|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rodillo-trasero/302076/m8503361",
+    "image": "https://contents.mediadecathlon.com/p1274269/k$dd2e86865c0ce143dd12bc610cddf442/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.99
+      }
+    ]
+  },
+  "8931385": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-de-senderismo-hombre-nh500-cana-baja-naranja/361881/c215c137m8931385",
+    "sku": "8931385",
+    "title": "Zapatillas de senderismo hombre - NH500 caña baja naranja",
+    "url": "https://www.decathlon.es/es/p/zapatillas-de-senderismo-hombre-nh500-cana-baja-naranja/361881/c215c137m8931385",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8931385|Zapatillas de senderismo hombre - NH500 caña baja naranja|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-de-senderismo-hombre-nh500-cana-baja-naranja/361881/c215c137m8931385",
+    "image": "https://contents.mediadecathlon.com/p3017089/k$62752b5f593495f60e615d6e54507f8d/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "8913166": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mallas-leggings-flare-algodon-fitness-mujer-gris/346792/c210m8913166",
+    "sku": "8913166",
+    "title": "Mallas Leggings Flare Algodón Fitness Mujer Gris",
+    "url": "https://www.decathlon.es/es/p/mallas-leggings-flare-algodon-fitness-mujer-gris/346792/c210m8913166",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8913166|Mallas Leggings Flare Algodón Fitness Mujer Gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mallas-leggings-flare-algodon-fitness-mujer-gris/346792/c210m8913166",
+    "image": "https://contents.mediadecathlon.com/p2833511/k$64130a3fdf949da3898870e50d44f9da/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8912487": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-deportivas-playventure-ninos-violeta-verde-resistentes/351591/c295c338c240m8912487",
+    "sku": "8912487",
+    "title": "Zapatillas Deportivas Playventure Niños Violeta Verde Resistentes",
+    "url": "https://www.decathlon.es/es/p/zapatillas-deportivas-playventure-ninos-violeta-verde-resistentes/351591/c295c338c240m8912487",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8912487|Zapatillas Deportivas Playventure Niños Violeta Verde Resistentes|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-deportivas-playventure-ninos-violeta-verde-resistentes/351591/c295c338c240m8912487",
+    "image": "https://contents.mediadecathlon.com/p2809089/k$67da03df9a3e1aaef5d8e0537c8a9235/picture.jpg?f=300x300",
+    "last_price": 22.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 22.99,
+    "min_price_all": 22.99,
+    "avg_price_30d": 22.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 22.99
+      }
+    ]
+  },
+  "8801499": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mallas-leggings-flare-algodon-fitness-mujer-negro/346792/c378m8801499",
+    "sku": "8801499",
+    "title": "Mallas Leggings Flare Algodón Fitness Mujer Negro",
+    "url": "https://www.decathlon.es/es/p/mallas-leggings-flare-algodon-fitness-mujer-negro/346792/c378m8801499",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8801499|Mallas Leggings Flare Algodón Fitness Mujer Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mallas-leggings-flare-algodon-fitness-mujer-negro/346792/c378m8801499",
+    "image": "https://contents.mediadecathlon.com/p2730823/k$3bd28272f7f06bc695ca76d25da337df/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8861737": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-fitness-playventure-ninos-violeta-azul-resistentes/351591/c382c352c95m8861737",
+    "sku": "8861737",
+    "title": "Zapatillas Fitness Playventure Niños Violeta Azul Resistentes",
+    "url": "https://www.decathlon.es/es/p/zapatillas-fitness-playventure-ninos-violeta-azul-resistentes/351591/c382c352c95m8861737",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8861737|Zapatillas Fitness Playventure Niños Violeta Azul Resistentes|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-fitness-playventure-ninos-violeta-azul-resistentes/351591/c382c352c95m8861737",
+    "image": "https://contents.mediadecathlon.com/p2809318/k$3bfeea10a8689935f2a6cb726b2ae9df/picture.jpg?f=300x300",
+    "last_price": 22.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 22.99,
+    "min_price_all": 22.99,
+    "avg_price_30d": 22.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 22.99
+      }
+    ]
+  },
+  "8861738": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-fitness-playventure-ninos-azul-amarillo-fluorescente-resistentes/351591/c104c132c364m8861738",
+    "sku": "8861738",
+    "title": "Zapatillas Fitness Playventure Niños Azul Amarillo Fluorescente Resistentes",
+    "url": "https://www.decathlon.es/es/p/zapatillas-fitness-playventure-ninos-azul-amarillo-fluorescente-resistentes/351591/c104c132c364m8861738",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8861738|Zapatillas Fitness Playventure Niños Azul Amarillo Fluorescente Resistentes|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-fitness-playventure-ninos-azul-amarillo-fluorescente-resistentes/351591/c104c132c364m8861738",
+    "image": "https://contents.mediadecathlon.com/p2754852/k$fcc2a8b6bc27ee8cefc326bab76df740/picture.jpg?f=300x300",
+    "last_price": 22.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 22.99,
+    "min_price_all": 22.99,
+    "avg_price_30d": 22.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 22.99
+      }
+    ]
+  },
+  "8646306": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-amarillo/333346/c233m8646306",
+    "sku": "8646306",
+    "title": "Bicicleta Niños 14\" 3-5 Años 2 en 1 Discover 500 Amarillo",
+    "url": "https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-amarillo/333346/c233m8646306",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8646306|Bicicleta Niños 14\" 3-5 Años 2 en 1 Discover 500 Amarillo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-amarillo/333346/c233m8646306",
+    "image": "https://contents.mediadecathlon.com/p2663524/k$4e165be85166b20645164e3489746426/picture.jpg?f=300x300",
+    "last_price": 149.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 149.99,
+    "min_price_all": 149.99,
+    "avg_price_30d": 149.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 149.99
+      }
+    ]
+  },
+  "8646305": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-rosa/333346/c116m8646305",
+    "sku": "8646305",
+    "title": "Bicicleta Niños 14\" 3-5 Años 2 en 1 Discover 500 Rosa",
+    "url": "https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-rosa/333346/c116m8646305",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8646305|Bicicleta Niños 14\" 3-5 Años 2 en 1 Discover 500 Rosa|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-rosa/333346/c116m8646305",
+    "image": "https://contents.mediadecathlon.com/p2663476/k$ae2e6b2b0e961c9c319b60857853ce9a/picture.jpg?f=300x300",
+    "last_price": 149.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 149.99,
+    "min_price_all": 149.99,
+    "avg_price_30d": 149.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 149.99
+      }
+    ]
+  },
+  "8646304": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-rojo/333346/c354m8646304",
+    "sku": "8646304",
+    "title": "Bicicleta Niños 14\" 3-5 Años 2 en 1 Discover 500 Rojo",
+    "url": "https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-rojo/333346/c354m8646304",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8646304|Bicicleta Niños 14\" 3-5 Años 2 en 1 Discover 500 Rojo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-ninos-14-3-5-anos-2-en-1-discover-500-rojo/333346/c354m8646304",
+    "image": "https://contents.mediadecathlon.com/p2663490/k$64323e60cc00fb44f6ffec6b5733a94b/picture.jpg?f=300x300",
+    "last_price": 149.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 149.99,
+    "min_price_all": 149.99,
+    "avg_price_30d": 149.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 149.99
+      }
+    ]
+  },
+  "8973847": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/complemento-alimenticio-equitacion-nutri-cool-caballo-poni-900-ml/375657/m8973847",
+    "sku": "8973847",
+    "title": "Complemento Alimenticio Equitación Nutri'cool Caballo/Poni 900 ml",
+    "url": "https://www.decathlon.es/es/p/complemento-alimenticio-equitacion-nutri-cool-caballo-poni-900-ml/375657/m8973847",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8973847|Complemento Alimenticio Equitación Nutri'cool Caballo/Poni 900 ml|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/complemento-alimenticio-equitacion-nutri-cool-caballo-poni-900-ml/375657/m8973847",
+    "image": "https://contents.mediadecathlon.com/p2993002/k$33e50dbc301a020d32067f284b84113b/picture.jpg?f=300x300",
+    "last_price": 37.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 37.99,
+    "min_price_all": 37.99,
+    "avg_price_30d": 37.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 37.99
+      }
+    ]
+  },
+  "8851898": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/mochila-de-montana-y-trekking-25l-quechua-mh900/324604/c248m8851898",
+    "sku": "8851898",
+    "title": "Mochila de montaña y trekking 25L Quechua MH900",
+    "url": "https://www.decathlon.es/es/p/mochila-de-montana-y-trekking-25l-quechua-mh900/324604/c248m8851898",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8851898|Mochila de montaña y trekking 25L Quechua MH900|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/mochila-de-montana-y-trekking-25l-quechua-mh900/324604/c248m8851898",
+    "image": "https://contents.mediadecathlon.com/p2612847/k$a6bce280119dadae0800daec375db2f0/picture.jpg?f=300x300",
+    "last_price": 84.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 84.99,
+    "min_price_all": 84.99,
+    "avg_price_30d": 84.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 84.99
+      }
+    ]
+  },
+  "8598572": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/liquido-antipinchazos-zeroflats-500ml/X8598572/m8598572",
+    "sku": "8598572",
+    "title": "LIQUIDO ANTIPINCHAZOS ZEROFLATS 500ML",
+    "url": "https://www.decathlon.es/es/p/liquido-antipinchazos-zeroflats-500ml/X8598572/m8598572",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8598572|LIQUIDO ANTIPINCHAZOS ZEROFLATS 500ML|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/liquido-antipinchazos-zeroflats-500ml/X8598572/m8598572",
+    "image": "https://contents.mediadecathlon.com/p2071700/k$43ecf11c9f8eb79c0b535023dc3c236e/picture.jpg?f=300x300",
+    "last_price": 16.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 16.49,
+    "min_price_all": 16.49,
+    "avg_price_30d": 16.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 16.49
+      }
+    ]
+  },
+  "8843377": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/sillin-ciclismo-carretera-gravel-mtb-confort-145-mm-unisex/350507/c1m8843377",
+    "sku": "8843377",
+    "title": "Sillín Ciclismo Carretera/Gravel/MTB Confort 145 mm Unisex",
+    "url": "https://www.decathlon.es/es/p/sillin-ciclismo-carretera-gravel-mtb-confort-145-mm-unisex/350507/c1m8843377",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8843377|Sillín Ciclismo Carretera/Gravel/MTB Confort 145 mm Unisex|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sillin-ciclismo-carretera-gravel-mtb-confort-145-mm-unisex/350507/c1m8843377",
+    "image": "https://contents.mediadecathlon.com/p2549236/k$6cf2019c3ec3ef886edfeedced7a091d/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.99
+      }
+    ]
+  },
+  "8521985": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/manillar-bicicleta-de-paseo-diametro-25-4-mm-longitud-560-mm/199717/m8521985",
+    "sku": "8521985",
+    "title": "Manillar Bicicleta de Paseo Diámetro 25,4 mm Longitud 560 mm",
+    "url": "https://www.decathlon.es/es/p/manillar-bicicleta-de-paseo-diametro-25-4-mm-longitud-560-mm/199717/m8521985",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8521985|Manillar Bicicleta de Paseo Diámetro 25,4 mm Longitud 560 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/manillar-bicicleta-de-paseo-diametro-25-4-mm-longitud-560-mm/199717/m8521985",
+    "image": "https://contents.mediadecathlon.com/p1576611/k$82ef3046814c9bb3e06f06bf2c257973/picture.jpg?f=300x300",
+    "last_price": 15.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 15.99,
+    "min_price_all": 15.99,
+    "avg_price_30d": 15.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 15.99
+      }
+    ]
+  },
+  "8938214": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/herramienta-freno-disco-2-en-1/363332/m8938214",
+    "sku": "8938214",
+    "title": "Herramienta Freno Disco 2 En 1",
+    "url": "https://www.decathlon.es/es/p/herramienta-freno-disco-2-en-1/363332/m8938214",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8938214|Herramienta Freno Disco 2 En 1|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/herramienta-freno-disco-2-en-1/363332/m8938214",
+    "image": "https://contents.mediadecathlon.com/p2976451/k$f0aeffdd0ab7f8117ef581b710238d70/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8817100": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-endurance-mujer-burdeos-invierno/348630/c106m8817100",
+    "sku": "8817100",
+    "title": "Chaqueta Ciclismo Carretera Endurance Mujer Burdeos Invierno",
+    "url": "https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-endurance-mujer-burdeos-invierno/348630/c106m8817100",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8817100|Chaqueta Ciclismo Carretera Endurance Mujer Burdeos Invierno|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-endurance-mujer-burdeos-invierno/348630/c106m8817100",
+    "image": "https://contents.mediadecathlon.com/p2778767/k$16bc27a6d6e22731bdf54c2e4fd9a84d/picture.jpg?f=300x300",
+    "last_price": 43.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 43.99,
+    "min_price_all": 43.99,
+    "avg_price_30d": 43.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 43.99
+      }
+    ]
+  },
+  "8901288": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-discover-100-ninos-4-6-anos-blanco-16-pulgadas/356302/c227m8901288",
+    "sku": "8901288",
+    "title": "Bicicleta Discover 100 Niños 4-6 Años Blanco 16 Pulgadas",
+    "url": "https://www.decathlon.es/es/p/bicicleta-discover-100-ninos-4-6-anos-blanco-16-pulgadas/356302/c227m8901288",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8901288|Bicicleta Discover 100 Niños 4-6 Años Blanco 16 Pulgadas|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-discover-100-ninos-4-6-anos-blanco-16-pulgadas/356302/c227m8901288",
+    "image": "https://contents.mediadecathlon.com/p2879664/k$fee9935f91dbf88be89922ed997f1b1a/picture.jpg?f=300x300",
+    "last_price": 129.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 129.99,
+    "min_price_all": 129.99,
+    "avg_price_30d": 129.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 129.99
+      }
+    ]
+  },
+  "8919202": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/neopreno-surf-mujer-agua-templada-3-2mm-500-azul-negro/302360/c382c443m8919202",
+    "sku": "8919202",
+    "title": "Neopreno surf Mujer agua templada 3/2mm 500 azul negro",
+    "url": "https://www.decathlon.es/es/p/neopreno-surf-mujer-agua-templada-3-2mm-500-azul-negro/302360/c382c443m8919202",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8919202|Neopreno surf Mujer agua templada 3/2mm 500 azul negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/neopreno-surf-mujer-agua-templada-3-2mm-500-azul-negro/302360/c382c443m8919202",
+    "image": "https://contents.mediadecathlon.com/p2811417/k$20e5c15016ea249d7eb1f0aeed9981de/picture.jpg?f=300x300",
+    "last_price": 99.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 99.99,
+    "min_price_all": 99.99,
+    "avg_price_30d": 99.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 99.99
+      }
+    ]
+  },
+  "8513689": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/rueda-bici-mtb-29-delantera-frenos-disco-doble-pared-boost-15x110-tubeless/198651/m8513689",
+    "sku": "8513689",
+    "title": "Rueda Bici MTB 29\" Delantera Frenos Disco Doble Pared Boost 15x110 (Tubeless)",
+    "url": "https://www.decathlon.es/es/p/rueda-bici-mtb-29-delantera-frenos-disco-doble-pared-boost-15x110-tubeless/198651/m8513689",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8513689|Rueda Bici MTB 29\" Delantera Frenos Disco Doble Pared Boost 15x110 (Tubeless)|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rueda-bici-mtb-29-delantera-frenos-disco-doble-pared-boost-15x110-tubeless/198651/m8513689",
+    "image": "https://contents.mediadecathlon.com/p1635358/k$7be46af158fe9953c0fc1b05405dc975/picture.jpg?f=300x300",
+    "last_price": 89.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 89.99,
+    "min_price_all": 89.99,
+    "avg_price_30d": 89.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 89.99
+      }
+    ]
+  },
+  "9006187": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-manga-corta-de-senderismo-columbia-mujer/382496/m9006187",
+    "sku": "9006187",
+    "title": "Camiseta manga corta de senderismo - Columbia - Mujer",
+    "url": "https://www.decathlon.es/es/p/camiseta-manga-corta-de-senderismo-columbia-mujer/382496/m9006187",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9006187|Camiseta manga corta de senderismo - Columbia - Mujer|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-manga-corta-de-senderismo-columbia-mujer/382496/m9006187",
+    "image": "https://contents.mediadecathlon.com/p3078007/k$0a0a7b6bcc2e7e950e7b8fab53b9f442/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.99
+      }
+    ]
+  },
+  "8795819": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/candado-cadena-bicicleta-500-m/345587/c1m8795819",
+    "sku": "8795819",
+    "title": "Candado Cadena Bicicleta 500 M",
+    "url": "https://www.decathlon.es/es/p/candado-cadena-bicicleta-500-m/345587/c1m8795819",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8795819|Candado Cadena Bicicleta 500 M|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/candado-cadena-bicicleta-500-m/345587/c1m8795819",
+    "image": "https://contents.mediadecathlon.com/p2976200/k$0193e3a09eb280cc46c1d335ba35ee94/picture.jpg?f=300x300",
+    "last_price": 18.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 18.99,
+    "min_price_all": 18.99,
+    "avg_price_30d": 18.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 18.99
+      }
+    ]
+  },
+  "6318775": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/par-de-palancas-de-freno-tipo-v-brake/314/c27m6318775",
+    "sku": "6318775",
+    "title": "PAR DE PALANCAS DE FRENO TIPO V-BRAKE",
+    "url": "https://www.decathlon.es/es/p/par-de-palancas-de-freno-tipo-v-brake/314/c27m6318775",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=6318775|PAR DE PALANCAS DE FRENO TIPO V-BRAKE|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/par-de-palancas-de-freno-tipo-v-brake/314/c27m6318775",
+    "image": "https://contents.mediadecathlon.com/p2605406/k$c8156a0ac249b450cfc778798e7f3f23/picture.jpg?f=300x300",
+    "last_price": 12.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 12.99,
+    "min_price_all": 12.99,
+    "avg_price_30d": 12.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 12.99
+      }
+    ]
+  },
+  "8611054": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/alumbrado-trasero-elops-540-y-elops-900-azul-oscuro/203411/m8611054",
+    "sku": "8611054",
+    "title": "ALUMBRADO TRASERO ELOPS 540 Y ELOPS 900 AZUL OSCURO.",
+    "url": "https://www.decathlon.es/es/p/alumbrado-trasero-elops-540-y-elops-900-azul-oscuro/203411/m8611054",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8611054|ALUMBRADO TRASERO ELOPS 540 Y ELOPS 900 AZUL OSCURO.|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/alumbrado-trasero-elops-540-y-elops-900-azul-oscuro/203411/m8611054",
+    "image": "https://contents.mediadecathlon.com/p2599063/k$fd59b463519cf65cbd8e3fefb44498b8/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8903866": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-deportivas-velcro-bebe-adidas-tensaur-run-azul-del-20-al-27/X8903866/m8903866",
+    "sku": "8903866",
+    "title": "Zapatillas deportivas velcro Bebé adidas Tensaur Run azul del 20 al 27",
+    "url": "https://www.decathlon.es/es/p/zapatillas-deportivas-velcro-bebe-adidas-tensaur-run-azul-del-20-al-27/X8903866/m8903866",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8903866|Zapatillas deportivas velcro Bebé adidas Tensaur Run azul del 20 al 27|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-deportivas-velcro-bebe-adidas-tensaur-run-azul-del-20-al-27/X8903866/m8903866",
+    "image": "https://contents.mediadecathlon.com/p2719823/k$3f212ccdd51268fd791cf181ddfdd343/picture.jpg?f=300x300",
+    "last_price": 21.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 21.49,
+    "min_price_all": 21.49,
+    "avg_price_30d": 21.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 21.49
+      }
+    ]
+  },
+  "8958655": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/falda-de-tenis-mujer-adidas-club-blanca/X8958655/c4m8958655",
+    "sku": "8958655",
+    "title": "Falda de tenis mujer adidas Club - Blanca",
+    "url": "https://www.decathlon.es/es/p/falda-de-tenis-mujer-adidas-club-blanca/X8958655/c4m8958655",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8958655|Falda de tenis mujer adidas Club - Blanca|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/falda-de-tenis-mujer-adidas-club-blanca/X8958655/c4m8958655",
+    "image": "https://contents.mediadecathlon.com/p2882414/k$b79fd42cbd0061a30d1a295e631e3329/picture.jpg?f=300x300",
+    "last_price": 22.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 22.99,
+    "min_price_all": 22.99,
+    "avg_price_30d": 22.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 22.99
+      }
+    ]
+  },
+  "8873764": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pantalon-de-montana-y-nieve-de-invierno-perlante-hombre-quechua-nh100/348865/c71m8873764",
+    "sku": "8873764",
+    "title": "Pantalón de montaña y nieve de invierno perlante Hombre Quechua NH100",
+    "url": "https://www.decathlon.es/es/p/pantalon-de-montana-y-nieve-de-invierno-perlante-hombre-quechua-nh100/348865/c71m8873764",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8873764|Pantalón de montaña y nieve de invierno perlante Hombre Quechua NH100|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-de-montana-y-nieve-de-invierno-perlante-hombre-quechua-nh100/348865/c71m8873764",
+    "image": "https://contents.mediadecathlon.com/p2717958/k$9152f0d94c6a0f84fe0ccc07c3b9b844/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 29.99
+      }
+    ]
+  },
+  "8894215": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/neumatico-mtb-vittoria-barzo-1c-27-5-x-2-25-tubeless-ready/X8894215/c1m8894215",
+    "sku": "8894215",
+    "title": "Neumático MTB Vittoria Barzo 1C 27,5 x 2,25 Tubeless Ready",
+    "url": "https://www.decathlon.es/es/p/neumatico-mtb-vittoria-barzo-1c-27-5-x-2-25-tubeless-ready/X8894215/c1m8894215",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8894215|Neumático MTB Vittoria Barzo 1C 27,5 x 2,25 Tubeless Ready|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/neumatico-mtb-vittoria-barzo-1c-27-5-x-2-25-tubeless-ready/X8894215/c1m8894215",
+    "image": "https://contents.mediadecathlon.com/p2681253/k$62fadb2e200b3d9368b9c513a82ee23a/picture.jpg?f=300x300",
+    "last_price": 22.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 22.49,
+    "min_price_all": 22.49,
+    "avg_price_30d": 22.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 22.49
+      }
+    ]
+  },
+  "3230614": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/soporte-de-pared-2-bicicletas/923/m3230614",
+    "sku": "3230614",
+    "title": "SOPORTE DE PARED 2 BICICLETAS",
+    "url": "https://www.decathlon.es/es/p/soporte-de-pared-2-bicicletas/923/m3230614",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=3230614|SOPORTE DE PARED 2 BICICLETAS|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/soporte-de-pared-2-bicicletas/923/m3230614",
+    "image": "https://contents.mediadecathlon.com/p1567415/k$15560df3967e007c81bb32477610d5e5/picture.jpg?f=300x300",
+    "last_price": 21.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 21.99,
+    "min_price_all": 21.99,
+    "avg_price_30d": 21.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 21.99
+      }
+    ]
+  },
+  "8359349": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cadena-bicicleta-9-velocidades-shimano-hg53-tiagra-deore/X8359349/m8359349",
+    "sku": "8359349",
+    "title": "Cadena bicicleta 9 velocidades Shimano HG53 Tiagra/Deore",
+    "url": "https://www.decathlon.es/es/p/cadena-bicicleta-9-velocidades-shimano-hg53-tiagra-deore/X8359349/m8359349",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8359349|Cadena bicicleta 9 velocidades Shimano HG53 Tiagra/Deore|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cadena-bicicleta-9-velocidades-shimano-hg53-tiagra-deore/X8359349/m8359349",
+    "image": "https://contents.mediadecathlon.com/p1877080/k$de64acab977448b6f74d512d9a673471/picture.jpg?f=300x300",
+    "last_price": 18.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 18.99,
+    "min_price_all": 18.99,
+    "avg_price_30d": 18.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 18.99
+      }
+    ]
+  },
+  "8612702": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cazadora-impermeable-hombre-sailing-500-gris/327999/c383c381m8612702",
+    "sku": "8612702",
+    "title": "Cazadora impermeable Hombre Sailing 500 gris",
+    "url": "https://www.decathlon.es/es/p/cazadora-impermeable-hombre-sailing-500-gris/327999/c383c381m8612702",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8612702|Cazadora impermeable Hombre Sailing 500 gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cazadora-impermeable-hombre-sailing-500-gris/327999/c383c381m8612702",
+    "image": "https://contents.mediadecathlon.com/p2491510/k$5ece759390b53853845aca10773962b2/picture.jpg?f=300x300",
+    "last_price": 89.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 89.99,
+    "min_price_all": 89.99,
+    "avg_price_30d": 89.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 89.99
+      }
+    ]
+  },
+  "8516218": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/juego-direccion-1-rosca-bloqueo-angulo-plata/199733/m8516218",
+    "sku": "8516218",
+    "title": "Juego dirección 1\" rosca bloqueo ángulo plata",
+    "url": "https://www.decathlon.es/es/p/juego-direccion-1-rosca-bloqueo-angulo-plata/199733/m8516218",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8516218|Juego dirección 1\" rosca bloqueo ángulo plata|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/juego-direccion-1-rosca-bloqueo-angulo-plata/199733/m8516218",
+    "image": "https://contents.mediadecathlon.com/p1635350/k$d5ebdbd3aa07335e1f4ac4f5a33af50c/picture.jpg?f=300x300",
+    "last_price": 12.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 12.99,
+    "min_price_all": 12.99,
+    "avg_price_30d": 12.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 12.99
+      }
+    ]
+  },
+  "8788798": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-multideporte-playful-summer-ninos-negro-malva-transpirables/345134/c382c382m8788798",
+    "sku": "8788798",
+    "title": "Zapatillas Multideporte Playful Summer Niños Negro/Malva Transpirables",
+    "url": "https://www.decathlon.es/es/p/zapatillas-multideporte-playful-summer-ninos-negro-malva-transpirables/345134/c382c382m8788798",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8788798|Zapatillas Multideporte Playful Summer Niños Negro/Malva Transpirables|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-multideporte-playful-summer-ninos-negro-malva-transpirables/345134/c382c382m8788798",
+    "image": "https://contents.mediadecathlon.com/p2712511/k$11d6a7171c2f80a45766fe5a51adc308/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8912027": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-ciclismo-mtb-hombre-azul-invierno/357839/c246c246c246m8912027",
+    "sku": "8912027",
+    "title": "Chaqueta Ciclismo MTB Hombre Azul Invierno",
+    "url": "https://www.decathlon.es/es/p/chaqueta-ciclismo-mtb-hombre-azul-invierno/357839/c246c246c246m8912027",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8912027|Chaqueta Ciclismo MTB Hombre Azul Invierno|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-ciclismo-mtb-hombre-azul-invierno/357839/c246c246c246m8912027",
+    "image": "https://contents.mediadecathlon.com/p2839054/k$595518238e22c688f0b49d9259087fe0/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 49.99
+      }
+    ]
+  },
+  "8916535": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/banador-mujer-manga-larga-cremallera-trasera-upf50-negro-blanco/341905/c1c382m8916535",
+    "sku": "8916535",
+    "title": "Bañador Mujer manga larga cremallera trasera UPF50 Negro-Blanco",
+    "url": "https://www.decathlon.es/es/p/banador-mujer-manga-larga-cremallera-trasera-upf50-negro-blanco/341905/c1c382m8916535",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8916535|Bañador Mujer manga larga cremallera trasera UPF50+ Negro-Blanco|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/banador-mujer-manga-larga-cremallera-trasera-upf50-negro-blanco/341905/c1c382m8916535",
+    "image": "https://contents.mediadecathlon.com/p2805577/k$8d796de21847198234c4196b17484d49/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 34.99
+      }
+    ]
+  },
+  "9003584": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/zapatillas-grand-court-00-base-ninos-negro/381892/c1c4m9003584",
+    "sku": "9003584",
+    "title": "Zapatillas Grand Court 00 Base Niños Negro",
+    "url": "https://www.decathlon.es/es/p/zapatillas-grand-court-00-base-ninos-negro/381892/c1c4m9003584",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9003584|Zapatillas Grand Court 00 Base Niños Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-grand-court-00-base-ninos-negro/381892/c1c4m9003584",
+    "image": "https://contents.mediadecathlon.com/p3044918/k$338e171dd5b9bd41846f154b72f30458/picture.jpg?f=300x300",
+    "last_price": 36.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 36.49,
+    "min_price_all": 36.49,
+    "avg_price_30d": 36.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 36.49
+      }
+    ]
+  },
+  "9032169": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/polea-oscillante/387120/m9032169",
+    "sku": "9032169",
+    "title": "Polea - OSCILLANTE",
+    "url": "https://www.decathlon.es/es/p/polea-oscillante/387120/m9032169",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9032169|Polea - OSCILLANTE|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/polea-oscillante/387120/m9032169",
+    "image": "https://contents.mediadecathlon.com/p3082105/k$6beb9fa985a2695423000aef1478dd25/picture.jpg?f=300x300",
+    "last_price": 15.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 15.99,
+    "min_price_all": 15.99,
+    "avg_price_30d": 15.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 15.99
+      }
+    ]
+  },
+  "8602364": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cazadora-impermeable-hombre-sailing-500-rojo/327999/c221c381m8602364",
+    "sku": "8602364",
+    "title": "Cazadora impermeable Hombre Sailing 500 rojo",
+    "url": "https://www.decathlon.es/es/p/cazadora-impermeable-hombre-sailing-500-rojo/327999/c221c381m8602364",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8602364|Cazadora impermeable Hombre Sailing 500 rojo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cazadora-impermeable-hombre-sailing-500-rojo/327999/c221c381m8602364",
+    "image": "https://contents.mediadecathlon.com/p2160835/k$1ceee5b58998ad387ed5e97c93ddb65f/picture.jpg?f=300x300",
+    "last_price": 89.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 89.99,
+    "min_price_all": 89.99,
+    "avg_price_30d": 89.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 89.99
+      }
+    ]
+  },
+  "8234798": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/caja-pedalier-bicicleta-neco-68mm/X8234798/m8234798",
+    "sku": "8234798",
+    "title": "Caja pedalier bicicleta Neco 68mm",
+    "url": "https://www.decathlon.es/es/p/caja-pedalier-bicicleta-neco-68mm/X8234798/m8234798",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8234798|Caja pedalier bicicleta Neco 68mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/caja-pedalier-bicicleta-neco-68mm/X8234798/m8234798",
+    "image": "https://contents.mediadecathlon.com/p1035497/k$8befd4127aadb318b41b9159ba8648d8/picture.jpg?f=300x300",
+    "last_price": 23.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 23.99,
+    "min_price_all": 23.99,
+    "avg_price_30d": 23.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 23.99
+      }
+    ]
+  },
+  "8751856": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-electrica-trekking-motor-central-cuadro-bajo-e-actv-500-verde/342030/c261m8751856",
+    "sku": "8751856",
+    "title": "Bicicleta eléctrica trekking motor central cuadro bajo E-Actv 500 Verde",
+    "url": "https://www.decathlon.es/es/p/bicicleta-electrica-trekking-motor-central-cuadro-bajo-e-actv-500-verde/342030/c261m8751856",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8751856|Bicicleta eléctrica trekking motor central cuadro bajo E-Actv 500 Verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-electrica-trekking-motor-central-cuadro-bajo-e-actv-500-verde/342030/c261m8751856",
+    "image": "https://contents.mediadecathlon.com/p2678542/k$d749b047dbb15ba99b7867f0e02f9d12/picture.jpg?f=300x300",
+    "last_price": 1799.0,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 1799.0,
+    "min_price_all": 1799.0,
+    "avg_price_30d": 1799.0,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 1799.0
+      }
+    ]
+  },
+  "8872851": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-estatica-eb520-b-resistencia-motorizada-garantia-decathlon/353271/c344m8872851",
+    "sku": "8872851",
+    "title": "Bicicleta Estática EB520 B Resistencia Motorizada Garantía Decathlon",
+    "url": "https://www.decathlon.es/es/p/bicicleta-estatica-eb520-b-resistencia-motorizada-garantia-decathlon/353271/c344m8872851",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8872851|Bicicleta Estática EB520 B Resistencia Motorizada Garantía Decathlon|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-estatica-eb520-b-resistencia-motorizada-garantia-decathlon/353271/c344m8872851",
+    "image": "https://contents.mediadecathlon.com/p2707476/k$a3e442d2d3aa882f28612cd9f2ebfe38/picture.jpg?f=300x300",
+    "last_price": 349.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 349.99,
+    "min_price_all": 349.99,
+    "avg_price_30d": 349.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 349.99
+      }
+    ]
+  },
+  "8171725": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/calas-compatibles-look-delta/242/m8171725",
+    "sku": "8171725",
+    "title": "Calas compatibles Look Delta",
+    "url": "https://www.decathlon.es/es/p/calas-compatibles-look-delta/242/m8171725",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8171725|Calas compatibles Look Delta|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/calas-compatibles-look-delta/242/m8171725",
+    "image": "https://contents.mediadecathlon.com/p798654/k$48e071020f0853e627789b22564b7e40/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 11.99
+      }
+    ]
+  },
+  "8655166": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-trekking-riverside-100-negro/335189/c1m8655166",
+    "sku": "8655166",
+    "title": "Bicicleta Trekking Riverside 100 Negro",
+    "url": "https://www.decathlon.es/es/p/bicicleta-trekking-riverside-100-negro/335189/c1m8655166",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8655166|Bicicleta Trekking Riverside 100 Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-trekking-riverside-100-negro/335189/c1m8655166",
+    "image": "https://contents.mediadecathlon.com/p2023358/k$b177787aac23c0bef1dab5a25c903da4/picture.jpg?f=300x300",
+    "last_price": 199.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 199.99,
+    "min_price_all": 199.99,
+    "avg_price_30d": 199.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 199.99
+      }
+    ]
+  },
+  "8947357": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/gafas-ciclismo-roadr-900-perf-adulto-negro-fotocromaticas-nxt/350608/c382m8947357",
+    "sku": "8947357",
+    "title": "Gafas Ciclismo Roadr 900 Perf Adulto Negro Fotocromáticas NXT®",
+    "url": "https://www.decathlon.es/es/p/gafas-ciclismo-roadr-900-perf-adulto-negro-fotocromaticas-nxt/350608/c382m8947357",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8947357|Gafas Ciclismo Roadr 900 Perf Adulto Negro Fotocromáticas NXT®|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/gafas-ciclismo-roadr-900-perf-adulto-negro-fotocromaticas-nxt/350608/c382m8947357",
+    "image": "https://contents.mediadecathlon.com/p2857964/k$0bdfdd7f79ba5826a99d0cec8dd3bfb9/picture.jpg?f=300x300",
+    "last_price": 69.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 69.99,
+    "min_price_all": 69.99,
+    "avg_price_30d": 69.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 69.99
+      }
+    ]
+  },
+  "8645541": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-proteccion-solar-manga-larga-hombre-top-500-negro-gris/332579/c382c188c71m8645541",
+    "sku": "8645541",
+    "title": "Camiseta protección solar manga larga Hombre Top 500 negro gris",
+    "url": "https://www.decathlon.es/es/p/camiseta-proteccion-solar-manga-larga-hombre-top-500-negro-gris/332579/c382c188c71m8645541",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8645541|Camiseta protección solar manga larga Hombre Top 500 negro gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-proteccion-solar-manga-larga-hombre-top-500-negro-gris/332579/c382c188c71m8645541",
+    "image": "https://contents.mediadecathlon.com/p2856544/k$d75519b29b754d911f72ce008b500ffd/picture.jpg?f=300x300",
+    "last_price": 14.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 14.99,
+    "min_price_all": 14.99,
+    "avg_price_30d": 14.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 14.99
+      }
+    ]
+  },
+  "8938381": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-sin-mangas-trekking-lana-merina-reciclada-mujer-merino-rec-fresh-rosa/363416/c327m8938381",
+    "sku": "8938381",
+    "title": "Camiseta sin mangas trekking lana merina reciclada mujer, Merino Rec Fresh rosa",
+    "url": "https://www.decathlon.es/es/p/camiseta-sin-mangas-trekking-lana-merina-reciclada-mujer-merino-rec-fresh-rosa/363416/c327m8938381",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8938381|Camiseta sin mangas trekking lana merina reciclada mujer, Merino Rec Fresh rosa|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-sin-mangas-trekking-lana-merina-reciclada-mujer-merino-rec-fresh-rosa/363416/c327m8938381",
+    "image": "https://contents.mediadecathlon.com/p2999991/k$f9f6540b0101613e999a269f9939943e/picture.jpg?f=300x300",
+    "last_price": 19.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 19.99
+      }
+    ]
+  },
+  "8735292": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/alumbrado-trasero-bicicleta-rl930-recarga-usb-sensor-desaceleracion/338376/c1m8735292",
+    "sku": "8735292",
+    "title": "Alumbrado Trasero Bicicleta RL930 Recarga USB Sensor Desaceleración",
+    "url": "https://www.decathlon.es/es/p/alumbrado-trasero-bicicleta-rl930-recarga-usb-sensor-desaceleracion/338376/c1m8735292",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8735292|Alumbrado Trasero Bicicleta RL930 Recarga USB Sensor Desaceleración|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/alumbrado-trasero-bicicleta-rl930-recarga-usb-sensor-desaceleracion/338376/c1m8735292",
+    "image": "https://contents.mediadecathlon.com/p2791932/k$a4ee3f301ff228c37ba49437c0157f76/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8865685": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/soporte-telefono-manillar-bicicleta-telefono-xxl/X8865685/m8865685",
+    "sku": "8865685",
+    "title": "Soporte Teléfono Manillar Bicicleta (Teléfono XXL)",
+    "url": "https://www.decathlon.es/es/p/soporte-telefono-manillar-bicicleta-telefono-xxl/X8865685/m8865685",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8865685|Soporte Teléfono Manillar Bicicleta (Teléfono XXL)|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/soporte-telefono-manillar-bicicleta-telefono-xxl/X8865685/m8865685",
+    "image": "https://contents.mediadecathlon.com/p2572653/k$be4514a39480800f3da09fd2db3ac414/picture.jpg?f=300x300",
+    "last_price": 28.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 28.99,
+    "min_price_all": 28.99,
+    "avg_price_30d": 28.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 28.99
+      }
+    ]
+  },
+  "8964900": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cubierta-maxxis-assegai-29x2-60-60-tpi-exo-tubeless-ready/X8964900/m8964900",
+    "sku": "8964900",
+    "title": "Cubierta Maxxis Assegai 29x2.60 60 TPI EXO Tubeless Ready",
+    "url": "https://www.decathlon.es/es/p/cubierta-maxxis-assegai-29x2-60-60-tpi-exo-tubeless-ready/X8964900/m8964900",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8964900|Cubierta Maxxis Assegai 29x2.60 60 TPI EXO Tubeless Ready|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cubierta-maxxis-assegai-29x2-60-60-tpi-exo-tubeless-ready/X8964900/m8964900",
+    "image": "https://contents.mediadecathlon.com/p2880970/k$24275938327ddfadc5e8cff3864e0543/picture.jpg?f=300x300",
+    "last_price": 45.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 45.99,
+    "min_price_all": 45.99,
+    "avg_price_30d": 45.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 45.99
+      }
+    ]
+  },
+  "8807226": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/gafas-ciclismo-velocidad-perf-500-light-hd-fotocromaticas-categoria-1-3/347447/c382m8807226",
+    "sku": "8807226",
+    "title": "Gafas Ciclismo Velocidad Perf 500 Light HD Fotocromáticas Categoría 1-3",
+    "url": "https://www.decathlon.es/es/p/gafas-ciclismo-velocidad-perf-500-light-hd-fotocromaticas-categoria-1-3/347447/c382m8807226",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8807226|Gafas Ciclismo Velocidad Perf 500 Light HD Fotocromáticas Categoría 1-3|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/gafas-ciclismo-velocidad-perf-500-light-hd-fotocromaticas-categoria-1-3/347447/c382m8807226",
+    "image": "https://contents.mediadecathlon.com/p2933169/k$be82df7d42f3f81e81d6f943dab0672b/picture.jpg?f=300x300",
+    "last_price": 59.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 59.99,
+    "min_price_all": 59.99,
+    "avg_price_30d": 59.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 59.99
+      }
+    ]
+  },
+  "8943471": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/soporte-smartphone-sp-connect-universal/X8943471/m8943471",
+    "sku": "8943471",
+    "title": "Soporte Smartphone SP Connect Universal",
+    "url": "https://www.decathlon.es/es/p/soporte-smartphone-sp-connect-universal/X8943471/m8943471",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8943471|Soporte Smartphone SP Connect Universal|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/soporte-smartphone-sp-connect-universal/X8943471/m8943471",
+    "image": "https://contents.mediadecathlon.com/p2773205/k$67c007c8298f0e72ef2b1c193fce1507/picture.jpg?f=300x300",
+    "last_price": 39.49,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 39.49,
+    "min_price_all": 39.49,
+    "avg_price_30d": 39.49,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 39.49
+      }
+    ]
+  },
+  "8985511": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/liquido-antipinchazos-tubeless-cerabike-roadandgravel-competicion-530ml/X8985511/m8985511",
+    "sku": "8985511",
+    "title": "Liquido antipinchazos tubeless Cerabike Road",
+    "url": "https://www.decathlon.es/es/p/liquido-antipinchazos-tubeless-cerabike-roadandgravel-competicion-530ml/X8985511/m8985511",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8985511|Liquido antipinchazos tubeless Cerabike Road&Gravel competicion 530ml|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/liquido-antipinchazos-tubeless-cerabike-roadandgravel-competicion-530ml/X8985511/m8985511",
+    "image": "https://contents.mediadecathlon.com/p2919987/k$8eb4d483fc95e535f222c1a11b8c08c9/picture.jpg?f=300x300",
+    "last_price": 14.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 14.99,
+    "min_price_all": 14.99,
+    "avg_price_30d": 14.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 14.99
+      }
+    ]
+  },
+  "8738937": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/bicicleta-eliptica-el520b-autoalimentada-conectada-kinomap/339337/c1m8738937",
+    "sku": "8738937",
+    "title": "Bicicleta Elíptica EL520B Autoalimentada Conectada Kinomap",
+    "url": "https://www.decathlon.es/es/p/bicicleta-eliptica-el520b-autoalimentada-conectada-kinomap/339337/c1m8738937",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8738937|Bicicleta Elíptica EL520B Autoalimentada Conectada Kinomap|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-eliptica-el520b-autoalimentada-conectada-kinomap/339337/c1m8738937",
+    "image": "https://contents.mediadecathlon.com/p2340283/k$e76d77a4150ad426e03e61f25581371d/picture.jpg?f=300x300",
+    "last_price": 349.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 349.99,
+    "min_price_all": 349.99,
+    "avg_price_30d": 349.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 349.99
+      }
+    ]
+  },
+  "8556867": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/portabidon-carbono-900/991/c382m8556867",
+    "sku": "8556867",
+    "title": "PORTABIDÓN CARBONO 900",
+    "url": "https://www.decathlon.es/es/p/portabidon-carbono-900/991/c382m8556867",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8556867|PORTABIDÓN CARBONO 900|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/portabidon-carbono-900/991/c382m8556867",
+    "image": "https://contents.mediadecathlon.com/p1823614/k$b4741f1ca573e96005a53b51a6169ded/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8739267": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/2-luces-bicicleta-sl510-delantera-trasera-negro-usb-clip/338779/m8739267",
+    "sku": "8739267",
+    "title": "2 Luces Bicicleta SL510 Delantera/Trasera Negro Usb Clip",
+    "url": "https://www.decathlon.es/es/p/2-luces-bicicleta-sl510-delantera-trasera-negro-usb-clip/338779/m8739267",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8739267|2 Luces Bicicleta SL510 Delantera/Trasera Negro Usb Clip|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/2-luces-bicicleta-sl510-delantera-trasera-negro-usb-clip/338779/m8739267",
+    "image": "https://contents.mediadecathlon.com/p2795424/k$eeace5f0de2eba8f899acab701f44722/picture.jpg?f=300x300",
+    "last_price": 18.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 18.99,
+    "min_price_all": 18.99,
+    "avg_price_30d": 18.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 18.99
+      }
+    ]
+  },
+  "8858864": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/rodillo-masaje-foam-roller-azul-blando/328766/c266m8858864",
+    "sku": "8858864",
+    "title": "Rodillo Masaje Foam Roller Azul Blando",
+    "url": "https://www.decathlon.es/es/p/rodillo-masaje-foam-roller-azul-blando/328766/c266m8858864",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8858864|Rodillo Masaje Foam Roller Azul Blando|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rodillo-masaje-foam-roller-azul-blando/328766/c266m8858864",
+    "image": "https://contents.mediadecathlon.com/p2720256/k$5a137701200efc5fa5d9588fdc81e956/picture.jpg?f=300x300",
+    "last_price": 19.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 19.99
+      }
+    ]
+  },
+  "8735251": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/alforja-500-para-portaequipajes-bici-amarillo-20-l-impermeable/338362/c233m8735251",
+    "sku": "8735251",
+    "title": "Alforja 500 Para Portaequipajes Bici Amarillo 20 l Impermeable",
+    "url": "https://www.decathlon.es/es/p/alforja-500-para-portaequipajes-bici-amarillo-20-l-impermeable/338362/c233m8735251",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8735251|Alforja 500 Para Portaequipajes Bici Amarillo 20 l Impermeable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/alforja-500-para-portaequipajes-bici-amarillo-20-l-impermeable/338362/c233m8735251",
+    "image": "https://contents.mediadecathlon.com/p2628912/k$09888dc4473c018484cd7cf45df7e8cc/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 34.99
+      }
+    ]
+  },
+  "8350484": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/tija-sillin-ciclismo-suspension-diametro-27-2-mm-adaptador-29-8-31-8-mm/142572/m8350484",
+    "sku": "8350484",
+    "title": "Tija Sillín Ciclismo Suspensión Diámetro 27,2 mm Adaptador 29,8/31,8 mm",
+    "url": "https://www.decathlon.es/es/p/tija-sillin-ciclismo-suspension-diametro-27-2-mm-adaptador-29-8-31-8-mm/142572/m8350484",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8350484|Tija Sillín Ciclismo Suspensión Diámetro 27,2 mm Adaptador 29,8/31,8 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/tija-sillin-ciclismo-suspension-diametro-27-2-mm-adaptador-29-8-31-8-mm/142572/m8350484",
+    "image": "https://contents.mediadecathlon.com/p735544/k$3eb7c2aff0ae5a431eb72b28d05e310e/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 24.99
+      }
+    ]
+  },
+  "8594295": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/rueda-trasera-bicicleta-urbana-28-pulgadas-36v-doble-pared-plata-elops-120e/202771/c249m8594295",
+    "sku": "8594295",
+    "title": "rueda trasera bicicleta urbana 28 pulgadas 36V doble pared plata Elops 120E",
+    "url": "https://www.decathlon.es/es/p/rueda-trasera-bicicleta-urbana-28-pulgadas-36v-doble-pared-plata-elops-120e/202771/c249m8594295",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8594295|rueda trasera bicicleta urbana 28 pulgadas 36V doble pared plata Elops 120E|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rueda-trasera-bicicleta-urbana-28-pulgadas-36v-doble-pared-plata-elops-120e/202771/c249m8594295",
+    "image": "https://contents.mediadecathlon.com/p2067702/k$26fb5a5dc46f870be937e23ade991585/picture.jpg?f=300x300",
+    "last_price": 169.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 169.99,
+    "min_price_all": 169.99,
+    "avg_price_30d": 169.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 169.99
+      }
+    ]
+  },
+  "8575779": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/gafas-de-ciclsimo-mtb-pack-cristales-intercambiables-cat-0-3-rockrider-xc-azules/312975/c364m8575779",
+    "sku": "8575779",
+    "title": "Gafas de ciclsimo Mtb Pack cristales intercambiables Cat 0 3 Rockrider Xc azules",
+    "url": "https://www.decathlon.es/es/p/gafas-de-ciclsimo-mtb-pack-cristales-intercambiables-cat-0-3-rockrider-xc-azules/312975/c364m8575779",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8575779|Gafas de ciclsimo Mtb Pack cristales intercambiables Cat 0+3 Rockrider Xc azules|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/gafas-de-ciclsimo-mtb-pack-cristales-intercambiables-cat-0-3-rockrider-xc-azules/312975/c364m8575779",
+    "image": "https://contents.mediadecathlon.com/p3054230/k$8da2d5322c5f92c16b7b09ceda020a0e/picture.jpg?f=300x300",
+    "last_price": 19.99,
+    "previous_price": null,
+    "last_seen": "2026-05-04",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-05-04",
+        "price": 19.99
       }
     ]
   }
