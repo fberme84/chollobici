@@ -149,6 +149,18 @@ def build_lights(items: list[WorkflowSummary], metrics: dict[str, Any] | None) -
     else:
         lights.append(Light("Workflows", "green", "Sin fallos en el ultimo run"))
 
+    config_issues = [i.label for i in items if i.anomaly]
+    if config_issues:
+        lights.append(
+            Light(
+                "Config workflow",
+                "red",
+                f"Posible error de sintaxis/expresion en: {', '.join(config_issues)}",
+            )
+        )
+    else:
+        lights.append(Light("Config workflow", "green", "Sin anomalias de configuracion"))
+
     sitemap_urls = int(((metrics or {}).get("totals") or {}).get("sitemap_urls") or 0)
     if sitemap_urls < 25:
         lights.append(Light("Cobertura sitemap", "red", f"Solo {sitemap_urls} URLs"))
