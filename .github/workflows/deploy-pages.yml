@@ -81,7 +81,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Alert on failure
-        if: ${{ failure() && secrets.ALERT_WEBHOOK_URL != '' }}
+        if: ${{ failure() }}
         env:
           ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
         run: |

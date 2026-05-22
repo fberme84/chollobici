@@ -118,7 +118,7 @@ jobs:
           git push || echo "Nothing to push"
 
       - name: Alert on failure
-        if: ${{ failure() && secrets.ALERT_WEBHOOK_URL != '' }}
+        if: ${{ failure() }}
         env:
           ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
         run: |
