@@ -233,10 +233,14 @@ async function shareDealOnWhatsApp(deal, button) {
 
   const copied = await copyText(message);
   if (button && copied) {
-    const previous = button.textContent;
-    button.textContent = "Enlace copiado";
+    const previousTitle = button.getAttribute("title") || "Compartir por WhatsApp";
+    button.classList.add("is-copied");
+    button.setAttribute("title", "Enlace copiado");
+    button.setAttribute("aria-label", "Enlace copiado");
     window.setTimeout(() => {
-      button.textContent = previous;
+      button.classList.remove("is-copied");
+      button.setAttribute("title", previousTitle);
+      button.setAttribute("aria-label", "Compartir por WhatsApp");
     }, 1400);
   }
 
@@ -520,7 +524,7 @@ function renderDealCard(deal) {
     actionBtn.addEventListener("click", (event) => event.stopPropagation());
   }
 
-  const shareBtn = node.querySelector(".btn-share");
+  const shareBtn = node.querySelector(".btn-share-icon");
   if (shareBtn) {
     shareBtn.addEventListener("click", async (event) => {
       event.stopPropagation();

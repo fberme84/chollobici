@@ -6,6 +6,7 @@ import json
 import re
 import unicodedata
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "generated_deals.json"
@@ -324,6 +325,7 @@ def build_html(product: dict, slug: str) -> str:
     description = clean_text(build_product_description(product), 160)
     image = str(product.get("image") or "/assets/placeholder-product.svg").strip()
     affiliate_url = str(product.get("affiliate_url") or product.get("url") or "").strip()
+    whatsapp_url = f"https://wa.me/?text={quote(title + chr(10) + canonical)}"
     brand = str(product.get("brand") or "").strip()
     category_hint = str(product.get("category_hint") or product.get("category") or "").strip()
     size = str(product.get("size") or "").strip()
@@ -358,11 +360,19 @@ def build_html(product: dict, slug: str) -> str:
             '<div class="product-actions">'
             f'<a class="btn-primary" href="{html.escape(affiliate_url, quote=True)}" '
             'target="_blank" rel="noopener sponsored nofollow">Ver en tienda</a>'
+            f'<a class="btn-whatsapp-icon" href="{html.escape(whatsapp_url, quote=True)}" '
+            'target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp" title="Compartir por WhatsApp"></a>'
             '<a class="btn-secondary" href="/">Volver a ofertas</a>'
             "</div>"
         )
     else:
-        cta_block = '<div class="product-actions"><a class="btn-secondary" href="/">Volver a ofertas</a></div>'
+        cta_block = (
+            '<div class="product-actions">'
+            f'<a class="btn-whatsapp-icon" href="{html.escape(whatsapp_url, quote=True)}" '
+            'target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp" title="Compartir por WhatsApp"></a>'
+            '<a class="btn-secondary" href="/">Volver a ofertas</a>'
+            '</div>'
+        )
 
     meta_title = build_meta_title(title, store)
     og_image = f'<meta property="og:image" content="{html.escape(get_abs_image_url(image), quote=True)}">'
@@ -412,6 +422,14 @@ def build_html(product: dict, slug: str) -> str:
     .btn-primary, .btn-secondary {{ text-decoration:none; padding:12px 16px; border-radius:12px; font-weight:800; display:inline-block; }}
     .btn-primary {{ background:#111827; color:#fff; }}
     .btn-secondary {{ background:#f3f4f6; color:#111827; }}
+        .btn-whatsapp-icon {{
+            width:48px; min-width:48px; min-height:48px;
+            border-radius:12px;
+            border:1px solid #bde8c9;
+            background:#fff url('/assets/whatsapp-icon.svg') center/24px no-repeat;
+            box-shadow:0 8px 16px rgba(37,211,102,.18);
+            display:inline-block;
+        }}
     .product-note {{ color:#6b7280; }}
     @media (max-width:760px) {{ .product-layout {{ grid-template-columns:1fr; padding:18px; }} }}
   </style>
