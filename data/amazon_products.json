@@ -164,14 +164,15 @@
     "id": "amazon-ciclocomputador-magene-1",
     "title": "Magene C606 Pro Ciclocomputador GPS",
     "category": "Electrónica",
-    "price": 69.99,
-    "old_price": 89.99,
+    "price": 199.0,
+    "old_price": null,
     "url": "https://www.amazon.es/dp/B0GHR2V8XV?tag=chollobici0a-21",
     "image": "https://m.media-amazon.com/images/I/61j1O5a7-HL._AC_SY300_SX300_QL70_ML2_.jpg",
     "source": "manual",
     "last_checked": "2026-05-22",
     "editor_pick": false,
-    "asin": "B0GHR2V8XV"
+    "asin": "B0GHR2V8XV",
+    "reason": "Precio manual actualizado tras verificación puntual en Amazon; puede variar sin PA-API"
   },
   {
     "id": "amazon-inbike-ciclismo-camiseta-bolsillos-transpirable-b0cyt4rq22",
