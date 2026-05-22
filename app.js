@@ -153,6 +153,33 @@ function prepareDeals(rawDeals) {
   return [...byKey.values()];
 }
 
+function pickTopCuratedDeals(deals, limit = 3) {
+  const sorted = [...deals].sort((a, b) => getDealQualityScore(b) - getDealQualityScore(a));
+  const picked = [];
+  const pickedKeys = new Set();
+  const usedStores = new Set();
+
+  for (const deal of sorted) {
+    if (picked.length >= limit) break;
+    const key = getDealIdentityKey(deal);
+    const store = getStoreLabel(deal);
+    if (pickedKeys.has(key) || usedStores.has(store)) continue;
+    picked.push(deal);
+    pickedKeys.add(key);
+    usedStores.add(store);
+  }
+
+  for (const deal of sorted) {
+    if (picked.length >= limit) break;
+    const key = getDealIdentityKey(deal);
+    if (pickedKeys.has(key)) continue;
+    picked.push(deal);
+    pickedKeys.add(key);
+  }
+
+  return picked;
+}
+
 function getProductDetailUrl(deal) {
   const value = deal.product_detail_path || deal.product_detail_url || "";
   if (!value) return "";
@@ -168,6 +195,53 @@ function getProductDetailUrl(deal) {
     return String(value).endsWith("/") ? String(value) : String(value) + "/";
   }
   return "";
+}
+
+function getShareUrl(deal) {
+  return getProductDetailUrl(deal) || getDealUrl(deal);
+}
+
+async function copyText(value) {
+  if (!navigator.clipboard?.writeText) return false;
+  try {
+    await navigator.clipboard.writeText(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function shareDealOnWhatsApp(deal, button) {
+  const shareUrl = getShareUrl(deal);
+  if (!shareUrl || shareUrl === "#") return;
+
+  const title = safeText(deal.title).trim();
+  const message = `${title}\n${shareUrl}`;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title,
+        text: title,
+        url: shareUrl,
+      });
+      return;
+    } catch {
+      // Continue with WhatsApp + copy fallback.
+    }
+  }
+
+  const copied = await copyText(message);
+  if (button && copied) {
+    const previous = button.textContent;
+    button.textContent = "Enlace copiado";
+    window.setTimeout(() => {
+      button.textContent = previous;
+    }, 1400);
+  }
+
+  const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(waUrl, "_blank", "noopener");
 }
 
 function getImageUrl(deal) {
@@ -439,11 +513,19 @@ function renderDealCard(deal) {
     metricsRow.style.display = showMetrics ? "" : "none";
   }
 
-  const actionBtn = node.querySelector(".deal-actions a");
+  const actionBtn = node.querySelector(".btn-store");
   if (actionBtn) {
     actionBtn.href = url;
     actionBtn.textContent = "Ver en tienda";
     actionBtn.addEventListener("click", (event) => event.stopPropagation());
+  }
+
+  const shareBtn = node.querySelector(".btn-share");
+  if (shareBtn) {
+    shareBtn.addEventListener("click", async (event) => {
+      event.stopPropagation();
+      await shareDealOnWhatsApp(deal, shareBtn);
+    });
   }
 
   const favoriteBtn = node.querySelector(".favorite-btn");
@@ -578,9 +660,7 @@ function renderTopPicks(deals) {
   const container = document.getElementById("topPicksGrid");
   if (!section || !container) return [];
 
-  const picks = [...deals]
-    .sort((a, b) => getDealQualityScore(b) - getDealQualityScore(a))
-    .slice(0, 3);
+  const picks = pickTopCuratedDeals(deals, 3);
 
   container.innerHTML = "";
   picks.forEach((deal) => container.appendChild(renderDealCard(deal)));

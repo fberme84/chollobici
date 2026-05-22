@@ -260,6 +260,13 @@ input:focus, select:focus {
   letter-spacing: -.02em;
 }
 
+.top-curation-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
 .info-line {
   color: var(--muted);
   font-size: .95rem;
@@ -603,8 +610,15 @@ input:focus, select:focus {
 
 
 .deal-actions {
+  display: grid;
+  gap: 8px;
   margin-top: auto;
   padding-top: 6px;
+}
+
+.btn-share {
+  min-height: 42px;
+  font-size: .92rem;
 }
 
 .btn {
