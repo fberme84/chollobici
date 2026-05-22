@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CholloBici Admin</title>
+  <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="head">
+      <h1>CholloBici Admin</h1>
+      <p>Panel de estado de workflows y monitor SEO.</p>
+      {% if has_errors %}
+      <p class="alert">Hay workflows con error o estado incompleto.</p>
+      {% else %}
+      <p class="ok">Todo en verde en la ultima ejecucion.</p>
+      {% endif %}
+    </header>
+
+    <section class="grid">
+      {% for item in items %}
+      <article class="card">
+        <h2>{{ item.label }}</h2>
+        <ul>
+          <li><strong>Workflow:</strong> {{ item.file_name }}</li>
+          <li><strong>Run:</strong> #{{ item.run_number if item.run_number else '-' }}</li>
+          <li><strong>Status:</strong> {{ item.status }}</li>
+          <li><strong>Conclusion:</strong> {{ item.conclusion }}</li>
+          <li><strong>Actualizado:</strong> {{ item.updated_at }}</li>
+        </ul>
+        {% if item.html_url %}
+        <a href="{{ item.html_url }}" target="_blank" rel="noopener noreferrer">Ver run en GitHub Actions</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>

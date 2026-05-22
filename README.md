@@ -99,3 +99,14 @@ python scripts/generate_static_product_pages.py
 ```
 
 Esto mejora la indexación en Google al no depender del renderizado JavaScript para las fichas de producto.
+
+## Admin privado (MVP)
+
+Se incluye un panel admin básico en `admin_panel/` con:
+
+- login por contraseña (HTTP Basic Auth)
+- estado de workflows: Deploy Pages, Update Data y SEO Mini Monitor
+
+Este panel no debe publicarse en GitHub Pages. Debe ejecutarse en un servicio con backend (por ejemplo Render o Railway).
+
+Más detalles en `admin_panel/README.md`.
