@@ -154,25 +154,18 @@ img { max-width: 100%; }
   font-size: .94rem;
 }
 
-.toggle-btn {
-  border: 1px solid var(--line);
 .toolbar-toggles {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.toggle-btn {
+  border: 1px solid var(--line);
   background: #fff;
   color: var(--text);
   min-height: 44px;
   padding: 10px 14px;
-.metric-quality {
-  background: #fff4d6;
-  color: #8f4b00;
-}
-.metric-quality.is-premium {
-  background: #ffe6bf;
-  color: #8a3900;
-}
   border-radius: 14px;
   font: inherit;
   font-weight: 700;
@@ -1985,3 +1978,93 @@ input:focus, select:focus {
 }
 
 .site-header{background:#0d47a1;padding:12px}.site-header a{color:white;font-weight:bold}.breadcrumbs{font-size:13px;color:#666}.cta-button{background:#ff6600;color:#fff;padding:10px;border-radius:5px}.btn-buy{font-size:12px;color:#0d47a1}
+
+
+/* v5.0 visual polish (safe overrides) */
+.page-main {
+  padding: 22px 0 44px;
+}
+
+.section-head,
+.filters-head,
+.seo-guides-home-head {
+  margin-bottom: 16px;
+}
+
+.section-head h2,
+.filters-title {
+  letter-spacing: -0.025em;
+}
+
+.section-kicker {
+  border: 1px solid #dbe8fb;
+}
+
+.toolbar-note {
+  font-size: .9rem;
+  line-height: 1.45;
+}
+
+.card {
+  box-shadow: 0 10px 24px rgba(8, 39, 84, .08);
+}
+
+.deal-card {
+  border: 1px solid rgba(13, 99, 201, .09);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+
+.deal-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(8, 39, 84, .12);
+  border-color: rgba(13, 99, 201, .18);
+}
+
+.top-picks-section {
+  margin-top: 8px;
+  padding: 14px;
+  border: 1px solid #dbe8fb;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(240,247,255,.82));
+}
+
+.top-picks-section .section-head {
+  margin-top: 0;
+}
+
+.toggle-btn,
+.filter-chip,
+.collapse-toggle,
+.btn {
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
+}
+
+.toggle-btn:hover,
+.filter-chip:hover,
+.collapse-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.toggle-btn:focus-visible,
+.filter-chip:focus-visible,
+.collapse-toggle:focus-visible {
+  outline: 3px solid rgba(13, 99, 201, .24);
+  outline-offset: 2px;
+}
+
+.metric-quality {
+  background: #fff4d6;
+  color: #8f4b00;
+}
+
+.metric-quality.is-premium {
+  background: #ffe6bf;
+  color: #8a3900;
+}
+
+@media (max-width: 768px) {
+  .top-picks-section {
+    padding: 12px;
+    border-radius: 16px;
+  }
+}
