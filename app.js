@@ -62,6 +62,62 @@ function getDealUrl(deal) {
   return deal.affiliate_url || deal.url || "#";
 }
 
+function getDealIdentityKey(deal) {
+  const detail = safeText(deal.product_detail_path || deal.product_detail_url);
+  if (detail) return `detail:${detail.toLowerCase()}`;
+
+  const id = safeText(deal.id || deal.product_id);
+  if (id) return `id:${id.toLowerCase()}`;
+
+  const href = safeText(getDealUrl(deal));
+  if (href && href !== "#") return `url:${href.toLowerCase()}`;
+
+  return `fallback:${slugify(safeText(deal.title))}:${slugify(getStoreLabel(deal))}`;
+}
+
+function isRenderableDeal(deal) {
+  if (!deal || typeof deal !== "object") return false;
+
+  const title = safeText(deal.title).trim();
+  if (title.length < 8) return false;
+
+  const price = Number(deal.price);
+  if (!Number.isFinite(price) || price <= 0) return false;
+
+  const detailUrl = getProductDetailUrl(deal);
+  if (detailUrl) return true;
+
+  const url = safeText(getDealUrl(deal)).trim();
+  return /^https?:\/\//i.test(url);
+}
+
+function pickBetterDeal(current, candidate) {
+  const scoreCurrent = getChollometerScore(current) * 1000 + getDiscountPct(current) * 10 + (Number(current.sales) || 0);
+  const scoreCandidate = getChollometerScore(candidate) * 1000 + getDiscountPct(candidate) * 10 + (Number(candidate.sales) || 0);
+  if (scoreCandidate > scoreCurrent) return candidate;
+  if (scoreCandidate < scoreCurrent) return current;
+
+  const priceCurrent = Number(current.price) || Number.POSITIVE_INFINITY;
+  const priceCandidate = Number(candidate.price) || Number.POSITIVE_INFINITY;
+  return priceCandidate < priceCurrent ? candidate : current;
+}
+
+function prepareDeals(rawDeals) {
+  const cleanDeals = (Array.isArray(rawDeals) ? rawDeals : []).filter(isRenderableDeal);
+  const byKey = new Map();
+
+  cleanDeals.forEach((deal) => {
+    const key = getDealIdentityKey(deal);
+    if (!byKey.has(key)) {
+      byKey.set(key, deal);
+      return;
+    }
+    byKey.set(key, pickBetterDeal(byKey.get(key), deal));
+  });
+
+  return [...byKey.values()];
+}
+
 function getProductDetailUrl(deal) {
   const value = deal.product_detail_path || deal.product_detail_url || "";
   if (!value) return "";
@@ -473,7 +529,7 @@ function applyFilters(deals) {
 function renderTopPicks(deals) {
   const section = document.getElementById("topPicksSection");
   const container = document.getElementById("topPicksGrid");
-  if (!section || !container) return;
+  if (!section || !container) return [];
 
   const picks = [...deals]
     .sort((a, b) => getChollometerScore(b) - getChollometerScore(a))
@@ -482,13 +538,16 @@ function renderTopPicks(deals) {
   container.innerHTML = "";
   picks.forEach((deal) => container.appendChild(renderDealCard(deal)));
   section.hidden = picks.length === 0;
+  return picks;
 }
 
-function renderDealsGrid(deals) {
+function renderDealsGrid(deals, excludedKeys = new Set()) {
   const container = document.getElementById("dealsGrid");
   if (!container) return;
   container.innerHTML = "";
-  deals.slice(0, 60).forEach((deal) => container.appendChild(renderDealCard(deal)));
+
+  const list = deals.filter((deal) => !excludedKeys.has(getDealIdentityKey(deal)));
+  list.slice(0, 60).forEach((deal) => container.appendChild(renderDealCard(deal)));
 }
 
 function renderDealsInfo(deals) {
@@ -500,8 +559,9 @@ function renderDealsInfo(deals) {
 
 function renderHomePage(deals) {
   renderSeoGuides(seoPages);
-  renderTopPicks(deals);
-  renderDealsGrid(deals);
+  const topPicks = renderTopPicks(deals);
+  const excluded = new Set(topPicks.map(getDealIdentityKey));
+  renderDealsGrid(deals, excluded);
   renderDealsInfo(deals);
 }
 
@@ -617,7 +677,7 @@ async function init() {
     ]);
 
     const deals = await dealsRes.json();
-    allDeals = Array.isArray(deals) ? deals : [];
+    allDeals = prepareDeals(deals);
 
     if (seoRes && seoRes.ok) {
       seoPages = await seoRes.json();
