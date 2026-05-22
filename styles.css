@@ -2148,3 +2148,55 @@ input:focus, select:focus {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* v5.1 brand polish (safe overrides) */
+:root {
+  --font-ui: "Inter", "Segoe UI", Tahoma, sans-serif;
+  --font-display: "Space Grotesk", "Inter", "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  font-family: var(--font-ui);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 188, 80, .10), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(30, 110, 210, .10), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+}
+
+.hero-copy h1,
+.section-head h2,
+.filters-title,
+.deal-title,
+.top-pick-card h3,
+.guide-main-title,
+.page-intro h2 {
+  font-family: var(--font-display);
+}
+
+.section-kicker,
+.hero-kicker {
+  letter-spacing: .045em;
+}
+
+.section-head h2,
+.filters-title {
+  font-weight: 700;
+}
+
+.top-picks-section {
+  background:
+    radial-gradient(circle at top right, rgba(13, 99, 201, .10), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(240,247,255,.88));
+}
+
+.btn {
+  letter-spacing: .01em;
+}
+
+.hero-pill,
+.metric,
+.toggle-btn,
+.filter-chip {
+  font-weight: 700;
+}
