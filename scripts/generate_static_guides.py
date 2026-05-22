@@ -3,7 +3,6 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-import shutil
 import unicodedata
 from html import escape, unescape
 from pathlib import Path
@@ -311,11 +310,11 @@ def build_page_html(page: dict, all_pages: list[dict], deals: list[dict]) -> str
     </nav>
 
     <article class="guide-article card">
-      <header class="guide-hero-block">
-        <span class="section-kicker">{kicker}</span>
-        <h1>{intro_title}</h1>
-        <p class="guide-hero-text">{intro_text}</p>
-      </header>
+            <header class="guide-hero-block">
+                <span class="section-kicker">{kicker}</span>
+                <h2>{intro_title}</h2>
+                <p class="guide-hero-text">{intro_text}</p>
+            </header>
 
       {article_lead}
 
@@ -364,8 +363,6 @@ def main() -> None:
         if not slug:
             continue
         page_dir = ROOT / slug
-        if page_dir.exists():
-            shutil.rmtree(page_dir)
         page_dir.mkdir(parents=True, exist_ok=True)
         (page_dir / 'index.html').write_text(build_page_html(page, pages, deals), encoding='utf-8')
     print(f'Guías estáticas generadas: {len(pages)}')

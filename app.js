@@ -612,8 +612,8 @@ function applyFiltersAndRender() {
 async function init() {
   try {
     const [dealsRes, seoRes] = await Promise.all([
-      fetch(DATA_URL, { cache: "no-store" }),
-      fetch(SEO_PAGES_URL, { cache: "no-store" }).catch(() => null),
+      fetch(DATA_URL),
+      fetch(SEO_PAGES_URL).catch(() => null),
     ]);
 
     const deals = await dealsRes.json();

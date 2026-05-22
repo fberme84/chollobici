@@ -51,17 +51,6 @@ def parse_positive_float(value) -> float:
         return 0.0
 
 
-def calculate_discount_pct(price, old_price) -> int:
-    try:
-        p = float(price)
-        o = float(old_price)
-        if o > 0 and p <= o:
-            return round((o - p) / o * 100)
-    except Exception:
-        pass
-    return 0
-
-
 def has_real_image(deal: dict) -> bool:
     image = str(deal.get("image") or "").strip().lower()
     if not image:
@@ -69,17 +58,6 @@ def has_real_image(deal: dict) -> bool:
     if "placeholder" in image or image.endswith("placeholder-product.svg"):
         return False
     return image.startswith("http://") or image.startswith("https://") or image.startswith("/")
-
-
-def get_effective_discount(deal: dict) -> int:
-    discount = deal.get("discount_pct") or deal.get("discount")
-    try:
-        discount_value = int(float(discount))
-    except Exception:
-        discount_value = 0
-    if discount_value <= 0:
-        discount_value = calculate_discount_pct(deal.get("price"), deal.get("old_price"))
-    return max(0, discount_value)
 
 
 def is_indexable_product(deal: dict) -> bool:
@@ -91,16 +69,19 @@ def is_indexable_product(deal: dict) -> bool:
     title = re.sub(r"\s+", " ", str(deal.get("title") or "").strip())
     url = str(deal.get("affiliate_url") or deal.get("url") or "").strip()
     price = parse_positive_float(deal.get("price"))
-    source = str(deal.get("source") or deal.get("store") or "").strip().lower()
-    discount = get_effective_discount(deal)
+    source = str(
+        deal.get("source_label")
+        or deal.get("source")
+        or deal.get("store")
+        or ""
+    ).strip().lower()
 
     return bool(
-        18 <= len(title) <= 140
+        len(title) >= 10
         and (url.startswith("http://") or url.startswith("https://"))
         and price > 0
         and source
         and has_real_image(deal)
-        and (discount > 0 or deal.get("editor_pick"))
     )
 
 

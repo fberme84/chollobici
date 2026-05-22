@@ -4,10 +4,8 @@ import hashlib
 import html
 import json
 import re
-import shutil
 import unicodedata
 from pathlib import Path
-from datetime import date, timedelta
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "generated_deals.json"
@@ -278,7 +276,6 @@ def render_schema(product: dict, slug: str) -> str:
                 "url": affiliate_url,
                 "seller": {"@type": "Organization", "name": store},
                 "itemCondition": "https://schema.org/NewCondition",
-                "priceValidUntil": (date.today() + timedelta(days=14)).isoformat(),
                 "shippingDetails": {
                     "@type": "OfferShippingDetails",
                     "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "ES"},
@@ -396,7 +393,7 @@ def build_html(product: dict, slug: str) -> str:
     .product-detail-card {{ overflow:hidden; }}
     .product-layout {{ display:grid; grid-template-columns:minmax(260px, 380px) 1fr; gap:24px; padding:24px; }}
     .product-media img {{ width:100%; height:auto; display:block; border-radius:16px; background:#f8fafc; }}
-    .product-content h1 {{ margin:0 0 12px; line-height:1.15; }}
+    .product-title {{ margin:0 0 12px; line-height:1.15; }}
     .product-badges {{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }}
     .badge {{ display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; font-size:13px; font-weight:700; }}
     .badge-store {{ background:#ecfeff; }}
@@ -427,7 +424,7 @@ def build_html(product: dict, slug: str) -> str:
         <a href="/" aria-label="Volver a inicio"><img src="/assets/chollobici-logo.png" alt="CholloBici" class="logo-main"></a>
         <div class="hero-copy">
           <span class="hero-kicker">Detector de ofertas ciclistas</span>
-          <h1>{html.escape(title)}</h1>
+          <h2 class="product-title">{html.escape(title)}</h2>
           <p>{html.escape(description)}</p>
           <div class="hero-pills">
             <span class="hero-pill">Ficha de producto indexable</span>
@@ -575,8 +572,6 @@ def should_generate_detail_page(product: dict) -> bool:
 def main() -> None:
     products = load_products()
 
-    if PRODUCT_DIR.exists():
-        shutil.rmtree(PRODUCT_DIR)
     PRODUCT_DIR.mkdir(parents=True, exist_ok=True)
 
     generated = 0
