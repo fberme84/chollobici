@@ -24,6 +24,7 @@ class WorkflowSummary:
     updated_at: str
     html_url: str
     run_number: int
+    anomaly: str
 
 
 @dataclass
@@ -191,17 +192,32 @@ def fetch_workflow_summary(label: str, file_name: str) -> WorkflowSummary:
             updated_at="-",
             html_url="",
             run_number=0,
+            anomaly="",
         )
 
     run = runs[0]
+    anomaly = ""
+    run_id = run.get("id")
+    conclusion = str(run.get("conclusion") or "-")
+    if run_id and conclusion not in ("success", "-"):
+        try:
+            jobs = github_get(f"/actions/runs/{run_id}/jobs?per_page=1")
+            total_jobs = int(jobs.get("total_count") or 0)
+            if total_jobs == 0:
+                anomaly = "Fallo sin jobs: posible error de sintaxis/expresion en el workflow"
+        except Exception:
+            # If jobs cannot be read, keep normal summary without hard-failing the dashboard.
+            anomaly = ""
+
     return WorkflowSummary(
         label=label,
         file_name=file_name,
         status=str(run.get("status") or "-"),
-        conclusion=str(run.get("conclusion") or "-"),
+        conclusion=conclusion,
         updated_at=parse_iso_to_local(str(run.get("updated_at") or "")),
         html_url=str(run.get("html_url") or ""),
         run_number=int(run.get("run_number") or 0),
+        anomaly=anomaly,
     )
 
 

@@ -49,6 +49,9 @@
           <li><strong>Run:</strong> #{{ item.run_number if item.run_number else '-' }}</li>
           <li><strong>Status:</strong> {{ item.status }}</li>
           <li><strong>Conclusion:</strong> {{ item.conclusion }}</li>
+          {% if item.anomaly %}
+          <li><strong>Diagnostico:</strong> <span class="diag">{{ item.anomaly }}</span></li>
+          {% endif %}
           <li><strong>Actualizado:</strong> {{ item.updated_at }}</li>
         </ul>
         {% if item.html_url %}
