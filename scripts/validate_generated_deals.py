@@ -76,8 +76,8 @@ def main() -> int:
 
     top = sorted_deals[:3]
     top_keys = {identity_key(d) for d in top}
-    rest = [d for d in sorted_deals if identity_key(d) not in top_keys]
-    overlap = [identity_key(d) for d in rest[:60] if identity_key(d) in top_keys]
+    rest = sorted_deals[3:63]
+    overlap = [identity_key(d) for d in rest if identity_key(d) in top_keys]
     if overlap:
         errors.append("Solapamiento detectado entre Top y listado principal")
 

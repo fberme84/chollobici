@@ -9,8 +9,8 @@ MVP estático para GitHub Pages con actualización automática de datos mediante
 - `data/generated_deals.json`: ofertas visibles en la web, generado automáticamente para el despliegue.
 - `data/history.json`: histórico mínimo de precios.
 - `scripts/update_deals.py`: regeneración automática de datos y aplicación del tag de afiliado.
-- `.github/workflows/update-data.yml`: actualiza solo el histórico en el repo.
-- `.github/workflows/deploy-pages.yml`: genera `generated_deals.json` en el despliegue y publica en GitHub Pages.
+- `.github/workflows/update-data.yml`: refresca fuentes, regenera JSON/sitemap/paginas estáticas y hace commit automático de artefactos.
+- `.github/workflows/deploy-pages.yml`: reconstruye y publica el sitio en GitHub Pages.
 
 ## Secret necesario
 
@@ -31,13 +31,11 @@ Opcional para alertas automáticas de fallos en workflows:
 5. Lanza manualmente `Update deals data`.
 6. Lanza manualmente `Deploy static site to GitHub Pages`.
 
-## Cómo evita conflictos esta versión
+## Flujo de datos y despliegue
 
-- `data/generated_deals.json` ya no se guarda en Git.
-- GitHub Actions solo hace commit de `data/history.json`.
-- La web pública se despliega generando `generated_deals.json` durante el workflow de Pages.
-
-Así evitas conflictos en tus commits manuales y la web sigue mostrando ofertas actualizadas.
+- `Update deals data` genera y versiona los artefactos en el repo (`data/*.json`, `sitemap.xml` y páginas estáticas).
+- `Deploy static site to GitHub Pages` recompila y publica el estado actual del repo en Pages.
+- Recomendación: no edites manualmente los artefactos generados; deja que los scripts/workflows los actualicen.
 
 ## Nota legal sugerida
 

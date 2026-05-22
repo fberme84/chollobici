@@ -269,7 +269,7 @@ def compute_recommendation(product: dict) -> int:
         elif price <= 800:
             score += 1
 
-    if clean_image_url(product.get("image")):
+    if has_real_image(product):
         score += 2
     if clean_text(product.get("brand")):
         score += 2

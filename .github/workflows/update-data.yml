@@ -34,8 +34,12 @@ jobs:
       - name: Update Decathlon price history
         run: python scripts/update_decathlon_price_history.py
 
+      - name: Skip AliExpress refresh (missing secrets)
+        if: ${{ secrets.ALIEXPRESS_APP_KEY == '' || secrets.ALIEXPRESS_APP_SECRET == '' || secrets.ALIEXPRESS_TRACKING_ID == '' || secrets.ALIEXPRESS_API_URL == '' }}
+        run: echo "AliExpress refresh skipped: missing one or more ALIEXPRESS_* secrets"
+
       - name: Refresh AliExpress products
-        continue-on-error: true
+        if: ${{ secrets.ALIEXPRESS_APP_KEY != '' && secrets.ALIEXPRESS_APP_SECRET != '' && secrets.ALIEXPRESS_TRACKING_ID != '' && secrets.ALIEXPRESS_API_URL != '' }}
         env:
           ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
           ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
