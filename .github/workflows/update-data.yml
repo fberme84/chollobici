@@ -36,7 +36,8 @@ jobs:
 
       - name: Skip AliExpress refresh (missing secrets)
         if: ${{ secrets.ALIEXPRESS_APP_KEY == '' || secrets.ALIEXPRESS_APP_SECRET == '' || secrets.ALIEXPRESS_TRACKING_ID == '' || secrets.ALIEXPRESS_API_URL == '' }}
-        run: echo "AliExpress refresh skipped: missing one or more ALIEXPRESS_* secrets"
+        run: |
+          echo "AliExpress refresh skipped: missing one or more ALIEXPRESS_* secrets"
 
       - name: Refresh AliExpress products
         if: ${{ secrets.ALIEXPRESS_APP_KEY != '' && secrets.ALIEXPRESS_APP_SECRET != '' && secrets.ALIEXPRESS_TRACKING_ID != '' && secrets.ALIEXPRESS_API_URL != '' }}
