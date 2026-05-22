@@ -40,17 +40,17 @@ jobs:
           DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: python scripts/refresh_decathlon_products.py
 
-        - name: Skip AliExpress refresh (missing secrets)
-          if: ${{ secrets.ALIEXPRESS_APP_KEY == '' || secrets.ALIEXPRESS_APP_SECRET == '' || secrets.ALIEXPRESS_TRACKING_ID == '' || secrets.ALIEXPRESS_API_URL == '' }}
-          run: echo "AliExpress refresh skipped: missing one or more ALIEXPRESS_* secrets"
+      - name: Skip AliExpress refresh (missing secrets)
+        if: ${{ secrets.ALIEXPRESS_APP_KEY == '' || secrets.ALIEXPRESS_APP_SECRET == '' || secrets.ALIEXPRESS_TRACKING_ID == '' || secrets.ALIEXPRESS_API_URL == '' }}
+        run: echo "AliExpress refresh skipped: missing one or more ALIEXPRESS_* secrets"
 
       - name: Refresh AliExpress products
+        if: ${{ secrets.ALIEXPRESS_APP_KEY != '' && secrets.ALIEXPRESS_APP_SECRET != '' && secrets.ALIEXPRESS_TRACKING_ID != '' && secrets.ALIEXPRESS_API_URL != '' }}
         env:
           ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
           ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
           ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
           ALIEXPRESS_API_URL: ${{ secrets.ALIEXPRESS_API_URL }}
-          if: ${{ secrets.ALIEXPRESS_APP_KEY != '' && secrets.ALIEXPRESS_APP_SECRET != '' && secrets.ALIEXPRESS_TRACKING_ID != '' && secrets.ALIEXPRESS_API_URL != '' }}
         run: python scripts/refresh_aliexpress_products.py
 
       - name: Refresh Amazon products
