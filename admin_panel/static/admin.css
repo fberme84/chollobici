@@ -47,6 +47,65 @@ body {
   gap: 14px;
 }
 
+.lights {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.light {
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.light h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.light p {
+  margin: 0;
+  font-size: .93rem;
+}
+
+.light-green {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+}
+
+.light-yellow {
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+.light-red {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.card-full {
+  margin-top: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.metrics-time {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
 .card {
   background: var(--surface);
   border: 1px solid var(--line);

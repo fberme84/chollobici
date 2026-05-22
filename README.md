@@ -18,6 +18,10 @@ En GitHub, añade este secret del repositorio en `Settings > Secrets and variabl
 
 - `AMAZON_PARTNER_TAG` = `chollobici0a-21`
 
+Opcional para alertas automáticas de fallos en workflows:
+
+- `ALERT_WEBHOOK_URL` = webhook de Discord/Slack compatible con payload JSON `{"content":"..."}`
+
 ## Puesta en marcha
 
 1. Sustituye tu proyecto por este contenido.
@@ -84,6 +88,14 @@ Esta versión deja todo preparado, pero el script de refresco aún va en modo pl
 ## Sitemap automático
 
 El archivo `sitemap.xml` se regenera automáticamente en los workflows con `python scripts/generate_sitemap.py` a partir de `data/generated_deals.json` y `data/seo_pages.json`.
+
+## KPI operativos para admin
+
+El archivo `data/admin_metrics.json` se genera automáticamente con `python scripts/generate_admin_metrics.py` y alimenta el panel admin con:
+
+- ofertas totales y con descuento
+- fichas SEO de producto
+- número de URLs en sitemap
 
 ## Páginas HTML estáticas de producto
 

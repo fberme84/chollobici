@@ -66,6 +66,7 @@ jobs:
           python scripts/generate_static_product_pages.py
           python scripts/generate_static_guides.py
           python scripts/generate_sitemap.py
+          python scripts/generate_admin_metrics.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -78,3 +79,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Alert on failure
+        if: ${{ failure() && secrets.ALERT_WEBHOOK_URL != '' }}
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+        run: |
+          python scripts/send_alert_webhook.py \
+            --workflow "Deploy static site to GitHub Pages" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

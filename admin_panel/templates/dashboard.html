@@ -18,6 +18,28 @@
       {% endif %}
     </header>
 
+    <section class="lights">
+      {% for light in lights %}
+      <article class="light light-{{ light.level }}">
+        <h3>{{ light.label }}</h3>
+        <p>{{ light.detail }}</p>
+      </article>
+      {% endfor %}
+    </section>
+
+    {% if metrics %}
+    <section class="metrics card-full">
+      <h2>KPI diarios</h2>
+      <div class="metrics-grid">
+        <div><strong>Ofertas:</strong> {{ metrics.totals.offers }}</div>
+        <div><strong>Con descuento:</strong> {{ metrics.totals.offers_with_discount }}</div>
+        <div><strong>Fichas SEO:</strong> {{ metrics.totals.product_detail_pages }}</div>
+        <div><strong>URLs sitemap:</strong> {{ metrics.totals.sitemap_urls }}</div>
+      </div>
+      <p class="metrics-time">Actualizado: {{ metrics.generated_at }}</p>
+    </section>
+    {% endif %}
+
     <section class="grid">
       {% for item in items %}
       <article class="card">

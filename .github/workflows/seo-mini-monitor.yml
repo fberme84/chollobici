@@ -32,3 +32,12 @@ jobs:
           CHOLLOBICI_BASE_URL: https://www.chollobici.com
           SEO_MONITOR_MAX_PRODUCT_CHECKS: "12"
         run: python scripts/seo_mini_monitor.py
+
+      - name: Alert on failure
+        if: ${{ failure() && secrets.ALERT_WEBHOOK_URL != '' }}
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+        run: |
+          python scripts/send_alert_webhook.py \
+            --workflow "SEO Mini Monitor" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

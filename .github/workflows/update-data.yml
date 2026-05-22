@@ -65,6 +65,9 @@ jobs:
       - name: Generate sitemap
         run: python scripts/generate_sitemap.py
 
+      - name: Generate admin metrics
+        run: python scripts/generate_admin_metrics.py
+
       - name: Debug generated output
         if: always()
         run: |
@@ -113,3 +116,12 @@ jobs:
           git add casco* gafas* luces* herramientas* ropa* componentes* accesorios* taller* bolsas* hidratacion* electronica* || true
           git commit -m "Update deals data" || echo "No changes"
           git push || echo "Nothing to push"
+
+      - name: Alert on failure
+        if: ${{ failure() && secrets.ALERT_WEBHOOK_URL != '' }}
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+        run: |
+          python scripts/send_alert_webhook.py \
+            --workflow "Update deals data" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

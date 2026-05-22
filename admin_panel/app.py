@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from base64 import b64decode
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 import requests
@@ -24,6 +24,13 @@ class WorkflowSummary:
     updated_at: str
     html_url: str
     run_number: int
+
+
+@dataclass
+class Light:
+    label: str
+    level: str
+    detail: str
 
 
 WORKFLOWS = [
@@ -103,6 +110,75 @@ def github_get(path: str) -> dict[str, Any]:
     return resp.json()
 
 
+def github_get_file_json(path: str) -> dict[str, Any] | None:
+    try:
+        data = github_get(f"/contents/{path}")
+    except Exception:
+        return None
+
+    if not isinstance(data, dict) or "content" not in data:
+        return None
+    content = str(data.get("content") or "").replace("\n", "")
+    if not content:
+        return None
+    try:
+        raw = b64decode(content).decode("utf-8")
+        import json
+
+        return json.loads(raw)
+    except Exception:
+        return None
+
+
+def parse_iso(value: str) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def build_lights(items: list[WorkflowSummary], metrics: dict[str, Any] | None) -> list[Light]:
+    lights: list[Light] = []
+
+    failing = [i.label for i in items if i.conclusion not in ("success", "-", "")]
+    if failing:
+        lights.append(Light("Workflows", "red", f"Error en: {', '.join(failing)}"))
+    else:
+        lights.append(Light("Workflows", "green", "Sin fallos en el ultimo run"))
+
+    sitemap_urls = int(((metrics or {}).get("totals") or {}).get("sitemap_urls") or 0)
+    if sitemap_urls < 25:
+        lights.append(Light("Cobertura sitemap", "red", f"Solo {sitemap_urls} URLs"))
+    elif sitemap_urls < 40:
+        lights.append(Light("Cobertura sitemap", "yellow", f"{sitemap_urls} URLs (vigilancia)"))
+    else:
+        lights.append(Light("Cobertura sitemap", "green", f"{sitemap_urls} URLs"))
+
+    generated_at = parse_iso(str((metrics or {}).get("generated_at") or ""))
+    if not generated_at:
+        lights.append(Light("Frescura datos", "red", "Sin timestamp de metricas"))
+    else:
+        age_hours = (datetime.now(UTC) - generated_at.astimezone(UTC)).total_seconds() / 3600
+        if age_hours > 36:
+            lights.append(Light("Frescura datos", "red", f"Ultima actualizacion hace {age_hours:.1f}h"))
+        elif age_hours > 24:
+            lights.append(Light("Frescura datos", "yellow", f"Ultima actualizacion hace {age_hours:.1f}h"))
+        else:
+            lights.append(Light("Frescura datos", "green", f"Ultima actualizacion hace {age_hours:.1f}h"))
+
+    monitor = next((i for i in items if i.file_name == "seo-mini-monitor.yml"), None)
+    if monitor and monitor.conclusion == "success":
+        lights.append(Light("SEO monitor", "green", f"Run #{monitor.run_number} OK"))
+    elif monitor and monitor.conclusion not in ("-", ""):
+        lights.append(Light("SEO monitor", "red", f"Conclusion: {monitor.conclusion}"))
+    else:
+        lights.append(Light("SEO monitor", "yellow", "Aun sin ejecuciones suficientes"))
+
+    return lights
+
+
 def fetch_workflow_summary(label: str, file_name: str) -> WorkflowSummary:
     data = github_get(f"/actions/workflows/{file_name}/runs?per_page=1")
     runs = data.get("workflow_runs", [])
@@ -143,7 +219,15 @@ def dashboard() -> Response | str:
     try:
         items = [fetch_workflow_summary(label, file) for label, file in WORKFLOWS]
         has_errors = any(i.conclusion not in ("success", "-", "") for i in items)
-        return render_template("dashboard.html", items=items, has_errors=has_errors)
+        metrics = github_get_file_json("data/admin_metrics.json")
+        lights = build_lights(items, metrics)
+        return render_template(
+            "dashboard.html",
+            items=items,
+            has_errors=has_errors,
+            metrics=metrics,
+            lights=lights,
+        )
     except Exception as exc:
         return Response(f"Error cargando datos: {exc}", 500)
 
