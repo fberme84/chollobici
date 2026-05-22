@@ -154,10 +154,23 @@ function prepareDeals(rawDeals) {
 }
 
 function pickTopCuratedDeals(deals, limit = 3) {
-  const sorted = [...deals].sort((a, b) => getDealQualityScore(b) - getDealQualityScore(a));
+  const sorted = [...deals].sort((a, b) => getDealEditorialScore(b) - getDealEditorialScore(a));
   const picked = [];
   const pickedKeys = new Set();
   const usedStores = new Set();
+  const usedCategories = new Set();
+
+  for (const deal of sorted) {
+    if (picked.length >= limit) break;
+    const key = getDealIdentityKey(deal);
+    const store = getStoreLabel(deal);
+    const category = inferBucket(deal);
+    if (pickedKeys.has(key) || usedStores.has(store) || usedCategories.has(category)) continue;
+    picked.push(deal);
+    pickedKeys.add(key);
+    usedStores.add(store);
+    usedCategories.add(category);
+  }
 
   for (const deal of sorted) {
     if (picked.length >= limit) break;
@@ -316,6 +329,172 @@ function inferBucket(deal) {
   if (/(sillin|manillar|pedal|cadena|freno|rueda|cubierta|camara|potencia|punos|grips|calas)/.test(text)) return "Componentes";
   if (/(herramienta|bomba|inflador|multiherramienta|soporte|portabidon|guardabarros|bolsa|bidon)/.test(text)) return "Accesorios";
   return "Otros";
+}
+
+function getDealPriceBand(deal) {
+  const price = Number(deal.price);
+  if (!Number.isFinite(price)) return "unknown";
+  if (price < 5) return "low";
+  if (price < 25) return "mid";
+  return "high";
+}
+
+function getTitleNoisePenalty(deal) {
+  const title = safeText(deal.title).trim();
+  if (!title) return 0;
+
+  let penalty = 0;
+  if (title.length > 120) penalty += 8;
+  else if (title.length > 95) penalty += 4;
+
+  const upperChars = title.replace(/[^A-Z]/g, "").length;
+  const alphaChars = title.replace(/[^a-zA-Z]/g, "").length;
+  if (alphaChars > 0 && upperChars / alphaChars > 0.32) penalty += 5;
+
+  if (/\b(nuevo|original|oferta|mejor|top|premium)\b/gi.test(title) && title.length > 85) penalty += 3;
+  if (/[|]{2,}|\*{2,}/.test(title)) penalty += 2;
+
+  return penalty;
+}
+
+function getDealEditorialScore(deal) {
+  const quality = getDealQualityScore(deal);
+  const chollometer = getChollometerScore(deal);
+  const discount = Math.min(55, getDiscountPct(deal));
+  const sales = Number(deal.sales || 0);
+
+  let score = quality * 1.25 + chollometer * 0.7 + discount * 0.55;
+
+  if (hasRealImage(deal)) score += 8;
+  if (getProductDetailUrl(deal)) score += 8;
+  if (deal.is_price_drop) score += 5;
+  if (deal.is_recent_min_price) score += 5;
+  if (sales > 0) score += Math.min(10, Math.log10(sales + 1) * 4);
+
+  const price = Number(deal.price);
+  if (Number.isFinite(price) && price >= 8 && price <= 80) score += 6;
+  if (Number.isFinite(price) && price < 3.5) score -= 6;
+
+  score -= getTitleNoisePenalty(deal);
+
+  return score;
+}
+
+function getDealReasons(deal, maxItems = 2) {
+  const qualityReasons = Array.isArray(deal.quality_reasons) ? deal.quality_reasons : [];
+  const cholloReasons = Array.isArray(deal.chollometer_reasons) ? deal.chollometer_reasons : [];
+  const reasons = [...qualityReasons, ...cholloReasons]
+    .map((reason) => safeText(reason).trim())
+    .filter(Boolean);
+
+  if (reasons.length) return reasons.slice(0, maxItems);
+
+  const fallback = [];
+  if (getDealQualityScore(deal) >= 70) fallback.push("Calidad de ficha por encima de la media");
+  if (getDiscountPct(deal) >= 20) fallback.push("Descuento relevante sobre su precio base");
+  if (hasRealImage(deal)) fallback.push("Imagen real para validar mejor el producto");
+  return fallback.slice(0, maxItems);
+}
+
+function buildCuratedRecommendedOrder(deals, options = {}) {
+  const firstWindow = Math.min(12, deals.length);
+  if (firstWindow <= 1) return [...deals];
+
+  const maxStoreInWindow = options.lockStore ? Number.POSITIVE_INFINITY : 3;
+  const maxCategoryInWindow = options.lockCategory ? Number.POSITIVE_INFINITY : 4;
+  const maxLowPriceInWindow = 4;
+
+  const pending = [...deals];
+  const selected = [];
+  const storeCount = new Map();
+  const categoryCount = new Map();
+  let lowPriceCount = 0;
+  let strictMode = true;
+
+  const canPlaceInWindow = (deal) => {
+    if (!strictMode || selected.length >= firstWindow) return true;
+
+    const store = getStoreLabel(deal);
+    const category = inferBucket(deal);
+    const isLowPrice = getDealPriceBand(deal) === "low";
+
+    if ((storeCount.get(store) || 0) >= maxStoreInWindow) return false;
+    if ((categoryCount.get(category) || 0) >= maxCategoryInWindow) return false;
+    if (isLowPrice && lowPriceCount >= maxLowPriceInWindow) return false;
+
+    return true;
+  };
+
+  const registerWindowPlacement = (deal) => {
+    if (selected.length > firstWindow) return;
+    const store = getStoreLabel(deal);
+    const category = inferBucket(deal);
+    storeCount.set(store, (storeCount.get(store) || 0) + 1);
+    categoryCount.set(category, (categoryCount.get(category) || 0) + 1);
+    if (getDealPriceBand(deal) === "low") lowPriceCount += 1;
+  };
+
+  while (pending.length) {
+    let addedInPass = false;
+
+    for (let idx = 0; idx < pending.length; idx += 1) {
+      const deal = pending[idx];
+      if (!canPlaceInWindow(deal)) continue;
+
+      const withinWindow = selected.length < firstWindow;
+      selected.push(deal);
+      pending.splice(idx, 1);
+      idx -= 1;
+      addedInPass = true;
+
+      if (withinWindow) registerWindowPlacement(deal);
+    }
+
+    if (addedInPass) continue;
+    if (strictMode) {
+      strictMode = false;
+      continue;
+    }
+
+    selected.push(...pending);
+    break;
+  }
+
+  return selected;
+}
+
+function pickDailyRecommendationDeal(deals) {
+  if (!Array.isArray(deals) || deals.length === 0) return null;
+
+  const dominantStores = new Map();
+  deals.slice(0, 8).forEach((deal) => {
+    const store = getStoreLabel(deal);
+    dominantStores.set(store, (dominantStores.get(store) || 0) + 1);
+  });
+  let dominantStore = "";
+  let dominantCount = 0;
+  dominantStores.forEach((count, store) => {
+    if (count > dominantCount) {
+      dominantCount = count;
+      dominantStore = store;
+    }
+  });
+
+  let bestDeal = null;
+  let bestScore = Number.NEGATIVE_INFINITY;
+  deals.slice(0, 20).forEach((deal) => {
+    const store = getStoreLabel(deal);
+    let score = getDealEditorialScore(deal);
+    if (dominantStore && store === dominantStore && dominantCount >= 3) score -= 14;
+    if (getDealReasons(deal, 2).length >= 2) score += 4;
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestDeal = deal;
+    }
+  });
+
+  return bestDeal;
 }
 
 function getStoreClass(deal) {
@@ -640,6 +819,15 @@ function applyFilters(deals) {
   if (category) result = result.filter((deal) => inferBucket(deal) === category);
   if (premiumOnly) result = result.filter(isPremiumDeal);
 
+  if (sort === "recomendacion") {
+    result.sort((a, b) => getDealEditorialScore(b) - getDealEditorialScore(a));
+    result = buildCuratedRecommendedOrder(result, {
+      lockStore: Boolean(store),
+      lockCategory: Boolean(category),
+    });
+    return result;
+  }
+
   result.sort((a, b) => {
     if (sort === "quality") return getDealQualityScore(b) - getDealQualityScore(a);
     if (sort === "discount") return getDiscountPct(b) - getDiscountPct(a);
@@ -648,9 +836,7 @@ function applyFilters(deals) {
     if (sort === "price_desc") return (Number(b.price) || 0) - (Number(a.price) || 0);
     if (sort === "sales") return (Number(b.sales) || 0) - (Number(a.sales) || 0);
 
-    const scoreA = getDealQualityScore(a) * 1000 + getDiscountPct(a) * 10 - (Number(a.price) || 0);
-    const scoreB = getDealQualityScore(b) * 1000 + getDiscountPct(b) * 10 - (Number(b.price) || 0);
-    return scoreB - scoreA;
+    return getDealQualityScore(b) - getDealQualityScore(a);
   });
 
   return result;
@@ -672,6 +858,137 @@ function renderTopPicks(deals) {
   return picks;
 }
 
+function renderDailyRecommendation(deals) {
+  const section = document.getElementById("dailyRecommendationSection");
+  const container = document.getElementById("dailyRecommendationCard");
+  if (!section || !container) return null;
+
+  const deal = pickDailyRecommendationDeal(deals);
+  container.innerHTML = "";
+
+  if (!deal) {
+    section.hidden = true;
+    return null;
+  }
+
+  const card = document.createElement("article");
+  card.className = "daily-reco-card card";
+
+  const media = document.createElement("div");
+  media.className = "daily-reco-media";
+  const image = document.createElement("img");
+  image.className = "daily-reco-image";
+  image.src = getImageUrl(deal);
+  image.alt = safeText(deal.title);
+  image.loading = "lazy";
+  image.onerror = () => {
+    image.onerror = null;
+    image.src = "/assets/placeholder-product.svg";
+  };
+  media.appendChild(image);
+
+  const storePill = document.createElement("span");
+  storePill.className = `store-pill ${getStoreClass(deal)}`;
+  storePill.dataset.store = getStoreLabel(deal);
+  storePill.textContent = getStoreLabel(deal);
+  media.appendChild(storePill);
+
+  const content = document.createElement("div");
+  content.className = "daily-reco-content";
+
+  const kicker = document.createElement("span");
+  kicker.className = "daily-reco-kicker";
+  kicker.textContent = "Elegida hoy";
+  content.appendChild(kicker);
+
+  const title = document.createElement("h3");
+  title.textContent = safeText(deal.title);
+  content.appendChild(title);
+
+  const note = document.createElement("p");
+  note.className = "daily-reco-note";
+  note.textContent = "Equilibrio entre precio, calidad editorial y utilidad real para el día a día.";
+  content.appendChild(note);
+
+  const reasons = getDealReasons(deal, 2);
+  if (reasons.length) {
+    const list = document.createElement("ul");
+    list.className = "daily-reco-reasons";
+    reasons.forEach((reason) => {
+      const item = document.createElement("li");
+      item.textContent = reason;
+      list.appendChild(item);
+    });
+    content.appendChild(list);
+  }
+
+  const priceRow = document.createElement("div");
+  priceRow.className = "daily-reco-price-row";
+
+  const current = document.createElement("strong");
+  current.textContent = formatPrice(deal.price);
+  priceRow.appendChild(current);
+
+  const discount = getDiscountPct(deal);
+  if (discount > 0) {
+    const discountEl = document.createElement("span");
+    discountEl.className = "daily-reco-discount";
+    discountEl.textContent = `-${discount}%`;
+    priceRow.appendChild(discountEl);
+  }
+
+  const oldPrice = formatPrice(deal.old_price);
+  const currentPrice = formatPrice(deal.price);
+  if (oldPrice && oldPrice !== currentPrice) {
+    const old = document.createElement("span");
+    old.className = "daily-reco-old-price";
+    old.textContent = oldPrice;
+    priceRow.appendChild(old);
+  }
+  content.appendChild(priceRow);
+
+  const actions = document.createElement("div");
+  actions.className = "deal-actions daily-reco-actions";
+
+  const actionBtn = document.createElement("a");
+  actionBtn.className = "btn btn-store";
+  actionBtn.href = getDealUrl(deal);
+  actionBtn.target = "_blank";
+  actionBtn.rel = "noopener sponsored nofollow";
+  actionBtn.textContent = "Ver en tienda";
+  actionBtn.addEventListener("click", (event) => event.stopPropagation());
+  actions.appendChild(actionBtn);
+
+  const shareBtn = document.createElement("button");
+  shareBtn.type = "button";
+  shareBtn.className = "btn btn-light btn-share-icon";
+  shareBtn.setAttribute("aria-label", "Compartir por WhatsApp");
+  shareBtn.setAttribute("title", "Compartir por WhatsApp");
+  shareBtn.addEventListener("click", async (event) => {
+    event.stopPropagation();
+    await shareDealOnWhatsApp(deal, shareBtn);
+  });
+  actions.appendChild(shareBtn);
+
+  content.appendChild(actions);
+
+  card.appendChild(media);
+  card.appendChild(content);
+
+  const detailUrl = getProductDetailUrl(deal);
+  card.addEventListener("click", () => {
+    if (detailUrl) {
+      window.location.href = detailUrl;
+    } else {
+      window.open(getDealUrl(deal), "_blank", "noopener");
+    }
+  });
+
+  container.appendChild(card);
+  section.hidden = false;
+  return deal;
+}
+
 function renderDealsGrid(deals, excludedKeys = new Set()) {
   const container = document.getElementById("dealsGrid");
   if (!container) return;
@@ -691,8 +1008,12 @@ function renderDealsInfo(deals) {
 
 function renderHomePage(deals) {
   renderSeoGuides(seoPages);
-  const topPicks = renderTopPicks(deals);
+  const dailyRecommendation = renderDailyRecommendation(deals);
+  const dailyKey = dailyRecommendation ? getDealIdentityKey(dailyRecommendation) : "";
+  const topSource = dailyKey ? deals.filter((deal) => getDealIdentityKey(deal) !== dailyKey) : deals;
+  const topPicks = renderTopPicks(topSource);
   const excluded = new Set(topPicks.map(getDealIdentityKey));
+  if (dailyKey) excluded.add(dailyKey);
   renderDealsGrid(deals, excluded);
   renderDealsInfo(deals);
 }
