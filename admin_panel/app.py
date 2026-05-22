@@ -149,5 +149,5 @@ def dashboard() -> Response | str:
 
 
 if __name__ == "__main__":
-    port = int(env("ADMIN_PORT", "8787"))
+    port = int(env("PORT") or env("ADMIN_PORT", "8787"))
     app.run(host="0.0.0.0", port=port)

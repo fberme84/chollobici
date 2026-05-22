@@ -45,3 +45,29 @@ python admin_panel/app.py
 ## Nota de seguridad
 
 No poner este panel en GitHub Pages publico. Debe vivir en un servicio con backend (Render, Railway, Fly, etc.) o detras de un gateway privado.
+
+## Despliegue en Render (simple)
+
+Este repo ya incluye `render.yaml` para crear el servicio web automaticamente.
+
+### Lo que ya esta preparado
+
+- runtime Python
+- instalacion de dependencias con `requirements.txt`
+- arranque con `gunicorn admin_panel.app:app`
+- variables base (`GITHUB_OWNER`, `GITHUB_REPO`, `ADMIN_USERNAME`)
+
+### Lo unico que tienes que poner tu en Render
+
+- `ADMIN_PASSWORD`
+- `GITHUB_TOKEN` (token de GitHub con permiso de lectura de Actions)
+
+### Pasos en Render
+
+1. `New` -> `Blueprint`.
+2. Selecciona el repo `fberme84/chollobici`.
+3. Render detectara `render.yaml` y propondra `chollobici-admin`.
+4. En variables, define `ADMIN_PASSWORD` y `GITHUB_TOKEN`.
+5. Crea el servicio y abre la URL generada.
+
+Cuando abra la URL, pedira usuario y password (Basic Auth).
