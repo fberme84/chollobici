@@ -40,13 +40,28 @@ jobs:
           DECATHLON_FEED_URL: ${{ secrets.DECATHLON_FEED_URL }}
         run: python scripts/refresh_decathlon_products.py
 
+      - name: Check AliExpress configuration
+        id: aliexpress_check
+        shell: bash
+        env:
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
+          ALIEXPRESS_API_URL: ${{ secrets.ALIEXPRESS_API_URL }}
+        run: |
+          if [ -n "$ALIEXPRESS_APP_KEY" ] && [ -n "$ALIEXPRESS_APP_SECRET" ] && [ -n "$ALIEXPRESS_TRACKING_ID" ] && [ -n "$ALIEXPRESS_API_URL" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Skip AliExpress refresh (missing secrets)
-        if: ${{ secrets.ALIEXPRESS_APP_KEY == '' || secrets.ALIEXPRESS_APP_SECRET == '' || secrets.ALIEXPRESS_TRACKING_ID == '' || secrets.ALIEXPRESS_API_URL == '' }}
+        if: ${{ steps.aliexpress_check.outputs.enabled != 'true' }}
         run: |
           echo "AliExpress refresh skipped: missing one or more ALIEXPRESS_* secrets"
 
       - name: Refresh AliExpress products
-        if: ${{ secrets.ALIEXPRESS_APP_KEY != '' && secrets.ALIEXPRESS_APP_SECRET != '' && secrets.ALIEXPRESS_TRACKING_ID != '' && secrets.ALIEXPRESS_API_URL != '' }}
+        if: ${{ steps.aliexpress_check.outputs.enabled == 'true' }}
         env:
           ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
           ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
