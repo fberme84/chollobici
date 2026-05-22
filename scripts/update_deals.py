@@ -408,6 +408,76 @@ def compute_chollometer(product: dict) -> dict:
     return product
 
 
+def has_real_image(product: dict) -> bool:
+    image = clean_image_url(product.get("image") or "")
+    image_l = image.lower()
+    return image.startswith("http") and "placeholder-product.svg" not in image_l
+
+
+def compute_quality_signals(product: dict) -> dict:
+    title = clean_text(product.get("title") or "")
+    url = clean_text(product.get("affiliate_url") or product.get("url") or "")
+    source = get_source(product)
+    discount_pct = max(0, int(safe_float(product.get("discount_pct"))))
+    chollometer = max(0, int(safe_float(product.get("chollometer_score"))))
+
+    score = 0
+    reasons = []
+
+    if len(title) >= 16:
+        score += 20
+        reasons.append("titulo claro")
+    elif len(title) >= 10:
+        score += 12
+
+    if url.startswith("http://") or url.startswith("https://"):
+        score += 10
+        reasons.append("enlace valido")
+
+    if has_real_image(product):
+        score += 8
+        reasons.append("imagen real")
+
+    score += min(30, round(chollometer * 0.3))
+    if chollometer >= 70:
+        reasons.append("chollometro alto")
+
+    score += min(20, round(discount_pct * 0.6))
+    if discount_pct >= 20:
+        reasons.append(f"-{discount_pct}%")
+
+    sales = product.get("sales") or product.get("lastest_volume")
+    try:
+        sales_value = int(float(str(sales or 0).replace(".", "").replace(",", ".")))
+    except Exception:
+        sales_value = 0
+
+    if sales_value >= 5000:
+        score += 10
+        reasons.append("muy vendido")
+    elif sales_value >= 1000:
+        score += 6
+        reasons.append("buenas ventas")
+
+    if product.get("is_price_drop"):
+        score += 5
+        reasons.append("bajada reciente")
+    if product.get("is_recent_min_price"):
+        score += 7
+        reasons.append("minimo 30d")
+
+    if source in {"amazon", "decathlon"}:
+        score += 4
+    elif source == "aliexpress":
+        score += 2
+
+    score = max(0, min(100, int(round(score))))
+    product["quality_score"] = score
+    product["quality_reasons"] = list(dict.fromkeys([r for r in reasons if r]))[:4]
+    product["is_premium_quality"] = score >= 70
+    return product
+
+
 
 def sort_key(product):
     return (
@@ -457,12 +527,12 @@ def main():
     decathlon_history = load_json_dict(DECATHLON_HISTORY_PATH)
 
     decathlon_filtered = [
-        compute_chollometer(attach_decathlon_price_history(normalize_product(p), decathlon_history))
+        compute_quality_signals(compute_chollometer(attach_decathlon_price_history(normalize_product(p), decathlon_history)))
         for p in decathlon
         if passes_decathlon_filter(p)
     ]
-    aliexpress_filtered = [compute_chollometer(normalize_product(p)) for p in aliexpress if passes_base_filter(p)]
-    amazon_filtered = [compute_chollometer(normalize_product(p)) for p in amazon if passes_base_filter(p)]
+    aliexpress_filtered = [compute_quality_signals(compute_chollometer(normalize_product(p))) for p in aliexpress if passes_base_filter(p)]
+    amazon_filtered = [compute_quality_signals(compute_chollometer(normalize_product(p))) for p in amazon if passes_base_filter(p)]
 
     decathlon_sorted = sorted(decathlon_filtered, key=sort_key, reverse=True)
     aliexpress_sorted = sorted(aliexpress_filtered, key=sort_key, reverse=True)
@@ -496,6 +566,8 @@ def main():
         "decathlon_recent_min_published": sum(1 for d in deals if d.get("source") == "decathlon" and d.get("is_recent_min_price")),
         "chollometer_top_published": sum(1 for d in deals if d.get("chollometer_score", 0) >= 85),
         "chollometer_avg_score": round(sum(d.get("chollometer_score", 0) for d in deals) / len(deals), 2) if deals else 0,
+        "quality_avg_score": round(sum(d.get("quality_score", 0) for d in deals) / len(deals), 2) if deals else 0,
+        "premium_quality_published": sum(1 for d in deals if d.get("is_premium_quality")),
         "aliexpress_published": sum(1 for d in deals if d.get("source") == "aliexpress"),
         "amazon_published": sum(1 for d in deals if d.get("source") == "amazon"),
         "total_published": len(deals),

@@ -63,6 +63,7 @@ jobs:
       - name: Build generated site files
         run: |
           python scripts/update_deals.py
+          python scripts/validate_generated_deals.py
           python scripts/generate_static_product_pages.py
           python scripts/generate_static_guides.py
           python scripts/generate_sitemap.py

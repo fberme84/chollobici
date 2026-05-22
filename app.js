@@ -68,6 +68,9 @@ function hasRealImage(deal) {
 }
 
 function getDealQualityScore(deal) {
+  const explicit = Number(deal.quality_score);
+  if (Number.isFinite(explicit)) return Math.max(0, Math.min(100, Math.round(explicit)));
+
   let score = 0;
 
   const title = safeText(deal.title).trim();
@@ -90,6 +93,7 @@ function getDealQualityScore(deal) {
 }
 
 function isPremiumDeal(deal) {
+  if (typeof deal.is_premium_quality === "boolean") return deal.is_premium_quality;
   return getDealQualityScore(deal) >= 70;
 }
 

@@ -21,9 +21,14 @@
     "chollometer_reasons": [
       "-23%"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/lamicall-soporte-movil-bicicleta-c8c49d16db/",
-    "product_detail_url": "https://www.chollobici.com/producto/lamicall-soporte-movil-bicicleta-c8c49d16db/"
+    "quality_score": 72,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "-23%"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/potencia-bicicleta-btt-1-1-8-ahead-31-8/197911/m8523787",
@@ -57,15 +62,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/potencia-bicicleta-btt-1-1-8-ahead-31-8-c8711dca49/",
-    "product_detail_url": "https://www.chollobici.com/producto/potencia-bicicleta-btt-1-1-8-ahead-31-8-c8711dca49/"
+    "quality_score": 84,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "1005005979722451",
     "title": "Tubo interior ultraligero para bicicleta de montaña, 26, 27,5, 29 pulgadas, neumático de TPU, 45mm, Metal, válvula Presta francesa, antioxidación, CYCLAMI cámara de aire",
     "url": "https://s.click.aliexpress.com/e/_c4k8rQW1",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4k8rQW1",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005979722451.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S6320a2de22ea400cb1e990e78cf868dd5.jpg",
     "price": 0.99,
     "old_price": 13.65,
@@ -89,9 +100,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/tubo-interior-ultraligero-para-bicicleta-de-montana-26-27-5-29-pulgada-3bee1e062a/",
-    "product_detail_url": "https://www.chollobici.com/producto/tubo-interior-ultraligero-para-bicicleta-de-montana-26-27-5-29-pulgada-3bee1e062a/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "amazon-inflador-electrico-1",
@@ -115,9 +131,14 @@
     "chollometer_reasons": [
       "-20%"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/gputek-inflador-electrico-bicicleta-9ada745973/",
-    "product_detail_url": "https://www.chollobici.com/producto/gputek-inflador-electrico-bicicleta-9ada745973/"
+    "quality_score": 70,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "-20%"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/maillot-ciclismo-carretera-edr-2-mujer-rosa-manga-corta-verano-ajustado/353900/c264c227c382m8891759",
@@ -151,15 +172,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/maillot-ciclismo-carretera-edr-2-mujer-rosa-manga-corta-verano-ajustad-a94711274c/",
-    "product_detail_url": "https://www.chollobici.com/producto/maillot-ciclismo-carretera-edr-2-mujer-rosa-manga-corta-verano-ajustad-a94711274c/"
+    "quality_score": 84,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "1005006146531779",
     "title": "X-TIGER-cubierta térmica para zapatos de ciclismo, forro polar para invierno, para bicicleta de montaña, para hombre y mujer",
     "url": "https://s.click.aliexpress.com/e/_c4oMrBQl",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4oMrBQl",
+    "product_detail_url": "https://es.aliexpress.com/item/1005006146531779.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Sdda5fc9802eb4f30bbcc7e1ae3f4acccb.jpg",
     "price": 0.99,
     "old_price": 10.26,
@@ -183,9 +210,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/x-tiger-cubierta-termica-para-zapatos-de-ciclismo-forro-polar-para-inv-338144a759/",
-    "product_detail_url": "https://www.chollobici.com/producto/x-tiger-cubierta-termica-para-zapatos-de-ciclismo-forro-polar-para-inv-338144a759/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "amazon-portabidon-carbono-1",
@@ -209,7 +241,13 @@
     "chollometer_reasons": [
       "-25%"
     ],
-    "has_product_detail_page": false
+    "quality_score": 65,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "-25%"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/chaqueta-ciclismo-carretera-rcr-mujer-violeta-invierno/344210/c368c368m8939922",
@@ -243,15 +281,21 @@
       "mínimo histórico",
       "22% bajo media"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/chaqueta-ciclismo-carretera-rcr-mujer-violeta-invierno-3e6c58fabe/",
-    "product_detail_url": "https://www.chollobici.com/producto/chaqueta-ciclismo-carretera-rcr-mujer-violeta-invierno-3e6c58fabe/"
+    "quality_score": 73,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "1005006062287648",
     "title": "Capa Base de ciclismo, ropa interior reflectante, Jersey de ciclismo blanco, chaleco deportivo, camiseta interior para hombre, chaleco elástico de secado rápido, Jersey para bicicleta de carretera",
     "url": "https://s.click.aliexpress.com/e/_c3A7c6i1",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3A7c6i1",
+    "product_detail_url": "https://es.aliexpress.com/item/1005006062287648.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S1c2488418d1c41049064027674b3e84dC.jpg",
     "price": 0.99,
     "old_price": 10.18,
@@ -275,9 +319,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/capa-base-de-ciclismo-ropa-interior-reflectante-jersey-de-ciclismo-bla-ce8e43d41d/",
-    "product_detail_url": "https://www.chollobici.com/producto/capa-base-de-ciclismo-ropa-interior-reflectante-jersey-de-ciclismo-bla-ce8e43d41d/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "amazon-gafas-fotocromaticas-1",
@@ -301,7 +350,13 @@
     "chollometer_reasons": [
       "-25%"
     ],
-    "has_product_detail_page": false
+    "quality_score": 65,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "-25%"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/calcetines-ciclismo-carretera-rcr-r-decathlon-cma-cgm/382061/m9004172",
@@ -330,15 +385,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/calcetines-ciclismo-carretera-rcr-r-decathlon-cma-cgm-8a21fe703f/",
-    "product_detail_url": "https://www.chollobici.com/producto/calcetines-ciclismo-carretera-rcr-r-decathlon-cma-cgm-8a21fe703f/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005361960941",
     "title": "ThinkRider 1 Uds ultraligero 28g tubo interior de bicicleta 700X18 25 28 32 bicicleta de carretera Material TPU neumático 65mm de longitud válvula francesa",
     "url": "https://s.click.aliexpress.com/e/_c3e8v8ol",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3e8v8ol",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005361960941.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Scb43f3523df24d41b3109a3b70a948aaU.jpg",
     "price": 0.99,
     "old_price": 9.12,
@@ -362,9 +423,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/thinkrider-1-uds-ultraligero-28g-tubo-interior-de-bicicleta-700x18-25-c17a833204/",
-    "product_detail_url": "https://www.chollobici.com/producto/thinkrider-1-uds-ultraligero-28g-tubo-interior-de-bicicleta-700x18-25-c17a833204/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "amazon-ciclocomputador-magene-1",
@@ -388,9 +454,14 @@
     "chollometer_reasons": [
       "-22%"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/magene-c606-pro-ciclocomputador-gps-a80a947fd3/",
-    "product_detail_url": "https://www.chollobici.com/producto/magene-c606-pro-ciclocomputador-gps-a80a947fd3/"
+    "quality_score": 70,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "-22%"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/kit-guardabarros-bicicleta-paseo-28-pulgadas-negro/199294/c2c1m8522023",
@@ -419,15 +490,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/kit-guardabarros-bicicleta-paseo-28-pulgadas-negro-55fb335c3b/",
-    "product_detail_url": "https://www.chollobici.com/producto/kit-guardabarros-bicicleta-paseo-28-pulgadas-negro-55fb335c3b/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005931177196",
     "title": "Manillar de bicicleta con bloqueo en empuñadura de bicicleta de montaña, puños de goma suave para bicicleta de montaña, cubierta de mango de bicicleta de 22,2mm, manijas antideslizantes para bicicleta",
     "url": "https://s.click.aliexpress.com/e/_c3pRmLfB",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3pRmLfB",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005931177196.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S9653c014246d40f58083e3f7a6ec92a25.jpg",
     "price": 0.99,
     "old_price": 8.07,
@@ -451,9 +528,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/manillar-de-bicicleta-con-bloqueo-en-empunadura-de-bicicleta-de-montan-ea2927e64b/",
-    "product_detail_url": "https://www.chollobici.com/producto/manillar-de-bicicleta-con-bloqueo-en-empunadura-de-bicicleta-de-montan-ea2927e64b/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-edr-discover-blanco/356425/c227c227m8901551",
@@ -486,15 +568,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/zapatillas-ciclismo-carretera-edr-discover-blanco-d4ba931238/",
-    "product_detail_url": "https://www.chollobici.com/producto/zapatillas-ciclismo-carretera-edr-discover-blanco-d4ba931238/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005200740874",
     "title": "Luz delantera de bicicleta recargable por USB, luz trasera roja, fácil de instalar, 3 modos, accesorios para bicicleta",
     "url": "https://s.click.aliexpress.com/e/_c2wQWl7B",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c2wQWl7B",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005200740874.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S569d8da165694d98bb980e03b92a5523c.jpg",
     "price": 0.99,
     "old_price": 6.44,
@@ -518,9 +606,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/luz-delantera-de-bicicleta-recargable-por-usb-luz-trasera-roja-facil-d-26ae413ff3/",
-    "product_detail_url": "https://www.chollobici.com/producto/luz-delantera-de-bicicleta-recargable-por-usb-luz-trasera-roja-facil-d-26ae413ff3/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-gravel-edr-discover-caqui-compatibles-spd/356425/c109c228c144m8976509",
@@ -553,15 +646,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/zapatillas-ciclismo-carretera-gravel-edr-discover-caqui-compatibles-sp-c14e23efee/",
-    "product_detail_url": "https://www.chollobici.com/producto/zapatillas-ciclismo-carretera-gravel-edr-discover-caqui-compatibles-sp-c14e23efee/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005270271505",
     "title": "Llave Torx Universal de 8-22mm, herramienta de mano de doble cabeza, ajustable, autoajustable, para gafas, para fábrica",
     "url": "https://s.click.aliexpress.com/e/_c3rKqxFf",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3rKqxFf",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005270271505.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Sc20d01476689478aab1695f1f7a93976o.jpg",
     "price": 0.99,
     "old_price": 5.59,
@@ -585,9 +684,14 @@
       "muy vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/llave-torx-universal-de-8-22mm-herramienta-de-mano-de-doble-cabeza-aju-4415857652/",
-    "product_detail_url": "https://www.chollobici.com/producto/llave-torx-universal-de-8-22mm-herramienta-de-mano-de-doble-cabeza-aju-4415857652/"
+    "quality_score": 92,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/zapatillas-mtb-giro-tracer-2/X8876373/m8876373",
@@ -620,15 +724,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/zapatillas-mtb-giro-tracer-2-6e21da8794/",
-    "product_detail_url": "https://www.chollobici.com/producto/zapatillas-mtb-giro-tracer-2-6e21da8794/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005732701422",
     "title": "Botella de agua Bolany para bicicleta, botella de agua para ciclismo de montaña de 600ml, botella PP5 con protección contra calor y hielo, taza para deportes al aire libre",
     "url": "https://s.click.aliexpress.com/e/_c3oF14Qv",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3oF14Qv",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005732701422.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S52ee56b01adf402dae79f1f1e7573891u.jpg",
     "price": 0.99,
     "old_price": 13.69,
@@ -652,9 +762,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/botella-de-agua-bolany-para-bicicleta-botella-de-agua-para-ciclismo-de-da07b3d9a6/",
-    "product_detail_url": "https://www.chollobici.com/producto/botella-de-agua-bolany-para-bicicleta-botella-de-agua-para-ciclismo-de-da07b3d9a6/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/maneta-cambio-delantero-3-velocidades-bicicleta-mtb-sram-x4/196563/m8408192",
@@ -683,15 +798,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/maneta-cambio-delantero-3-velocidades-bicicleta-mtb-sram-x4-ac5ed40c01/",
-    "product_detail_url": "https://www.chollobici.com/producto/maneta-cambio-delantero-3-velocidades-bicicleta-mtb-sram-x4-ac5ed40c01/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005990189733",
     "title": "RideNow-cámara de aire ultraligera para bicicleta de carretera, tubo interior de TPU de 45mm, 65mm, 85mm, válvula francesa, 700c",
     "url": "https://s.click.aliexpress.com/e/_c4tsEUCd",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4tsEUCd",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005990189733.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Sf123c2dc65a946388f1c2cb988a2a7b5v.jpg",
     "price": 0.99,
     "old_price": 13.51,
@@ -715,9 +836,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/ridenow-camara-de-aire-ultraligera-para-bicicleta-de-carretera-tubo-in-9a621be0c5/",
-    "product_detail_url": "https://www.chollobici.com/producto/ridenow-camara-de-aire-ultraligera-para-bicicleta-de-carretera-tubo-in-9a621be0c5/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/adaptador-eje-rueda-trasera-12-mm-a-9-5-mm-mavic-bicicleta-montana/X8370947/m8370947",
@@ -746,15 +872,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/adaptador-eje-rueda-trasera-12-mm-a-9-5-mm-mavic-bicicleta-montana-286e578f8a/",
-    "product_detail_url": "https://www.chollobici.com/producto/adaptador-eje-rueda-trasera-12-mm-a-9-5-mm-mavic-bicicleta-montana-286e578f8a/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005009187227337",
     "title": "Soporte para bicicleta de montaña y carretera, soporte para pedal de bicicleta de 26 pulgadas, soporte trasero para bicicletas de montaña y carretera",
     "url": "https://s.click.aliexpress.com/e/_c4lr97Xn",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4lr97Xn",
+    "product_detail_url": "https://es.aliexpress.com/item/1005009187227337.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S6e8e2a937c4749408e771194ace236e4d.jpg",
     "price": 0.99,
     "old_price": 9.13,
@@ -778,9 +910,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/soporte-para-bicicleta-de-montana-y-carretera-soporte-para-pedal-de-bi-8df45b0ba8/",
-    "product_detail_url": "https://www.chollobici.com/producto/soporte-para-bicicleta-de-montana-y-carretera-soporte-para-pedal-de-bi-8df45b0ba8/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/rueda-bicicleta-sin-pedales-runride-10-pulgadas-delantera-negro-taco/201671/c1c1m8541382",
@@ -813,15 +950,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/rueda-bicicleta-sin-pedales-runride-10-pulgadas-delantera-negro-taco-30675f86a7/",
-    "product_detail_url": "https://www.chollobici.com/producto/rueda-bicicleta-sin-pedales-runride-10-pulgadas-delantera-negro-taco-30675f86a7/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005006010538615",
     "title": "ZTTO MTB ultraligero de aleación de aluminio portabotellas para bicicleta de montaña y carretera portabotellas accesorios para bicicleta",
     "url": "https://s.click.aliexpress.com/e/_c3CqrqXT",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3CqrqXT",
+    "product_detail_url": "https://es.aliexpress.com/item/1005006010538615.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/HTB1CIluX0jvK1RjSspiq6AEqXXaK.jpg",
     "price": 0.99,
     "old_price": 9.29,
@@ -845,9 +988,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/ztto-mtb-ultraligero-de-aleacion-de-aluminio-portabotellas-para-bicicl-dafa47e577/",
-    "product_detail_url": "https://www.chollobici.com/producto/ztto-mtb-ultraligero-de-aleacion-de-aluminio-portabotellas-para-bicicl-dafa47e577/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/manillar-de-bicicleta-diametro-25-4-mm-longitud-520-mm-plata/197718/c2m8480476",
@@ -876,15 +1024,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/manillar-de-bicicleta-diametro-25-4-mm-longitud-520-mm-plata-52224f9681/",
-    "product_detail_url": "https://www.chollobici.com/producto/manillar-de-bicicleta-diametro-25-4-mm-longitud-520-mm-plata-52224f9681/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005150340760",
     "title": "WEST BIKING-sillín de bicicleta de montaña ultraligero, de Punta corta, de cuero PU, hueco, prostático",
     "url": "https://s.click.aliexpress.com/e/_c3jLZGyH",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3jLZGyH",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005150340760.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S9e5104648e584a84b7e5170f2058b54ew.jpg",
     "price": 2.28,
     "old_price": 18.94,
@@ -908,9 +1062,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/west-biking-sillin-de-bicicleta-de-montana-ultraligero-de-punta-corta-ece50e7e23/",
-    "product_detail_url": "https://www.chollobici.com/producto/west-biking-sillin-de-bicicleta-de-montana-ultraligero-de-punta-corta-ece50e7e23/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/sillin-bicicleta-14-pulgadas-negro-tija-sillin-26-mm-gris/198954/c1c2m8513906",
@@ -943,15 +1102,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/sillin-bicicleta-14-pulgadas-negro-tija-sillin-26-mm-gris-773cb72048/",
-    "product_detail_url": "https://www.chollobici.com/producto/sillin-bicicleta-14-pulgadas-negro-tija-sillin-26-mm-gris-773cb72048/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005006334835729",
     "title": "Herramienta de ajuste de calas de bicicleta, ajustador de calas para Shimano, SPD/KEO/SPD-SL",
     "url": "https://s.click.aliexpress.com/e/_c3Gyp8Xx",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3Gyp8Xx",
+    "product_detail_url": "https://es.aliexpress.com/item/1005006334835729.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Sd213be4f391e4241aac21659e77cc1c2G.jpg",
     "price": 0.99,
     "old_price": 16.62,
@@ -975,9 +1140,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/herramienta-de-ajuste-de-calas-de-bicicleta-ajustador-de-calas-para-sh-ddc1494a86/",
-    "product_detail_url": "https://www.chollobici.com/producto/herramienta-de-ajuste-de-calas-de-bicicleta-ajustador-de-calas-para-sh-ddc1494a86/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/punos-ergonomicos-bicicleta-larga-distacia-corcho-marron/335432/c27m8666630",
@@ -1010,15 +1180,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/punos-ergonomicos-bicicleta-larga-distacia-corcho-marron-581376eecc/",
-    "product_detail_url": "https://www.chollobici.com/producto/punos-ergonomicos-bicicleta-larga-distacia-corcho-marron-581376eecc/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005006012908528",
     "title": "RIDERACE-cortador divisor de cadena multiherramienta para bicicleta, multifunción, para bicicleta de montaña y carretera, llave, destornillador, multiherramienta de reparación",
     "url": "https://s.click.aliexpress.com/e/_c4aIWxRJ",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4aIWxRJ",
+    "product_detail_url": "https://es.aliexpress.com/item/1005006012908528.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S5b16aafbc67c40a0a76b412a79ad711dX.png",
     "price": 0.99,
     "old_price": 14.38,
@@ -1042,9 +1218,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/riderace-cortador-divisor-de-cadena-multiherramienta-para-bicicleta-mu-58fed3d5ce/",
-    "product_detail_url": "https://www.chollobici.com/producto/riderace-cortador-divisor-de-cadena-multiherramienta-para-bicicleta-mu-58fed3d5ce/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/pedales-con-calapies-carretera-resina-btwin-100/302805/m8510020",
@@ -1077,15 +1258,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/pedales-con-calapies-carretera-resina-btwin-100-1d2264d803/",
-    "product_detail_url": "https://www.chollobici.com/producto/pedales-con-calapies-carretera-resina-btwin-100-1d2264d803/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005991028411",
     "title": "Rsantce 2023 capa Base de ciclismo de manga larga, camiseta deportiva para bicicleta, ropa interior, camiseta interior para bicicleta de carreras",
     "url": "https://s.click.aliexpress.com/e/_c3OX7GCz",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3OX7GCz",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005991028411.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Sf0cad60097b8480f8578f17d185f590bD.jpg",
     "price": 0.99,
     "old_price": 11.41,
@@ -1109,9 +1296,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/rsantce-2023-capa-base-de-ciclismo-de-manga-larga-camiseta-deportiva-p-13a27075a1/",
-    "product_detail_url": "https://www.chollobici.com/producto/rsantce-2023-capa-base-de-ciclismo-de-manga-larga-camiseta-deportiva-p-13a27075a1/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/carter-cadena-bicicleta-elops-500-e-28-pulgadas/189911/m8400854",
@@ -1140,15 +1332,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/carter-cadena-bicicleta-elops-500-e-28-pulgadas-b3e8072d4a/",
-    "product_detail_url": "https://www.chollobici.com/producto/carter-cadena-bicicleta-elops-500-e-28-pulgadas-b3e8072d4a/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005909420927",
     "title": "RIDERACE-Alicates para eslabones de cadena de bicicleta, Mini alicates de instalación de extracción rápida para bicicleta de montaña, hebilla de cadena de ciclismo, herramientas de reparación de abrazadera abierta y cerrada",
     "url": "https://s.click.aliexpress.com/e/_c4s8iJBr",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4s8iJBr",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005909420927.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S65c54dba0f84432080a9d7157e3351bas.jpg",
     "price": 0.99,
     "old_price": 10.98,
@@ -1172,9 +1370,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/riderace-alicates-para-eslabones-de-cadena-de-bicicleta-mini-alicates-1bb555da73/",
-    "product_detail_url": "https://www.chollobici.com/producto/riderace-alicates-para-eslabones-de-cadena-de-bicicleta-mini-alicates-1bb555da73/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/manillar-bicicleta-de-paseo-diametro-25-4-mm-longitud-560-mm/199717/m8521985",
@@ -1207,15 +1410,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/manillar-bicicleta-de-paseo-diametro-25-4-mm-longitud-560-mm-601021a471/",
-    "product_detail_url": "https://www.chollobici.com/producto/manillar-bicicleta-de-paseo-diametro-25-4-mm-longitud-560-mm-601021a471/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005006012933285",
     "title": "RIDERACE-cortador divisor de cadena multiherramienta para bicicleta, multifunción, para bicicleta de montaña y carretera, llave, destornillador, multiherramienta de reparación",
     "url": "https://s.click.aliexpress.com/e/_c3BsAqpn",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c3BsAqpn",
+    "product_detail_url": "https://es.aliexpress.com/item/1005006012933285.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/S4160a839f1644edd8cdf9f46cc729efbj.png",
     "price": 1.71,
     "old_price": 17.41,
@@ -1239,9 +1448,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/riderace-cortador-divisor-de-cadena-multiherramienta-para-bicicleta-mu-475896217d/",
-    "product_detail_url": "https://www.chollobici.com/producto/riderace-cortador-divisor-de-cadena-multiherramienta-para-bicicleta-mu-475896217d/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/calas-mtb-spd-compatibles-shimano/X3170980/c2m3170980",
@@ -1274,15 +1488,21 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/calas-mtb-spd-compatibles-shimano-46b83d405d/",
-    "product_detail_url": "https://www.chollobici.com/producto/calas-mtb-spd-compatibles-shimano-46b83d405d/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "1005005981471126",
     "title": "Empuñaduras de bicicleta de goma suave para bicicleta de montaña MTB, cubierta de manillar antideslizante a prueba de golpes, bloqueo en piezas ergonómicas de manillar de ciclismo",
     "url": "https://s.click.aliexpress.com/e/_c4M9vzrB",
     "affiliate_url": "https://s.click.aliexpress.com/e/_c4M9vzrB",
+    "product_detail_url": "https://es.aliexpress.com/item/1005005981471126.html",
     "image": "https://ae-pic-a1.aliexpress-media.com/kf/Sfdb90b132adf4181bf668ec62e7498e3J.png",
     "price": 0.99,
     "old_price": 9.25,
@@ -1306,9 +1526,14 @@
       "vendido",
       "valoración alta"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/empunaduras-de-bicicleta-de-goma-suave-para-bicicleta-de-montana-mtb-c-80b203d722/",
-    "product_detail_url": "https://www.chollobici.com/producto/empunaduras-de-bicicleta-de-goma-suave-para-bicicleta-de-montana-mtb-c-80b203d722/"
+    "quality_score": 88,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "chollometro alto"
+    ],
+    "is_premium_quality": true
   },
   {
     "id": "https://www.decathlon.es/es/p/alicates-cortacables-y-fundas-bicicleta/120528/m8352340",
@@ -1337,9 +1562,14 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/alicates-cortacables-y-fundas-bicicleta-56badcd68c/",
-    "product_detail_url": "https://www.chollobici.com/producto/alicates-cortacables-y-fundas-bicicleta-56badcd68c/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/maillot-ciclismo-mtb-expl-500-mujer-negro-verde-manga-larga/323574/c202c1m8577779",
@@ -1372,9 +1602,14 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/maillot-ciclismo-mtb-expl-500-mujer-negro-verde-manga-larga-53757f3291/",
-    "product_detail_url": "https://www.chollobici.com/producto/maillot-ciclismo-mtb-expl-500-mujer-negro-verde-manga-larga-53757f3291/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/rueda-bicicleta-nino-16-pulgadas-delantera-v-brake-pared-simple-plateado/201161/c2m8537215",
@@ -1403,9 +1638,14 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/rueda-bicicleta-nino-16-pulgadas-delantera-v-brake-pared-simple-platea-52a894cda5/",
-    "product_detail_url": "https://www.chollobici.com/producto/rueda-bicicleta-nino-16-pulgadas-delantera-v-brake-pared-simple-platea-52a894cda5/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/sillin-bicicleta-estatica-eb-fold/338106/c1m8734834",
@@ -1434,9 +1674,14 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/sillin-bicicleta-estatica-eb-fold-3b0c3e4043/",
-    "product_detail_url": "https://www.chollobici.com/producto/sillin-bicicleta-estatica-eb-fold-3b0c3e4043/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/sillin-bicicleta-estatica-vm-e-fold/X8388095/m8388095",
@@ -1465,9 +1710,14 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/sillin-bicicleta-estatica-vm-e-fold-eea51539c8/",
-    "product_detail_url": "https://www.chollobici.com/producto/sillin-bicicleta-estatica-vm-e-fold-eea51539c8/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/candado-cuadro-bicicleta-axa-defender/X8392574/m8392574",
@@ -1500,9 +1750,14 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/candado-cuadro-bicicleta-axa-defender-ee6bd88688/",
-    "product_detail_url": "https://www.chollobici.com/producto/candado-cuadro-bicicleta-axa-defender-ee6bd88688/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   },
   {
     "id": "https://www.decathlon.es/es/p/caja-pedalier-bicicleta-neco-68mm/X8234798/m8234798",
@@ -1535,8 +1790,13 @@
       "mínimo 30d",
       "mínimo histórico"
     ],
-    "has_product_detail_page": true,
-    "product_detail_path": "/producto/caja-pedalier-bicicleta-neco-68mm-b68fb2d002/",
-    "product_detail_url": "https://www.chollobici.com/producto/caja-pedalier-bicicleta-neco-68mm-b68fb2d002/"
+    "quality_score": 69,
+    "quality_reasons": [
+      "titulo claro",
+      "enlace valido",
+      "imagen real",
+      "minimo 30d"
+    ],
+    "is_premium_quality": false
   }
 ]

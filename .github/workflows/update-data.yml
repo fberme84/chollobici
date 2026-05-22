@@ -56,6 +56,9 @@ jobs:
       - name: Update merged deals
         run: python scripts/update_deals.py
 
+      - name: Validate merged deals integrity
+        run: python scripts/validate_generated_deals.py
+
       - name: Generate product pages
         run: python scripts/generate_static_product_pages.py
 
