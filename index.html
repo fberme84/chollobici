@@ -75,7 +75,10 @@
 
 
     <section id="toolbarRow" class="toolbar-row">
-      <button type="button" id="favoritesToggle" class="toggle-btn" aria-pressed="false">♡ Solo favoritos</button>
+      <div class="toolbar-toggles">
+        <button type="button" id="favoritesToggle" class="toggle-btn" aria-pressed="false">♡ Solo favoritos</button>
+        <button type="button" id="premiumToggle" class="toggle-btn" aria-pressed="false">☆ Solo premium</button>
+      </div>
       <div class="toolbar-note">Tip: usa los chips de categoría para limpiar rápido el listado.</div>
     </section>
 
@@ -116,6 +119,7 @@
           <span>Ordenar por</span>
           <select id="sortFilter">
             <option value="recomendacion">Más recomendados</option>
+            <option value="quality">Calidad del artículo</option>
             <option value="chollometer">Chollómetro</option>
             <option value="discount">Mayor descuento</option>
             <option value="sales">Más vendidos</option>

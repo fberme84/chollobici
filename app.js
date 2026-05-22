@@ -10,6 +10,7 @@ const SEO_PAGES_URL = "/data/seo_pages.json";
 let allDeals = [];
 let filteredDeals = [];
 let favoritesOnly = false;
+let premiumOnly = false;
 let seoPages = [];
 
 // ==============================
@@ -60,6 +61,36 @@ function getStoreLabel(deal) {
 
 function getDealUrl(deal) {
   return deal.affiliate_url || deal.url || "#";
+}
+
+function hasRealImage(deal) {
+  return getImageUrl(deal) !== "/assets/placeholder-product.svg";
+}
+
+function getDealQualityScore(deal) {
+  let score = 0;
+
+  const title = safeText(deal.title).trim();
+  if (title.length >= 16) score += 20;
+  else if (title.length >= 10) score += 12;
+
+  if (hasRealImage(deal)) score += 10;
+  if (getProductDetailUrl(deal)) score += 10;
+
+  score += Math.round(getChollometerScore(deal) * 0.3);
+  score += Math.min(20, Math.round(getDiscountPct(deal) * 0.6));
+
+  const sales = Number(deal.sales || 0);
+  if (sales > 0) score += Math.min(10, Math.round(Math.log10(sales + 1) * 4));
+
+  if (deal.is_price_drop) score += 4;
+  if (deal.is_recent_min_price) score += 6;
+
+  return Math.max(0, Math.min(100, score));
+}
+
+function isPremiumDeal(deal) {
+  return getDealQualityScore(deal) >= 70;
 }
 
 function getDealIdentityKey(deal) {
@@ -352,10 +383,20 @@ function renderDealCard(deal) {
   }
 
   const metricsRow = node.querySelector(".deal-metrics");
+  let hasQualityMetric = false;
   let hasChollometerMetric = false;
   let hasHistoryMetric = false;
 
   if (metricsRow) {
+    const quality = getDealQualityScore(deal);
+    if (quality >= 55) {
+      const metric = document.createElement("span");
+      metric.className = `metric metric-quality ${quality >= 70 ? "is-premium" : ""}`;
+      metric.textContent = `⭐ Calidad ${quality}/100`;
+      metricsRow.appendChild(metric);
+      hasQualityMetric = true;
+    }
+
     const score = getChollometerScore(deal);
     if (score >= 45) {
       const metric = document.createElement("span");
@@ -389,7 +430,7 @@ function renderDealCard(deal) {
       hasHistoryMetric = true;
     }
 
-    const showMetrics = hasDiscountMetric || hasSalesMetric || hasChollometerMetric || hasHistoryMetric;
+    const showMetrics = hasDiscountMetric || hasSalesMetric || hasQualityMetric || hasChollometerMetric || hasHistoryMetric;
     metricsRow.hidden = !showMetrics;
     metricsRow.style.display = showMetrics ? "" : "none";
   }
@@ -507,16 +548,18 @@ function applyFilters(deals) {
   if (store) result = result.filter((deal) => getStoreLabel(deal) === store);
   if (minDiscount > 0) result = result.filter((deal) => getDiscountPct(deal) >= minDiscount);
   if (category) result = result.filter((deal) => inferBucket(deal) === category);
+  if (premiumOnly) result = result.filter(isPremiumDeal);
 
   result.sort((a, b) => {
+    if (sort === "quality") return getDealQualityScore(b) - getDealQualityScore(a);
     if (sort === "discount") return getDiscountPct(b) - getDiscountPct(a);
     if (sort === "chollometer") return getChollometerScore(b) - getChollometerScore(a);
     if (sort === "price_asc") return (Number(a.price) || 0) - (Number(b.price) || 0);
     if (sort === "price_desc") return (Number(b.price) || 0) - (Number(a.price) || 0);
     if (sort === "sales") return (Number(b.sales) || 0) - (Number(a.sales) || 0);
 
-    const scoreA = getChollometerScore(a) * 1000 + getDiscountPct(a) * 10 - (Number(a.price) || 0);
-    const scoreB = getChollometerScore(b) * 1000 + getDiscountPct(b) * 10 - (Number(b.price) || 0);
+    const scoreA = getDealQualityScore(a) * 1000 + getDiscountPct(a) * 10 - (Number(a.price) || 0);
+    const scoreB = getDealQualityScore(b) * 1000 + getDiscountPct(b) * 10 - (Number(b.price) || 0);
     return scoreB - scoreA;
   });
 
@@ -532,7 +575,7 @@ function renderTopPicks(deals) {
   if (!section || !container) return [];
 
   const picks = [...deals]
-    .sort((a, b) => getChollometerScore(b) - getChollometerScore(a))
+    .sort((a, b) => getDealQualityScore(b) - getDealQualityScore(a))
     .slice(0, 3);
 
   container.innerHTML = "";
@@ -554,7 +597,8 @@ function renderDealsInfo(deals) {
   const info = document.getElementById("dealsInfo");
   if (!info) return;
   const stores = [...new Set(deals.map(getStoreLabel))];
-  info.textContent = `${deals.length} oferta(s) encontrada(s)${stores.length ? ` · ${stores.join(", ")}` : ""}`;
+  const premiumCount = deals.filter(isPremiumDeal).length;
+  info.textContent = `${deals.length} oferta(s) encontrada(s) · ${premiumCount} premium${stores.length ? ` · ${stores.join(", ")}` : ""}`;
 }
 
 function renderHomePage(deals) {
@@ -651,6 +695,17 @@ function attachEvents() {
       btn.setAttribute("aria-pressed", favoritesOnly ? "true" : "false");
       btn.textContent = favoritesOnly ? "♥ Solo favoritos" : "♡ Solo favoritos";
       btn.classList.toggle("is-active", favoritesOnly);
+    }
+    applyFiltersAndRender();
+  });
+
+  document.getElementById("premiumToggle")?.addEventListener("click", () => {
+    premiumOnly = !premiumOnly;
+    const btn = document.getElementById("premiumToggle");
+    if (btn) {
+      btn.setAttribute("aria-pressed", premiumOnly ? "true" : "false");
+      btn.textContent = premiumOnly ? "★ Solo premium" : "☆ Solo premium";
+      btn.classList.toggle("is-active", premiumOnly);
     }
     applyFiltersAndRender();
   });

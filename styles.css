@@ -156,10 +156,23 @@ img { max-width: 100%; }
 
 .toggle-btn {
   border: 1px solid var(--line);
+.toolbar-toggles {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
   background: #fff;
   color: var(--text);
   min-height: 44px;
   padding: 10px 14px;
+.metric-quality {
+  background: #fff4d6;
+  color: #8f4b00;
+}
+.metric-quality.is-premium {
+  background: #ffe6bf;
+  color: #8a3900;
+}
   border-radius: 14px;
   font: inherit;
   font-weight: 700;
