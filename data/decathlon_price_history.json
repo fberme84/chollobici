@@ -2040,7 +2040,7 @@
     "image": "https://contents.mediadecathlon.com/p2726621/k$b1eaa29acc65239ae19b6fd2cbfc7e6a/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -2132,6 +2132,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 39.99
       }
     ]
@@ -2658,7 +2662,7 @@
     "image": "https://contents.mediadecathlon.com/p2778743/k$21b7b1731637a158a86cd87a394756a8/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-10-07",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -2746,6 +2750,10 @@
       },
       {
         "date": "2026-10-07",
+        "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 39.99
       }
     ]
@@ -7591,7 +7599,7 @@
     "image": "https://contents.mediadecathlon.com/p2762742/k$f996bd9ec2dce1f25c313ed523c2db68/picture.jpg?f=300x300",
     "last_price": 89.99,
     "previous_price": 89.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 86.99,
@@ -7731,6 +7739,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 89.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 89.99
       }
     ]
@@ -12430,7 +12442,7 @@
     "image": "https://contents.mediadecathlon.com/p2833232/k$7f136ce0659915b5ace4fcf4b1ffab7e/picture.jpg?f=300x300",
     "last_price": 1699.0,
     "previous_price": 1699.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1699.0,
     "min_price_all": 1699.0,
     "avg_price_30d": 1699.0,
@@ -12639,6 +12651,10 @@
       {
         "date": "2026-10-21",
         "price": 1699.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 1699.0
       }
     ]
   },
@@ -12652,7 +12668,7 @@
     "image": "https://contents.mediadecathlon.com/p3149067/k$b5afd4fb69d95d9920096d8c0cab5e43/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -12736,6 +12752,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -13484,7 +13504,7 @@
     "image": "https://contents.mediadecathlon.com/p2717368/k$f52296661cecffd4b53375ea2b4f336d/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-09-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -13665,6 +13685,10 @@
       {
         "date": "2026-09-19",
         "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 44.99
       }
     ]
   },
@@ -13818,7 +13842,7 @@
     "image": "https://contents.mediadecathlon.com/p2929748/k$5c0641a259a55a6c407ebf70f11ed186/picture.jpg?f=300x300",
     "last_price": 7699.0,
     "previous_price": 7699.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 7699.0,
     "min_price_all": 6499.0,
     "avg_price_30d": 7699.0,
@@ -14030,6 +14054,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 7699.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 7699.0
       }
     ]
@@ -16006,15 +16034,15 @@
   },
   "8776200": {
     "source": "decathlon",
-    "id": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-van-rysel-edr-blanco/337867/c227c382m8776200",
+    "id": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-edr-blanco/337867/c227c382m8776200",
     "sku": "8776200",
-    "title": "Zapatillas Ciclismo Carretera Van Rysel EDR Blanco",
-    "url": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-van-rysel-edr-blanco/337867/c227c382m8776200",
-    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8776200|Zapatillas Ciclismo Carretera Van Rysel EDR Blanco|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-van-rysel-edr-blanco/337867/c227c382m8776200",
+    "title": "Zapatillas Ciclismo Carretera EDR Blanco",
+    "url": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-edr-blanco/337867/c227c382m8776200",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8776200|Zapatillas Ciclismo Carretera EDR Blanco|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-edr-blanco/337867/c227c382m8776200",
     "image": "https://contents.mediadecathlon.com/p3128730/k$287910b73ebee1fbd830cb2dc7456e4f/picture.jpg?f=300x300",
     "last_price": 94.99,
     "previous_price": 94.99,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 94.99,
     "min_price_all": 94.99,
     "avg_price_30d": 94.99,
@@ -16158,6 +16186,10 @@
       },
       {
         "date": "2026-10-14",
+        "price": 94.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 94.99
       }
     ]
@@ -18076,7 +18108,7 @@
     "image": "https://contents.mediadecathlon.com/p1328491/k$b0905d5615a0bb23d3e9c7cd45c73190/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-09-07",
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -18116,6 +18148,10 @@
       },
       {
         "date": "2026-09-07",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -18160,7 +18196,7 @@
     "image": "https://contents.mediadecathlon.com/p3102864/k$9fae324f7f32e96160c19f244669fc8a/picture.jpg?f=300x300",
     "last_price": 89.99,
     "previous_price": 89.99,
-    "last_seen": "2026-10-01",
+    "last_seen": "2026-10-22",
     "min_price_30d": 89.99,
     "min_price_all": 89.99,
     "avg_price_30d": 89.99,
@@ -18256,6 +18292,10 @@
       },
       {
         "date": "2026-10-01",
+        "price": 89.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 89.99
       }
     ]
@@ -18400,7 +18440,7 @@
     "image": "https://contents.mediadecathlon.com/p2950716/k$f257ce8b8506b7ba8767a647976bd6c8/picture.jpg?f=300x300",
     "last_price": 3499.0,
     "previous_price": 3499.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3499.0,
     "min_price_all": 3499.0,
     "avg_price_30d": 3499.0,
@@ -18588,6 +18628,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 3499.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3499.0
       }
     ]
@@ -18840,10 +18884,10 @@
     "image": "https://contents.mediadecathlon.com/p2958495/k$57d21a4e59ccfd7515abf06487ea96c7/picture.jpg?f=300x300",
     "last_price": 3199.0,
     "previous_price": 3199.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3199.0,
     "min_price_all": 3199.0,
-    "avg_price_30d": 3279.0,
+    "avg_price_30d": 3265.67,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -19060,6 +19104,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 3199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3199.0
       }
     ]
@@ -20004,10 +20052,10 @@
     "image": "https://contents.mediadecathlon.com/p3152936/k$5f426815c19f17b22af675918d084e3f/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
-    "avg_price_30d": 28.16,
+    "avg_price_30d": 27.99,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -20128,6 +20176,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -20920,13 +20972,13 @@
     "url": "https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-van-rysel-edr-air-gris/340767/c312c382m8798184",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8798184|Zapatillas Ciclismo Carretera Van Rysel EDR Air Gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/zapatillas-ciclismo-carretera-van-rysel-edr-air-gris/340767/c312c382m8798184",
     "image": "https://contents.mediadecathlon.com/p3122864/k$94863072947c14ecf39c61e63f6891d1/picture.jpg?f=300x300",
-    "last_price": 79.99,
+    "last_price": 109.99,
     "previous_price": 79.99,
-    "last_seen": "2026-09-30",
+    "last_seen": "2026-10-22",
     "min_price_30d": 79.99,
     "min_price_all": 79.99,
-    "avg_price_30d": 94.39,
-    "is_recent_min_price": true,
+    "avg_price_30d": 94.99,
+    "is_recent_min_price": false,
     "prices": [
       {
         "date": "2026-04-27",
@@ -21027,6 +21079,10 @@
       {
         "date": "2026-09-30",
         "price": 79.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 109.99
       }
     ]
   },
@@ -21203,8 +21259,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8538537|JUEGO DIRECCIÓN INTEGRADO CÓNICO IS42/28.6 IS52/40 NEGRO|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/juego-direccion-integrado-conico-is42-28-6-is52-40-negro/X8538537/m8538537",
     "image": "https://contents.mediadecathlon.com/p1708876/k$5d3e77c92f15bd29eb27543ba3c32f4b/picture.jpg?f=300x300",
     "last_price": 24.99,
-    "previous_price": null,
-    "last_seen": "2026-04-27",
+    "previous_price": 24.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -21212,6 +21268,10 @@
     "prices": [
       {
         "date": "2026-04-27",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -21762,10 +21822,10 @@
     "image": "https://contents.mediadecathlon.com/p2812760/k$4919d4717e8c914d691ace6e084d115d/picture.jpg?f=300x300",
     "last_price": 1899.0,
     "previous_price": 1899.0,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1899.0,
     "min_price_all": 1899.0,
-    "avg_price_30d": 1949.4,
+    "avg_price_30d": 1949.36,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -21898,6 +21958,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 1899.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1899.0
       }
     ]
@@ -22847,8 +22911,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8526940|Bicicleta urbana larga distancia aluminio cuadro alto Elops 500 LD azul grisaceo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-urbana-larga-distancia-aluminio-cuadro-alto-elops-500-ld-azul-grisaceo/305016/c33m8526940",
     "image": "https://contents.mediadecathlon.com/p2970025/k$805b672038bf836c0a8e8ed2952a3b62/picture.jpg?f=300x300",
     "last_price": 449.99,
-    "previous_price": 399.99,
-    "last_seen": "2026-09-29",
+    "previous_price": 449.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 399.99,
     "min_price_all": 399.99,
     "avg_price_30d": 433.66,
@@ -22977,6 +23041,10 @@
       {
         "date": "2026-09-29",
         "price": 449.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 449.99
       }
     ]
   },
@@ -23090,7 +23158,7 @@
     "image": "https://contents.mediadecathlon.com/p2920296/k$11410aef0c6d311d40c18896919853a8/picture.jpg?f=300x300",
     "last_price": 899.99,
     "previous_price": 899.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 899.99,
     "min_price_all": 899.99,
     "avg_price_30d": 899.99,
@@ -23310,6 +23378,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 899.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 899.99
       }
     ]
@@ -25034,7 +25106,7 @@
     "image": "https://contents.mediadecathlon.com/p2773025/k$d8f787158edc43f99a46e4159a362fcc/picture.jpg?f=300x300",
     "last_price": 1599.0,
     "previous_price": 1599.0,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1599.0,
     "min_price_all": 1599.0,
     "avg_price_30d": 1599.0,
@@ -25186,6 +25258,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 1599.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1599.0
       }
     ]
@@ -25866,7 +25942,7 @@
     "image": "https://contents.mediadecathlon.com/p2764566/k$85af371b7d6eeaf5fb0f83ebc163adc8/picture.jpg?f=300x300",
     "last_price": 2499.99,
     "previous_price": 2499.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2499.99,
     "min_price_all": 2499.99,
     "avg_price_30d": 2499.99,
@@ -26015,6 +26091,10 @@
       {
         "date": "2026-10-21",
         "price": 2499.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 2499.99
       }
     ]
   },
@@ -26028,7 +26108,7 @@
     "image": "https://contents.mediadecathlon.com/p3144800/k$cc49d678779ee85cae470f4c1dd6db8e/picture.jpg?f=300x300",
     "last_price": 2699.0,
     "previous_price": 2699.0,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2699.0,
     "min_price_all": 2699.0,
     "avg_price_30d": 2699.0,
@@ -26188,6 +26268,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 2699.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2699.0
       }
     ]
@@ -26832,7 +26916,7 @@
     "image": "https://contents.mediadecathlon.com/p2879879/k$bcd1035bdabe4dd8941a0c23cb2135c9/picture.jpg?f=300x300",
     "last_price": 64.99,
     "previous_price": 64.99,
-    "last_seen": "2026-09-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 64.99,
     "min_price_all": 64.99,
     "avg_price_30d": 64.99,
@@ -26912,6 +26996,10 @@
       },
       {
         "date": "2026-09-21",
+        "price": 64.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 64.99
       }
     ]
@@ -27084,7 +27172,7 @@
     "image": "https://contents.mediadecathlon.com/p2376801/k$d82640a003d63e6e32915f945f6b3388/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -27148,6 +27236,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -28364,10 +28456,10 @@
     "image": "https://contents.mediadecathlon.com/p1708799/k$e2a17611b82b2f153c88a27faf3592d9/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
-    "avg_price_30d": 15.42,
+    "avg_price_30d": 15.4,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -28452,6 +28544,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -28786,7 +28882,7 @@
     "image": "https://contents.mediadecathlon.com/p3135957/k$04bd1f14c177bf21ff253df56354d673/picture.jpg?f=300x300",
     "last_price": 179.99,
     "previous_price": 179.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 179.99,
     "min_price_all": 179.99,
     "avg_price_30d": 179.99,
@@ -28947,6 +29043,10 @@
       {
         "date": "2026-10-21",
         "price": 179.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 179.99
       }
     ]
   },
@@ -28994,7 +29094,7 @@
     "image": "https://contents.mediadecathlon.com/p3222461/k$870908e0aa41819f1f8b40083f40efa9/picture.jpg?f=300x300",
     "last_price": 79.99,
     "previous_price": 79.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 79.99,
     "min_price_all": 79.99,
     "avg_price_30d": 79.99,
@@ -29122,6 +29222,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 79.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 79.99
       }
     ]
@@ -30096,7 +30200,7 @@
     "image": "https://contents.mediadecathlon.com/p3135920/k$12a2543280148337c46a9cda6d3f600b/picture.jpg?f=300x300",
     "last_price": 2199.0,
     "previous_price": 2199.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2199.0,
     "min_price_all": 2199.0,
     "avg_price_30d": 2199.0,
@@ -30280,6 +30384,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 2199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2199.0
       }
     ]
@@ -30814,7 +30922,7 @@
     "image": "https://contents.mediadecathlon.com/p2993775/k$86044a3be402a4be75b61bf49c9efe90/picture.jpg?f=300x300",
     "last_price": 3999.0,
     "previous_price": 3999.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3999.0,
     "min_price_all": 3999.0,
     "avg_price_30d": 3999.0,
@@ -30974,6 +31082,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 3999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3999.0
       }
     ]
@@ -31164,7 +31276,7 @@
     "image": "https://contents.mediadecathlon.com/p3073114/k$1bc911e303c56a929397940eef0c8e64/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -31232,6 +31344,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -34634,7 +34750,7 @@
     "image": "https://contents.mediadecathlon.com/p1865099/k$7249dd2c4b35f76ea0c135367638d7c7/picture.jpg?f=300x300",
     "last_price": 299.99,
     "previous_price": 299.99,
-    "last_seen": "2026-09-05",
+    "last_seen": "2026-10-22",
     "min_price_30d": 299.99,
     "min_price_all": 299.99,
     "avg_price_30d": 299.99,
@@ -34671,6 +34787,10 @@
       {
         "date": "2026-09-05",
         "price": 299.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 299.99
       }
     ]
   },
@@ -34706,7 +34826,7 @@
     "image": "https://contents.mediadecathlon.com/p2958434/k$e8408ef4bd0c5eb4e7b6b61a56b15a45/picture.jpg?f=300x300",
     "last_price": 3999.0,
     "previous_price": 3999.0,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3999.0,
     "min_price_all": 3999.0,
     "avg_price_30d": 3999.0,
@@ -34991,6 +35111,10 @@
       {
         "date": "2026-10-18",
         "price": 3999.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 3999.0
       }
     ]
   },
@@ -35156,7 +35280,7 @@
     "image": "https://contents.mediadecathlon.com/p1576878/k$7d4ad4f7f2b532b03b227bcfc400e9f1/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -35200,6 +35324,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -35626,10 +35754,10 @@
     "image": "https://contents.mediadecathlon.com/p3202652/k$cbb3a97c7266b9747f93750ca01dcae0/picture.jpg?f=300x300",
     "last_price": 79.99,
     "previous_price": 79.99,
-    "last_seen": "2026-09-28",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
-    "avg_price_30d": 68.74,
+    "avg_price_30d": 69.4,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -35694,6 +35822,10 @@
       },
       {
         "date": "2026-09-28",
+        "price": 79.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 79.99
       }
     ]
@@ -36152,10 +36284,10 @@
     "image": "https://contents.mediadecathlon.com/p3137147/k$129c53908fb8e243fcc7322337006f5c/picture.jpg?f=300x300",
     "last_price": 5799.0,
     "previous_price": 5799.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 5799.0,
     "min_price_all": 5799.0,
-    "avg_price_30d": 5825.67,
+    "avg_price_30d": 5812.33,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -36365,6 +36497,10 @@
       {
         "date": "2026-10-21",
         "price": 5799.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 5799.0
       }
     ]
   },
@@ -36424,7 +36560,7 @@
     "image": "https://contents.mediadecathlon.com/p3128708/k$fb4f7186848aef1b3c2544e1de174b37/picture.jpg?f=300x300",
     "last_price": 169.99,
     "previous_price": 169.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 169.99,
     "min_price_all": 169.99,
     "avg_price_30d": 169.99,
@@ -36552,6 +36688,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 169.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 169.99
       }
     ]
@@ -36944,7 +37084,7 @@
     "image": "https://contents.mediadecathlon.com/p3043217/k$ec0b9926eaca93e093656336fb4bdd10/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -37036,6 +37176,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 39.99
       }
     ]
@@ -37242,7 +37386,7 @@
     "image": "https://contents.mediadecathlon.com/p3096325/k$d9e86951cf7f3a3dd85ac2adab7aa1f0/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -37374,6 +37518,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 59.99
       }
     ]
@@ -39928,7 +40076,7 @@
     "image": "https://contents.mediadecathlon.com/p3000749/k$f945cbcea65dc0b31da3b5c64fd23bbf/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-09-03",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -39968,6 +40116,10 @@
       },
       {
         "date": "2026-09-03",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -40032,7 +40184,7 @@
     "image": "https://contents.mediadecathlon.com/p2764604/k$b4e131ffa009e3eb4885ca1da713c385/picture.jpg?f=300x300",
     "last_price": 2499.99,
     "previous_price": 2499.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2499.99,
     "min_price_all": 2499.99,
     "avg_price_30d": 2499.99,
@@ -40276,6 +40428,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 2499.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 2499.99
       }
     ]
@@ -42678,7 +42834,7 @@
     "image": "https://contents.mediadecathlon.com/p3102953/k$89dd4787a04585570454df6ee5bbf51a/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -42770,6 +42926,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -42914,7 +43074,7 @@
     "image": "https://contents.mediadecathlon.com/p2300619/k$d19974eb0f729d59d9752a6413c1be15/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -43046,6 +43206,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -44480,10 +44644,10 @@
     "image": "https://contents.mediadecathlon.com/p3013635/k$54690c4af871b1b072772819da85acd7/picture.jpg?f=300x300",
     "last_price": 12.99,
     "previous_price": 12.99,
-    "last_seen": "2026-10-08",
+    "last_seen": "2026-10-22",
     "min_price_30d": 12.99,
     "min_price_all": 12.99,
-    "avg_price_30d": 13.79,
+    "avg_price_30d": 13.72,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -44524,6 +44688,10 @@
       },
       {
         "date": "2026-10-08",
+        "price": 12.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 12.99
       }
     ]
@@ -47302,7 +47470,7 @@
     "image": "https://contents.mediadecathlon.com/p2711981/k$057ee2a6b4792efbd7f870f34032f2f9/picture.jpg?f=300x300",
     "last_price": 2999.0,
     "previous_price": 2999.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2399.0,
     "min_price_all": 2399.0,
     "avg_price_30d": 2799.0,
@@ -47522,6 +47690,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 2999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2999.0
       }
     ]
@@ -48962,7 +49134,7 @@
     "image": "https://contents.mediadecathlon.com/p2854651/k$af129bb142e2dc018d49ab2abdab6369/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-09-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -49030,6 +49202,10 @@
       },
       {
         "date": "2026-09-21",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -49410,7 +49586,7 @@
     "image": "https://contents.mediadecathlon.com/p2879869/k$0f89b7bff308429b25c7670651416762/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-07-13",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -49438,6 +49614,10 @@
       },
       {
         "date": "2026-07-13",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -49898,7 +50078,7 @@
     "image": "https://contents.mediadecathlon.com/p3113098/k$9be699efd098da0c1d8e34dd377563d5/picture.jpg?f=300x300",
     "last_price": 3999.0,
     "previous_price": 3999.0,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3999.0,
     "min_price_all": 3999.0,
     "avg_price_30d": 3999.0,
@@ -50082,6 +50262,10 @@
       },
       {
         "date": "2026-10-14",
+        "price": 3999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3999.0
       }
     ]
@@ -50898,7 +51082,7 @@
     "image": "https://contents.mediadecathlon.com/p3073068/k$615845b2394fb6d3bd9cc47e3449604d/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -50946,6 +51130,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -52792,7 +52980,7 @@
     "image": "https://contents.mediadecathlon.com/p3094763/k$4b8da5544b7c1387341f345ae369e882/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -52917,6 +53105,10 @@
       {
         "date": "2026-10-14",
         "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 69.99
       }
     ]
   },
@@ -52955,8 +53147,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8881191|Cabezada Equitación Caballo Poni 580 Marrón Piel Muserola Francesa Strass|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cabezada-equitacion-caballo-poni-580-marron-piel-muserola-francesa-strass/354165/c27m8881191",
     "image": "https://contents.mediadecathlon.com/p2782965/k$c2dc67a66d101888ad7cce4702461574/picture.jpg?f=300x300",
     "last_price": 49.99,
-    "previous_price": null,
-    "last_seen": "2026-04-30",
+    "previous_price": 49.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 49.99,
     "min_price_all": 49.99,
     "avg_price_30d": 49.99,
@@ -52964,6 +53156,10 @@
     "prices": [
       {
         "date": "2026-04-30",
+        "price": 49.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 49.99
       }
     ]
@@ -53070,7 +53266,7 @@
     "image": "https://contents.mediadecathlon.com/p2776444/k$58102d034c90b7dd5a10b1538441fda4/picture.jpg?f=300x300",
     "last_price": 54.99,
     "previous_price": 54.99,
-    "last_seen": "2026-10-01",
+    "last_seen": "2026-10-22",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
     "avg_price_30d": 54.99,
@@ -53122,6 +53318,10 @@
       },
       {
         "date": "2026-10-01",
+        "price": 54.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 54.99
       }
     ]
@@ -54116,7 +54316,7 @@
     "image": "https://contents.mediadecathlon.com/p1635345/k$e6a093c7b95241b52e53581529a24461/picture.jpg?f=300x300",
     "last_price": 18.99,
     "previous_price": 18.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 18.99,
     "min_price_all": 18.99,
     "avg_price_30d": 18.99,
@@ -54172,6 +54372,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 18.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 18.99
       }
     ]
@@ -54585,10 +54789,10 @@
     "title": "Bicicleta urbana cuadro bajo Elops 540 azul petróleo",
     "url": "https://www.decathlon.es/es/p/bicicleta-urbana-cuadro-bajo-elops-540-azul-petroleo/306088/c98m8556297",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8556297|Bicicleta urbana cuadro bajo Elops 540 azul petróleo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-urbana-cuadro-bajo-elops-540-azul-petroleo/306088/c98m8556297",
-    "image": "https://contents.mediadecathlon.com/p1861457/k$ae767f972dcd109f67abdf8c3a4329b5/picture.jpg?f=300x300",
+    "image": "https://contents.mediadecathlon.com/p2693575/k$559414e31cdea62c85fd88ce78be88ff/picture.jpg?f=300x300",
     "last_price": 449.99,
     "previous_price": 449.99,
-    "last_seen": "2026-10-13",
+    "last_seen": "2026-10-22",
     "min_price_30d": 449.99,
     "min_price_all": 449.99,
     "avg_price_30d": 449.99,
@@ -54685,6 +54889,10 @@
       {
         "date": "2026-10-13",
         "price": 449.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 449.99
       }
     ]
   },
@@ -54698,7 +54906,7 @@
     "image": "https://contents.mediadecathlon.com/p1635561/k$12923d6ba7f6b597131c4cfb14ad5fa7/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -54754,6 +54962,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -55000,12 +55212,12 @@
     "url": "https://www.decathlon.es/es/p/tija-de-sillin-aluminio-31-6-mm/200900/m8531204",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8531204|Tija de sillín aluminio 31,6 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/tija-de-sillin-aluminio-31-6-mm/200900/m8531204",
     "image": "https://contents.mediadecathlon.com/p1898780/k$e3b2ed7d74bd9654cdb3541c900a8d64/picture.jpg?f=300x300",
-    "last_price": 19.99,
+    "last_price": 14.99,
     "previous_price": 19.99,
-    "last_seen": "2026-05-11",
-    "min_price_30d": 19.99,
-    "min_price_all": 19.99,
-    "avg_price_30d": 19.99,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 14.99,
+    "min_price_all": 14.99,
+    "avg_price_30d": 18.74,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -55019,6 +55231,10 @@
       {
         "date": "2026-05-11",
         "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 14.99
       }
     ]
   },
@@ -55154,10 +55370,10 @@
     "image": "https://contents.mediadecathlon.com/p3154819/k$b1dc531fa4cf07bb4ec2aa1f0523cbeb/picture.jpg?f=300x300",
     "last_price": 79.99,
     "previous_price": 79.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 64.99,
     "min_price_all": 64.99,
-    "avg_price_30d": 79.11,
+    "avg_price_30d": 79.16,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -55226,6 +55442,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 79.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 79.99
       }
     ]
@@ -56682,7 +56902,7 @@
     "image": "https://contents.mediadecathlon.com/p3113047/k$31a57cb7d9ce730d78004997bb33ae37/picture.jpg?f=300x300",
     "last_price": 1799.0,
     "previous_price": 1799.0,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1799.0,
     "min_price_all": 1799.0,
     "avg_price_30d": 1799.0,
@@ -56871,6 +57091,10 @@
       {
         "date": "2026-10-19",
         "price": 1799.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 1799.0
       }
     ]
   },
@@ -56922,7 +57146,7 @@
     "image": "https://contents.mediadecathlon.com/p3113140/k$75dc8fd0cb4f068a58467e064f5fa68e/picture.jpg?f=300x300",
     "last_price": 1799.0,
     "previous_price": 1799.0,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1799.0,
     "min_price_all": 1799.0,
     "avg_price_30d": 1799.0,
@@ -57103,6 +57327,10 @@
       {
         "date": "2026-10-18",
         "price": 1799.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 1799.0
       }
     ]
   },
@@ -57138,7 +57366,7 @@
     "image": "https://contents.mediadecathlon.com/p2950740/k$2e915853f0ec19b109f4796b4b845f0d/picture.jpg?f=300x300",
     "last_price": 3499.0,
     "previous_price": 3499.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3499.0,
     "min_price_all": 3499.0,
     "avg_price_30d": 3499.0,
@@ -57310,6 +57538,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 3499.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3499.0
       }
     ]
@@ -57750,7 +57982,7 @@
     "image": "https://contents.mediadecathlon.com/p1828793/k$f9a0afe41fdce777982ea62119896f01/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -57774,6 +58006,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -60790,7 +61026,7 @@
     "image": "https://contents.mediadecathlon.com/p3225814/k$8eeb604441af6e33d0ee32b4ef06285f/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-10-16",
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -60922,6 +61158,10 @@
       },
       {
         "date": "2026-10-16",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -61088,7 +61328,7 @@
     "image": "https://contents.mediadecathlon.com/p2854833/k$e9c068d4a022a7c06515e291dcda83da/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -61260,6 +61500,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -66418,7 +66662,7 @@
     "image": "https://contents.mediadecathlon.com/p2838903/k$156fe408d661417545ede6971d61408c/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -66482,6 +66726,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -68578,7 +68826,7 @@
     "image": "https://contents.mediadecathlon.com/p2946559/k$b0f3004c2743fa350e1774c11886a6cf/picture.jpg?f=300x300",
     "last_price": 1999.0,
     "previous_price": 1999.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1999.0,
     "min_price_all": 1999.0,
     "avg_price_30d": 1999.0,
@@ -68794,6 +69042,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 1999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1999.0
       }
     ]
@@ -69176,7 +69428,7 @@
     "image": "https://contents.mediadecathlon.com/p3042095/k$0cfbc39afd449aeed45f67b7ba108f0b/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -69320,6 +69572,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -69646,7 +69902,7 @@
     "image": "https://contents.mediadecathlon.com/p3094479/k$bd96e5d3a97f3714508b2aabb25668a4/picture.jpg?f=300x300",
     "last_price": 3999.0,
     "previous_price": 3999.0,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3999.0,
     "min_price_all": 3999.0,
     "avg_price_30d": 3999.0,
@@ -69842,6 +70098,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 3999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3999.0
       }
     ]
@@ -70578,7 +70838,7 @@
     "image": "https://contents.mediadecathlon.com/p3073129/k$17b6126002914c35a88433110778dffe/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-10-07",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -70710,6 +70970,10 @@
       },
       {
         "date": "2026-10-07",
+        "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 59.99
       }
     ]
@@ -72564,10 +72828,10 @@
     "image": "https://contents.mediadecathlon.com/p3223805/k$932be585a88e4a822ead587388cbcc04/picture.jpg?f=300x300",
     "last_price": 79.99,
     "previous_price": 79.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 79.99,
     "min_price_all": 79.99,
-    "avg_price_30d": 81.49,
+    "avg_price_30d": 81.42,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -72648,6 +72912,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 79.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 79.99
       }
     ]
@@ -73376,7 +73644,7 @@
     "image": "https://contents.mediadecathlon.com/p3021262/k$8fb4db1de92314533eb1436be0a6d8e5/picture.jpg?f=300x300",
     "last_price": 2199.0,
     "previous_price": 2199.0,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2199.0,
     "min_price_all": 2199.0,
     "avg_price_30d": 2199.0,
@@ -73592,6 +73860,10 @@
       },
       {
         "date": "2026-10-14",
+        "price": 2199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2199.0
       }
     ]
@@ -74556,7 +74828,7 @@
     "image": "https://contents.mediadecathlon.com/p2969765/k$77d2f4efe70a12b7d1f2c81051373777/picture.jpg?f=300x300",
     "last_price": 8999.99,
     "previous_price": 8999.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 8999.99,
     "min_price_all": 8999.99,
     "avg_price_30d": 8999.99,
@@ -74748,6 +75020,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 8999.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 8999.99
       }
     ]
@@ -75277,8 +75553,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8901222|Top Polar Surf 900 Hombre Negro Manga Corta|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/top-polar-surf-900-hombre-negro-manga-corta/356286/c382m8901222",
     "image": "https://contents.mediadecathlon.com/p3010533/k$63d22a0eeaf7ccf04b2465ff5b70f717/picture.jpg?f=300x300",
     "last_price": 14.99,
-    "previous_price": null,
-    "last_seen": "2026-05-03",
+    "previous_price": 14.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -75286,6 +75562,10 @@
     "prices": [
       {
         "date": "2026-05-03",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -75470,10 +75750,10 @@
     "image": "https://contents.mediadecathlon.com/p2058416/k$415f49e95509d45bcf9fd6a30ff609c1/picture.jpg?f=300x300",
     "last_price": 339.99,
     "previous_price": 339.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 299.99,
     "min_price_all": 299.99,
-    "avg_price_30d": 334.28,
+    "avg_price_30d": 334.47,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -75586,6 +75866,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 339.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 339.99
       }
     ]
@@ -76384,10 +76668,10 @@
     "image": "https://contents.mediadecathlon.com/p2958427/k$707d401234c437201e6f0f620fc96830/picture.jpg?f=300x300",
     "last_price": 4999.0,
     "previous_price": 4999.0,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 4999.0,
     "min_price_all": 4499.0,
-    "avg_price_30d": 5032.33,
+    "avg_price_30d": 5015.67,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -76580,6 +76864,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 4999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 4999.0
       }
     ]
@@ -78070,7 +78358,7 @@
     "image": "https://contents.mediadecathlon.com/p3113053/k$a7cdfbbaf3efa25b7953d8676cc72b4e/picture.jpg?f=300x300",
     "last_price": 799.99,
     "previous_price": 799.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 799.99,
     "min_price_all": 799.99,
     "avg_price_30d": 799.99,
@@ -78238,6 +78526,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 799.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 799.99
       }
     ]
@@ -83224,7 +83516,7 @@
     "image": "https://contents.mediadecathlon.com/p3135986/k$1ea8c6ef0b3efc3bb4a003e21ae4cbcc/picture.jpg?f=300x300",
     "last_price": 119.99,
     "previous_price": 119.99,
-    "last_seen": "2026-09-30",
+    "last_seen": "2026-10-22",
     "min_price_30d": 119.99,
     "min_price_all": 119.99,
     "avg_price_30d": 119.99,
@@ -83312,6 +83604,10 @@
       },
       {
         "date": "2026-09-30",
+        "price": 119.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 119.99
       }
     ]
@@ -87192,7 +87488,7 @@
     "image": "https://contents.mediadecathlon.com/p3202740/k$6612cbde4a65fc31d632eae3b1f87020/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-10-09",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -87300,6 +87596,10 @@
       },
       {
         "date": "2026-10-09",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -87782,7 +88082,7 @@
     "image": "https://contents.mediadecathlon.com/p2873133/k$c7adf0aeaff371ba9fd6e2ee00e41baa/picture.jpg?f=300x300",
     "last_price": 599.99,
     "previous_price": 599.99,
-    "last_seen": "2026-10-16",
+    "last_seen": "2026-10-22",
     "min_price_30d": 599.99,
     "min_price_all": 599.99,
     "avg_price_30d": 599.99,
@@ -87870,6 +88170,10 @@
       },
       {
         "date": "2026-10-16",
+        "price": 599.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 599.99
       }
     ]
@@ -93870,7 +94174,7 @@
     "image": "https://contents.mediadecathlon.com/p2833332/k$59cd136a58efffe050be170c2b7f0cf5/picture.jpg?f=300x300",
     "last_price": 1399.0,
     "previous_price": 1399.0,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1399.0,
     "min_price_all": 1399.0,
     "avg_price_30d": 1399.0,
@@ -94074,6 +94378,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 1399.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1399.0
       }
     ]
@@ -98008,7 +98316,7 @@
     "image": "https://contents.mediadecathlon.com/p1635321/k$889d477c337b7a8205d7c9874388314f/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-10-16",
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -98040,6 +98348,10 @@
       },
       {
         "date": "2026-10-16",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -98936,7 +99248,7 @@
     "image": "https://contents.mediadecathlon.com/p3149584/k$e1cb8dd2ef24ab5e0fd0bc2b4c8481e1/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-08-12",
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -98948,6 +99260,10 @@
       },
       {
         "date": "2026-08-12",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -101774,7 +102090,7 @@
     "image": "https://contents.mediadecathlon.com/p3098081/k$47953a37eab5fa59276047d45f90964a/picture.jpg?f=300x300",
     "last_price": 89.99,
     "previous_price": 89.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 89.99,
     "min_price_all": 89.99,
     "avg_price_30d": 89.99,
@@ -101854,6 +102170,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 89.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 89.99
       }
     ]
@@ -106250,13 +106570,13 @@
     "url": "https://www.decathlon.es/es/p/leggings-equitacion-mujer-marron-pizarra-calidos-badanas-silicona-invierno/344750/c226m8871374",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8871374|Leggings Equitación Mujer Marrón Pizarra Cálidos Badanas Silicona Invierno|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/leggings-equitacion-mujer-marron-pizarra-calidos-badanas-silicona-invierno/344750/c226m8871374",
     "image": "https://contents.mediadecathlon.com/p2899917/k$1c17b526ec04602ba8e184472ea9eff0/picture.jpg?f=300x300",
-    "last_price": 39.99,
+    "last_price": 44.99,
     "previous_price": 39.99,
-    "last_seen": "2026-09-05",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
-    "avg_price_30d": 39.99,
-    "is_recent_min_price": true,
+    "avg_price_30d": 41.66,
+    "is_recent_min_price": false,
     "prices": [
       {
         "date": "2026-05-10",
@@ -106265,6 +106585,10 @@
       {
         "date": "2026-09-05",
         "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 44.99
       }
     ]
   },
@@ -107804,7 +108128,7 @@
     "image": "https://contents.mediadecathlon.com/p2578985/k$5b140cd88c4cf7ee3b08ac269b4e9e27/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-09-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -107820,6 +108144,10 @@
       },
       {
         "date": "2026-09-18",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -108212,7 +108540,7 @@
     "image": "https://contents.mediadecathlon.com/p3202736/k$58d4ea3f2287f06de64245ff9b7006af/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -108280,6 +108608,10 @@
       },
       {
         "date": "2026-10-14",
+        "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 59.99
       }
     ]
@@ -108624,7 +108956,7 @@
     "image": "https://contents.mediadecathlon.com/p3073007/k$3930856e55e2e41ea64537c12c673eea/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -108685,6 +109017,10 @@
       {
         "date": "2026-10-20",
         "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 69.99
       }
     ]
   },
@@ -108698,7 +109034,7 @@
     "image": "https://contents.mediadecathlon.com/p3073155/k$a291efd29722628ab8b9f533e52bf458/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -108766,6 +109102,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 59.99
       }
     ]
@@ -110920,7 +111260,7 @@
     "image": "https://contents.mediadecathlon.com/p3073151/k$ffada2c0caee81ff8388ddb6548c66c1/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-09-26",
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -111020,6 +111360,10 @@
       },
       {
         "date": "2026-09-26",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -111456,7 +111800,7 @@
     "image": "https://contents.mediadecathlon.com/p3148433/k$3f9abff99955e04a24d79d07546f4d85/picture.jpg?f=300x300",
     "last_price": 2199.0,
     "previous_price": 2199.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2199.0,
     "min_price_all": 2199.0,
     "avg_price_30d": 2199.0,
@@ -111656,6 +112000,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 2199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2199.0
       }
     ]
@@ -121194,7 +121542,7 @@
     "image": "https://contents.mediadecathlon.com/p1810197/k$d8a72ded75744aded6900edf44bc32d0/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-10-10",
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -121230,6 +121578,10 @@
       },
       {
         "date": "2026-10-10",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -121478,7 +121830,7 @@
     "image": "https://contents.mediadecathlon.com/p2679437/k$58892432429591cba102f8be740d17d2/picture.jpg?f=300x300",
     "last_price": 1500.0,
     "previous_price": 1500.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1500.0,
     "min_price_all": 1500.0,
     "avg_price_30d": 1500.0,
@@ -121666,6 +122018,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 1500.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1500.0
       }
     ]
@@ -124494,15 +124850,15 @@
   },
   "8957838": {
     "source": "decathlon",
-    "id": "https://www.decathlon.es/es/p/traje-shorty-surf-900-hombre-negro-manga-corta-1-5-mm-sin-cremallera/368231/c382c76m8957838",
+    "id": "https://www.decathlon.es/es/p/traje-shorty-surf-900-hombre-negro-manga-corta-sin-cremallera-1-5-mm/368231/c382c76m8957838",
     "sku": "8957838",
-    "title": "Traje Shorty Surf 900 Hombre Negro Manga Corta 1,5 mm Sin Cremallera",
-    "url": "https://www.decathlon.es/es/p/traje-shorty-surf-900-hombre-negro-manga-corta-1-5-mm-sin-cremallera/368231/c382c76m8957838",
-    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8957838|Traje Shorty Surf 900 Hombre Negro Manga Corta 1,5 mm Sin Cremallera|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/traje-shorty-surf-900-hombre-negro-manga-corta-1-5-mm-sin-cremallera/368231/c382c76m8957838",
+    "title": "Traje Shorty Surf 900 Hombre Negro Manga Corta Sin Cremallera 1,5 mm",
+    "url": "https://www.decathlon.es/es/p/traje-shorty-surf-900-hombre-negro-manga-corta-sin-cremallera-1-5-mm/368231/c382c76m8957838",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8957838|Traje Shorty Surf 900 Hombre Negro Manga Corta Sin Cremallera 1,5 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/traje-shorty-surf-900-hombre-negro-manga-corta-sin-cremallera-1-5-mm/368231/c382c76m8957838",
     "image": "https://contents.mediadecathlon.com/p2986467/k$85aae52ad34e10513a9c8fb11692e1ce/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-06-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -124518,6 +124874,10 @@
       },
       {
         "date": "2026-06-20",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -125116,7 +125476,7 @@
     "image": "https://contents.mediadecathlon.com/p2865853/k$1afc8b847c1fcfc3eec8848e246a5d40/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -125140,6 +125500,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 59.99
       }
     ]
@@ -126174,7 +126538,7 @@
     "image": "https://contents.mediadecathlon.com/p3148402/k$a58f5388c16fa795e8969ad4bc55bed7/picture.jpg?f=300x300",
     "last_price": 1300.0,
     "previous_price": 1300.0,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1300.0,
     "min_price_all": 1300.0,
     "avg_price_30d": 1300.0,
@@ -126342,6 +126706,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 1300.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1300.0
       }
     ]
@@ -126960,7 +127328,7 @@
     "image": "https://contents.mediadecathlon.com/p2776522/k$b0393b6f4938619aafd420a90c22cd45/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-07-30",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -126980,6 +127348,10 @@
       },
       {
         "date": "2026-07-30",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -127438,7 +127810,7 @@
     "image": "https://contents.mediadecathlon.com/p3023627/k$63176794d7a03a43d0ca11a7f7404a2b/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-09-02",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -127454,6 +127826,10 @@
       },
       {
         "date": "2026-09-02",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -128204,7 +128580,7 @@
     "image": "https://contents.mediadecathlon.com/p2602954/k$c7d90cf6cebf66410d94e0a9a08535ef/picture.jpg?f=300x300",
     "last_price": 109.99,
     "previous_price": 109.99,
-    "last_seen": "2026-09-26",
+    "last_seen": "2026-10-22",
     "min_price_30d": 109.99,
     "min_price_all": 109.99,
     "avg_price_30d": 109.99,
@@ -128264,6 +128640,10 @@
       },
       {
         "date": "2026-09-26",
+        "price": 109.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 109.99
       }
     ]
@@ -133132,7 +133512,7 @@
     "image": "https://contents.mediadecathlon.com/p1635266/k$f393dc783e322253ed22d263756340f7/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-10-08",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -133160,6 +133540,10 @@
       },
       {
         "date": "2026-10-08",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -136500,10 +136884,10 @@
     "image": "https://contents.mediadecathlon.com/p3152962/k$24a63449f5f9c69a9b02ea17f800fbd4/picture.jpg?f=300x300",
     "last_price": 5799.0,
     "previous_price": 5799.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 5799.0,
     "min_price_all": 5799.0,
-    "avg_price_30d": 5825.67,
+    "avg_price_30d": 5812.33,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -136729,6 +137113,10 @@
       {
         "date": "2026-10-21",
         "price": 5799.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 5799.0
       }
     ]
   },
@@ -136950,10 +137338,10 @@
     "image": "https://contents.mediadecathlon.com/p2755563/k$504d179c0949d9cd93f91a75d7805bff/picture.jpg?f=300x300",
     "last_price": 17.99,
     "previous_price": 17.99,
-    "last_seen": "2026-08-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 17.99,
     "min_price_all": 17.99,
-    "avg_price_30d": 24.85,
+    "avg_price_30d": 23.99,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -136982,6 +137370,10 @@
       },
       {
         "date": "2026-08-19",
+        "price": 17.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 17.99
       }
     ]
@@ -137608,10 +138000,10 @@
     "image": "https://contents.mediadecathlon.com/p2779044/k$c5a356ac5742b0bea26747de7dcb65f7/picture.jpg?f=300x300",
     "last_price": 64.99,
     "previous_price": 64.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
-    "avg_price_30d": 47.49,
+    "avg_price_30d": 49.08,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -137652,6 +138044,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 64.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 64.99
       }
     ]
@@ -138922,10 +139318,10 @@
     "image": "https://contents.mediadecathlon.com/p1635633/k$8978d5b398e4cb23b3602c1164b70ff7/picture.jpg?f=300x300",
     "last_price": 54.99,
     "previous_price": 54.99,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
-    "avg_price_30d": 55.79,
+    "avg_price_30d": 55.66,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -138946,6 +139342,10 @@
       },
       {
         "date": "2026-10-14",
+        "price": 54.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 54.99
       }
     ]
@@ -139432,12 +139832,12 @@
     "url": "https://www.decathlon.es/es/p/rueda-bicicleta-nino-24-delantera-freno-disco-doble-pared-negro/X8351164/c1m8351164",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8351164|Rueda Bicicleta Niño 24\" Delantera Freno Disco Doble Pared Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rueda-bicicleta-nino-24-delantera-freno-disco-doble-pared-negro/X8351164/c1m8351164",
     "image": "https://contents.mediadecathlon.com/p458149/k$08e36a5538c4cedaa6af55b8ff8c09c5/picture.jpg?f=300x300",
-    "last_price": 59.99,
+    "last_price": 49.99,
     "previous_price": 59.99,
-    "last_seen": "2026-07-12",
-    "min_price_30d": 59.99,
-    "min_price_all": 59.99,
-    "avg_price_30d": 59.99,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 57.49,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -139451,6 +139851,10 @@
       {
         "date": "2026-07-12",
         "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 49.99
       }
     ]
   },
@@ -139764,7 +140168,7 @@
     "image": "https://contents.mediadecathlon.com/p2623164/k$7dddc2a933c3f860da6b3a44696ec488/picture.jpg?f=300x300",
     "last_price": 2999.0,
     "previous_price": 2999.0,
-    "last_seen": "2026-10-16",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2199.0,
     "min_price_all": 2199.0,
     "avg_price_30d": 2785.67,
@@ -139916,6 +140320,10 @@
       },
       {
         "date": "2026-10-16",
+        "price": 2999.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2999.0
       }
     ]
@@ -142904,7 +143312,7 @@
     "image": "https://contents.mediadecathlon.com/p2970014/k$c15de9c6267fbb0742d67f16c578a0ea/picture.jpg?f=300x300",
     "last_price": 449.99,
     "previous_price": 449.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 399.99,
     "min_price_all": 399.99,
     "avg_price_30d": 441.99,
@@ -143028,6 +143436,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 449.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 449.99
       }
     ]
@@ -143250,7 +143662,7 @@
     "image": "https://contents.mediadecathlon.com/p3113149/k$3b8267838599ac9320eca726aa5497f3/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -143298,6 +143710,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -144752,10 +145168,10 @@
     "image": "https://contents.mediadecathlon.com/p1228450/k$ead93fe3b6c37755642b8f2542f93fb9/picture.jpg?f=300x300",
     "last_price": 21.99,
     "previous_price": 21.99,
-    "last_seen": "2026-06-30",
+    "last_seen": "2026-10-22",
     "min_price_30d": 21.99,
     "min_price_all": 21.99,
-    "avg_price_30d": 22.24,
+    "avg_price_30d": 22.19,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -144772,6 +145188,10 @@
       },
       {
         "date": "2026-06-30",
+        "price": 21.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 21.99
       }
     ]
@@ -145894,7 +146314,7 @@
     "image": "https://contents.mediadecathlon.com/p3049561/k$905d2f390681e4f8dd6c7c4bc749a182/picture.jpg?f=300x300",
     "last_price": 1199.0,
     "previous_price": 1199.0,
-    "last_seen": "2026-09-27",
+    "last_seen": "2026-10-22",
     "min_price_30d": 1199.0,
     "min_price_all": 1199.0,
     "avg_price_30d": 1199.0,
@@ -145918,6 +146338,10 @@
       },
       {
         "date": "2026-09-27",
+        "price": 1199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 1199.0
       }
     ]
@@ -149682,7 +150106,7 @@
     "image": "https://contents.mediadecathlon.com/p3024782/k$1439548314c6b5dab4290e39f859f743/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-09-01",
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -149698,6 +150122,10 @@
       },
       {
         "date": "2026-09-01",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -149826,7 +150254,7 @@
     "image": "https://contents.mediadecathlon.com/p2384007/k$66b5c8c0bd41aa444cf86136a651d504/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-09-29",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -149842,6 +150270,10 @@
       },
       {
         "date": "2026-09-29",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -152866,7 +153298,7 @@
     "image": "https://contents.mediadecathlon.com/p2890132/k$6a0441602d5dcc2dcb1be4c6b5ecd6eb/picture.jpg?f=300x300",
     "last_price": 49.99,
     "previous_price": 49.99,
-    "last_seen": "2026-09-05",
+    "last_seen": "2026-10-22",
     "min_price_30d": 49.99,
     "min_price_all": 49.99,
     "avg_price_30d": 49.99,
@@ -152886,6 +153318,10 @@
       },
       {
         "date": "2026-09-05",
+        "price": 49.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 49.99
       }
     ]
@@ -153911,10 +154347,10 @@
     "title": "Tienda de campaña de techo 4 plazas Fresh",
     "url": "https://www.decathlon.es/es/p/tienda-de-campana-de-techo-4-plazas-freshandblack-500-4p-family/364289/m8939574",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8939574|Tienda de campaña de techo 4 plazas Fresh&Black, 500 4P Family|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/tienda-de-campana-de-techo-4-plazas-freshandblack-500-4p-family/364289/m8939574",
-    "image": "https://contents.mediadecathlon.com/p3105786/k$c5183befda368de5db55452fc9e00aa9/picture.jpg?f=300x300",
+    "image": "https://contents.mediadecathlon.com/p3195346/k$fdff3986386cc1c1c48972df6d0d720e/picture.jpg?f=300x300",
     "last_price": 2009.0,
-    "previous_price": null,
-    "last_seen": "2026-05-28",
+    "previous_price": 2009.0,
+    "last_seen": "2026-10-22",
     "min_price_30d": 2009.0,
     "min_price_all": 2009.0,
     "avg_price_30d": 2009.0,
@@ -153922,6 +154358,10 @@
     "prices": [
       {
         "date": "2026-05-28",
+        "price": 2009.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2009.0
       }
     ]
@@ -159110,7 +159550,7 @@
     "image": "https://contents.mediadecathlon.com/p2124760/k$21b275e323d551ee87a30dafc3a7f830/picture.jpg?f=300x300",
     "last_price": 21.99,
     "previous_price": 21.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 21.99,
     "min_price_all": 21.99,
     "avg_price_30d": 21.99,
@@ -159130,6 +159570,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 21.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 21.99
       }
     ]
@@ -160968,7 +161412,7 @@
     "image": "https://contents.mediadecathlon.com/p2588754/k$0d792c6f3e494d2cebdf90b9d1fef73f/picture.jpg?f=300x300",
     "last_price": 17.99,
     "previous_price": 17.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 17.99,
     "min_price_all": 17.99,
     "avg_price_30d": 17.99,
@@ -161008,6 +161452,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 17.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 17.99
       }
     ]
@@ -161390,7 +161838,7 @@
     "image": "https://contents.mediadecathlon.com/p2315860/k$3eb179b0f03758419c273efab7e10c9f/picture.jpg?f=300x300",
     "last_price": 54.99,
     "previous_price": 54.99,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
     "avg_price_30d": 54.99,
@@ -161414,6 +161862,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 54.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 54.99
       }
     ]
@@ -161545,8 +161997,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8377459|Pantalón largo interior térmico Mallas Técnicas Vela Race 500 Mujer Gris|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-largo-interior-termico-mallas-tecnicas-vela-race-500-mujer-gris/162819/c169c71m8377459",
     "image": "https://contents.mediadecathlon.com/p1076340/k$8f8ac48db403eab11b898b8dde7d3dfe/picture.jpg?f=300x300",
     "last_price": 19.99,
-    "previous_price": null,
-    "last_seen": "2026-05-31",
+    "previous_price": 19.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -161554,6 +162006,10 @@
     "prices": [
       {
         "date": "2026-05-31",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -165222,7 +165678,7 @@
     "image": "https://contents.mediadecathlon.com/p2653795/k$364143eb57a87b27ab9a49e48048a5eb/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-10-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -165234,6 +165690,10 @@
       },
       {
         "date": "2026-10-14",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -167464,7 +167924,7 @@
     "image": "https://contents.mediadecathlon.com/p2494082/k$24b324b9bc7cefe9654c413d711a9f96/picture.jpg?f=300x300",
     "last_price": 549.99,
     "previous_price": 549.99,
-    "last_seen": "2026-07-25",
+    "last_seen": "2026-10-22",
     "min_price_30d": 549.99,
     "min_price_all": 549.99,
     "avg_price_30d": 549.99,
@@ -167484,6 +167944,10 @@
       },
       {
         "date": "2026-07-25",
+        "price": 549.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 549.99
       }
     ]
@@ -170449,8 +170913,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8983082|Kit gafas snorkel Confort Antivaho + Tubo Dry Top Kit 100 Adulto Turquesa|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/kit-gafas-snorkel-confort-antivaho-tubo-dry-top-kit-100-adulto-turquesa/364649/c41c113m8983082",
     "image": "https://contents.mediadecathlon.com/p3085968/k$77310ec3e353e5d7f24c885b3edbb134/picture.jpg?f=300x300",
     "last_price": 25.99,
-    "previous_price": null,
-    "last_seen": "2026-06-05",
+    "previous_price": 25.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 25.99,
     "min_price_all": 25.99,
     "avg_price_30d": 25.99,
@@ -170458,6 +170922,10 @@
     "prices": [
       {
         "date": "2026-06-05",
+        "price": 25.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 25.99
       }
     ]
@@ -172130,10 +172598,10 @@
     "image": "https://contents.mediadecathlon.com/p357997/k$909c53712eac4b854d4e616b7d3b7f2c/picture.jpg?f=300x300",
     "last_price": 17.95,
     "previous_price": 17.95,
-    "last_seen": "2026-10-10",
+    "last_seen": "2026-10-22",
     "min_price_30d": 11.49,
     "min_price_all": 11.49,
-    "avg_price_30d": 16.34,
+    "avg_price_30d": 16.66,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -172150,6 +172618,10 @@
       },
       {
         "date": "2026-10-10",
+        "price": 17.95
+      },
+      {
+        "date": "2026-10-22",
         "price": 17.95
       }
     ]
@@ -172529,8 +173001,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8944144|MAILLOT CICLISMO PERSONALIZADO PRO + MUJER|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-ciclismo-personalizado-pro-mujer/X8944144/m8944144",
     "image": "https://contents.mediadecathlon.com/p2324250/k$5a59d5bc2d9c8599fb1bd9a789a2a090/picture.jpg?f=300x300",
     "last_price": 54.99,
-    "previous_price": null,
-    "last_seen": "2026-06-06",
+    "previous_price": 54.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
     "avg_price_30d": 54.99,
@@ -172538,6 +173010,10 @@
     "prices": [
       {
         "date": "2026-06-06",
+        "price": 54.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 54.99
       }
     ]
@@ -175696,7 +176172,7 @@
     "image": "https://contents.mediadecathlon.com/p3116225/k$ecd52955d284327c0c7029f331fd6987/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -175720,6 +176196,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -179538,7 +180018,7 @@
     "image": "https://contents.mediadecathlon.com/p2955185/k$825e47339416fa540d76e09b79ba5d11/picture.jpg?f=300x300",
     "last_price": 4899.0,
     "previous_price": 4899.0,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 4899.0,
     "min_price_all": 3999.0,
     "avg_price_30d": 4899.0,
@@ -179718,6 +180198,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 4899.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 4899.0
       }
     ]
@@ -181141,8 +181625,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8801697|CESTA - PIEZA SUELTA PARA EL SOPORTE HAMACA|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cesta-pieza-suelta-para-el-soporte-hamaca/346815/c328m8801697",
     "image": "https://contents.mediadecathlon.com/p2527228/k$0a255933e645d6cf0d2e26283cbf5ffc/picture.jpg?f=300x300",
     "last_price": 14.99,
-    "previous_price": null,
-    "last_seen": "2026-06-10",
+    "previous_price": 14.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -181150,6 +181634,10 @@
     "prices": [
       {
         "date": "2026-06-10",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -183290,10 +183778,10 @@
     "image": "https://contents.mediadecathlon.com/p2440955/k$8e090522882f5662bfb25fb332903c33/picture.jpg?f=300x300",
     "last_price": 339.99,
     "previous_price": 339.99,
-    "last_seen": "2026-09-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 259.99,
     "min_price_all": 259.99,
-    "avg_price_30d": 309.99,
+    "avg_price_30d": 313.32,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -183326,6 +183814,10 @@
       },
       {
         "date": "2026-09-20",
+        "price": 339.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 339.99
       }
     ]
@@ -184274,7 +184766,7 @@
     "image": "https://contents.mediadecathlon.com/p3187736/k$beebb45cff461109764936476a631e7b/picture.jpg?f=300x300",
     "last_price": 6499.0,
     "previous_price": 6499.0,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 6499.0,
     "min_price_all": 6499.0,
     "avg_price_30d": 6499.0,
@@ -184358,6 +184850,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 6499.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 6499.0
       }
     ]
@@ -187896,7 +188392,7 @@
     "image": "https://contents.mediadecathlon.com/p2658207/k$b602f62fe0ac6b42a1b88f55e77c9c58/picture.jpg?f=300x300",
     "last_price": 5499.0,
     "previous_price": 5499.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 4599.0,
     "min_price_all": 4599.0,
     "avg_price_30d": 5199.0,
@@ -188109,6 +188605,10 @@
       {
         "date": "2026-10-21",
         "price": 5499.0
+      },
+      {
+        "date": "2026-10-22",
+        "price": 5499.0
       }
     ]
   },
@@ -188190,7 +188690,7 @@
     "image": "https://contents.mediadecathlon.com/p2819798/k$650075478eecaabcb74ea14f784134b9/picture.jpg?f=300x300",
     "last_price": 7699.0,
     "previous_price": 7699.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 7699.0,
     "min_price_all": 6499.0,
     "avg_price_30d": 7699.0,
@@ -188382,6 +188882,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 7699.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 7699.0
       }
     ]
@@ -188606,7 +189110,7 @@
     "image": "https://contents.mediadecathlon.com/p2699902/k$fa9be9a183ece8f125583f253a533f89/picture.jpg?f=300x300",
     "last_price": 4199.0,
     "previous_price": 4199.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 4199.0,
     "min_price_all": 4199.0,
     "avg_price_30d": 4199.0,
@@ -188838,6 +189342,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 4199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 4199.0
       }
     ]
@@ -199848,7 +200356,7 @@
     "image": "https://contents.mediadecathlon.com/p3073228/k$98a482b61ab592d32e2c5d1bf6d4d957/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-09-01",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -199900,6 +200408,10 @@
       },
       {
         "date": "2026-09-01",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -200782,7 +201294,7 @@
     "image": "https://contents.mediadecathlon.com/p2839908/k$e356e5a4a06eb42fcc2df8c8f06ecbbf/picture.jpg?f=300x300",
     "last_price": 34.99,
     "previous_price": 34.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -200798,6 +201310,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -203132,7 +203648,7 @@
     "image": "https://contents.mediadecathlon.com/p3148472/k$958ab7da0f1c9c43bf4fb56925cd0134/picture.jpg?f=300x300",
     "last_price": 2200.0,
     "previous_price": 2200.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2200.0,
     "min_price_all": 2200.0,
     "avg_price_30d": 2200.0,
@@ -203304,6 +203820,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 2200.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2200.0
       }
     ]
@@ -204650,7 +205170,7 @@
     "image": "https://contents.mediadecathlon.com/p1635323/k$a0bad07b710b97d8bd2cfcf2fbf616aa/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -204686,6 +205206,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 39.99
       }
     ]
@@ -211358,7 +211882,7 @@
     "image": "https://contents.mediadecathlon.com/p3002765/k$4e42eebd28b136433ab3739034380da7/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-10-15",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -211410,6 +211934,10 @@
       },
       {
         "date": "2026-10-15",
+        "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 39.99
       }
     ]
@@ -212157,8 +212685,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8810251|Pantalón Corto Gimnasia Niña Negro Cristales Brillantes|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-corto-gimnasia-nina-negro-cristales-brillantes/348152/c382m8810251",
     "image": "https://contents.mediadecathlon.com/p2620444/k$73fbf3d5a4d9e061215de9bbf1b175b1/picture.jpg?f=300x300",
     "last_price": 14.99,
-    "previous_price": null,
-    "last_seen": "2026-07-10",
+    "previous_price": 14.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -212166,6 +212694,10 @@
     "prices": [
       {
         "date": "2026-07-10",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -214282,7 +214814,7 @@
     "image": "https://contents.mediadecathlon.com/p1708900/k$cdc28ea4ce504334ebb7540e3de6f011/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-10-07",
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -214306,6 +214838,10 @@
       },
       {
         "date": "2026-10-07",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -216539,8 +217075,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8821111|Diana Pelota Cama Elástica|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/diana-pelota-cama-elastica/347967/m8821111",
     "image": "https://contents.mediadecathlon.com/p2880392/k$e272e2cb06a8a5aea85552d1a86f8dc8/picture.jpg?f=300x300",
     "last_price": 44.99,
-    "previous_price": null,
-    "last_seen": "2026-07-14",
+    "previous_price": 44.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -216548,6 +217084,10 @@
     "prices": [
       {
         "date": "2026-07-14",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -217390,7 +217930,7 @@
     "image": "https://contents.mediadecathlon.com/p3148438/k$5688bd8b1f6761b51932f567dc3e3a55/picture.jpg?f=300x300",
     "last_price": 5500.0,
     "previous_price": 5500.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 5500.0,
     "min_price_all": 5500.0,
     "avg_price_30d": 5500.0,
@@ -217590,6 +218130,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 5500.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 5500.0
       }
     ]
@@ -218027,8 +218571,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8602226|Chaqueta de alpinismo y montaña impermeable Mujer Simond Alpinism Evo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-de-alpinismo-y-montana-impermeable-mujer-simond-alpinism-evo/327949/c340c340m8602226",
     "image": "https://contents.mediadecathlon.com/p2710385/k$55aadf5daa5ae917eee18b0a944f5f7d/picture.jpg?f=300x300",
     "last_price": 199.99,
-    "previous_price": null,
-    "last_seen": "2026-07-15",
+    "previous_price": 199.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 199.99,
     "min_price_all": 199.99,
     "avg_price_30d": 199.99,
@@ -218036,6 +218580,10 @@
     "prices": [
       {
         "date": "2026-07-15",
+        "price": 199.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 199.99
       }
     ]
@@ -218049,8 +218597,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8852723|Sillín Bicicleta MTB/Trekking/Ciudad 60° MD Marrón|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sillin-bicicleta-mtb-trekking-ciudad-60deg-md-marron/351167/c27m8852723",
     "image": "https://contents.mediadecathlon.com/p2658269/k$6f1526a1630fc06afcceb1f0c14a534d/picture.jpg?f=300x300",
     "last_price": 19.99,
-    "previous_price": null,
-    "last_seen": "2026-07-15",
+    "previous_price": 19.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -218058,6 +218606,10 @@
     "prices": [
       {
         "date": "2026-07-15",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -219862,12 +220414,12 @@
     "url": "https://www.decathlon.es/es/p/kit-pivotes-drs-and-dis-16-horquilla-centra-bicicleta/200816/m8530811",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8530811|Kit Pivotes Drs & Dis 16 Horquilla Centra Bicicleta|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/kit-pivotes-drs-and-dis-16-horquilla-centra-bicicleta/200816/m8530811",
     "image": "https://contents.mediadecathlon.com/p1708912/k$e74ee9daa8f2c23afa2b287e24eb62c1/picture.jpg?f=300x300",
-    "last_price": 22.99,
+    "last_price": 19.99,
     "previous_price": 22.99,
-    "last_seen": "2026-08-11",
-    "min_price_30d": 22.99,
-    "min_price_all": 22.99,
-    "avg_price_30d": 22.99,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 22.49,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -219889,6 +220441,10 @@
       {
         "date": "2026-08-11",
         "price": 22.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 19.99
       }
     ]
   },
@@ -221130,7 +221686,7 @@
     "image": "https://contents.mediadecathlon.com/p2470490/k$383838cd2a3c1f57f72b6c49727e5aba/picture.jpg?f=300x300",
     "last_price": 54.99,
     "previous_price": 54.99,
-    "last_seen": "2026-08-02",
+    "last_seen": "2026-10-22",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
     "avg_price_30d": 54.99,
@@ -221142,6 +221698,10 @@
       },
       {
         "date": "2026-08-02",
+        "price": 54.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 54.99
       }
     ]
@@ -222564,7 +223124,7 @@
     "image": "https://contents.mediadecathlon.com/p2876553/k$087f330652dc05f9940eb3bc599eff0f/picture.jpg?f=300x300",
     "last_price": 54.99,
     "previous_price": 54.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 54.99,
     "min_price_all": 54.99,
     "avg_price_30d": 54.99,
@@ -222584,6 +223144,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 54.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 54.99
       }
     ]
@@ -222948,7 +223512,7 @@
     "image": "https://contents.mediadecathlon.com/p3023784/k$83c38cb7eb84d007ec657f2e8701d299/picture.jpg?f=300x300",
     "last_price": 14.99,
     "previous_price": 14.99,
-    "last_seen": "2026-09-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 14.99,
     "min_price_all": 14.99,
     "avg_price_30d": 14.99,
@@ -222960,6 +223524,10 @@
       },
       {
         "date": "2026-09-21",
+        "price": 14.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 14.99
       }
     ]
@@ -224234,7 +224802,7 @@
     "image": "https://contents.mediadecathlon.com/p2315860/k$3eb179b0f03758419c273efab7e10c9f/picture.jpg?f=300x300",
     "last_price": 39.99,
     "previous_price": 39.99,
-    "last_seen": "2026-09-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 39.99,
     "min_price_all": 39.99,
     "avg_price_30d": 39.99,
@@ -224246,6 +224814,10 @@
       },
       {
         "date": "2026-09-20",
+        "price": 39.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 39.99
       }
     ]
@@ -229832,7 +230404,7 @@
     "image": "https://contents.mediadecathlon.com/p2696207/k$759207cc7803f4f39faa67aa46ec97dd/picture.jpg?f=300x300",
     "last_price": 49.99,
     "previous_price": 49.99,
-    "last_seen": "2026-09-08",
+    "last_seen": "2026-10-22",
     "min_price_30d": 49.99,
     "min_price_all": 49.99,
     "avg_price_30d": 49.99,
@@ -229852,6 +230424,10 @@
       },
       {
         "date": "2026-09-08",
+        "price": 49.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 49.99
       }
     ]
@@ -230545,8 +231121,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8749707|Cartucho Caza L100 28 g Calibre 12/70 Alta Velocidad Perdigón Acero n.º 5 X25|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cartucho-caza-l100-28-g-calibre-12-70-alta-velocidad-perdigon-acero-n-o-5-x25/342176/c344c344m8749707",
     "image": "https://contents.mediadecathlon.com/p2762847/k$1e2ce907743e2ba07123316f6ec3a92b/picture.jpg?f=300x300",
     "last_price": 12.99,
-    "previous_price": null,
-    "last_seen": "2026-07-30",
+    "previous_price": 12.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 12.99,
     "min_price_all": 12.99,
     "avg_price_30d": 12.99,
@@ -230554,6 +231130,10 @@
     "prices": [
       {
         "date": "2026-07-30",
+        "price": 12.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 12.99
       }
     ]
@@ -238959,10 +239539,10 @@
     "title": "VOLANTE DE BÁDMINTON DE PLUMAS PERFLY FSC 930 SPEED 77 x12",
     "url": "https://www.decathlon.es/es/p/volante-de-badminton-de-plumas-perfly-fsc-930-speed-77-x12/300341/c227m8490816",
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8490816|VOLANTE DE BÁDMINTON DE PLUMAS PERFLY FSC 930 SPEED 77 x12|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/volante-de-badminton-de-plumas-perfly-fsc-930-speed-77-x12/300341/c227m8490816",
-    "image": "https://contents.mediadecathlon.com/p3093300/k$7bdc3930d262fcc78e5a377ffa9d4f3d/picture.jpg?f=300x300",
+    "image": "https://contents.mediadecathlon.com/p3155667/k$1429cec624a116e893854cea3a6c766b/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-08-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -238974,6 +239554,10 @@
       },
       {
         "date": "2026-08-19",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -239847,8 +240431,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8753993|Forro polar caza 900 frisado calido silencioso Solognac Hombre caqui|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/forro-polar-caza-900-frisado-calido-silencioso-solognac-hombre-caqui/328812/c109m8753993",
     "image": "https://contents.mediadecathlon.com/p1877258/k$02439a52d9041d4e730cc1e2026e39ac/picture.jpg?f=300x300",
     "last_price": 69.99,
-    "previous_price": null,
-    "last_seen": "2026-08-09",
+    "previous_price": 69.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -239856,6 +240440,10 @@
     "prices": [
       {
         "date": "2026-08-09",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -241692,10 +242280,10 @@
     "image": "https://contents.mediadecathlon.com/p3202845/k$af5a85f81e483cee148680a915d58313/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 64.99,
     "min_price_all": 64.99,
-    "avg_price_30d": 69.49,
+    "avg_price_30d": 69.54,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -241737,6 +242325,10 @@
       {
         "date": "2026-10-18",
         "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
+        "price": 69.99
       }
     ]
   },
@@ -241750,10 +242342,10 @@
     "image": "https://contents.mediadecathlon.com/p3202948/k$3147a5fb22c8f5f7164dee58d5f58482/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 64.99,
     "min_price_all": 64.99,
-    "avg_price_30d": 69.61,
+    "avg_price_30d": 69.63,
     "is_recent_min_price": false,
     "prices": [
       {
@@ -241806,6 +242398,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -243622,7 +244218,7 @@
     "image": "https://contents.mediadecathlon.com/p3155301/k$57352dd11938790e1b5395a70ec32a66/picture.jpg?f=300x300",
     "last_price": 24.99,
     "previous_price": 24.99,
-    "last_seen": "2026-08-28",
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -243634,6 +244230,10 @@
       },
       {
         "date": "2026-08-28",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -245937,8 +246537,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8839601|Pedalier Sin Referencia >> Pedido Directo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pedalier-sin-referencia-gtgt-pedido-directo/X8839601/m8839601",
     "image": "https://contents.mediadecathlon.com/p2573615/k$c1f080ff2de67eec6b727c57fd72fd16/picture.jpg?f=300x300",
     "last_price": 11.99,
-    "previous_price": null,
-    "last_seen": "2026-08-17",
+    "previous_price": 11.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 11.99,
     "min_price_all": 11.99,
     "avg_price_30d": 11.99,
@@ -245946,6 +246546,10 @@
     "prices": [
       {
         "date": "2026-08-17",
+        "price": 11.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 11.99
       }
     ]
@@ -245959,8 +246563,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8839603|Patilla Cambio Sin Referencia >> Pedido Directo|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/patilla-cambio-sin-referencia-gtgt-pedido-directo/X8839603/m8839603",
     "image": "https://contents.mediadecathlon.com/p2573636/k$e02f2fda4f83b66c9f13a31e8041a6a3/picture.jpg?f=300x300",
     "last_price": 11.99,
-    "previous_price": null,
-    "last_seen": "2026-08-17",
+    "previous_price": 11.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 11.99,
     "min_price_all": 11.99,
     "avg_price_30d": 11.99,
@@ -245968,6 +246572,10 @@
     "prices": [
       {
         "date": "2026-08-17",
+        "price": 11.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 11.99
       }
     ]
@@ -246181,8 +246789,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8839598|Cambio De Marchas No Referenciado >> Pedir Directamente|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cambio-de-marchas-no-referenciado-gtgt-pedir-directamente/X8839598/m8839598",
     "image": "https://contents.mediadecathlon.com/p2468991/k$0a5c49b0930e1e21cdde8710928d8c97/picture.jpg?f=300x300",
     "last_price": 11.99,
-    "previous_price": null,
-    "last_seen": "2026-08-17",
+    "previous_price": 11.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 11.99,
     "min_price_all": 11.99,
     "avg_price_30d": 11.99,
@@ -246190,6 +246798,10 @@
     "prices": [
       {
         "date": "2026-08-17",
+        "price": 11.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 11.99
       }
     ]
@@ -247112,7 +247724,7 @@
     "image": "https://contents.mediadecathlon.com/p1228402/k$de5cf3ed3c89a6b4d24abbebbd7e55d0/picture.jpg?f=300x300",
     "last_price": 44.99,
     "previous_price": 44.99,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -247124,6 +247736,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -250632,10 +251248,10 @@
     "image": "https://contents.mediadecathlon.com/p3225818/k$682112200c3d09ce5ed21f0e13ba238d/picture.jpg?f=300x300",
     "last_price": 3399.0,
     "previous_price": 3399.0,
-    "last_seen": "2026-10-16",
+    "last_seen": "2026-10-22",
     "min_price_30d": 3399.0,
     "min_price_all": 3399.0,
-    "avg_price_30d": 3406.21,
+    "avg_price_30d": 3405.73,
     "is_recent_min_price": true,
     "prices": [
       {
@@ -250692,6 +251308,10 @@
       },
       {
         "date": "2026-10-16",
+        "price": 3399.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 3399.0
       }
     ]
@@ -252904,7 +253524,7 @@
     "image": "https://contents.mediadecathlon.com/p3225786/k$9c61328f9c6b9cc638d9d48ff3e2c053/picture.jpg?f=300x300",
     "last_price": 2199.0,
     "previous_price": 2199.0,
-    "last_seen": "2026-10-21",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2199.0,
     "min_price_all": 2199.0,
     "avg_price_30d": 2199.08,
@@ -253008,6 +253628,10 @@
       },
       {
         "date": "2026-10-21",
+        "price": 2199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2199.0
       }
     ]
@@ -254174,7 +254798,7 @@
     "image": "https://contents.mediadecathlon.com/p3225891/k$9dff6cbcc02d140f9e9a36f08be852b3/picture.jpg?f=300x300",
     "last_price": 4199.0,
     "previous_price": 4199.0,
-    "last_seen": "2026-10-18",
+    "last_seen": "2026-10-22",
     "min_price_30d": 4199.0,
     "min_price_all": 4199.0,
     "avg_price_30d": 4199.04,
@@ -254270,6 +254894,10 @@
       },
       {
         "date": "2026-10-18",
+        "price": 4199.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 4199.0
       }
     ]
@@ -255767,8 +256395,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8786135|Organizador De Puerta Armero|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/organizador-de-puerta-armero/344640/c405c382m8786135",
     "image": "https://contents.mediadecathlon.com/p2392210/k$07d78270532067c1ff0d85023bea6a94/picture.jpg?f=300x300",
     "last_price": 34.99,
-    "previous_price": null,
-    "last_seen": "2026-08-31",
+    "previous_price": 34.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 34.99,
     "min_price_all": 34.99,
     "avg_price_30d": 34.99,
@@ -255776,6 +256404,10 @@
     "prices": [
       {
         "date": "2026-08-31",
+        "price": 34.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 34.99
       }
     ]
@@ -257865,8 +258497,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9009169|Chaleco acolchado de plumón trekking -3 °C Mujer, Xplore negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaleco-acolchado-de-plumon-trekking-3-degc-mujer-xplore-negro/383092/c1m9009169",
     "image": "https://contents.mediadecathlon.com/p2607120/k$6d82c058d3600a53cacafcf1949aa729/picture.jpg?f=300x300",
     "last_price": 49.99,
-    "previous_price": null,
-    "last_seen": "2026-09-04",
+    "previous_price": 49.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 49.99,
     "min_price_all": 49.99,
     "avg_price_30d": 49.99,
@@ -257874,6 +258506,10 @@
     "prices": [
       {
         "date": "2026-09-04",
+        "price": 49.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 49.99
       }
     ]
@@ -258826,7 +259462,7 @@
     "image": "https://contents.mediadecathlon.com/p3202895/k$4bf33b20a9f9875753bc9c3b68c4f5b2/picture.jpg?f=300x300",
     "last_price": 69.99,
     "previous_price": 69.99,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 69.99,
     "min_price_all": 69.99,
     "avg_price_30d": 69.99,
@@ -258858,6 +259494,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 69.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 69.99
       }
     ]
@@ -259963,8 +260603,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8977883|Camiseta de montaña y trekking manga larga lana merino Mujer Merino Resist|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-manga-larga-lana-merino-mujer-merino-resist/356395/c59m8977883",
     "image": "https://contents.mediadecathlon.com/p2999966/k$957f0ce6b356756dd6743c34a65c24af/picture.jpg?f=300x300",
     "last_price": 44.99,
-    "previous_price": null,
-    "last_seen": "2026-09-08",
+    "previous_price": 44.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 44.99,
     "min_price_all": 44.99,
     "avg_price_30d": 44.99,
@@ -259972,6 +260612,10 @@
     "prices": [
       {
         "date": "2026-09-08",
+        "price": 44.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 44.99
       }
     ]
@@ -261470,7 +262114,7 @@
     "image": "https://contents.mediadecathlon.com/p1831251/k$0e306a835d24b995d76bdff07d6014f1/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-09-14",
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -261494,6 +262138,10 @@
       },
       {
         "date": "2026-09-14",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -265986,15 +266634,15 @@
   },
   "8998637": {
     "source": "decathlon",
-    "id": "https://www.decathlon.es/es/p/bicicleta-gravel-rcr-g-ace-shimano-ultegra-di2-2x12-2-pares-de-ruedas-ed-limit/380502/m8998637",
+    "id": "https://www.decathlon.es/es/p/bicicleta-gravel-shimano-ultegra-di2-2x12v-rcr-g-coleccion-capsula-the-ace/380502/m8998637",
     "sku": "8998637",
-    "title": "Bicicleta Gravel RCR-G Ace Shimano Ultegra Di2 2X12 2 pares de ruedas Ed. Limit.",
-    "url": "https://www.decathlon.es/es/p/bicicleta-gravel-rcr-g-ace-shimano-ultegra-di2-2x12-2-pares-de-ruedas-ed-limit/380502/m8998637",
-    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8998637|Bicicleta Gravel RCR-G Ace Shimano Ultegra Di2 2X12 2 pares de ruedas Ed. Limit.|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-gravel-rcr-g-ace-shimano-ultegra-di2-2x12-2-pares-de-ruedas-ed-limit/380502/m8998637",
+    "title": "Bicicleta Gravel Shimano Ultegra Di2 2X12v RCR-G Colección Cápsula THE ACE",
+    "url": "https://www.decathlon.es/es/p/bicicleta-gravel-shimano-ultegra-di2-2x12v-rcr-g-coleccion-capsula-the-ace/380502/m8998637",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8998637|Bicicleta Gravel Shimano Ultegra Di2 2X12v RCR-G Colección Cápsula THE ACE|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/bicicleta-gravel-shimano-ultegra-di2-2x12v-rcr-g-coleccion-capsula-the-ace/380502/m8998637",
     "image": "https://contents.mediadecathlon.com/p3238392/k$8c9db08b09540aee7dda4fd27154ba5c/picture.jpg?f=300x300",
     "last_price": 6600.0,
     "previous_price": 6600.0,
-    "last_seen": "2026-09-27",
+    "last_seen": "2026-10-22",
     "min_price_30d": 6600.0,
     "min_price_all": 6600.0,
     "avg_price_30d": 6600.0,
@@ -266006,6 +266654,10 @@
       },
       {
         "date": "2026-09-27",
+        "price": 6600.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 6600.0
       }
     ]
@@ -271888,7 +272540,7 @@
     "image": "https://contents.mediadecathlon.com/p1727496/k$5efe49062afb7dd65c0bba1a776760c4/picture.jpg?f=300x300",
     "last_price": 19.99,
     "previous_price": 19.99,
-    "last_seen": "2026-10-20",
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -271904,6 +272556,10 @@
       },
       {
         "date": "2026-10-20",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -273984,7 +274640,7 @@
     "image": "https://contents.mediadecathlon.com/p1738905/k$17a89dd922b2efe81f85f260a348d7a0/picture.jpg?f=300x300",
     "last_price": 294.99,
     "previous_price": 294.99,
-    "last_seen": "2026-10-13",
+    "last_seen": "2026-10-22",
     "min_price_30d": 294.99,
     "min_price_all": 294.99,
     "avg_price_30d": 294.99,
@@ -274000,6 +274656,10 @@
       },
       {
         "date": "2026-10-13",
+        "price": 294.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 294.99
       }
     ]
@@ -275850,7 +276510,7 @@
     "image": "https://contents.mediadecathlon.com/p3214174/k$5219f10d564baf24df264abad926ce35/picture.jpg?f=300x300",
     "last_price": 59.99,
     "previous_price": 59.99,
-    "last_seen": "2026-10-11",
+    "last_seen": "2026-10-22",
     "min_price_30d": 59.99,
     "min_price_all": 59.99,
     "avg_price_30d": 59.99,
@@ -275862,6 +276522,10 @@
       },
       {
         "date": "2026-10-11",
+        "price": 59.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 59.99
       }
     ]
@@ -275919,8 +276583,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8530710|Potencia Ajustable 100 mm 25,4 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/potencia-ajustable-100-mm-25-4-mm/197915/m8530710",
     "image": "https://contents.mediadecathlon.com/p1899334/k$bc787d4b2381907ffaebdf1a2f819661/picture.jpg?f=300x300",
     "last_price": 19.99,
-    "previous_price": null,
-    "last_seen": "2026-10-10",
+    "previous_price": 19.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 19.99,
     "min_price_all": 19.99,
     "avg_price_30d": 19.99,
@@ -275928,6 +276592,10 @@
     "prices": [
       {
         "date": "2026-10-10",
+        "price": 19.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 19.99
       }
     ]
@@ -277220,7 +277888,7 @@
     "image": "https://contents.mediadecathlon.com/p3216575/k$ab904d010961079a50b6203a33978a11/picture.jpg?f=300x300",
     "last_price": 2000.0,
     "previous_price": 2000.0,
-    "last_seen": "2026-10-17",
+    "last_seen": "2026-10-22",
     "min_price_30d": 2000.0,
     "min_price_all": 2000.0,
     "avg_price_30d": 2000.0,
@@ -277236,6 +277904,10 @@
       },
       {
         "date": "2026-10-17",
+        "price": 2000.0
+      },
+      {
+        "date": "2026-10-22",
         "price": 2000.0
       }
     ]
@@ -277899,8 +278571,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8796803|Stick Hockey Sala Niños Korok FH100 multicolor|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/stick-hockey-sala-ninos-korok-fh100-multicolor/311943/c382c380c209m8796803",
     "image": "https://contents.mediadecathlon.com/p2334831/k$10f2435f3490ec0a089c62a260c89f47/picture.jpg?f=300x300",
     "last_price": 24.99,
-    "previous_price": null,
-    "last_seen": "2026-10-14",
+    "previous_price": 24.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 24.99,
     "min_price_all": 24.99,
     "avg_price_30d": 24.99,
@@ -277908,6 +278580,10 @@
     "prices": [
       {
         "date": "2026-10-14",
+        "price": 24.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 24.99
       }
     ]
@@ -279206,7 +279882,7 @@
     "image": "https://contents.mediadecathlon.com/p3222345/k$05f094838f386b963d57146c72d96033/picture.jpg?f=300x300",
     "last_price": 29.99,
     "previous_price": 29.99,
-    "last_seen": "2026-10-19",
+    "last_seen": "2026-10-22",
     "min_price_30d": 29.99,
     "min_price_all": 29.99,
     "avg_price_30d": 29.99,
@@ -279218,6 +279894,10 @@
       },
       {
         "date": "2026-10-19",
+        "price": 29.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 29.99
       }
     ]
@@ -280137,8 +280817,8 @@
     "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8977869|Tabla Bodyboard 900 LTD Caqui-Negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/tabla-bodyboard-900-ltd-caqui-negro/324989/m8977869",
     "image": "https://contents.mediadecathlon.com/p3073217/k$1f9afe07c657af6c0e90b0c797c2a2a2/picture.jpg?f=300x300",
     "last_price": 179.99,
-    "previous_price": null,
-    "last_seen": "2026-10-19",
+    "previous_price": 179.99,
+    "last_seen": "2026-10-22",
     "min_price_30d": 179.99,
     "min_price_all": 179.99,
     "avg_price_30d": 179.99,
@@ -280146,6 +280826,10 @@
     "prices": [
       {
         "date": "2026-10-19",
+        "price": 179.99
+      },
+      {
+        "date": "2026-10-22",
         "price": 179.99
       }
     ]
@@ -281269,6 +281953,644 @@
       {
         "date": "2026-10-21",
         "price": 38.99
+      }
+    ]
+  },
+  "9030123": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/falda-cargo-larga-de-senderismo-acampanada-mujer-verde/385511/c363m9030123",
+    "sku": "9030123",
+    "title": "Falda cargo larga de senderismo acampanada mujer, verde",
+    "url": "https://www.decathlon.es/es/p/falda-cargo-larga-de-senderismo-acampanada-mujer-verde/385511/c363m9030123",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9030123|Falda cargo larga de senderismo acampanada mujer, verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/falda-cargo-larga-de-senderismo-acampanada-mujer-verde/385511/c363m9030123",
+    "image": "https://contents.mediadecathlon.com/p3131753/k$8b1d380000088aea78c335d0189c3dc8/picture.jpg?f=300x300",
+    "last_price": 29.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 29.99,
+    "min_price_all": 29.99,
+    "avg_price_30d": 29.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 29.99
+      }
+    ]
+  },
+  "8975970": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-proteccion-solar-hombre-manga-corta-upf-50-azul/332637/m8975970",
+    "sku": "8975970",
+    "title": "Camiseta protección solar Hombre manga corta UPF 50 Azul",
+    "url": "https://www.decathlon.es/es/p/camiseta-proteccion-solar-hombre-manga-corta-upf-50-azul/332637/m8975970",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8975970|Camiseta protección solar Hombre manga corta UPF 50+ Azul|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-proteccion-solar-hombre-manga-corta-upf-50-azul/332637/m8975970",
+    "image": "https://contents.mediadecathlon.com/p3021001/k$4edde44516803229ab32f5f0f3faca3c/picture.jpg?f=300x300",
+    "last_price": 11.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 11.99,
+    "min_price_all": 11.99,
+    "avg_price_30d": 11.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 11.99
+      }
+    ]
+  },
+  "8966450": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/kit-limpieza-ninos-verde-negro-5-piezas/347839/c241c382m8966450",
+    "sku": "8966450",
+    "title": "Kit Limpieza Niños Verde-Negro 5 Piezas",
+    "url": "https://www.decathlon.es/es/p/kit-limpieza-ninos-verde-negro-5-piezas/347839/c241c382m8966450",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8966450|Kit Limpieza Niños Verde-Negro 5 Piezas|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/kit-limpieza-ninos-verde-negro-5-piezas/347839/c241c382m8966450",
+    "image": "https://contents.mediadecathlon.com/p3115115/k$324716b3b413e0cc8179b97c3197a273/picture.jpg?f=300x300",
+    "last_price": 12.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 12.99,
+    "min_price_all": 12.99,
+    "avg_price_30d": 12.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 12.99
+      }
+    ]
+  },
+  "8808721": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaleco-caza-solognac-500-hombre-camuflaje-treemetic-especial-migratorias/303459/c29m8808721",
+    "sku": "8808721",
+    "title": "Chaleco Caza Solognac 500 Hombre Camuflaje Treemetic Especial MIgratorias",
+    "url": "https://www.decathlon.es/es/p/chaleco-caza-solognac-500-hombre-camuflaje-treemetic-especial-migratorias/303459/c29m8808721",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8808721|Chaleco Caza Solognac 500 Hombre Camuflaje Treemetic Especial MIgratorias|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaleco-caza-solognac-500-hombre-camuflaje-treemetic-especial-migratorias/303459/c29m8808721",
+    "image": "https://contents.mediadecathlon.com/p2546496/k$6c9a815508f9c4d7b04f7d8ce9ebf998/picture.jpg?f=300x300",
+    "last_price": 64.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 64.99,
+    "min_price_all": 64.99,
+    "avg_price_30d": 64.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 64.99
+      }
+    ]
+  },
+  "8977888": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-manga-larga-lana-merino-mujer-simond-mt500/11948/c378c378m8977888",
+    "sku": "8977888",
+    "title": "Camiseta de montaña y trekking manga larga lana merino Mujer Simond MT500",
+    "url": "https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-manga-larga-lana-merino-mujer-simond-mt500/11948/c378c378m8977888",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8977888|Camiseta de montaña y trekking manga larga lana merino Mujer Simond MT500|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-de-montana-y-trekking-manga-larga-lana-merino-mujer-simond-mt500/11948/c378c378m8977888",
+    "image": "https://contents.mediadecathlon.com/p2999880/k$617efd2ae9402dc939d2424ef657a52e/picture.jpg?f=300x300",
+    "last_price": 54.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 54.99,
+    "min_price_all": 54.99,
+    "avg_price_30d": 54.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 54.99
+      }
+    ]
+  },
+  "8927488": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/casete-tektro-m5100-11-v-11-50t/360141/m8927488",
+    "sku": "8927488",
+    "title": "Casete Tektro M5100 11 V 11-50T",
+    "url": "https://www.decathlon.es/es/p/casete-tektro-m5100-11-v-11-50t/360141/m8927488",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8927488|Casete Tektro M5100 11 V 11-50T|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casete-tektro-m5100-11-v-11-50t/360141/m8927488",
+    "image": "https://contents.mediadecathlon.com/p3133597/k$d26805cb7d52c6eb83eb6fc2282b6e90/picture.jpg?f=300x300",
+    "last_price": 59.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 59.99,
+    "min_price_all": 59.99,
+    "avg_price_30d": 59.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 59.99
+      }
+    ]
+  },
+  "9033333": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/raqueta-de-squash-power-pro-125-g-amarillo-negro/312565/m9033333",
+    "sku": "9033333",
+    "title": "Raqueta de squash, Power Pro 125 g amarillo negro",
+    "url": "https://www.decathlon.es/es/p/raqueta-de-squash-power-pro-125-g-amarillo-negro/312565/m9033333",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9033333|Raqueta de squash, Power Pro 125 g amarillo negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/raqueta-de-squash-power-pro-125-g-amarillo-negro/312565/m9033333",
+    "image": "https://contents.mediadecathlon.com/p3114853/k$201740253b347dd3db1f6a8d8b5d4d1a/picture.jpg?f=300x300",
+    "last_price": 64.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 64.99,
+    "min_price_all": 64.99,
+    "avg_price_30d": 64.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 64.99
+      }
+    ]
+  },
+  "8543933": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/cinta-expres-escalada-y-alpinismo-simond-edge-25-cm/307296/c401c93m8543933",
+    "sku": "8543933",
+    "title": "Cinta Exprés Escalada y Alpinismo Simond Edge 25 CM",
+    "url": "https://www.decathlon.es/es/p/cinta-expres-escalada-y-alpinismo-simond-edge-25-cm/307296/c401c93m8543933",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8543933|Cinta Exprés Escalada y Alpinismo Simond Edge 25 CM|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/cinta-expres-escalada-y-alpinismo-simond-edge-25-cm/307296/c401c93m8543933",
+    "image": "https://contents.mediadecathlon.com/p2982598/k$66656ae95698b595069f75ba43d1f738/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 24.99
+      }
+    ]
+  },
+  "8623851": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/maillot-ciclismo-personalizado-comfort/X8623851/m8623851",
+    "sku": "8623851",
+    "title": "MAILLOT CICLISMO PERSONALIZADO COMFORT",
+    "url": "https://www.decathlon.es/es/p/maillot-ciclismo-personalizado-comfort/X8623851/m8623851",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8623851|MAILLOT CICLISMO PERSONALIZADO COMFORT|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/maillot-ciclismo-personalizado-comfort/X8623851/m8623851",
+    "image": "https://contents.mediadecathlon.com/p2289506/k$d47e6289ee9e112cf470cc3c30a475df/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 49.99
+      }
+    ]
+  },
+  "8796739": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/ala-delantera-foil-wng500-1500-cm2/346042/m8796739",
+    "sku": "8796739",
+    "title": "Ala Delantera Foil WNG500 1500 cm²",
+    "url": "https://www.decathlon.es/es/p/ala-delantera-foil-wng500-1500-cm2/346042/m8796739",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8796739|Ala Delantera Foil WNG500 1500 cm²|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/ala-delantera-foil-wng500-1500-cm2/346042/m8796739",
+    "image": "https://contents.mediadecathlon.com/p2488164/k$b42335b6238a3d3616e81afe82bdd14d/picture.jpg?f=300x300",
+    "last_price": 224.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 224.99,
+    "min_price_all": 224.99,
+    "avg_price_30d": 224.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 224.99
+      }
+    ]
+  },
+  "8977892": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-manga-larga-cuello-cremallera-lana-merina-mujer-merino-resist-marron/302035/c184m8977892",
+    "sku": "8977892",
+    "title": "Camiseta manga larga cuello cremallera lana merina mujer, Merino Resist marrón",
+    "url": "https://www.decathlon.es/es/p/camiseta-manga-larga-cuello-cremallera-lana-merina-mujer-merino-resist-marron/302035/c184m8977892",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8977892|Camiseta manga larga cuello cremallera lana merina mujer, Merino Resist marrón|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-manga-larga-cuello-cremallera-lana-merina-mujer-merino-resist-marron/302035/c184m8977892",
+    "image": "https://contents.mediadecathlon.com/p2999905/k$1d677344333348d0bd77b1faac87ebd7/picture.jpg?f=300x300",
+    "last_price": 54.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 54.99,
+    "min_price_all": 54.99,
+    "avg_price_30d": 54.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 54.99
+      }
+    ]
+  },
+  "8660881": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/parka-de-balonmano-origin-personalizable-nino/X8660881/m8660881",
+    "sku": "8660881",
+    "title": "PARKA DE BALONMANO ORIGIN PERSONALIZABLE NIÑO",
+    "url": "https://www.decathlon.es/es/p/parka-de-balonmano-origin-personalizable-nino/X8660881/m8660881",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8660881|PARKA DE BALONMANO ORIGIN PERSONALIZABLE NIÑO|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/parka-de-balonmano-origin-personalizable-nino/X8660881/m8660881",
+    "image": "https://contents.mediadecathlon.com/p1850221/k$4ca3d5bd1926af0fa108170f9257a6da/picture.jpg?f=300x300",
+    "last_price": 35.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 35.99,
+    "min_price_all": 35.99,
+    "avg_price_30d": 35.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 35.99
+      }
+    ]
+  },
+  "8366535": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/sombrero-caza-solognac-100-adulto-verde-fieltro-perlante/118110/c109m8366535",
+    "sku": "8366535",
+    "title": "Sombrero Caza Solognac 100 Adulto Verde Fieltro Perlante",
+    "url": "https://www.decathlon.es/es/p/sombrero-caza-solognac-100-adulto-verde-fieltro-perlante/118110/c109m8366535",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8366535|Sombrero Caza Solognac 100 Adulto Verde Fieltro Perlante|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/sombrero-caza-solognac-100-adulto-verde-fieltro-perlante/118110/c109m8366535",
+    "image": "https://contents.mediadecathlon.com/p2551189/k$0407b0fd1216905899226e576ee433d1/picture.jpg?f=300x300",
+    "last_price": 24.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 24.99,
+    "min_price_all": 24.99,
+    "avg_price_30d": 24.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 24.99
+      }
+    ]
+  },
+  "8392595": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-barranquismo-5-mm-unisex-maskoon/167112/m8392595",
+    "sku": "8392595",
+    "title": "Chaqueta Barranquismo 5 mm Unisex - MASKOON",
+    "url": "https://www.decathlon.es/es/p/chaqueta-barranquismo-5-mm-unisex-maskoon/167112/m8392595",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8392595|Chaqueta Barranquismo 5 mm Unisex - MASKOON|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-barranquismo-5-mm-unisex-maskoon/167112/m8392595",
+    "image": "https://contents.mediadecathlon.com/p2881104/k$1c1d05741c36f25ced695237b7162011/picture.jpg?f=300x300",
+    "last_price": 109.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 109.99,
+    "min_price_all": 109.99,
+    "avg_price_30d": 109.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 109.99
+      }
+    ]
+  },
+  "8748357": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/diana-tiro-con-arco-3d-hopher-zorro/X8748357/m8748357",
+    "sku": "8748357",
+    "title": "Diana Tiro con Arco 3D Hopher Zorro",
+    "url": "https://www.decathlon.es/es/p/diana-tiro-con-arco-3d-hopher-zorro/X8748357/m8748357",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8748357|Diana Tiro con Arco 3D Hopher Zorro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/diana-tiro-con-arco-3d-hopher-zorro/X8748357/m8748357",
+    "image": "https://contents.mediadecathlon.com/p2138721/k$f6125d15d9a141d265b909ceb4e4ed5e/picture.jpg?f=300x300",
+    "last_price": 229.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 229.99,
+    "min_price_all": 229.99,
+    "avg_price_30d": 229.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 229.99
+      }
+    ]
+  },
+  "8755862": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/horquilla-patinete-freestyle-mf-900-street-aluminio-forjado/340433/m8755862",
+    "sku": "8755862",
+    "title": "Horquilla Patinete Freestyle MF 900 Street Aluminio forjado",
+    "url": "https://www.decathlon.es/es/p/horquilla-patinete-freestyle-mf-900-street-aluminio-forjado/340433/m8755862",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8755862|Horquilla Patinete Freestyle MF 900 Street Aluminio forjado|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/horquilla-patinete-freestyle-mf-900-street-aluminio-forjado/340433/m8755862",
+    "image": "https://contents.mediadecathlon.com/p3084687/k$0071fa5c84c88151d8d18151446a545a/picture.jpg?f=300x300",
+    "last_price": 39.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 39.99,
+    "min_price_all": 39.99,
+    "avg_price_30d": 39.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 39.99
+      }
+    ]
+  },
+  "8618478": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/rueda-28-pulgadas-delantera-dinamo-shimano-doble-pared-plata-disco-6-agujeros/203435/c249m8618478",
+    "sku": "8618478",
+    "title": "Rueda 28 Pulgadas Delantera Dinamo Shimano Doble Pared Plata Disco 6 Agujeros",
+    "url": "https://www.decathlon.es/es/p/rueda-28-pulgadas-delantera-dinamo-shimano-doble-pared-plata-disco-6-agujeros/203435/c249m8618478",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8618478|Rueda 28 Pulgadas Delantera Dinamo Shimano Doble Pared Plata Disco 6 Agujeros|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/rueda-28-pulgadas-delantera-dinamo-shimano-doble-pared-plata-disco-6-agujeros/203435/c249m8618478",
+    "image": "https://contents.mediadecathlon.com/p2280029/k$b509c36a99d9e81acf22adbf2589cd7e/picture.jpg?f=300x300",
+    "last_price": 64.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 64.99,
+    "min_price_all": 64.99,
+    "avg_price_30d": 64.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 64.99
+      }
+    ]
+  },
+  "8758634": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/habitacion-pieza-suelta-para-tienda-de-campana-arpenaz-8-4/341380/m8758634",
+    "sku": "8758634",
+    "title": "HABITACIÓN - PIEZA SUELTA PARA TIENDA DE CAMPAÑA ARPENAZ 8.4",
+    "url": "https://www.decathlon.es/es/p/habitacion-pieza-suelta-para-tienda-de-campana-arpenaz-8-4/341380/m8758634",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8758634|HABITACIÓN - PIEZA SUELTA PARA TIENDA DE CAMPAÑA ARPENAZ 8.4|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/habitacion-pieza-suelta-para-tienda-de-campana-arpenaz-8-4/341380/m8758634",
+    "image": "https://contents.mediadecathlon.com/p2194646/k$865d135a149802654881b46dffb28a0b/picture.jpg?f=300x300",
+    "last_price": 69.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 69.99,
+    "min_price_all": 69.99,
+    "avg_price_30d": 69.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 69.99
+      }
+    ]
+  },
+  "8606878": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/camiseta-rugby-escuela-independiente-santander-junior/X8606878/m8606878",
+    "sku": "8606878",
+    "title": "CAMISETA RUGBY ESCUELA INDEPENDIENTE SANTANDER JÚNIOR",
+    "url": "https://www.decathlon.es/es/p/camiseta-rugby-escuela-independiente-santander-junior/X8606878/m8606878",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8606878|CAMISETA RUGBY ESCUELA INDEPENDIENTE SANTANDER JÚNIOR|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/camiseta-rugby-escuela-independiente-santander-junior/X8606878/m8606878",
+    "image": "https://contents.mediadecathlon.com/p1834316/k$cb47f2db2dadf02de2a7941d11141030/picture.jpg?f=300x300",
+    "last_price": 21.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 21.99,
+    "min_price_all": 21.99,
+    "avg_price_30d": 21.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 21.99
+      }
+    ]
+  },
+  "8983756": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/chaqueta-solognac-500-mujer-marron-claro-calida-impermeable/363087/c259c280m8983756",
+    "sku": "8983756",
+    "title": "Chaqueta Solognac 500 Mujer Marrón Claro Cálida Impermeable",
+    "url": "https://www.decathlon.es/es/p/chaqueta-solognac-500-mujer-marron-claro-calida-impermeable/363087/c259c280m8983756",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8983756|Chaqueta Solognac 500 Mujer Marrón Claro Cálida Impermeable|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/chaqueta-solognac-500-mujer-marron-claro-calida-impermeable/363087/c259c280m8983756",
+    "image": "https://contents.mediadecathlon.com/p3158613/k$c785442dc4ee3dbc1f7f409c6e71c273/picture.jpg?f=300x300",
+    "last_price": 59.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 59.99,
+    "min_price_all": 59.99,
+    "avg_price_30d": 59.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 59.99
+      }
+    ]
+  },
+  "8347513": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/botas-de-caza-chiruca-perdiz-gore-tex-impermeable-suela-vibram-verde/X8347513/c29m8347513",
+    "sku": "8347513",
+    "title": "Botas De Caza Chiruca Perdiz Gore Tex Impermeable Suela Vibram Verde",
+    "url": "https://www.decathlon.es/es/p/botas-de-caza-chiruca-perdiz-gore-tex-impermeable-suela-vibram-verde/X8347513/c29m8347513",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8347513|Botas De Caza Chiruca Perdiz Gore Tex Impermeable Suela Vibram Verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/botas-de-caza-chiruca-perdiz-gore-tex-impermeable-suela-vibram-verde/X8347513/c29m8347513",
+    "image": "https://contents.mediadecathlon.com/p2323595/k$bcc308af3079263a3d0a6a9abe019664/picture.jpg?f=300x300",
+    "last_price": 139.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 139.99,
+    "min_price_all": 139.99,
+    "avg_price_30d": 139.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 139.99
+      }
+    ]
+  },
+  "9035911": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/casco-ciclismo-carretera-aerodinamico-rcr-f-mips-the-ace-ed-limitada/343600/m9035911",
+    "sku": "9035911",
+    "title": "Casco Ciclismo Carretera Aerodinámico Rcr-F Mips The Ace Ed. limitada",
+    "url": "https://www.decathlon.es/es/p/casco-ciclismo-carretera-aerodinamico-rcr-f-mips-the-ace-ed-limitada/343600/m9035911",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9035911|Casco Ciclismo Carretera Aerodinámico Rcr-F Mips The Ace Ed. limitada|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/casco-ciclismo-carretera-aerodinamico-rcr-f-mips-the-ace-ed-limitada/343600/m9035911",
+    "image": "https://contents.mediadecathlon.com/p3238391/k$b4f241f9da878d287428a211d882e12d/picture.jpg?f=300x300",
+    "last_price": 119.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 119.99,
+    "min_price_all": 119.99,
+    "avg_price_30d": 119.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 119.99
+      }
+    ]
+  },
+  "9034798": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pantalon-hombre-mujer-layers-verde/387427/c311m9034798",
+    "sku": "9034798",
+    "title": "Pantalón hombre/mujer, Layers, verde",
+    "url": "https://www.decathlon.es/es/p/pantalon-hombre-mujer-layers-verde/387427/c311m9034798",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9034798|Pantalón hombre/mujer, Layers, verde|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-hombre-mujer-layers-verde/387427/c311m9034798",
+    "image": "https://contents.mediadecathlon.com/p3214798/k$1a7c0d057c5e55ee0705e06c38a6d85d/picture.jpg?f=300x300",
+    "last_price": 34.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 34.99,
+    "min_price_all": 34.99,
+    "avg_price_30d": 34.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 34.99
+      }
+    ]
+  },
+  "8851248": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/parka-invierno-de-senderismo-hombre-20-degc-nh900-negro/350964/c382c1m8851248",
+    "sku": "8851248",
+    "title": "Parka invierno de senderismo hombre, -20 °C, NH900 negro",
+    "url": "https://www.decathlon.es/es/p/parka-invierno-de-senderismo-hombre-20-degc-nh900-negro/350964/c382c1m8851248",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8851248|Parka invierno de senderismo hombre, -20 °C, NH900 negro|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/parka-invierno-de-senderismo-hombre-20-degc-nh900-negro/350964/c382c1m8851248",
+    "image": "https://contents.mediadecathlon.com/p3186686/k$ccf0d4a7aa968a101c405362e1a9fe1b/picture.jpg?f=300x300",
+    "last_price": 129.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 129.99,
+    "min_price_all": 129.99,
+    "avg_price_30d": 129.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 129.99
+      }
+    ]
+  },
+  "8595266": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/1-truck-skate-fury-base-forjada-tamano-8-25-20-96-mm/144665/c2m8595266",
+    "sku": "8595266",
+    "title": "1 Truck Skate Fury Base Forjada Tamaño 8,25\" (20,96 mm)",
+    "url": "https://www.decathlon.es/es/p/1-truck-skate-fury-base-forjada-tamano-8-25-20-96-mm/144665/c2m8595266",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8595266|1 Truck Skate Fury Base Forjada Tamaño 8,25\" (20,96 mm)|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/1-truck-skate-fury-base-forjada-tamano-8-25-20-96-mm/144665/c2m8595266",
+    "image": "https://contents.mediadecathlon.com/p2449700/k$e21c58f0fb19edc4fee622dc804136d1/picture.jpg?f=300x300",
+    "last_price": 19.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 19.99,
+    "min_price_all": 19.99,
+    "avg_price_30d": 19.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 19.99
+      }
+    ]
+  },
+  "8758124": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/suelo-de-recambio-para-habitaculo-van-connect-air-seconds-fresh/341292/m8758124",
+    "sku": "8758124",
+    "title": "Suelo de recambio para habitáculo Van Connect Air Seconds Fresh",
+    "url": "https://www.decathlon.es/es/p/suelo-de-recambio-para-habitaculo-van-connect-air-seconds-fresh/341292/m8758124",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8758124|Suelo de recambio para habitáculo Van Connect Air Seconds Fresh|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/suelo-de-recambio-para-habitaculo-van-connect-air-seconds-fresh/341292/m8758124",
+    "image": "https://contents.mediadecathlon.com/p2635459/k$fc1a7af39b8d7a9d4c5b91b3936b55bb/picture.jpg?f=300x300",
+    "last_price": 49.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 49.99,
+    "min_price_all": 49.99,
+    "avg_price_30d": 49.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 49.99
+      }
+    ]
+  },
+  "9011058": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/leggings-equitacion-mujer-verde-ahumado-calidos-invierno-rodillas-silicona/344750/c311m9011058",
+    "sku": "9011058",
+    "title": "Leggings Equitación Mujer Verde Ahumado Cálidos Invierno Rodillas Silicona",
+    "url": "https://www.decathlon.es/es/p/leggings-equitacion-mujer-verde-ahumado-calidos-invierno-rodillas-silicona/344750/c311m9011058",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=9011058|Leggings Equitación Mujer Verde Ahumado Cálidos Invierno Rodillas Silicona|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/leggings-equitacion-mujer-verde-ahumado-calidos-invierno-rodillas-silicona/344750/c311m9011058",
+    "image": "https://contents.mediadecathlon.com/p3155311/k$f1da3a5a863803071477e07f354811c9/picture.jpg?f=300x300",
+    "last_price": 44.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 44.99,
+    "min_price_all": 44.99,
+    "avg_price_30d": 44.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 44.99
+      }
+    ]
+  },
+  "8755514": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/pantalon-de-montana-y-alpinismo-impermeable-con-tirantes-mujer-simond-ice/340138/c43m8755514",
+    "sku": "8755514",
+    "title": "Pantalón de montaña y alpinismo impermeable con tirantes Mujer Simond Ice",
+    "url": "https://www.decathlon.es/es/p/pantalon-de-montana-y-alpinismo-impermeable-con-tirantes-mujer-simond-ice/340138/c43m8755514",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8755514|Pantalón de montaña y alpinismo impermeable con tirantes Mujer Simond Ice|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/pantalon-de-montana-y-alpinismo-impermeable-con-tirantes-mujer-simond-ice/340138/c43m8755514",
+    "image": "https://contents.mediadecathlon.com/p2865885/k$d2a1d5ef8f291306c867d101eed1e733/picture.jpg?f=300x300",
+    "last_price": 139.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 139.99,
+    "min_price_all": 139.99,
+    "avg_price_30d": 139.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 139.99
+      }
+    ]
+  },
+  "8798241": {
+    "source": "decathlon",
+    "id": "https://www.decathlon.es/es/p/shorty-neopreno-hombre-cremallera-diagonal-frontal-2-mm/345436/c382c192m8798241",
+    "sku": "8798241",
+    "title": "Shorty neopreno Hombre cremallera diagonal frontal 2 mm",
+    "url": "https://www.decathlon.es/es/p/shorty-neopreno-hombre-cremallera-diagonal-frontal-2-mm/345436/c382c192m8798241",
+    "affiliate_url": "https://afiliacion.decathlon.es/tracking/clk?fid=107&pca=8798241|Shorty neopreno Hombre cremallera diagonal frontal 2 mm|&act=21712&gel=0&pub=42111&org=2615&url=https://www.decathlon.es/es/p/shorty-neopreno-hombre-cremallera-diagonal-frontal-2-mm/345436/c382c192m8798241",
+    "image": "https://contents.mediadecathlon.com/p2557097/k$b22e667a92d12e9145e67d63ebfd02a0/picture.jpg?f=300x300",
+    "last_price": 69.99,
+    "previous_price": null,
+    "last_seen": "2026-10-22",
+    "min_price_30d": 69.99,
+    "min_price_all": 69.99,
+    "avg_price_30d": 69.99,
+    "is_recent_min_price": true,
+    "prices": [
+      {
+        "date": "2026-10-22",
+        "price": 69.99
       }
     ]
   }
